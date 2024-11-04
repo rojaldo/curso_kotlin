@@ -1,0 +1,2841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<title>Temario del Curso de Kotlin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child{border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active,#footnotes .footnote a:first-of-type:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Temario del Curso de Kotlin</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_módulo_1_introducción_a_kotlin">Módulo 1: Introducción a Kotlin</a>
+<ul class="sectlevel2">
+<li><a href="#_1_1_qué_es_kotlin">1.1 ¿Qué es Kotlin?</a></li>
+<li><a href="#_1_2_instalación_y_configuración_del_entorno">1.2 Instalación y configuración del entorno</a></li>
+<li><a href="#_1_3_sintaxis_básica_de_kotlin">1.3 Sintaxis básica de Kotlin</a>
+<ul class="sectlevel3">
+<li><a href="#_variables">Variables</a></li>
+<li><a href="#_tipos_de_datos">Tipos de datos</a></li>
+<li><a href="#_funciones">Funciones</a></li>
+<li><a href="#_control_de_flujo">Control de flujo</a></li>
+<li><a href="#_bucles">Bucles</a></li>
+<li><a href="#_nulabilidad">Nulabilidad</a></li>
+<li><a href="#_clases_y_objetos">Clases y Objetos</a></li>
+</ul>
+</li>
+<li><a href="#_1_4_tipos_de_datos_y_variables">1.4 Tipos de datos y variables</a>
+<ul class="sectlevel3">
+<li><a href="#_declaración_de_variables">Declaración de variables</a></li>
+<li><a href="#_tipos_de_datos_básicos">Tipos de datos básicos</a></li>
+<li><a href="#_inferencia_de_tipos">Inferencia de tipos</a></li>
+<li><a href="#_nulabilidad_y_tipos_anulables">Nulabilidad y tipos anulables</a></li>
+<li><a href="#_conversión_de_tipos">Conversión de tipos</a></li>
+<li><a href="#_literales_de_números">Literales de números</a></li>
+<li><a href="#_cadenas_de_caracteres_string">Cadenas de caracteres (String)</a></li>
+<li><a href="#_interpolación_de_cadenas">Interpolación de cadenas</a></li>
+<li><a href="#_métodos_de_cadena_en_kotlin">Métodos de cadena en Kotlin</a></li>
+</ul>
+</li>
+<li><a href="#_concatenación_de_cadenas">Concatenación de cadenas</a></li>
+<li><a href="#_interpolación_de_cadenas_2">Interpolación de cadenas</a></li>
+<li><a href="#_métodos_de_transformación">Métodos de transformación</a></li>
+<li><a href="#_subcadenas">Subcadenas</a></li>
+<li><a href="#_reemplazo_de_caracteres">Reemplazo de caracteres</a></li>
+<li><a href="#_división_de_cadenas">División de cadenas</a></li>
+<li><a href="#_eliminación_de_espacios_en_blanco">Eliminación de espacios en blanco</a></li>
+<li><a href="#_1_5_operadores_en_kotlin">1.5 Operadores en Kotlin</a>
+<ul class="sectlevel3">
+<li><a href="#_operadores_aritméticos">Operadores aritméticos</a></li>
+<li><a href="#_operadores_de_comparación">Operadores de comparación</a></li>
+<li><a href="#_operadores_lógicos">Operadores lógicos</a></li>
+<li><a href="#_operadores_de_asignación">Operadores de asignación</a></li>
+<li><a href="#_operadores_de_incremento_y_decremento">Operadores de incremento y decremento</a></li>
+<li><a href="#_operador_de_rango">Operador de rango</a></li>
+<li><a href="#_operadores_de_verificación_de_tipos">Operadores de verificación de tipos</a></li>
+</ul>
+</li>
+<li><a href="#_1_6_control_de_dependencias_con_gradle_en_kotlin">1.6 Control de dependencias con Gradle en Kotlin</a></li>
+<li><a href="#_configuración_del_archivo_build_gradle_kts">Configuración del archivo <code>build.gradle.kts</code></a></li>
+<li><a href="#_explicación_de_la_configuración">Explicación de la configuración</a></li>
+<li><a href="#_añadir_nuevas_dependencias">Añadir nuevas dependencias</a></li>
+<li><a href="#_ejecutar_tareas_de_gradle">Ejecutar tareas de Gradle</a></li>
+<li><a href="#_configuración_adicional">Configuración adicional</a></li>
+<li><a href="#_módulo_2_estructuras_de_control">Módulo 2: Estructuras de Control</a>
+<ul class="sectlevel3">
+<li><a href="#_2_1_estructuras_condicionales">2.1 Estructuras condicionales</a></li>
+<li><a href="#_2_2_bucles_for_while_y_do_while">2.2 Bucles: for, while y do-while</a></li>
+<li><a href="#_2_3_cuando_when_como_alternativa_a_switch">2.3 Cuando (when) como alternativa a switch</a></li>
+<li><a href="#_2_4_manejo_de_excepciones">2.4 Manejo de excepciones</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_módulo_3_funciones">Módulo 3: Funciones</a>
+<ul class="sectlevel2">
+<li><a href="#_3_1_declaración_de_funciones">3.1 Declaración de funciones</a></li>
+<li><a href="#_3_2_funciones_de_orden_superior">3.2 Funciones de orden superior</a></li>
+<li><a href="#_3_3_lambdas_y_expresiones_de_función">3.3 Lambdas y expresiones de función</a></li>
+<li><a href="#_3_4_parámetros_y_retorno_de_funciones">3.4 Parámetros y retorno de funciones</a></li>
+</ul>
+</li>
+<li><a href="#_módulo_4_programación_orientada_a_objetos">Módulo 4: Programación Orientada a Objetos</a>
+<ul class="sectlevel2">
+<li><a href="#_4_1_clases_y_objetos">4.1 Clases y objetos</a></li>
+<li><a href="#_4_2_propiedades_y_métodos">4.2 Propiedades y métodos</a></li>
+<li><a href="#_4_3_herencia_y_polimorfismo">4.3 Herencia y polimorfismo</a></li>
+<li><a href="#_4_4_interfaces_y_clases_abstractas">4.4 Interfaces y clases abstractas</a>
+<ul class="sectlevel3">
+<li><a href="#_interfaces">Interfaces</a></li>
+<li><a href="#_clases_abstractas">Clases abstractas</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_módulo_5_colecciones_y_manejo_de_datos_en_kotlin">Módulo 5: Colecciones y Manejo de Datos en kotlin</a>
+<ul class="sectlevel2">
+<li><a href="#_5_1_listas_y_conjuntos">5.1 Listas y conjuntos</a></li>
+<li><a href="#_5_2_mapas">5.2 Mapas</a></li>
+<li><a href="#_5_3_operaciones_en_colecciones">5.3 Operaciones en colecciones</a></li>
+<li><a href="#_5_4_manipulación_de_datos_con_funciones_de_extensión">5.4 Manipulación de datos con funciones de extensión</a></li>
+</ul>
+</li>
+<li><a href="#_módulo_6_programación_funcional_en_kotlin">Módulo 6: Programación Funcional en Kotlin</a>
+<ul class="sectlevel2">
+<li><a href="#_6_1_conceptos_básicos_de_programación_funcional">6.1 Conceptos básicos de programación funcional</a>
+<ul class="sectlevel3">
+<li><a href="#_principios_de_la_programación_funcional">Principios de la programación funcional</a></li>
+<li><a href="#_expresiones_lambda_y_funciones_de_orden_superior_en_kotlin">Expresiones lambda y funciones de orden superior en Kotlin</a></li>
+<li><a href="#_inmutabilidad">Inmutabilidad</a></li>
+<li><a href="#_operaciones_funcionales_en_colecciones">Operaciones funcionales en colecciones</a></li>
+<li><a href="#_funciones_puras">Funciones puras</a></li>
+<li><a href="#_transparencia_referencial">Transparencia referencial</a></li>
+<li><a href="#_resumen">Resumen</a></li>
+</ul>
+</li>
+<li><a href="#_6_2_inmutabilidad_y_efectos_secundarios">6.2 Inmutabilidad y efectos secundarios</a>
+<ul class="sectlevel3">
+<li><a href="#_inmutabilidad_en_kotlin">Inmutabilidad en Kotlin</a></li>
+<li><a href="#_efectos_secundarios_en_funciones">Efectos secundarios en funciones</a></li>
+<li><a href="#_uso_de_funciones_puras">Uso de funciones puras</a></li>
+<li><a href="#_ventajas_de_la_inmutabilidad">Ventajas de la inmutabilidad</a></li>
+<li><a href="#_trabajando_con_colecciones_inmutables">Trabajando con colecciones inmutables</a></li>
+<li><a href="#_buenas_prácticas_para_evitar_efectos_secundarios">Buenas prácticas para evitar efectos secundarios</a></li>
+<li><a href="#_resumen_2">Resumen</a></li>
+</ul>
+</li>
+<li><a href="#_6_3_composición_de_funciones">6.3 Composición de funciones</a>
+<ul class="sectlevel3">
+<li><a href="#_qué_es_la_composición_de_funciones">Qué es la composición de funciones</a></li>
+<li><a href="#_funciones_de_orden_superior_para_composición">Funciones de orden superior para composición</a></li>
+<li><a href="#_operadores_de_alcance_let_apply_run_also">Operadores de alcance (<code>let</code>, <code>apply</code>, <code>run</code>, <code>also</code>)</a></li>
+<li><a href="#_encadenamiento_de_funciones_en_colecciones">Encadenamiento de funciones en colecciones</a></li>
+<li><a href="#_ventajas_de_la_composición_de_funciones">Ventajas de la composición de funciones</a></li>
+<li><a href="#_resumen_3">Resumen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_módulo_7_concurrencia_y_programación_asincrónica">Módulo 7: Concurrencia y Programación Asincrónica</a>
+<ul class="sectlevel2">
+<li><a href="#_7_1_hilos_y_tareas_en_kotlin">7.1 Hilos y tareas en Kotlin</a></li>
+<li><a href="#_7_2_coroutines_introducción_y_uso">7.2 Coroutines: introducción y uso</a>
+<ul class="sectlevel3">
+<li><a href="#_conceptos_básicos_de_las_corrutinas">Conceptos básicos de las corrutinas</a></li>
+<li><a href="#_crear_y_lanzar_una_corrutina">Crear y lanzar una corrutina</a></li>
+<li><a href="#_funciones_suspendidas_y_async">Funciones suspendidas y <code>async</code></a></li>
+<li><a href="#_contextos_de_corrutinas_y_dispatchers">Contextos de corrutinas y <code>Dispatchers</code></a></li>
+<li><a href="#_ejemplo_de_uso_de_corrutinas_en_android">Ejemplo de uso de corrutinas en Android</a></li>
+<li><a href="#_resumen_4">Resumen</a></li>
+</ul>
+</li>
+<li><a href="#_7_3_manejo_de_excepciones_en_coroutines">7.3 Manejo de excepciones en coroutines</a>
+<ul class="sectlevel3">
+<li><a href="#_manejo_de_excepciones_con_try_catch">Manejo de excepciones con <code>try-catch</code></a></li>
+<li><a href="#_uso_de_coroutineexceptionhandler">Uso de <code>CoroutineExceptionHandler</code></a></li>
+<li><a href="#_control_de_errores_en_corrutinas_estructuradas_con_supervisorscope">Control de errores en corrutinas estructuradas con <code>supervisorScope</code></a></li>
+<li><a href="#_resumen_5">Resumen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_módulo_8_desarrollo_de_aplicaciones">Módulo 8: Desarrollo de Aplicaciones</a>
+<ul class="sectlevel2">
+<li><a href="#_8_1_introducción_al_desarrollo_android_con_kotlin">8.1 Introducción al desarrollo Android con Kotlin</a>
+<ul class="sectlevel3">
+<li><a href="#_configuración_del_entorno">Configuración del entorno</a></li>
+<li><a href="#_estructura_de_un_proyecto_android">Estructura de un proyecto Android</a></li>
+<li><a href="#_primeros_pasos_crear_una_actividad_en_kotlin">Primeros pasos: Crear una actividad en Kotlin</a></li>
+<li><a href="#_creación_de_interfaces_de_usuario_en_android">Creación de interfaces de usuario en Android</a></li>
+<li><a href="#_ejecución_de_la_aplicación_en_un_emulador">Ejecución de la aplicación en un emulador</a></li>
+</ul>
+</li>
+<li><a href="#_8_2_creación_de_una_aplicación_sencilla">8.2 Creación de una aplicación sencilla</a></li>
+<li><a href="#_8_3_integración_con_bases_de_datos">8.3 Integración con bases de datos</a></li>
+<li><a href="#_8_4_buenas_prácticas_y_consejos">8.4 Buenas prácticas y consejos</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_módulo_1_introducción_a_kotlin">Módulo 1: Introducción a Kotlin</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_1_qué_es_kotlin">1.1 ¿Qué es Kotlin?</h3>
+<div class="paragraph">
+<p>Kotlin es un lenguaje de programación moderno, conciso y seguro que se ejecuta en la Máquina Virtual de Java (JVM) y se puede compilar a JavaScript o código nativo. Fue desarrollado por JetBrains y es totalmente interoperable con Java.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_2_instalación_y_configuración_del_entorno">1.2 Instalación y configuración del entorno</h3>
+<div class="paragraph">
+<p>Para instalar Kotlin, necesitas configurar tu entorno de desarrollo. Aquí están los pasos básicos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Descargar e instalar el SDK de Kotlin en macOS
+sdk install kotlin
+
+# descargar e instalar el SDK de Kotlin en Linux
+curl -s https://get.sdkman.io | bash
+
+sdk install kotlin
+
+# Descargar e instalar el SDK de Kotlin en Windows con winget
+winget install kotlin.kotlin
+
+# Verificar la instalación
+kotlinc -version</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_3_sintaxis_básica_de_kotlin">1.3 Sintaxis básica de Kotlin</h3>
+<div class="paragraph">
+<p>Kotlin es un lenguaje moderno y conciso que utiliza una sintaxis simplificada para facilitar el desarrollo. A continuación, repasaremos los elementos básicos de la sintaxis de Kotlin.</p>
+</div>
+<div class="sect3">
+<h4 id="_variables">Variables</h4>
+<div class="paragraph">
+<p>En Kotlin, las variables pueden ser declaradas como mutables (<code>var</code>) o inmutables (<code>val</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var nombre = "Juan" // Mutable, el valor puede cambiar
+val edad = 30       // Inmutable, el valor no puede cambiar</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tipos_de_datos">Tipos de datos</h4>
+<div class="paragraph">
+<p>Kotlin es un lenguaje con tipado fuerte. Los tipos de datos más comunes son <code>Int</code>, <code>Double</code>, <code>String</code>, y <code>Boolean</code>. Kotlin puede inferir el tipo de dato, pero también se puede declarar explícitamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val numero: Int = 42
+val pi: Double = 3.14159
+val saludo: String = "Hola, Kotlin!"
+val esActivo: Boolean = true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_funciones">Funciones</h4>
+<div class="paragraph">
+<p>La declaración de funciones en Kotlin se realiza con la palabra clave <code>fun</code>. La sintaxis es simple y permite el uso de valores de retorno explícitos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun saludar(nombre: String): String {
+    return "Hola, $nombre!"
+}
+
+fun sumar(a: Int, b: Int) = a + b // Función con expresión simplificada</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_control_de_flujo">Control de flujo</h4>
+<div class="paragraph">
+<p>Kotlin proporciona estructuras de control de flujo como <code>if</code>, <code>when</code>, <code>for</code>, y <code>while</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val edad = 18
+if (edad &gt;= 18) {
+    println("Eres mayor de edad")
+} else {
+    println("Eres menor de edad")
+}
+
+val dia = 3
+val diaSemana = when (dia) {
+    1 -&gt; "Lunes"
+    2 -&gt; "Martes"
+    3 -&gt; "Miércoles"
+    else -&gt; "Otro día"
+}
+println(diaSemana)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bucles">Bucles</h4>
+<div class="paragraph">
+<p>Los bucles <code>for</code> y <code>while</code> en Kotlin se usan para iterar sobre colecciones o rangos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">for (i in 1..5) { // Rango de 1 a 5
+    println("Número: $i")
+}
+
+var contador = 0
+while (contador &lt; 5) {
+    println("Contador: $contador")
+    contador++
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nulabilidad">Nulabilidad</h4>
+<div class="paragraph">
+<p>Kotlin gestiona la nulabilidad de manera estricta. Las variables que pueden ser <code>null</code> deben declararse usando el operador <code>?</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var nombre: String? = null // `nombre` puede ser null
+nombre = "Carlos"
+
+// Uso seguro de variables nulas
+val longitud = nombre?.length ?: 0 // Si `nombre` es null, longitud será 0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clases_y_objetos">Clases y Objetos</h4>
+<div class="paragraph">
+<p>Kotlin permite definir clases de manera sencilla, y los objetos pueden instanciarse sin <code>new</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class Persona(val nombre: String, var edad: Int) {
+    fun mostrarInfo() {
+        println("Nombre: $nombre, Edad: $edad")
+    }
+}
+
+val persona = Persona("Ana", 25)
+persona.mostrarInfo()</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_4_tipos_de_datos_y_variables">1.4 Tipos de datos y variables</h3>
+<div class="paragraph">
+<p>En Kotlin, los tipos de datos son estáticos, lo que significa que cada variable tiene un tipo específico que no cambia. A continuación, veremos los tipos de datos básicos y cómo se manejan las variables en Kotlin.</p>
+</div>
+<div class="sect3">
+<h4 id="_declaración_de_variables">Declaración de variables</h4>
+<div class="paragraph">
+<p>Las variables en Kotlin pueden ser declaradas como mutables usando <code>var</code> o inmutables con <code>val</code>. Usar <code>val</code> es preferible cuando no se necesita modificar la variable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var nombre = "Lucía" // Variable mutable
+val edad = 28        // Variable inmutable</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tipos_de_datos_básicos">Tipos de datos básicos</h4>
+<div class="paragraph">
+<p>Kotlin tiene varios tipos de datos básicos, algunos de los cuales son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Int</code>: Enteros de 32 bits.</p>
+</li>
+<li>
+<p><code>Double</code>: Números de punto flotante de 64 bits.</p>
+</li>
+<li>
+<p><code>Float</code>: Números de punto flotante de 32 bits.</p>
+</li>
+<li>
+<p><code>Long</code>: Enteros de 64 bits.</p>
+</li>
+<li>
+<p><code>Short</code>: Enteros de 16 bits.</p>
+</li>
+<li>
+<p><code>Byte</code>: Enteros de 8 bits.</p>
+</li>
+<li>
+<p><code>Char</code>: Un solo carácter.</p>
+</li>
+<li>
+<p><code>Boolean</code>: Valores de <code>true</code> o <code>false</code>.</p>
+</li>
+<li>
+<p><code>String</code>: Cadena de caracteres.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val numeroEntero: Int = 10
+val numeroDecimal: Double = 5.99
+val letra: Char = 'A'
+val esVerdadero: Boolean = true
+val texto: String = "Hola, Kotlin!"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inferencia_de_tipos">Inferencia de tipos</h4>
+<div class="paragraph">
+<p>Kotlin permite la inferencia de tipos, lo que significa que no siempre es necesario especificar el tipo de dato, ya que Kotlin lo deduce automáticamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val mensaje = "Hola, Mundo!"  // Inferido como String
+val numero = 123              // Inferido como Int</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nulabilidad_y_tipos_anulables">Nulabilidad y tipos anulables</h4>
+<div class="paragraph">
+<p>En Kotlin, los tipos son no anulables por defecto, lo que significa que no pueden contener <code>null</code>. Para declarar una variable que pueda contener <code>null</code>, se usa el operador <code>?</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var nombre: String? = null // `nombre` puede ser null
+nombre = "Carlos"
+
+// Uso seguro con operadores de nulabilidad
+val longitud = nombre?.length ?: 0 // Si `nombre` es null, longitud será 0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_conversión_de_tipos">Conversión de tipos</h4>
+<div class="paragraph">
+<p>Kotlin no permite conversiones automáticas entre tipos. Por lo tanto, se debe realizar la conversión explícita al tipo deseado usando métodos como <code>toInt()</code>, <code>toDouble()</code>, etc.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val numero: Int = 42
+val numeroDecimal: Double = numero.toDouble() // Conversión explícita de Int a Double</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_literales_de_números">Literales de números</h4>
+<div class="paragraph">
+<p>Kotlin permite el uso de literales de diferentes tipos, como los siguientes ejemplos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val numeroLargo: Long = 100000L // Literal Long
+val numeroHexadecimal = 0xFF    // Literal hexadecimal
+val numeroBinario = 0b1010      // Literal binario</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_cadenas_de_caracteres_string">Cadenas de caracteres (String)</h4>
+<div class="paragraph">
+<p>Kotlin tiene una clase de cadena (<code>String</code>) para almacenar texto. Las cadenas pueden ser de línea única o multilínea.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val saludo: String = "Hola, Kotlin!"  // Cadena de línea única
+val multilinea: String = """
+    Esta es una cadena
+    de varias líneas
+""".trimIndent()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_interpolación_de_cadenas">Interpolación de cadenas</h4>
+<div class="paragraph">
+<p>La interpolación de cadenas en Kotlin permite insertar variables dentro de una cadena usando el prefijo <code>$</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val nombre = "Ana"
+val mensaje = "Hola, $nombre!" // Interpolación
+val longitudMensaje = "El mensaje tiene ${mensaje.length} caracteres." // Expresiones en interpolación
+val multilinea = """
+    |Línea 1
+    |Línea 2
+""" // Cadena de varias líneas con sangría
+val multilineaTrim = """
+    |Línea 1
+    |Línea 2
+""".trimMargin() // Cadena de varias líneas sin sangría</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_métodos_de_cadena_en_kotlin">Métodos de cadena en Kotlin</h4>
+<div class="paragraph">
+<p>Kotlin proporciona una variedad de métodos para manipular cadenas de texto. A continuación, se presentan algunos de los métodos más comunes y útiles.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_concatenación_de_cadenas">Concatenación de cadenas</h3>
+<div class="paragraph">
+<p>Puedes concatenar cadenas utilizando el operador <code>+</code> o la función <code>plus</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val str1 = "Hola"
+    val str2 = "Mundo"
+    val result = str1 + " " + str2
+    println(result) // Salida: Hola Mundo
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interpolación_de_cadenas_2">Interpolación de cadenas</h3>
+<div class="paragraph">
+<p>La interpolación de cadenas permite insertar valores dentro de una cadena utilizando el símbolo <code>$</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val name = "Kotlin"
+    val greeting = "Hola, $name!"
+    println(greeting) // Salida: Hola, Kotlin!
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_métodos_de_transformación">Métodos de transformación</h3>
+<div class="paragraph">
+<p>Kotlin proporciona varios métodos para transformar cadenas, como <code>toUpperCase</code> y <code>toLowerCase</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val original = "Kotlin"
+    val upper = original.toUpperCase()
+    val lower = original.toLowerCase()
+    println(upper) // Salida: KOTLIN
+    println(lower) // Salida: kotlin
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_subcadenas">Subcadenas</h3>
+<div class="paragraph">
+<p>Puedes obtener subcadenas utilizando el método <code>substring</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val original = "Hola, Kotlin!"
+    val sub = original.substring(0, 4)
+    println(sub) // Salida: Hola
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reemplazo_de_caracteres">Reemplazo de caracteres</h3>
+<div class="paragraph">
+<p>El método <code>replace</code> permite reemplazar caracteres o subcadenas dentro de una cadena:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val original = "Hola, Kotlin!"
+    val replaced = original.replace("Kotlin", "Mundo")
+    println(replaced) // Salida: Hola, Mundo!
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_división_de_cadenas">División de cadenas</h3>
+<div class="paragraph">
+<p>Puedes dividir una cadena en partes utilizando el método <code>split</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val original = "uno,dos,tres"
+    val parts = original.split(",")
+    println(parts) // Salida: [uno, dos, tres]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_eliminación_de_espacios_en_blanco">Eliminación de espacios en blanco</h3>
+<div class="paragraph">
+<p>Los métodos <code>trim</code>, <code>trimStart</code>, y <code>trimEnd</code> eliminan espacios en blanco de una cadena:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val original = "  Hola, Kotlin!  "
+    val trimmed = original.trim()
+    println(trimmed) // Salida: 'Hola, Kotlin!'
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_5_operadores_en_kotlin">1.5 Operadores en Kotlin</h3>
+<div class="paragraph">
+<p>Kotlin cuenta con una variedad de operadores para realizar operaciones aritméticas, de comparación, lógicas y de asignación. A continuación, se presentan los operadores más utilizados en Kotlin y ejemplos de su uso.</p>
+</div>
+<div class="sect3">
+<h4 id="_operadores_aritméticos">Operadores aritméticos</h4>
+<div class="paragraph">
+<p>Kotlin incluye operadores aritméticos estándar para realizar operaciones matemáticas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val suma = 5 + 3          // Suma: 8
+val resta = 5 - 3         // Resta: 2
+val multiplicacion = 5 * 3 // Multiplicación: 15
+val division = 10 / 2     // División: 5
+val modulo = 10 % 3       // Módulo: 1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operadores_de_comparación">Operadores de comparación</h4>
+<div class="paragraph">
+<p>Los operadores de comparación se usan para comparar valores. Estos operadores devuelven un valor <code>Boolean</code> (<code>true</code> o <code>false</code>).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val esIgual = (5 ==== 5)       // Igualdad: true
+val esDiferente = (5 != 3)   // Desigualdad: true
+val esMayor = (5 &gt; 3)        // Mayor que: true
+val esMenor = (3 &lt; 5)        // Menor que: true
+val esMayorIgual = (5 &gt;= 5)  // Mayor o igual que: true
+val esMenorIgual = (3 &lt;= 5)  // Menor o igual que: true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operadores_lógicos">Operadores lógicos</h4>
+<div class="paragraph">
+<p>Los operadores lógicos se utilizan para combinar expresiones lógicas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val a = true
+val b = false
+
+val yLogico = a &amp;&amp; b      // AND lógico: false
+val oLogico = a || b      // OR lógico: true
+val negacion = !a         // Negación: false</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operadores_de_asignación">Operadores de asignación</h4>
+<div class="paragraph">
+<p>Los operadores de asignación permiten asignar valores a las variables y realizar operaciones al mismo tiempo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var numero = 10
+
+numero += 5    // Suma y asigna: número = 15
+numero -= 3    // Resta y asigna: número = 12
+numero *= 2    // Multiplica y asigna: número = 24
+numero /= 4    // Divide y asigna: número = 6
+numero %= 5    // Módulo y asigna: número = 1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operadores_de_incremento_y_decremento">Operadores de incremento y decremento</h4>
+<div class="paragraph">
+<p>Los operadores de incremento (<code>++</code>) y decremento (<code>--</code>) se utilizan para aumentar o disminuir el valor de una variable en uno.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var contador = 0
+
+contador++    // Incremento: contador = 1
+contador--    // Decremento: contador = 0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operador_de_rango">Operador de rango</h4>
+<div class="paragraph">
+<p>Kotlin proporciona un operador de rango (<code>..</code>) que se utiliza para crear rangos de valores.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val rango = 1..5 // Rango de 1 a 5
+
+for (i in rango) {
+    println(i) // Imprime los números del 1 al 5
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operadores_de_verificación_de_tipos">Operadores de verificación de tipos</h4>
+<div class="paragraph">
+<p>Kotlin ofrece operadores para verificar y convertir tipos.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>is</code>: Verifica si una variable es de un tipo específico.</p>
+</li>
+<li>
+<p><code>!is</code>: Verifica si una variable no es de un tipo específico.</p>
+</li>
+<li>
+<p><code>as</code>: Convierte una variable a un tipo específico (si es posible).</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val texto: Any = "Soy una cadena"
+
+if (texto is String) {
+    println("Texto es una cadena")
+}
+
+val numero = texto as? Int  // `as?` devuelve null si la conversión falla
+println(numero) // Imprime null porque `texto` no es un Int</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_6_control_de_dependencias_con_gradle_en_kotlin">1.6 Control de dependencias con Gradle en Kotlin</h3>
+<div class="paragraph">
+<p>Gradle es una herramienta de automatización de compilación que se utiliza ampliamente en proyectos Kotlin para gestionar dependencias y tareas de compilación. A continuación, se muestra cómo configurar y manejar dependencias en un proyecto Kotlin utilizando Gradle.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuración_del_archivo_build_gradle_kts">Configuración del archivo <code>build.gradle.kts</code></h3>
+<div class="paragraph">
+<p>El archivo <code>build.gradle.kts</code> es el script de compilación de Gradle en Kotlin. Aquí es donde defines las dependencias y configuraciones del proyecto.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">plugins {
+    kotlin("jvm") version "1.5.31"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(kotlin("stdlib"))
+    testImplementation(kotlin("test"))
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_explicación_de_la_configuración">Explicación de la configuración</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Plugins</strong>: El bloque <code>plugins</code> se utiliza para aplicar el plugin de Kotlin. Aquí especificamos la versión del plugin de Kotlin que queremos usar.</p>
+</li>
+<li>
+<p><strong>Repositorios</strong>: El bloque <code>repositories</code> define los repositorios donde Gradle buscará las dependencias. En este caso, estamos utilizando <code>mavenCentral</code>.</p>
+</li>
+<li>
+<p><strong>Dependencias</strong>: El bloque <code>dependencies</code> se utiliza para declarar las dependencias del proyecto. En este ejemplo:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>implementation(kotlin("stdlib"))</code>: Añade la biblioteca estándar de Kotlin.</p>
+</li>
+<li>
+<p><code>testImplementation(kotlin("test"))</code>: Añade las bibliotecas necesarias para realizar pruebas en Kotlin.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_añadir_nuevas_dependencias">Añadir nuevas dependencias</h3>
+<div class="paragraph">
+<p>Para añadir nuevas dependencias, simplemente agrégalas al bloque <code>dependencies</code>. Por ejemplo, para añadir la biblioteca de coroutines de Kotlin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+    implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    testImplementation(kotlin("test"))
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ejecutar_tareas_de_gradle">Ejecutar tareas de Gradle</h3>
+<div class="paragraph">
+<p>Puedes ejecutar varias tareas de Gradle desde la línea de comandos para compilar y probar tu proyecto. Algunos comandos comunes son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Compilar el proyecto</strong>:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source, sh]
+----
+./gradlew build
+----</pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Ejecutar pruebas</strong>:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source, sh]
+----
+./gradlew test
+----</pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Limpiar el proyecto</strong>:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[source, sh]
+----
+./gradlew clean
+----</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuración_adicional">Configuración adicional</h3>
+<div class="paragraph">
+<p>Gradle es altamente configurable y permite personalizar el proceso de compilación según tus necesidades. Puedes añadir tareas personalizadas, configurar plugins adicionales y mucho más.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_módulo_2_estructuras_de_control">Módulo 2: Estructuras de Control</h3>
+<div class="paragraph">
+<p>En este módulo exploraremos las estructuras de control en Kotlin, las cuales permiten controlar el flujo de ejecución de nuestro código mediante condiciones, bucles y manejo de excepciones.</p>
+</div>
+<div class="sect3">
+<h4 id="_2_1_estructuras_condicionales">2.1 Estructuras condicionales</h4>
+<div class="paragraph">
+<p>Las estructuras condicionales permiten ejecutar código basándose en condiciones específicas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val edad = 18
+
+// Condicional if-else
+if (edad &gt;= 18) {
+    println("Eres mayor de edad")
+} else {
+    println("Eres menor de edad")
+}
+
+// Condicional if-else if-else
+val calificacion = 85
+if (calificacion &gt;= 90) {
+    println("Excelente")
+} else if (calificacion &gt;= 70) {
+    println("Aprobado")
+} else {
+    println("Reprobado")
+}
+
+// Expresión if
+val resultado = if (edad &gt;= 18) "Mayor de edad" else "Menor de edad"
+println(resultado)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_2_bucles_for_while_y_do_while">2.2 Bucles: for, while y do-while</h4>
+<div class="paragraph">
+<p>Los bucles permiten ejecutar una sección de código repetidamente.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">// Bucle for con un rango
+for (i in 1..5) {
+    println("Número: $i")
+}
+
+// Bucle for con un array
+val nombres = arrayOf("Ana", "Juan", "Pedro")
+for (nombre in nombres) {
+    println(nombre)
+}
+
+// Bucle while
+var contador = 0
+while (contador &lt; 3) {
+    println("Contador: $contador")
+    contador++
+}
+
+// Bucle do-while
+var contadorDo = 0
+do {
+    println("Contador en do-while: $contadorDo")
+    contadorDo++
+} while (contadorDo &lt; 3)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_3_cuando_when_como_alternativa_a_switch">2.3 Cuando (when) como alternativa a switch</h4>
+<div class="paragraph">
+<p>La expresión <code>when</code> es similar a <code>switch</code> en otros lenguajes, y permite evaluar múltiples condiciones.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val dia = 3
+val nombreDia = when (dia) {
+    1 -&gt; "Lunes"
+    2 -&gt; "Martes"
+    3 -&gt; "Miércoles"
+    4 -&gt; "Jueves"
+    5 -&gt; "Viernes"
+    6 -&gt; "Sábado"
+    7 -&gt; "Domingo"
+    else -&gt; "Día desconocido"
+}
+println(nombreDia)
+
+// Uso de `when` sin argumentos
+val edad = 20
+when {
+    edad &lt; 18 -&gt; println("Menor de edad")
+    edad in 18..64 -&gt; println("Adulto")
+    else -&gt; println("Senior")
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_4_manejo_de_excepciones">2.4 Manejo de excepciones</h4>
+<div class="paragraph">
+<p>Kotlin maneja las excepciones de manera similar a otros lenguajes mediante <code>try</code>, <code>catch</code>, <code>finally</code>, y permite capturar y manejar errores en tiempo de ejecución.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun dividir(a: Int, b: Int): Int {
+    return try {
+        a / b
+    } catch (e: ArithmeticException) {
+        println("Error: División por cero")
+        0
+    } finally {
+        println("Operación completada")
+    }
+}
+
+val resultado = dividir(10, 0)
+println("Resultado: $resultado")</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_módulo_3_funciones">Módulo 3: Funciones</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este módulo exploraremos el uso de funciones en Kotlin, incluyendo la declaración de funciones, funciones de orden superior, lambdas, y el manejo de parámetros y valores de retorno.</p>
+</div>
+<div class="sect2">
+<h3 id="_3_1_declaración_de_funciones">3.1 Declaración de funciones</h3>
+<div class="paragraph">
+<p>En Kotlin, las funciones se declaran usando la palabra clave <code>fun</code>, seguida del nombre de la función, los parámetros entre paréntesis, y el tipo de retorno (si lo hay).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun saludar() {
+    println("Hola, Kotlin!")
+}
+
+fun sumar(a: Int, b: Int): Int {
+    return a + b
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Las funciones en Kotlin pueden ser definidas con una sola expresión, eliminando las llaves y la palabra clave <code>return</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun multiplicar(a: Int, b: Int) = a * b</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_2_funciones_de_orden_superior">3.2 Funciones de orden superior</h3>
+<div class="paragraph">
+<p>Las funciones de orden superior son funciones que aceptan otras funciones como parámetros o retornan una función. Esto es muy útil para operaciones como la manipulación de colecciones y el manejo de callbacks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun operar(a: Int, b: Int, operacion: (Int, Int) -&gt; Int): Int {
+    return operacion(a, b)
+}
+
+val suma = operar(3, 4) { x, y -&gt; x + y }
+println(suma) // Imprime 7</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_lambdas_y_expresiones_de_función">3.3 Lambdas y expresiones de función</h3>
+<div class="paragraph">
+<p>Las lambdas son funciones anónimas que se definen sin un nombre. En Kotlin, se representan usando la sintaxis <code>{ parámetro1, parámetro2 &#8594; cuerpo }</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val multiplicacion = { x: Int, y: Int -&gt; x * y }
+println(multiplicacion(3, 4)) // Imprime 12</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Las lambdas son útiles en operaciones de colección, como <code>filter</code>, <code>map</code>, y <code>forEach</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val numeros = listOf(1, 2, 3, 4, 5)
+val pares = numeros.filter { it % 2 == 0 }
+println(pares) // Imprime [2, 4]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_parámetros_y_retorno_de_funciones">3.4 Parámetros y retorno de funciones</h3>
+<div class="paragraph">
+<p>Kotlin permite el uso de parámetros con valores por defecto, lo que hace que una función sea más flexible.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun saludar(nombre: String = "Mundo") {
+    println("Hola, $nombre!")
+}
+
+saludar()          // Imprime "Hola, Mundo!"
+saludar("Kotlin")  // Imprime "Hola, Kotlin!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>También es posible usar funciones con un número variable de argumentos mediante el uso de <code>vararg</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun imprimirNombres(vararg nombres: String) {
+    for (nombre in nombres) {
+        println(nombre)
+    }
+}
+
+imprimirNombres("Ana", "Juan", "Pedro")</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_módulo_4_programación_orientada_a_objetos">Módulo 4: Programación Orientada a Objetos</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>En este módulo exploraremos los conceptos de Programación Orientada a Objetos (POO) en Kotlin, incluyendo clases, objetos, propiedades, métodos, herencia, polimorfismo, interfaces y clases abstractas.</p>
+</div>
+<div class="sect2">
+<h3 id="_4_1_clases_y_objetos">4.1 Clases y objetos</h3>
+<div class="paragraph">
+<p>En Kotlin, las clases se definen utilizando la palabra clave <code>class</code>. A partir de una clase, se pueden crear instancias llamadas objetos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class Persona(val nombre: String, var edad: Int)
+
+val persona = Persona("Juan", 30)
+println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Las clases en Kotlin pueden tener un constructor primario definido en su declaración, como en el ejemplo anterior.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_2_propiedades_y_métodos">4.2 Propiedades y métodos</h3>
+<div class="paragraph">
+<p>Las propiedades son variables que pertenecen a una clase, y los métodos son funciones que definen el comportamiento de la clase. En Kotlin, los métodos se declaran dentro de la clase.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class Persona(val nombre: String, var edad: Int) {
+    fun presentarse() {
+        println("Hola, soy $nombre y tengo $edad años")
+    }
+}
+
+val persona = Persona("Ana", 25)
+persona.presentarse() // Imprime "Hola, soy Ana y tengo 25 años"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Las propiedades <code>nombre</code> y <code>edad</code> representan el estado de <code>Persona</code>, mientras que el método <code>presentarse</code> define un comportamiento.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_3_herencia_y_polimorfismo">4.3 Herencia y polimorfismo</h3>
+<div class="paragraph">
+<p>La herencia permite que una clase (subclase) herede las propiedades y métodos de otra clase (superclase). En Kotlin, se usa la palabra clave <code>open</code> para indicar que una clase puede ser heredada.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">open class Animal(val nombre: String) {
+    open fun sonido() {
+        println("El animal hace un sonido")
+    }
+}
+
+class Perro(nombre: String) : Animal(nombre) {
+    override fun sonido() {
+        println("Guau")
+    }
+}
+
+val perro = Perro("Bobby")
+perro.sonido() // Imprime "Guau"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>El polimorfismo permite utilizar una clase hija como si fuera una clase padre. En este caso, <code>Perro</code> es tratado como un <code>Animal</code>, y su método <code>sonido</code> puede comportarse de diferentes maneras según la clase concreta.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4_4_interfaces_y_clases_abstractas">4.4 Interfaces y clases abstractas</h3>
+<div class="paragraph">
+<p>Las interfaces y clases abstractas permiten definir comportamientos que pueden ser compartidos entre diferentes clases.</p>
+</div>
+<div class="sect3">
+<h4 id="_interfaces">Interfaces</h4>
+<div class="paragraph">
+<p>Una <code>interface</code> define métodos y propiedades que una clase debe implementar. Las interfaces se declaran con la palabra clave <code>interface</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">interface Volador {
+    fun volar()
+}
+
+class Pajaro : Volador {
+    override fun volar() {
+        println("El pájaro vuela")
+    }
+}
+
+val pajaro = Pajaro()
+pajaro.volar() // Imprime "El pájaro vuela"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clases_abstractas">Clases abstractas</h4>
+<div class="paragraph">
+<p>Una clase abstracta es una clase que no se puede instanciar directamente y que puede contener métodos abstractos (sin implementación) y métodos concretos (con implementación). Se usa la palabra clave <code>abstract</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">abstract class Figura {
+    abstract fun area(): Double
+}
+
+class Circulo(val radio: Double) : Figura() {
+    override fun area(): Double = Math.PI * radio * radio
+}
+
+val circulo = Circulo(5.0)
+println("Área del círculo: ${circulo.area()}")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Las interfaces y clases abstractas proporcionan flexibilidad para definir comportamientos que luego pueden ser implementados o sobreescritos en clases específicas.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_módulo_5_colecciones_y_manejo_de_datos_en_kotlin">Módulo 5: Colecciones y Manejo de Datos en kotlin</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_1_listas_y_conjuntos">5.1 Listas y conjuntos</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val lista = listOf("Elemento1", "Elemento2", "Elemento3")
+val conjunto = setOf("Elemento1", "Elemento2", "Elemento1") // "Elemento1" solo se añadirá una vez</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_2_mapas">5.2 Mapas</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val mapa = mapOf("clave1" to "valor1", "clave2" to "valor2")
+val valor = mapa["clave1"]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_3_operaciones_en_colecciones">5.3 Operaciones en colecciones</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val numeros = listOf(1, 2, 3, 4)
+val numerosFiltrados = numeros.filter { it &gt; 2 }
+val suma = numeros.sum()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_4_manipulación_de_datos_con_funciones_de_extensión">5.4 Manipulación de datos con funciones de extensión</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun List&lt;Int&gt;.sumaTotal(): Int {
+    return this.sum()
+}
+
+val resultado = listOf(1, 2, 3, 4).sumaTotal() // resultado será 10</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_módulo_6_programación_funcional_en_kotlin">Módulo 6: Programación Funcional en Kotlin</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_6_1_conceptos_básicos_de_programación_funcional">6.1 Conceptos básicos de programación funcional</h3>
+<div class="paragraph">
+<p>La programación funcional es un paradigma de programación que trata la computación como la evaluación de funciones matemáticas y evita el estado mutable y los efectos secundarios. Este enfoque permite escribir código más predecible, modular y fácil de depurar. Kotlin soporta la programación funcional a través de funciones de orden superior, lambdas, e inmutabilidad.</p>
+</div>
+<div class="ulist">
+<div class="title">El objetivo de esta sección es:</div>
+<ul>
+<li>
+<p>Comprender los principios de la programación funcional.</p>
+</li>
+<li>
+<p>Utilizar funciones de orden superior y expresiones lambda en Kotlin.</p>
+</li>
+<li>
+<p>Aplicar inmutabilidad y trabajar con estructuras de datos inmutables.</p>
+</li>
+<li>
+<p>Emplear operaciones funcionales sobre colecciones en Kotlin.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_principios_de_la_programación_funcional">Principios de la programación funcional</h4>
+<div class="paragraph">
+<p>La programación funcional se basa en algunos principios clave:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Inmutabilidad</strong>: Una vez que se crea un valor, no se debe cambiar. Esto ayuda a evitar errores relacionados con el estado mutable.</p>
+</li>
+<li>
+<p><strong>Funciones puras</strong>: Las funciones puras son aquellas cuyo resultado depende únicamente de los argumentos de entrada y no de ningún estado externo.</p>
+</li>
+<li>
+<p><strong>Funciones de orden superior</strong>: Son funciones que pueden recibir otras funciones como parámetros o devolver funciones como resultado.</p>
+</li>
+<li>
+<p><strong>Transparencia referencial</strong>: Una expresión siempre puede ser reemplazada por su valor sin cambiar el comportamiento del programa.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_expresiones_lambda_y_funciones_de_orden_superior_en_kotlin">Expresiones lambda y funciones de orden superior en Kotlin</h4>
+<div class="paragraph">
+<p>Una expresión lambda es una función anónima que puede ser tratada como un valor. Las funciones de orden superior son funciones que aceptan otras funciones como parámetros o devuelven funciones como resultado. Esto permite escribir código modular y reutilizable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun operar(x: Int, y: Int, operacion: (Int, Int) -&gt; Int): Int {
+    return operacion(x, y)
+}
+
+fun main() {
+    val suma = { a: Int, b: Int -&gt; a + b }
+    val resultado = operar(5, 3, suma)
+    println("Resultado de la suma: $resultado")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- La función <code>operar</code> recibe dos enteros y una función como parámetros.
+- <code>suma</code> es una expresión lambda que se pasa como argumento a <code>operar</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inmutabilidad">Inmutabilidad</h4>
+<div class="paragraph">
+<p>La inmutabilidad implica que una vez que se asigna un valor, no puede cambiar. En Kotlin, <code>val</code> se usa para declarar variables inmutables, mientras que <code>var</code> permite mutabilidad.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val listaInmutable = listOf(1, 2, 3)
+println(listaInmutable) // No se puede modificar
+
+var listaMutable = mutableListOf(1, 2, 3)
+listaMutable.add(4) // Se permite modificar la lista
+println(listaMutable)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>listaInmutable</code> es una lista inmutable, no se puede modificar después de su creación.
+- <code>listaMutable</code> es una lista mutable que permite agregar o quitar elementos.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operaciones_funcionales_en_colecciones">Operaciones funcionales en colecciones</h4>
+<div class="paragraph">
+<p>Kotlin proporciona varias funciones funcionales para manipular colecciones, tales como <code>map</code>, <code>filter</code>, y <code>reduce</code>, que permiten realizar operaciones sobre colecciones de forma declarativa.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val numeros = listOf(1, 2, 3, 4, 5)
+
+    // Aplicar map para transformar cada elemento
+    val cuadrados = numeros.map { it * it }
+    println("Cuadrados: $cuadrados")
+
+    // Filtrar elementos
+    val pares = numeros.filter { it % 2 == 0 }
+    println("Números pares: $pares")
+
+    // Reducir a una suma total
+    val sumaTotal = numeros.reduce { acc, num -&gt; acc + num }
+    println("Suma total: $sumaTotal")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>map</code> transforma cada elemento de la lista original.
+- <code>filter</code> selecciona solo los elementos que cumplen con una condición.
+- <code>reduce</code> combina los elementos de la colección en un solo resultado.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_funciones_puras">Funciones puras</h4>
+<div class="paragraph">
+<p>Las funciones puras producen el mismo resultado para los mismos argumentos y no tienen efectos secundarios, como modificar variables externas o interactuar con el sistema.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun suma(a: Int, b: Int): Int {
+    return a + b
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La función <code>suma</code> es una función pura: siempre devuelve el mismo resultado para los mismos argumentos y no tiene efectos secundarios.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_transparencia_referencial">Transparencia referencial</h4>
+<div class="paragraph">
+<p>La transparencia referencial significa que se puede reemplazar una expresión con su valor sin cambiar el comportamiento del programa. Por ejemplo, si <code>suma(2, 3)</code> siempre es <code>5</code>, se puede sustituir esa expresión en cualquier lugar por <code>5</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resumen">Resumen</h4>
+<div class="paragraph">
+<p>La programación funcional en Kotlin permite escribir código limpio y predecible. Mediante el uso de funciones de orden superior, lambdas, inmutabilidad y operaciones funcionales sobre colecciones, es posible aprovechar el paradigma funcional para construir aplicaciones más robustas y mantenibles.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_2_inmutabilidad_y_efectos_secundarios">6.2 Inmutabilidad y efectos secundarios</h3>
+<div class="paragraph">
+<p>La inmutabilidad y la ausencia de efectos secundarios son dos principios fundamentales de la programación funcional que contribuyen a la confiabilidad y previsibilidad del código. En Kotlin, estos conceptos ayudan a reducir errores y facilitar el seguimiento de cambios en los datos.</p>
+</div>
+<div class="ulist">
+<div class="title">El objetivo de esta sección es:</div>
+<ul>
+<li>
+<p>Comprender el concepto de inmutabilidad y su importancia en programación funcional.</p>
+</li>
+<li>
+<p>Implementar estructuras de datos inmutables en Kotlin.</p>
+</li>
+<li>
+<p>Identificar y minimizar efectos secundarios en funciones.</p>
+</li>
+<li>
+<p>Aplicar buenas prácticas para el manejo de datos inmutables en sus aplicaciones.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_inmutabilidad_en_kotlin">Inmutabilidad en Kotlin</h4>
+<div class="paragraph">
+<p>La inmutabilidad se refiere a la incapacidad de cambiar el estado de un objeto después de su creación. En Kotlin, esto se implementa principalmente usando <code>val</code> para variables inmutables y estructuras de datos inmutables, lo que ayuda a evitar errores asociados con cambios no deseados en el estado de los datos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">val nombre = "Kotlin"
+// nombre = "Java" // Esto causaría un error porque `nombre` es inmutable
+
+val listaInmutable = listOf(1, 2, 3)
+// listaInmutable.add(4) // Esto causaría un error ya que no se puede modificar
+println(listaInmutable)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>nombre</code> es una variable inmutable, declarada con <code>val</code>, por lo que no puede ser reasignada.
+- <code>listaInmutable</code> es una lista inmutable, lo que significa que no se le pueden agregar o eliminar elementos.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_efectos_secundarios_en_funciones">Efectos secundarios en funciones</h4>
+<div class="paragraph">
+<p>Un efecto secundario ocurre cuando una función modifica un estado externo o produce un cambio fuera de su ámbito. Para lograr funciones puras, es fundamental evitar estos efectos secundarios, lo que permite que las funciones sean más fáciles de probar y depurar.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">var contador = 0
+
+fun incrementarContador(): Int {
+    contador += 1 // Efecto secundario, modifica el estado global `contador`
+    return contador
+}
+
+fun main() {
+    println("Contador antes: $contador")
+    println("Contador después: ${incrementarContador()}")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo, la función <code>incrementarContador</code> produce un efecto secundario al modificar el valor de <code>contador</code>, que es una variable externa a la función. Para evitar efectos secundarios, se debe evitar modificar variables externas dentro de las funciones.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_uso_de_funciones_puras">Uso de funciones puras</h4>
+<div class="paragraph">
+<p>Una función pura es aquella que no tiene efectos secundarios y cuyo resultado depende exclusivamente de sus parámetros de entrada. En lugar de modificar el estado externo, las funciones puras devuelven una nueva instancia de los datos con los cambios aplicados, respetando así la inmutabilidad.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun incrementar(numero: Int): Int {
+    return numero + 1
+}
+
+fun main() {
+    val numero = 5
+    println("Número original: $numero")
+    println("Número incrementado: ${incrementar(numero)}")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- La función <code>incrementar</code> es pura porque no depende de variables externas ni modifica el estado.
+- Devuelve un nuevo valor sin cambiar el original.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ventajas_de_la_inmutabilidad">Ventajas de la inmutabilidad</h4>
+<div class="paragraph">
+<p>La inmutabilidad presenta varias ventajas:
+- <strong>Previsibilidad</strong>: Al no cambiar el estado, es más fácil predecir el comportamiento del programa.
+- <strong>Paralelismo seguro</strong>: Los datos inmutables pueden compartirse entre hilos sin riesgo de condiciones de carrera.
+- <strong>Depuración y pruebas</strong>: El código inmutable es más fácil de probar porque los datos no cambian de manera inesperada.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_trabajando_con_colecciones_inmutables">Trabajando con colecciones inmutables</h4>
+<div class="paragraph">
+<p>Kotlin proporciona tanto colecciones inmutables como mutables. Es recomendable utilizar colecciones inmutables siempre que sea posible para mantener el código seguro y predecible.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun duplicarElementos(lista: List&lt;Int&gt;): List&lt;Int&gt; {
+    return lista.map { it * 2 }
+}
+
+fun main() {
+    val numeros = listOf(1, 2, 3)
+    val numerosDuplicados = duplicarElementos(numeros)
+    println("Original: $numeros")
+    println("Duplicado: $numerosDuplicados")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>numeros</code> es una lista inmutable.
+- <code>duplicarElementos</code> devuelve una nueva lista con los valores duplicados, sin modificar la lista original.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_buenas_prácticas_para_evitar_efectos_secundarios">Buenas prácticas para evitar efectos secundarios</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Uso de funciones puras</strong>: Siempre que sea posible, diseñar funciones que no modifiquen variables externas.</p>
+</li>
+<li>
+<p><strong>Inmutabilidad por defecto</strong>: Declarar variables como <code>val</code> y preferir estructuras inmutables.</p>
+</li>
+<li>
+<p><strong>Evitación de mutaciones en colecciones</strong>: Usar colecciones inmutables o devolver nuevas instancias en lugar de modificar las existentes.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resumen_2">Resumen</h4>
+<div class="paragraph">
+<p>La inmutabilidad y la ausencia de efectos secundarios son esenciales en programación funcional, ya que mejoran la confiabilidad y simplicidad del código. Al aplicar estos principios en Kotlin, el código se vuelve más predecible, seguro y fácil de mantener, proporcionando una base sólida para el desarrollo funcional.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_3_composición_de_funciones">6.3 Composición de funciones</h3>
+<div class="paragraph">
+<p>La composición de funciones es un concepto clave en programación funcional, que permite combinar funciones más pequeñas para crear soluciones más complejas. Al usar funciones como bloques de construcción, la composición promueve la modularidad y facilita la reutilización del código. En Kotlin, la composición de funciones se logra mediante funciones de orden superior, lambdas, y operadores como <code>let</code>, <code>apply</code>, <code>run</code>, y <code>also</code>.</p>
+</div>
+<div class="ulist">
+<div class="title">El objetivo de esta sección es:</div>
+<ul>
+<li>
+<p>Comprender el concepto de composición de funciones.</p>
+</li>
+<li>
+<p>Utilizar funciones de orden superior para componer funciones en Kotlin.</p>
+</li>
+<li>
+<p>Aplicar operadores de alcance (<code>let</code>, <code>apply</code>, <code>run</code>, <code>also</code>) para construir cadenas de operaciones.</p>
+</li>
+<li>
+<p>Desarrollar soluciones más modulares y mantenibles a través de la composición funcional.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_qué_es_la_composición_de_funciones">Qué es la composición de funciones</h4>
+<div class="paragraph">
+<p>La composición de funciones implica combinar dos o más funciones para formar una nueva función. Si tenemos dos funciones <code>f</code> y <code>g</code>, podemos componerlas para crear una nueva función <code>h = f(g(x))</code>. Esto permite ejecutar una serie de transformaciones de datos de manera secuencial y estructurada.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun duplicar(x: Int): Int = x * 2
+fun incrementar(x: Int): Int = x + 1
+
+fun main() {
+    val resultado = incrementar(duplicar(5))
+    println("Resultado de la composición: $resultado") // Resultado: 11
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- La función <code>duplicar</code> multiplica el número por 2.
+- La función <code>incrementar</code> suma 1 al resultado.
+- Ambas funciones se componen para obtener el resultado final <code>11</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_funciones_de_orden_superior_para_composición">Funciones de orden superior para composición</h4>
+<div class="paragraph">
+<p>Las funciones de orden superior en Kotlin permiten trabajar con funciones como parámetros y devolver funciones. Esto facilita la composición al permitir combinar funciones en una única operación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun componer(f: (Int) -&gt; Int, g: (Int) -&gt; Int): (Int) -&gt; Int {
+    return { x -&gt; f(g(x)) }
+}
+
+fun main() {
+    val duplicar = { x: Int -&gt; x * 2 }
+    val incrementar = { x: Int -&gt; x + 1 }
+
+    val duplicarEIncrementar = componer(incrementar, duplicar)
+    println("Resultado: ${duplicarEIncrementar(5)}") // Resultado: 11
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este código:
+- La función <code>componer</code> toma dos funciones como parámetros y devuelve una nueva función que las compone.
+- <code>duplicarEIncrementar</code> es la composición de <code>duplicar</code> e <code>incrementar</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_operadores_de_alcance_let_apply_run_also">Operadores de alcance (<code>let</code>, <code>apply</code>, <code>run</code>, <code>also</code>)</h4>
+<div class="paragraph">
+<p>Kotlin ofrece operadores de alcance que facilitan la composición al permitir aplicar múltiples operaciones en un mismo contexto de objeto. Estos operadores son útiles para encadenar operaciones sin necesidad de múltiples asignaciones.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">data class Persona(var nombre: String, var edad: Int)
+
+fun main() {
+    val persona = Persona("Juan", 25).apply {
+        nombre = nombre.uppercase()
+    }.also {
+        println("Nombre en mayúsculas: ${it.nombre}")
+    }.run {
+        edad += 1
+        "Edad incrementada a: $edad"
+    }
+
+    println(persona)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>apply</code> permite modificar <code>nombre</code> directamente en el contexto del objeto <code>persona</code>.
+- <code>also</code> ejecuta una operación adicional (imprimir) sin afectar al objeto.
+- <code>run</code> incrementa la <code>edad</code> y devuelve un mensaje, encadenando las operaciones en un flujo continuo.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_encadenamiento_de_funciones_en_colecciones">Encadenamiento de funciones en colecciones</h4>
+<div class="paragraph">
+<p>La composición de funciones es especialmente útil en el manejo de colecciones, donde se pueden encadenar operaciones como <code>map</code>, <code>filter</code>, y <code>reduce</code> para transformar datos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val numeros = listOf(1, 2, 3, 4, 5)
+
+    val resultado = numeros
+        .filter { it % 2 == 0 }
+        .map { it * it }
+        .reduce { acc, i -&gt; acc + i }
+
+    println("Resultado de la composición en colecciones: $resultado") // Resultado: 20
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>filter</code> selecciona los números pares.
+- <code>map</code> eleva cada número al cuadrado.
+- <code>reduce</code> suma los valores, componiendo una serie de operaciones funcionales.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ventajas_de_la_composición_de_funciones">Ventajas de la composición de funciones</h4>
+<div class="paragraph">
+<p>La composición de funciones ofrece varias ventajas:
+- <strong>Reutilización</strong>: Las funciones pequeñas y reutilizables pueden combinarse en varias configuraciones.
+- <strong>Legibilidad</strong>: Las operaciones compuestas son más legibles que las secuencias de transformaciones dispersas.
+- <strong>Modularidad</strong>: Las soluciones pueden dividirse en funciones más pequeñas y enfocadas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resumen_3">Resumen</h4>
+<div class="paragraph">
+<p>La composición de funciones permite combinar funciones pequeñas para crear soluciones complejas y modulares. Con funciones de orden superior, operadores de alcance y el encadenamiento de funciones en colecciones, Kotlin facilita la implementación de la programación funcional y la construcción de código más limpio y fácil de mantener.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_módulo_7_concurrencia_y_programación_asincrónica">Módulo 7: Concurrencia y Programación Asincrónica</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_7_1_hilos_y_tareas_en_kotlin">7.1 Hilos y tareas en Kotlin</h3>
+<div class="paragraph">
+<p>En Kotlin, puedes manejar hilos y tareas concurrentes utilizando varias técnicas. A continuación se presentan algunos ejemplos básicos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    val thread = Thread {
+        println("Hilo en ejecución: ${Thread.currentThread().name}")
+    }
+    thread.start()
+    thread.join()
+    println("Hilo principal: ${Thread.currentThread().name}")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este ejemplo crea y ejecuta un hilo simple. El método <code>join</code> asegura que el hilo principal espere a que el hilo secundario termine.</p>
+</div>
+<div class="paragraph">
+<p>Para tareas más complejas, puedes usar <code>ExecutorService</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.util.concurrent.Executors
+
+fun main() {
+    val executor = Executors.newFixedThreadPool(2)
+    for (i in 1..5) {
+        executor.submit {
+            println("Tarea $i ejecutada en: ${Thread.currentThread().name}")
+        }
+    }
+    executor.shutdown()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este ejemplo utiliza un <code>ExecutorService</code> para ejecutar múltiples tareas en un pool de hilos.</p>
+</div>
+<div class="paragraph">
+<p>Kotlin también ofrece soporte para corrutinas, que son una forma más avanzada y eficiente de manejar la concurrencia:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    launch {
+        delay(1000L)
+        println("Corrutina: ${Thread.currentThread().name}")
+    }
+    println("Hilo principal: ${Thread.currentThread().name}")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo, una corrutina se lanza y se retrasa por un segundo antes de imprimir un mensaje. La función <code>runBlocking</code> bloquea el hilo principal hasta que la corrutina completa su ejecución.</p>
+</div>
+<div class="paragraph">
+<p>Las corrutinas son más ligeras que los hilos y permiten escribir código asíncrono de manera más sencilla y eficiente.</p>
+</div>
+<div class="paragraph">
+<p>Para más información sobre el manejo de hilos y tareas en Kotlin, puedes consultar la [documentación oficial de Kotlin](<a href="https://kotlinlang.org/docs/reference/coroutines-overview.html" class="bare">https://kotlinlang.org/docs/reference/coroutines-overview.html</a>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_7_2_coroutines_introducción_y_uso">7.2 Coroutines: introducción y uso</h3>
+<div class="paragraph">
+<p>Las corrutinas en Kotlin son una herramienta poderosa para manejar tareas asincrónicas sin bloquear el hilo principal, especialmente en aplicaciones Android. A diferencia de los hilos tradicionales, las corrutinas permiten suspender y reanudar tareas de manera eficiente, proporcionando un enfoque más simple y legible para manejar concurrencia y operaciones en segundo plano.</p>
+</div>
+<div class="ulist">
+<div class="title">El objetivo de esta sección es:</div>
+<ul>
+<li>
+<p>Comprender el concepto de corrutinas y cómo se diferencian de los hilos tradicionales.</p>
+</li>
+<li>
+<p>Configurar y utilizar corrutinas en un proyecto Kotlin.</p>
+</li>
+<li>
+<p>Utilizar las funciones principales de las corrutinas como <code>launch</code>, <code>async</code> y <code>await</code>.</p>
+</li>
+<li>
+<p>Aplicar el uso de corrutinas en operaciones comunes, como llamadas a APIs y manipulación de datos.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_conceptos_básicos_de_las_corrutinas">Conceptos básicos de las corrutinas</h4>
+<div class="paragraph">
+<p>Las corrutinas permiten escribir código asincrónico de forma secuencial mediante el uso de funciones suspendidas (<code>suspend</code>). Estas funciones pueden pausar su ejecución sin bloquear el hilo actual, permitiendo que otros procesos continúen ejecutándose.</p>
+</div>
+<div class="paragraph">
+<p>Para trabajar con corrutinas en Kotlin, es necesario agregar la dependencia <code>kotlinx-coroutines-core</code> en el archivo <code>build.gradle</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_crear_y_lanzar_una_corrutina">Crear y lanzar una corrutina</h4>
+<div class="paragraph">
+<p>Para iniciar una corrutina, se puede utilizar la función <code>launch</code>, que crea una nueva corrutina en el contexto proporcionado. A continuación, un ejemplo de cómo lanzar una corrutina con <code>GlobalScope</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    println("Inicio de la corrutina")
+    GlobalScope.launch {
+        delay(1000L) // Simulación de tarea en segundo plano
+        println("Tarea completada en la corrutina")
+    }
+    println("Fin de la corrutina")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- <code>GlobalScope.launch</code> crea una corrutina en el ámbito global.
+- La función <code>delay</code> suspende la corrutina por un segundo sin bloquear el hilo principal.
+- <code>runBlocking</code> es una función de alto nivel que espera a que todas las corrutinas hijas terminen su ejecución.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_funciones_suspendidas_y_async">Funciones suspendidas y <code>async</code></h4>
+<div class="paragraph">
+<p>Las funciones suspendidas (<code>suspend</code>) son funciones que se pueden pausar y reanudar dentro de una corrutina. Estas funciones permiten realizar tareas en segundo plano sin bloquear la ejecución.</p>
+</div>
+<div class="paragraph">
+<p>Además de <code>launch</code>, también se puede utilizar <code>async</code> para iniciar una tarea que devuelve un valor. La combinación de <code>async</code> con <code>await</code> permite ejecutar tareas en paralelo y recoger los resultados.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val resultado1 = async {
+        delay(1000L)
+        10
+    }
+    val resultado2 = async {
+        delay(2000L)
+        20
+    }
+    println("Resultado total: ${resultado1.await() + resultado2.await()}")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aquí, <code>async</code> crea dos tareas en paralelo, cada una con un retraso diferente. <code>await()</code> espera el resultado de cada tarea sin bloquear el hilo principal.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_contextos_de_corrutinas_y_dispatchers">Contextos de corrutinas y <code>Dispatchers</code></h4>
+<div class="paragraph">
+<p>Kotlin ofrece varios <code>Dispatchers</code> que definen el contexto en el que se ejecutará una corrutina:
+- <code>Dispatchers.Main</code>: Ejecuta en el hilo principal, ideal para actualizar la interfaz de usuario.
+- <code>Dispatchers.IO</code>: Optimizado para operaciones de entrada/salida (como leer archivos o hacer llamadas a APIs).
+- <code>Dispatchers.Default</code>: Ideal para tareas que requieren un alto uso de CPU.
+- <code>Dispatchers.Unconfined</code>: Ejecuta en el contexto en el que fue llamado, sin cambiar de hilo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">GlobalScope.launch(Dispatchers.IO) {
+    // Código de una tarea en segundo plano
+    println("Ejecutando en Dispatchers.IO")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este ejemplo ejecuta una tarea en <code>Dispatchers.IO</code>, adecuado para operaciones de red o base de datos.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ejemplo_de_uso_de_corrutinas_en_android">Ejemplo de uso de corrutinas en Android</h4>
+<div class="paragraph">
+<p>En una aplicación Android, las corrutinas son especialmente útiles para manejar operaciones largas, como llamadas a una API, sin bloquear la interfaz de usuario. El siguiente ejemplo muestra cómo realizar una llamada en segundo plano y luego actualizar la UI con el resultado.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val datos = withContext(Dispatchers.IO) {
+                // Simulación de una llamada a API
+                delay(2000L)
+                "Datos obtenidos de la API"
+            }
+            // Actualizar la UI con los datos obtenidos
+            println("Resultado: $datos")
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este código:
+- <code>withContext(Dispatchers.IO)</code> cambia el contexto de la corrutina a <code>Dispatchers.IO</code> para la tarea en segundo plano.
+- Luego, vuelve al contexto <code>Dispatchers.Main</code> para actualizar la interfaz de usuario con el resultado.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resumen_4">Resumen</h4>
+<div class="paragraph">
+<p>Las corrutinas simplifican la concurrencia en Kotlin al proporcionar una forma legible y segura de manejar tareas en segundo plano y asincrónicas. Con el uso de funciones como <code>launch</code>, <code>async</code>, y <code>withContext</code>, las corrutinas facilitan la ejecución de tareas largas sin bloquear el hilo principal, mejorando así el rendimiento de las aplicaciones.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_7_3_manejo_de_excepciones_en_coroutines">7.3 Manejo de excepciones en coroutines</h3>
+<div class="paragraph">
+<p>El manejo de excepciones en corrutinas es un aspecto crucial para evitar que errores en tareas en segundo plano afecten la estabilidad de la aplicación. Kotlin proporciona mecanismos específicos para capturar y gestionar excepciones en corrutinas, como los <code>try-catch</code>, el uso de <code>supervisorScope</code> y <code>CoroutineExceptionHandler</code>, asegurando así un flujo de control adecuado en casos de error.</p>
+</div>
+<div class="ulist">
+<div class="title">El objetivo de esta sección es:</div>
+<ul>
+<li>
+<p>Comprender el flujo de propagación de excepciones en corrutinas.</p>
+</li>
+<li>
+<p>Utilizar bloques <code>try-catch</code> en corrutinas para capturar excepciones.</p>
+</li>
+<li>
+<p>Implementar <code>CoroutineExceptionHandler</code> para gestionar errores globalmente.</p>
+</li>
+<li>
+<p>Aplicar <code>supervisorScope</code> para controlar la propagación de errores en corrutinas estructuradas.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_manejo_de_excepciones_con_try_catch">Manejo de excepciones con <code>try-catch</code></h4>
+<div class="paragraph">
+<p>En Kotlin, una forma común de manejar excepciones en corrutinas es mediante el uso de bloques <code>try-catch</code> alrededor de la lógica de la corrutina. Esto es útil cuando se desea capturar y gestionar errores dentro de una misma corrutina.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        try {
+            println("Iniciando tarea...")
+            delay(1000L)
+            throw Exception("Error en la corrutina")
+        } catch (e: Exception) {
+            println("Excepción capturada: ${e.message}")
+        }
+    }
+    job.join()
+    println("Tarea completada")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo:
+- La excepción es capturada dentro del bloque <code>try-catch</code>, y la ejecución continúa sin interrumpir el flujo principal del programa.
+- El método <code>join()</code> espera que la corrutina <code>job</code> termine antes de continuar.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_uso_de_coroutineexceptionhandler">Uso de <code>CoroutineExceptionHandler</code></h4>
+<div class="paragraph">
+<p>Otra forma de manejar excepciones es mediante <code>CoroutineExceptionHandler</code>, que actúa como un controlador global de errores en corrutinas. Este se puede añadir al contexto de una corrutina para capturar excepciones no gestionadas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val handler = CoroutineExceptionHandler { _, exception -&gt;
+        println("Excepción capturada en CoroutineExceptionHandler: ${exception.message}")
+    }
+
+    val job = GlobalScope.launch(handler) {
+        println("Iniciando tarea con handler...")
+        throw Exception("Error en la corrutina con handler")
+    }
+    job.join()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aquí:
+- <code>CoroutineExceptionHandler</code> se usa para definir un bloque de código que se ejecuta si ocurre una excepción.
+- Este controlador es ideal para excepciones que ocurren en corrutinas lanzadas en <code>GlobalScope</code>, ya que las excepciones no pueden ser capturadas directamente en este contexto.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_control_de_errores_en_corrutinas_estructuradas_con_supervisorscope">Control de errores en corrutinas estructuradas con <code>supervisorScope</code></h4>
+<div class="paragraph">
+<p>En situaciones donde varias corrutinas se ejecutan de forma concurrente, <code>supervisorScope</code> permite que una excepción en una corrutina no afecte a las otras. Esto es especialmente útil cuando se desea que algunas tareas continúen ejecutándose incluso si una falla.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    supervisorScope {
+        val job1 = launch {
+            println("Tarea 1 iniciada")
+            delay(1000L)
+            throw Exception("Error en la Tarea 1")
+        }
+
+        val job2 = launch {
+            try {
+                println("Tarea 2 iniciada")
+                delay(2000L)
+                println("Tarea 2 completada")
+            } catch (e: Exception) {
+                println("Excepción en Tarea 2: ${e.message}")
+            }
+        }
+    }
+    println("Fin del supervisorScope")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este código:
+- <code>supervisorScope</code> permite que, si <code>job1</code> falla, <code>job2</code> continúe ejecutándose.
+- Esta estrategia asegura que una excepción en una corrutina no cause la cancelación de las demás corrutinas en el mismo ámbito.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_resumen_5">Resumen</h4>
+<div class="paragraph">
+<p>El manejo de excepciones en corrutinas permite un control detallado sobre los errores que ocurren en tareas asíncronas. Mediante el uso de <code>try-catch</code>, <code>CoroutineExceptionHandler</code>, y <code>supervisorScope</code>, se puede asegurar que las aplicaciones Kotlin sean más robustas y que los errores en corrutinas no afecten a la interfaz de usuario ni al flujo de la aplicación.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_módulo_8_desarrollo_de_aplicaciones">Módulo 8: Desarrollo de Aplicaciones</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_8_1_introducción_al_desarrollo_android_con_kotlin">8.1 Introducción al desarrollo Android con Kotlin</h3>
+<div class="paragraph">
+<p>Kotlin es un lenguaje de programación moderno y conciso, desarrollado por JetBrains, que desde 2017 es compatible oficialmente con Android como una alternativa a Java. Kotlin permite escribir aplicaciones de forma más segura y eficiente debido a su sintaxis simplificada, características de seguridad para el manejo de nulos, y compatibilidad total con el ecosistema de Android.</p>
+</div>
+<div class="paragraph">
+<p>Este módulo presenta una introducción a los fundamentos del desarrollo de aplicaciones para Android utilizando Kotlin, abarcando desde la configuración del entorno hasta la creación de interfaces básicas.</p>
+</div>
+<div class="ulist">
+<div class="title">El objetivo de esta sección es:</div>
+<ul>
+<li>
+<p>Configurar un entorno de desarrollo Android en Android Studio utilizando Kotlin.</p>
+</li>
+<li>
+<p>Comprender la estructura de un proyecto Android.</p>
+</li>
+<li>
+<p>Crear interfaces de usuario simples utilizando XML y el diseño programático.</p>
+</li>
+<li>
+<p>Escribir código Kotlin que se integre con el ciclo de vida de una actividad en Android.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_configuración_del_entorno">Configuración del entorno</h4>
+<div class="paragraph">
+<p>Para desarrollar en Android con Kotlin, es necesario configurar Android Studio, la herramienta oficial de desarrollo de aplicaciones Android. Sigue estos pasos para instalar y configurar Android Studio:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Descarga Android Studio desde el sitio oficial: <a href="https://developer.android.com/studio" class="bare">https://developer.android.com/studio</a></p>
+</li>
+<li>
+<p>Instala Android Studio siguiendo las instrucciones para tu sistema operativo.</p>
+</li>
+<li>
+<p>Abre Android Studio y crea un nuevo proyecto, seleccionando Kotlin como el lenguaje principal.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_estructura_de_un_proyecto_android">Estructura de un proyecto Android</h4>
+<div class="paragraph">
+<p>Un proyecto Android típico contiene varias carpetas y archivos importantes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>app/src/main/java</strong>: Aquí se encuentran los archivos de código fuente de Kotlin.</p>
+</li>
+<li>
+<p><strong>app/src/main/res</strong>: Carpeta para recursos como imágenes, archivos XML de diseño, y strings.</p>
+</li>
+<li>
+<p><strong>AndroidManifest.xml</strong>: Archivo de configuración principal que declara actividades, permisos, y otros elementos importantes de la aplicación.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_primeros_pasos_crear_una_actividad_en_kotlin">Primeros pasos: Crear una actividad en Kotlin</h4>
+<div class="paragraph">
+<p>Una actividad es un componente principal en Android que representa una pantalla de la interfaz de usuario. A continuación, se muestra cómo crear una actividad básica en Kotlin.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">package com.example.miapp
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este código define una actividad llamada <code>MainActivity</code> que extiende <code>AppCompatActivity</code>, una clase base para actividades con compatibilidad hacia atrás. El método <code>onCreate</code> es donde se establece el diseño de la actividad con el archivo XML <code>activity_main</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creación_de_interfaces_de_usuario_en_android">Creación de interfaces de usuario en Android</h4>
+<div class="paragraph">
+<p>Las interfaces de usuario en Android se pueden diseñar utilizando archivos XML en la carpeta <code>res/layout</code>. Por ejemplo, un archivo <code>activity_main.xml</code> podría definirse de la siguiente manera para crear un diseño simple con un <code>TextView</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"&gt;
+
+    &lt;TextView
+        android:id="@+id/miTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola, mundo!"
+        android:layout_centerInParent="true"/&gt;
+&lt;/RelativeLayout&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este archivo define un <code>TextView</code> centrado en el <code>RelativeLayout</code> padre, que mostrará el texto "Hola, mundo!" en el centro de la pantalla.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ejecución_de_la_aplicación_en_un_emulador">Ejecución de la aplicación en un emulador</h4>
+<div class="paragraph">
+<p>Para probar la aplicación:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configura un dispositivo virtual (emulador) en Android Studio o conecta un dispositivo físico.</p>
+</li>
+<li>
+<p>Haz clic en el botón "Run" o selecciona "Run &gt; Run 'app'" en la barra de menú.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Android Studio compilará la aplicación y la instalará en el dispositivo o emulador, mostrando la interfaz que definiste en el archivo <code>activity_main.xml</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_2_creación_de_una_aplicación_sencilla">8.2 Creación de una aplicación sencilla</h3>
+<div class="paragraph">
+<p>En esta sección, crearemos una aplicación sencilla en Kotlin que realiza operaciones básicas. A continuación se muestra un ejemplo de una aplicación que suma dos números ingresados por el usuario:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    println("introduzca el primer número:")
+    val num1 = readLine()?.toIntOrNull() ?: 0
+
+    println("introduzca el segundo número:")
+    val num2 = readLine()?.toIntOrNull() ?: 0
+
+    val sum = num1 + num2
+    println("La suma de $num1 y $num2 es: $sum")
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<div class="title">Este programa realiza las siguientes operaciones:</div>
+<ol class="arabic">
+<li>
+<p>Solicita al usuario que introduzca dos números.</p>
+</li>
+<li>
+<p>Convierte las entradas a enteros, manejando posibles entradas nulas.</p>
+</li>
+<li>
+<p>Calcula la suma de los dos números.</p>
+</li>
+<li>
+<p>Imprime el resultado.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Para compilar y ejecutar este programa, sigue estos pasos:</div>
+<ol class="arabic">
+<li>
+<p>Guarda el código en un archivo llamado <code>Main.kt</code>.</p>
+</li>
+<li>
+<p>Abre una terminal y navega hasta el directorio donde guardaste el archivo.</p>
+</li>
+<li>
+<p>Compila el archivo usando el compilador de Kotlin:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">kotlinc Main.kt -include-runtime -d Main.jar</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Ejecuta el archivo compilado:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">java -jar Main.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este es un ejemplo básico, pero puedes expandirlo para incluir más funcionalidades y manejar diferentes tipos de entradas.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_3_integración_con_bases_de_datos">8.3 Integración con bases de datos</h3>
+<div class="paragraph">
+<p>Para integrar una base de datos en una aplicación Kotlin, se pueden seguir los siguientes pasos:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.ResultSet
+import java.sql.Statement
+
+fun main() {
+    val url = "jdbc:mysql://localhost:3306/mydatabase"
+    val user = "root"
+    val password = "password"
+
+    var connection: Connection? = null
+    var statement: Statement? = null
+    var resultSet: ResultSet? = null
+
+    try {
+        connection = DriverManager.getConnection(url, user, password)
+        statement = connection.createStatement()
+        resultSet = statement.executeQuery("SELECT * FROM mytable")
+
+        while (resultSet.next()) {
+            println("Column1: ${resultSet.getString("column1")}, Column2: ${resultSet.getInt("column2")}")
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    } finally {
+        resultSet?.close()
+        statement?.close()
+        connection?.close()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>En este ejemplo, se utiliza JDBC para conectarse a una base de datos MySQL. Asegúrate de tener el controlador JDBC de MySQL en tu classpath.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+    implementation("mysql:mysql-connector-java:8.0.23")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Además, puedes utilizar bibliotecas como Exposed para simplificar la interacción con la base de datos.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.sql.SchemaUtils.drop
+
+object MyTable : Table() {
+    val id = integer("id").autoIncrement()
+    val name = varchar("name", 50)
+    override val primaryKey = PrimaryKey(id)
+}
+
+fun main() {
+    Database.connect("jdbc:mysql://localhost:3306/mydatabase", driver = "com.mysql.cj.jdbc.Driver", user = "root", password = "password")
+
+    transaction {
+        create(MyTable)
+
+        MyTable.insert {
+            it[name] = "John Doe"
+        }
+
+        for (row in MyTable.selectAll()) {
+            println("${row[MyTable.id]}: ${row[MyTable.name]}")
+        }
+
+        drop(MyTable)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este ejemplo muestra cómo usar Exposed para crear una tabla, insertar datos y realizar una consulta.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_8_4_buenas_prácticas_y_consejos">8.4 Buenas prácticas y consejos</h3>
+<div class="paragraph">
+<p>A continuación, se presentan algunas buenas prácticas y consejos para desarrollar en Kotlin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun main() {
+    // Usa val en lugar de var siempre que sea posible
+    val name = "John Doe"
+
+    // Evita el uso de null siempre que sea posible
+    val nonNullable: String = "This can't be null"
+    // val nullable: String? = null // Solo usa cuando sea necesario
+
+    // Usa expresiones lambda para funciones de orden superior
+    val numbers = listOf(1, 2, 3, 4, 5)
+    val doubled = numbers.map { it * 2 }
+    println(doubled)
+
+    // Usa la función let para evitar null checks
+    val email: String? = "john.doe@example.com"
+    email?.let {
+        println("Email is not null: $it")
+    }
+
+    // Usa data classes para clases que solo contienen datos
+    data class User(val name: String, val age: Int)
+    val user = User("Alice", 30)
+    println(user)
+}</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Usa <code>val</code> en lugar de <code>var</code> siempre que sea posible</strong>: Esto ayuda a mantener la inmutabilidad y reduce la posibilidad de errores.</p>
+</li>
+<li>
+<p><strong>Evita el uso de <code>null</code> siempre que sea posible</strong>: Kotlin tiene un sistema de tipos que ayuda a evitar errores de null. Usa tipos no anulables siempre que sea posible.</p>
+</li>
+<li>
+<p><strong>Usa expresiones lambda y funciones de orden superior</strong>: Kotlin tiene un fuerte soporte para programación funcional. Usa funciones como <code>map</code>, <code>filter</code>, y <code>reduce</code> para trabajar con colecciones de manera más concisa.</p>
+</li>
+<li>
+<p><strong>Usa la función <code>let</code> para evitar null checks</strong>: La función <code>let</code> puede ser usada para ejecutar un bloque de código solo si un valor no es null.</p>
+</li>
+<li>
+<p><strong>Usa <code>data classes</code> para clases que solo contienen datos</strong>: Las data classes proporcionan automáticamente métodos como <code>toString</code>, <code>equals</code>, y <code>hashCode</code>.</p>
+</li>
+<li>
+<p><strong>Escribe pruebas unitarias</strong>: Asegúrate de escribir pruebas unitarias para tu código. Esto ayuda a garantizar que tu código funcione como se espera y facilita el mantenimiento.</p>
+</li>
+<li>
+<p><strong>Sigue las convenciones de codificación de Kotlin</strong>: Sigue las convenciones de codificación oficiales de Kotlin para mantener tu código limpio y legible. Puedes encontrarlas en [Kotlin Coding Conventions](<a href="https://kotlinlang.org/docs/coding-conventions.html" class="bare">https://kotlinlang.org/docs/coding-conventions.html</a>).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2024-11-04 01:11:26 +0100
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1743 @@
+= Temario del Curso de Kotlin
+:toc:
+:toclevels: 3
+:source-highlighter: highlight.js
+
+== Módulo 1: Introducción a Kotlin
+
+=== 1.1 ¿Qué es Kotlin?
+Kotlin es un lenguaje de programación moderno, conciso y seguro que se ejecuta en la Máquina Virtual de Java (JVM) y se puede compilar a JavaScript o código nativo. Fue desarrollado por JetBrains y es totalmente interoperable con Java.
+
+=== 1.2 Instalación y configuración del entorno
+Para instalar Kotlin, necesitas configurar tu entorno de desarrollo. Aquí están los pasos básicos:
+
+[source, bash]
+----
+# Descargar e instalar el SDK de Kotlin en macOS
+sdk install kotlin
+
+# descargar e instalar el SDK de Kotlin en Linux
+curl -s https://get.sdkman.io | bash
+
+sdk install kotlin
+
+# Descargar e instalar el SDK de Kotlin en Windows con winget
+winget install kotlin.kotlin
+
+# Verificar la instalación
+kotlinc -version
+----
+
+=== 1.3 Sintaxis básica de Kotlin
+
+Kotlin es un lenguaje moderno y conciso que utiliza una sintaxis simplificada para facilitar el desarrollo. A continuación, repasaremos los elementos básicos de la sintaxis de Kotlin.
+
+==== Variables
+
+En Kotlin, las variables pueden ser declaradas como mutables (`var`) o inmutables (`val`).
+
+[source, kotlin]
+----
+var nombre = "Juan" // Mutable, el valor puede cambiar
+val edad = 30       // Inmutable, el valor no puede cambiar
+----
+
+==== Tipos de datos
+
+Kotlin es un lenguaje con tipado fuerte. Los tipos de datos más comunes son `Int`, `Double`, `String`, y `Boolean`. Kotlin puede inferir el tipo de dato, pero también se puede declarar explícitamente.
+
+[source, kotlin]
+----
+val numero: Int = 42
+val pi: Double = 3.14159
+val saludo: String = "Hola, Kotlin!"
+val esActivo: Boolean = true
+----
+
+==== Funciones
+
+La declaración de funciones en Kotlin se realiza con la palabra clave `fun`. La sintaxis es simple y permite el uso de valores de retorno explícitos.
+
+[source, kotlin]
+----
+fun saludar(nombre: String): String {
+    return "Hola, $nombre!"
+}
+
+fun sumar(a: Int, b: Int) = a + b // Función con expresión simplificada
+----
+
+==== Control de flujo
+
+Kotlin proporciona estructuras de control de flujo como `if`, `when`, `for`, y `while`.
+
+[source, kotlin]
+----
+val edad = 18
+if (edad >= 18) {
+    println("Eres mayor de edad")
+} else {
+    println("Eres menor de edad")
+}
+
+val dia = 3
+val diaSemana = when (dia) {
+    1 -> "Lunes"
+    2 -> "Martes"
+    3 -> "Miércoles"
+    else -> "Otro día"
+}
+println(diaSemana)
+----
+
+==== Bucles
+
+Los bucles `for` y `while` en Kotlin se usan para iterar sobre colecciones o rangos.
+
+[source, kotlin]
+----
+for (i in 1..5) { // Rango de 1 a 5
+    println("Número: $i")
+}
+
+var contador = 0
+while (contador < 5) {
+    println("Contador: $contador")
+    contador++
+}
+----
+
+==== Nulabilidad
+
+Kotlin gestiona la nulabilidad de manera estricta. Las variables que pueden ser `null` deben declararse usando el operador `?`.
+
+[source, kotlin]
+----
+var nombre: String? = null // `nombre` puede ser null
+nombre = "Carlos"
+
+// Uso seguro de variables nulas
+val longitud = nombre?.length ?: 0 // Si `nombre` es null, longitud será 0
+----
+
+==== Clases y Objetos
+
+Kotlin permite definir clases de manera sencilla, y los objetos pueden instanciarse sin `new`.
+
+[source, kotlin]
+----
+class Persona(val nombre: String, var edad: Int) {
+    fun mostrarInfo() {
+        println("Nombre: $nombre, Edad: $edad")
+    }
+}
+
+val persona = Persona("Ana", 25)
+persona.mostrarInfo()
+----
+
+=== 1.4 Tipos de datos y variables
+
+En Kotlin, los tipos de datos son estáticos, lo que significa que cada variable tiene un tipo específico que no cambia. A continuación, veremos los tipos de datos básicos y cómo se manejan las variables en Kotlin.
+
+==== Declaración de variables
+
+Las variables en Kotlin pueden ser declaradas como mutables usando `var` o inmutables con `val`. Usar `val` es preferible cuando no se necesita modificar la variable.
+
+[source, kotlin]
+----
+var nombre = "Lucía" // Variable mutable
+val edad = 28        // Variable inmutable
+----
+
+==== Tipos de datos básicos
+
+Kotlin tiene varios tipos de datos básicos, algunos de los cuales son:
+
+* `Int`: Enteros de 32 bits.
+* `Double`: Números de punto flotante de 64 bits.
+* `Float`: Números de punto flotante de 32 bits.
+* `Long`: Enteros de 64 bits.
+* `Short`: Enteros de 16 bits.
+* `Byte`: Enteros de 8 bits.
+* `Char`: Un solo carácter.
+* `Boolean`: Valores de `true` o `false`.
+* `String`: Cadena de caracteres.
+
+[source, kotlin]
+----
+val numeroEntero: Int = 10
+val numeroDecimal: Double = 5.99
+val letra: Char = 'A'
+val esVerdadero: Boolean = true
+val texto: String = "Hola, Kotlin!"
+----
+
+==== Inferencia de tipos
+
+Kotlin permite la inferencia de tipos, lo que significa que no siempre es necesario especificar el tipo de dato, ya que Kotlin lo deduce automáticamente.
+
+[source, kotlin]
+----
+val mensaje = "Hola, Mundo!"  // Inferido como String
+val numero = 123              // Inferido como Int
+----
+
+==== Nulabilidad y tipos anulables
+
+En Kotlin, los tipos son no anulables por defecto, lo que significa que no pueden contener `null`. Para declarar una variable que pueda contener `null`, se usa el operador `?`.
+
+[source, kotlin]
+----
+var nombre: String? = null // `nombre` puede ser null
+nombre = "Carlos"
+
+// Uso seguro con operadores de nulabilidad
+val longitud = nombre?.length ?: 0 // Si `nombre` es null, longitud será 0
+----
+
+==== Conversión de tipos
+
+Kotlin no permite conversiones automáticas entre tipos. Por lo tanto, se debe realizar la conversión explícita al tipo deseado usando métodos como `toInt()`, `toDouble()`, etc.
+
+[source, kotlin]
+----
+val numero: Int = 42
+val numeroDecimal: Double = numero.toDouble() // Conversión explícita de Int a Double
+----
+
+==== Literales de números
+
+Kotlin permite el uso de literales de diferentes tipos, como los siguientes ejemplos:
+
+[source, kotlin]
+----
+val numeroLargo: Long = 100000L // Literal Long
+val numeroHexadecimal = 0xFF    // Literal hexadecimal
+val numeroBinario = 0b1010      // Literal binario
+----
+
+==== Cadenas de caracteres (String)
+
+Kotlin tiene una clase de cadena (`String`) para almacenar texto. Las cadenas pueden ser de línea única o multilínea.
+
+[source, kotlin]
+----
+val saludo: String = "Hola, Kotlin!"  // Cadena de línea única
+val multilinea: String = """
+    Esta es una cadena
+    de varias líneas
+""".trimIndent()
+----
+
+==== Interpolación de cadenas
+
+La interpolación de cadenas en Kotlin permite insertar variables dentro de una cadena usando el prefijo `$`.
+
+[source, kotlin]
+----
+val nombre = "Ana"
+val mensaje = "Hola, $nombre!" // Interpolación
+val longitudMensaje = "El mensaje tiene ${mensaje.length} caracteres." // Expresiones en interpolación
+val multilinea = """
+    |Línea 1
+    |Línea 2
+""" // Cadena de varias líneas con sangría
+val multilineaTrim = """
+    |Línea 1
+    |Línea 2
+""".trimMargin() // Cadena de varias líneas sin sangría
+----
+
+==== Métodos de cadena en Kotlin
+
+Kotlin proporciona una variedad de métodos para manipular cadenas de texto. A continuación, se presentan algunos de los métodos más comunes y útiles.
+
+### Concatenación de cadenas
+
+Puedes concatenar cadenas utilizando el operador `+` o la función `plus`:
+
+[source, kotlin]
+----
+fun main() {
+    val str1 = "Hola"
+    val str2 = "Mundo"
+    val result = str1 + " " + str2
+    println(result) // Salida: Hola Mundo
+}
+----
+
+### Interpolación de cadenas
+
+La interpolación de cadenas permite insertar valores dentro de una cadena utilizando el símbolo `$`:
+
+[source, kotlin]
+----
+fun main() {
+    val name = "Kotlin"
+    val greeting = "Hola, $name!"
+    println(greeting) // Salida: Hola, Kotlin!
+}
+----
+
+### Métodos de transformación
+
+Kotlin proporciona varios métodos para transformar cadenas, como `toUpperCase` y `toLowerCase`:
+
+[source, kotlin]
+----
+fun main() {
+    val original = "Kotlin"
+    val upper = original.toUpperCase()
+    val lower = original.toLowerCase()
+    println(upper) // Salida: KOTLIN
+    println(lower) // Salida: kotlin
+}
+----
+
+### Subcadenas
+
+Puedes obtener subcadenas utilizando el método `substring`:
+
+[source, kotlin]
+----
+fun main() {
+    val original = "Hola, Kotlin!"
+    val sub = original.substring(0, 4)
+    println(sub) // Salida: Hola
+}
+----
+
+### Reemplazo de caracteres
+
+El método `replace` permite reemplazar caracteres o subcadenas dentro de una cadena:
+
+[source, kotlin]
+----
+fun main() {
+    val original = "Hola, Kotlin!"
+    val replaced = original.replace("Kotlin", "Mundo")
+    println(replaced) // Salida: Hola, Mundo!
+}
+----
+
+### División de cadenas
+
+Puedes dividir una cadena en partes utilizando el método `split`:
+
+[source, kotlin]
+----
+fun main() {
+    val original = "uno,dos,tres"
+    val parts = original.split(",")
+    println(parts) // Salida: [uno, dos, tres]
+}
+----
+
+### Eliminación de espacios en blanco
+
+Los métodos `trim`, `trimStart`, y `trimEnd` eliminan espacios en blanco de una cadena:
+
+[source, kotlin]
+----
+fun main() {
+    val original = "  Hola, Kotlin!  "
+    val trimmed = original.trim()
+    println(trimmed) // Salida: 'Hola, Kotlin!'
+}
+----
+
+=== 1.5 Operadores en Kotlin
+
+Kotlin cuenta con una variedad de operadores para realizar operaciones aritméticas, de comparación, lógicas y de asignación. A continuación, se presentan los operadores más utilizados en Kotlin y ejemplos de su uso.
+
+==== Operadores aritméticos
+
+Kotlin incluye operadores aritméticos estándar para realizar operaciones matemáticas.
+
+[source, kotlin]
+----
+val suma = 5 + 3          // Suma: 8
+val resta = 5 - 3         // Resta: 2
+val multiplicacion = 5 * 3 // Multiplicación: 15
+val division = 10 / 2     // División: 5
+val modulo = 10 % 3       // Módulo: 1
+----
+
+==== Operadores de comparación
+
+Los operadores de comparación se usan para comparar valores. Estos operadores devuelven un valor `Boolean` (`true` o `false`).
+
+[source, kotlin]
+----
+val esIgual = (5 ==== 5)       // Igualdad: true
+val esDiferente = (5 != 3)   // Desigualdad: true
+val esMayor = (5 > 3)        // Mayor que: true
+val esMenor = (3 < 5)        // Menor que: true
+val esMayorIgual = (5 >= 5)  // Mayor o igual que: true
+val esMenorIgual = (3 <= 5)  // Menor o igual que: true
+----
+
+==== Operadores lógicos
+
+Los operadores lógicos se utilizan para combinar expresiones lógicas.
+
+[source, kotlin]
+----
+val a = true
+val b = false
+
+val yLogico = a && b      // AND lógico: false
+val oLogico = a || b      // OR lógico: true
+val negacion = !a         // Negación: false
+----
+
+==== Operadores de asignación
+
+Los operadores de asignación permiten asignar valores a las variables y realizar operaciones al mismo tiempo.
+
+[source, kotlin]
+----
+var numero = 10
+
+numero += 5    // Suma y asigna: número = 15
+numero -= 3    // Resta y asigna: número = 12
+numero *= 2    // Multiplica y asigna: número = 24
+numero /= 4    // Divide y asigna: número = 6
+numero %= 5    // Módulo y asigna: número = 1
+----
+
+==== Operadores de incremento y decremento
+
+Los operadores de incremento (`++`) y decremento (`--`) se utilizan para aumentar o disminuir el valor de una variable en uno.
+
+[source, kotlin]
+----
+var contador = 0
+
+contador++    // Incremento: contador = 1
+contador--    // Decremento: contador = 0
+----
+
+==== Operador de rango
+
+Kotlin proporciona un operador de rango (`..`) que se utiliza para crear rangos de valores.
+
+[source, kotlin]
+----
+val rango = 1..5 // Rango de 1 a 5
+
+for (i in rango) {
+    println(i) // Imprime los números del 1 al 5
+}
+----
+
+==== Operadores de verificación de tipos
+
+Kotlin ofrece operadores para verificar y convertir tipos.
+
+* `is`: Verifica si una variable es de un tipo específico.
+* `!is`: Verifica si una variable no es de un tipo específico.
+* `as`: Convierte una variable a un tipo específico (si es posible).
+
+[source, kotlin]
+----
+val texto: Any = "Soy una cadena"
+
+if (texto is String) {
+    println("Texto es una cadena")
+}
+
+val numero = texto as? Int  // `as?` devuelve null si la conversión falla
+println(numero) // Imprime null porque `texto` no es un Int
+----
+
+=== 1.6 Control de dependencias con Gradle en Kotlin
+
+Gradle es una herramienta de automatización de compilación que se utiliza ampliamente en proyectos Kotlin para gestionar dependencias y tareas de compilación. A continuación, se muestra cómo configurar y manejar dependencias en un proyecto Kotlin utilizando Gradle.
+
+### Configuración del archivo `build.gradle.kts`
+
+El archivo `build.gradle.kts` es el script de compilación de Gradle en Kotlin. Aquí es donde defines las dependencias y configuraciones del proyecto.
+
+[source, kotlin]
+----
+plugins {
+    kotlin("jvm") version "1.5.31"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(kotlin("stdlib"))
+    testImplementation(kotlin("test"))
+}
+----
+
+### Explicación de la configuración
+
+1. **Plugins**: El bloque `plugins` se utiliza para aplicar el plugin de Kotlin. Aquí especificamos la versión del plugin de Kotlin que queremos usar.
+
+2. **Repositorios**: El bloque `repositories` define los repositorios donde Gradle buscará las dependencias. En este caso, estamos utilizando `mavenCentral`.
+
+3. **Dependencias**: El bloque `dependencies` se utiliza para declarar las dependencias del proyecto. En este ejemplo:
+   - `implementation(kotlin("stdlib"))`: Añade la biblioteca estándar de Kotlin.
+   - `testImplementation(kotlin("test"))`: Añade las bibliotecas necesarias para realizar pruebas en Kotlin.
+
+### Añadir nuevas dependencias
+
+Para añadir nuevas dependencias, simplemente agrégalas al bloque `dependencies`. Por ejemplo, para añadir la biblioteca de coroutines de Kotlin:
+
+[source, kotlin]
+----
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    testImplementation(kotlin("test"))
+}
+----
+
+### Ejecutar tareas de Gradle
+
+Puedes ejecutar varias tareas de Gradle desde la línea de comandos para compilar y probar tu proyecto. Algunos comandos comunes son:
+
+- **Compilar el proyecto**:
+  
+  [source, sh]
+  ----
+  ./gradlew build
+  ----
+
+- **Ejecutar pruebas**:
+  
+  [source, sh]
+  ----
+  ./gradlew test
+  ----
+
+- **Limpiar el proyecto**:
+  
+  [source, sh]
+  ----
+  ./gradlew clean
+  ----
+
+### Configuración adicional
+
+Gradle es altamente configurable y permite personalizar el proceso de compilación según tus necesidades. Puedes añadir tareas personalizadas, configurar plugins adicionales y mucho más.
+
+=== Módulo 2: Estructuras de Control
+
+En este módulo exploraremos las estructuras de control en Kotlin, las cuales permiten controlar el flujo de ejecución de nuestro código mediante condiciones, bucles y manejo de excepciones.
+
+==== 2.1 Estructuras condicionales
+
+Las estructuras condicionales permiten ejecutar código basándose en condiciones específicas.
+
+[source, kotlin]
+----
+val edad = 18
+
+// Condicional if-else
+if (edad >= 18) {
+    println("Eres mayor de edad")
+} else {
+    println("Eres menor de edad")
+}
+
+// Condicional if-else if-else
+val calificacion = 85
+if (calificacion >= 90) {
+    println("Excelente")
+} else if (calificacion >= 70) {
+    println("Aprobado")
+} else {
+    println("Reprobado")
+}
+
+// Expresión if
+val resultado = if (edad >= 18) "Mayor de edad" else "Menor de edad"
+println(resultado)
+----
+
+==== 2.2 Bucles: for, while y do-while
+
+Los bucles permiten ejecutar una sección de código repetidamente.
+
+[source, kotlin]
+----
+// Bucle for con un rango
+for (i in 1..5) {
+    println("Número: $i")
+}
+
+// Bucle for con un array
+val nombres = arrayOf("Ana", "Juan", "Pedro")
+for (nombre in nombres) {
+    println(nombre)
+}
+
+// Bucle while
+var contador = 0
+while (contador < 3) {
+    println("Contador: $contador")
+    contador++
+}
+
+// Bucle do-while
+var contadorDo = 0
+do {
+    println("Contador en do-while: $contadorDo")
+    contadorDo++
+} while (contadorDo < 3)
+----
+
+==== 2.3 Cuando (when) como alternativa a switch
+
+La expresión `when` es similar a `switch` en otros lenguajes, y permite evaluar múltiples condiciones.
+
+[source, kotlin]
+----
+val dia = 3
+val nombreDia = when (dia) {
+    1 -> "Lunes"
+    2 -> "Martes"
+    3 -> "Miércoles"
+    4 -> "Jueves"
+    5 -> "Viernes"
+    6 -> "Sábado"
+    7 -> "Domingo"
+    else -> "Día desconocido"
+}
+println(nombreDia)
+
+// Uso de `when` sin argumentos
+val edad = 20
+when {
+    edad < 18 -> println("Menor de edad")
+    edad in 18..64 -> println("Adulto")
+    else -> println("Senior")
+}
+----
+
+==== 2.4 Manejo de excepciones
+
+Kotlin maneja las excepciones de manera similar a otros lenguajes mediante `try`, `catch`, `finally`, y permite capturar y manejar errores en tiempo de ejecución.
+
+[source, kotlin]
+----
+fun dividir(a: Int, b: Int): Int {
+    return try {
+        a / b
+    } catch (e: ArithmeticException) {
+        println("Error: División por cero")
+        0
+    } finally {
+        println("Operación completada")
+    }
+}
+
+val resultado = dividir(10, 0)
+println("Resultado: $resultado")
+----
+
+== Módulo 3: Funciones
+
+En este módulo exploraremos el uso de funciones en Kotlin, incluyendo la declaración de funciones, funciones de orden superior, lambdas, y el manejo de parámetros y valores de retorno.
+
+=== 3.1 Declaración de funciones
+
+En Kotlin, las funciones se declaran usando la palabra clave `fun`, seguida del nombre de la función, los parámetros entre paréntesis, y el tipo de retorno (si lo hay).
+
+[source, kotlin]
+----
+fun saludar() {
+    println("Hola, Kotlin!")
+}
+
+fun sumar(a: Int, b: Int): Int {
+    return a + b
+}
+----
+
+Las funciones en Kotlin pueden ser definidas con una sola expresión, eliminando las llaves y la palabra clave `return`.
+
+[source, kotlin]
+----
+fun multiplicar(a: Int, b: Int) = a * b
+----
+
+=== 3.2 Funciones de orden superior
+
+Las funciones de orden superior son funciones que aceptan otras funciones como parámetros o retornan una función. Esto es muy útil para operaciones como la manipulación de colecciones y el manejo de callbacks.
+
+[source, kotlin]
+----
+fun operar(a: Int, b: Int, operacion: (Int, Int) -> Int): Int {
+    return operacion(a, b)
+}
+
+val suma = operar(3, 4) { x, y -> x + y }
+println(suma) // Imprime 7
+----
+
+=== 3.3 Lambdas y expresiones de función
+
+Las lambdas son funciones anónimas que se definen sin un nombre. En Kotlin, se representan usando la sintaxis `{ parámetro1, parámetro2 -> cuerpo }`.
+
+[source, kotlin]
+----
+val multiplicacion = { x: Int, y: Int -> x * y }
+println(multiplicacion(3, 4)) // Imprime 12
+----
+
+Las lambdas son útiles en operaciones de colección, como `filter`, `map`, y `forEach`.
+
+[source, kotlin]
+----
+val numeros = listOf(1, 2, 3, 4, 5)
+val pares = numeros.filter { it % 2 == 0 }
+println(pares) // Imprime [2, 4]
+----
+
+=== 3.4 Parámetros y retorno de funciones
+
+Kotlin permite el uso de parámetros con valores por defecto, lo que hace que una función sea más flexible.
+
+[source, kotlin]
+----
+fun saludar(nombre: String = "Mundo") {
+    println("Hola, $nombre!")
+}
+
+saludar()          // Imprime "Hola, Mundo!"
+saludar("Kotlin")  // Imprime "Hola, Kotlin!"
+----
+
+También es posible usar funciones con un número variable de argumentos mediante el uso de `vararg`.
+
+[source, kotlin]
+----
+fun imprimirNombres(vararg nombres: String) {
+    for (nombre in nombres) {
+        println(nombre)
+    }
+}
+
+imprimirNombres("Ana", "Juan", "Pedro")
+----
+
+== Módulo 4: Programación Orientada a Objetos
+
+En este módulo exploraremos los conceptos de Programación Orientada a Objetos (POO) en Kotlin, incluyendo clases, objetos, propiedades, métodos, herencia, polimorfismo, interfaces y clases abstractas.
+
+=== 4.1 Clases y objetos
+
+En Kotlin, las clases se definen utilizando la palabra clave `class`. A partir de una clase, se pueden crear instancias llamadas objetos.
+
+[source, kotlin]
+----
+class Persona(val nombre: String, var edad: Int)
+
+val persona = Persona("Juan", 30)
+println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
+----
+
+Las clases en Kotlin pueden tener un constructor primario definido en su declaración, como en el ejemplo anterior.
+
+=== 4.2 Propiedades y métodos
+
+Las propiedades son variables que pertenecen a una clase, y los métodos son funciones que definen el comportamiento de la clase. En Kotlin, los métodos se declaran dentro de la clase.
+
+[source, kotlin]
+----
+class Persona(val nombre: String, var edad: Int) {
+    fun presentarse() {
+        println("Hola, soy $nombre y tengo $edad años")
+    }
+}
+
+val persona = Persona("Ana", 25)
+persona.presentarse() // Imprime "Hola, soy Ana y tengo 25 años"
+----
+
+Las propiedades `nombre` y `edad` representan el estado de `Persona`, mientras que el método `presentarse` define un comportamiento.
+
+=== 4.3 Herencia y polimorfismo
+
+La herencia permite que una clase (subclase) herede las propiedades y métodos de otra clase (superclase). En Kotlin, se usa la palabra clave `open` para indicar que una clase puede ser heredada.
+
+[source, kotlin]
+----
+open class Animal(val nombre: String) {
+    open fun sonido() {
+        println("El animal hace un sonido")
+    }
+}
+
+class Perro(nombre: String) : Animal(nombre) {
+    override fun sonido() {
+        println("Guau")
+    }
+}
+
+val perro = Perro("Bobby")
+perro.sonido() // Imprime "Guau"
+----
+
+El polimorfismo permite utilizar una clase hija como si fuera una clase padre. En este caso, `Perro` es tratado como un `Animal`, y su método `sonido` puede comportarse de diferentes maneras según la clase concreta.
+
+=== 4.4 Interfaces y clases abstractas
+
+Las interfaces y clases abstractas permiten definir comportamientos que pueden ser compartidos entre diferentes clases.
+
+==== Interfaces
+
+Una `interface` define métodos y propiedades que una clase debe implementar. Las interfaces se declaran con la palabra clave `interface`.
+
+[source, kotlin]
+----
+interface Volador {
+    fun volar()
+}
+
+class Pajaro : Volador {
+    override fun volar() {
+        println("El pájaro vuela")
+    }
+}
+
+val pajaro = Pajaro()
+pajaro.volar() // Imprime "El pájaro vuela"
+----
+
+==== Clases abstractas
+
+Una clase abstracta es una clase que no se puede instanciar directamente y que puede contener métodos abstractos (sin implementación) y métodos concretos (con implementación). Se usa la palabra clave `abstract`.
+
+[source, kotlin]
+----
+abstract class Figura {
+    abstract fun area(): Double
+}
+
+class Circulo(val radio: Double) : Figura() {
+    override fun area(): Double = Math.PI * radio * radio
+}
+
+val circulo = Circulo(5.0)
+println("Área del círculo: ${circulo.area()}")
+----
+
+Las interfaces y clases abstractas proporcionan flexibilidad para definir comportamientos que luego pueden ser implementados o sobreescritos en clases específicas.
+
+== Módulo 5: Colecciones y Manejo de Datos en kotlin
+=== 5.1 Listas y conjuntos
+[source, kotlin]
+----
+val lista = listOf("Elemento1", "Elemento2", "Elemento3")
+val conjunto = setOf("Elemento1", "Elemento2", "Elemento1") // "Elemento1" solo se añadirá una vez
+----
+
+=== 5.2 Mapas
+[source, kotlin]
+----
+val mapa = mapOf("clave1" to "valor1", "clave2" to "valor2")
+val valor = mapa["clave1"]
+----
+
+=== 5.3 Operaciones en colecciones
+[source, kotlin]
+----
+val numeros = listOf(1, 2, 3, 4)
+val numerosFiltrados = numeros.filter { it > 2 }
+val suma = numeros.sum()
+----
+
+=== 5.4 Manipulación de datos con funciones de extensión
+[source, kotlin]
+----
+fun List<Int>.sumaTotal(): Int {
+    return this.sum()
+}
+
+val resultado = listOf(1, 2, 3, 4).sumaTotal() // resultado será 10
+----
+
+
+== Módulo 6: Programación Funcional en Kotlin
+
+=== 6.1 Conceptos básicos de programación funcional
+
+La programación funcional es un paradigma de programación que trata la computación como la evaluación de funciones matemáticas y evita el estado mutable y los efectos secundarios. Este enfoque permite escribir código más predecible, modular y fácil de depurar. Kotlin soporta la programación funcional a través de funciones de orden superior, lambdas, e inmutabilidad.
+
+.El objetivo de esta sección es:
+- Comprender los principios de la programación funcional.
+- Utilizar funciones de orden superior y expresiones lambda en Kotlin.
+- Aplicar inmutabilidad y trabajar con estructuras de datos inmutables.
+- Emplear operaciones funcionales sobre colecciones en Kotlin.
+
+==== Principios de la programación funcional
+
+La programación funcional se basa en algunos principios clave:
+
+1. **Inmutabilidad**: Una vez que se crea un valor, no se debe cambiar. Esto ayuda a evitar errores relacionados con el estado mutable.
+2. **Funciones puras**: Las funciones puras son aquellas cuyo resultado depende únicamente de los argumentos de entrada y no de ningún estado externo.
+3. **Funciones de orden superior**: Son funciones que pueden recibir otras funciones como parámetros o devolver funciones como resultado.
+4. **Transparencia referencial**: Una expresión siempre puede ser reemplazada por su valor sin cambiar el comportamiento del programa.
+
+==== Expresiones lambda y funciones de orden superior en Kotlin
+
+Una expresión lambda es una función anónima que puede ser tratada como un valor. Las funciones de orden superior son funciones que aceptan otras funciones como parámetros o devuelven funciones como resultado. Esto permite escribir código modular y reutilizable.
+
+[source, kotlin]
+----
+fun operar(x: Int, y: Int, operacion: (Int, Int) -> Int): Int {
+    return operacion(x, y)
+}
+
+fun main() {
+    val suma = { a: Int, b: Int -> a + b }
+    val resultado = operar(5, 3, suma)
+    println("Resultado de la suma: $resultado")
+}
+----
+
+En este ejemplo:
+- La función `operar` recibe dos enteros y una función como parámetros.
+- `suma` es una expresión lambda que se pasa como argumento a `operar`.
+
+==== Inmutabilidad
+
+La inmutabilidad implica que una vez que se asigna un valor, no puede cambiar. En Kotlin, `val` se usa para declarar variables inmutables, mientras que `var` permite mutabilidad.
+
+[source, kotlin]
+----
+val listaInmutable = listOf(1, 2, 3)
+println(listaInmutable) // No se puede modificar
+
+var listaMutable = mutableListOf(1, 2, 3)
+listaMutable.add(4) // Se permite modificar la lista
+println(listaMutable)
+----
+
+En este ejemplo:
+- `listaInmutable` es una lista inmutable, no se puede modificar después de su creación.
+- `listaMutable` es una lista mutable que permite agregar o quitar elementos.
+
+==== Operaciones funcionales en colecciones
+
+Kotlin proporciona varias funciones funcionales para manipular colecciones, tales como `map`, `filter`, y `reduce`, que permiten realizar operaciones sobre colecciones de forma declarativa.
+
+[source, kotlin]
+----
+fun main() {
+    val numeros = listOf(1, 2, 3, 4, 5)
+    
+    // Aplicar map para transformar cada elemento
+    val cuadrados = numeros.map { it * it }
+    println("Cuadrados: $cuadrados")
+
+    // Filtrar elementos
+    val pares = numeros.filter { it % 2 == 0 }
+    println("Números pares: $pares")
+
+    // Reducir a una suma total
+    val sumaTotal = numeros.reduce { acc, num -> acc + num }
+    println("Suma total: $sumaTotal")
+}
+----
+
+En este ejemplo:
+- `map` transforma cada elemento de la lista original.
+- `filter` selecciona solo los elementos que cumplen con una condición.
+- `reduce` combina los elementos de la colección en un solo resultado.
+
+==== Funciones puras
+
+Las funciones puras producen el mismo resultado para los mismos argumentos y no tienen efectos secundarios, como modificar variables externas o interactuar con el sistema.
+
+[source, kotlin]
+----
+fun suma(a: Int, b: Int): Int {
+    return a + b
+}
+----
+
+La función `suma` es una función pura: siempre devuelve el mismo resultado para los mismos argumentos y no tiene efectos secundarios.
+
+==== Transparencia referencial
+
+La transparencia referencial significa que se puede reemplazar una expresión con su valor sin cambiar el comportamiento del programa. Por ejemplo, si `suma(2, 3)` siempre es `5`, se puede sustituir esa expresión en cualquier lugar por `5`.
+
+==== Resumen
+
+La programación funcional en Kotlin permite escribir código limpio y predecible. Mediante el uso de funciones de orden superior, lambdas, inmutabilidad y operaciones funcionales sobre colecciones, es posible aprovechar el paradigma funcional para construir aplicaciones más robustas y mantenibles.
+
+
+=== 6.2 Inmutabilidad y efectos secundarios
+
+La inmutabilidad y la ausencia de efectos secundarios son dos principios fundamentales de la programación funcional que contribuyen a la confiabilidad y previsibilidad del código. En Kotlin, estos conceptos ayudan a reducir errores y facilitar el seguimiento de cambios en los datos.
+
+.El objetivo de esta sección es:
+- Comprender el concepto de inmutabilidad y su importancia en programación funcional.
+- Implementar estructuras de datos inmutables en Kotlin.
+- Identificar y minimizar efectos secundarios en funciones.
+- Aplicar buenas prácticas para el manejo de datos inmutables en sus aplicaciones.
+
+==== Inmutabilidad en Kotlin
+
+La inmutabilidad se refiere a la incapacidad de cambiar el estado de un objeto después de su creación. En Kotlin, esto se implementa principalmente usando `val` para variables inmutables y estructuras de datos inmutables, lo que ayuda a evitar errores asociados con cambios no deseados en el estado de los datos.
+
+[source, kotlin]
+----
+val nombre = "Kotlin"
+// nombre = "Java" // Esto causaría un error porque `nombre` es inmutable
+
+val listaInmutable = listOf(1, 2, 3)
+// listaInmutable.add(4) // Esto causaría un error ya que no se puede modificar
+println(listaInmutable)
+----
+
+En este ejemplo:
+- `nombre` es una variable inmutable, declarada con `val`, por lo que no puede ser reasignada.
+- `listaInmutable` es una lista inmutable, lo que significa que no se le pueden agregar o eliminar elementos.
+
+==== Efectos secundarios en funciones
+
+Un efecto secundario ocurre cuando una función modifica un estado externo o produce un cambio fuera de su ámbito. Para lograr funciones puras, es fundamental evitar estos efectos secundarios, lo que permite que las funciones sean más fáciles de probar y depurar.
+
+[source, kotlin]
+----
+var contador = 0
+
+fun incrementarContador(): Int {
+    contador += 1 // Efecto secundario, modifica el estado global `contador`
+    return contador
+}
+
+fun main() {
+    println("Contador antes: $contador")
+    println("Contador después: ${incrementarContador()}")
+}
+----
+
+En este ejemplo, la función `incrementarContador` produce un efecto secundario al modificar el valor de `contador`, que es una variable externa a la función. Para evitar efectos secundarios, se debe evitar modificar variables externas dentro de las funciones.
+
+==== Uso de funciones puras
+
+Una función pura es aquella que no tiene efectos secundarios y cuyo resultado depende exclusivamente de sus parámetros de entrada. En lugar de modificar el estado externo, las funciones puras devuelven una nueva instancia de los datos con los cambios aplicados, respetando así la inmutabilidad.
+
+[source, kotlin]
+----
+fun incrementar(numero: Int): Int {
+    return numero + 1
+}
+
+fun main() {
+    val numero = 5
+    println("Número original: $numero")
+    println("Número incrementado: ${incrementar(numero)}")
+}
+----
+
+En este ejemplo:
+- La función `incrementar` es pura porque no depende de variables externas ni modifica el estado.
+- Devuelve un nuevo valor sin cambiar el original.
+
+==== Ventajas de la inmutabilidad
+
+La inmutabilidad presenta varias ventajas:
+- **Previsibilidad**: Al no cambiar el estado, es más fácil predecir el comportamiento del programa.
+- **Paralelismo seguro**: Los datos inmutables pueden compartirse entre hilos sin riesgo de condiciones de carrera.
+- **Depuración y pruebas**: El código inmutable es más fácil de probar porque los datos no cambian de manera inesperada.
+
+==== Trabajando con colecciones inmutables
+
+Kotlin proporciona tanto colecciones inmutables como mutables. Es recomendable utilizar colecciones inmutables siempre que sea posible para mantener el código seguro y predecible.
+
+[source, kotlin]
+----
+fun duplicarElementos(lista: List<Int>): List<Int> {
+    return lista.map { it * 2 }
+}
+
+fun main() {
+    val numeros = listOf(1, 2, 3)
+    val numerosDuplicados = duplicarElementos(numeros)
+    println("Original: $numeros")
+    println("Duplicado: $numerosDuplicados")
+}
+----
+
+En este ejemplo:
+- `numeros` es una lista inmutable.
+- `duplicarElementos` devuelve una nueva lista con los valores duplicados, sin modificar la lista original.
+
+==== Buenas prácticas para evitar efectos secundarios
+
+1. **Uso de funciones puras**: Siempre que sea posible, diseñar funciones que no modifiquen variables externas.
+2. **Inmutabilidad por defecto**: Declarar variables como `val` y preferir estructuras inmutables.
+3. **Evitación de mutaciones en colecciones**: Usar colecciones inmutables o devolver nuevas instancias en lugar de modificar las existentes.
+
+==== Resumen
+
+La inmutabilidad y la ausencia de efectos secundarios son esenciales en programación funcional, ya que mejoran la confiabilidad y simplicidad del código. Al aplicar estos principios en Kotlin, el código se vuelve más predecible, seguro y fácil de mantener, proporcionando una base sólida para el desarrollo funcional.
+
+=== 6.3 Composición de funciones
+
+La composición de funciones es un concepto clave en programación funcional, que permite combinar funciones más pequeñas para crear soluciones más complejas. Al usar funciones como bloques de construcción, la composición promueve la modularidad y facilita la reutilización del código. En Kotlin, la composición de funciones se logra mediante funciones de orden superior, lambdas, y operadores como `let`, `apply`, `run`, y `also`.
+
+.El objetivo de esta sección es:
+- Comprender el concepto de composición de funciones.
+- Utilizar funciones de orden superior para componer funciones en Kotlin.
+- Aplicar operadores de alcance (`let`, `apply`, `run`, `also`) para construir cadenas de operaciones.
+- Desarrollar soluciones más modulares y mantenibles a través de la composición funcional.
+
+==== Qué es la composición de funciones
+
+La composición de funciones implica combinar dos o más funciones para formar una nueva función. Si tenemos dos funciones `f` y `g`, podemos componerlas para crear una nueva función `h = f(g(x))`. Esto permite ejecutar una serie de transformaciones de datos de manera secuencial y estructurada.
+
+[source, kotlin]
+----
+fun duplicar(x: Int): Int = x * 2
+fun incrementar(x: Int): Int = x + 1
+
+fun main() {
+    val resultado = incrementar(duplicar(5))
+    println("Resultado de la composición: $resultado") // Resultado: 11
+}
+----
+
+En este ejemplo:
+- La función `duplicar` multiplica el número por 2.
+- La función `incrementar` suma 1 al resultado.
+- Ambas funciones se componen para obtener el resultado final `11`.
+
+==== Funciones de orden superior para composición
+
+Las funciones de orden superior en Kotlin permiten trabajar con funciones como parámetros y devolver funciones. Esto facilita la composición al permitir combinar funciones en una única operación.
+
+[source, kotlin]
+----
+fun componer(f: (Int) -> Int, g: (Int) -> Int): (Int) -> Int {
+    return { x -> f(g(x)) }
+}
+
+fun main() {
+    val duplicar = { x: Int -> x * 2 }
+    val incrementar = { x: Int -> x + 1 }
+
+    val duplicarEIncrementar = componer(incrementar, duplicar)
+    println("Resultado: ${duplicarEIncrementar(5)}") // Resultado: 11
+}
+----
+
+En este código:
+- La función `componer` toma dos funciones como parámetros y devuelve una nueva función que las compone.
+- `duplicarEIncrementar` es la composición de `duplicar` e `incrementar`.
+
+==== Operadores de alcance (`let`, `apply`, `run`, `also`)
+
+Kotlin ofrece operadores de alcance que facilitan la composición al permitir aplicar múltiples operaciones en un mismo contexto de objeto. Estos operadores son útiles para encadenar operaciones sin necesidad de múltiples asignaciones.
+
+[source, kotlin]
+----
+data class Persona(var nombre: String, var edad: Int)
+
+fun main() {
+    val persona = Persona("Juan", 25).apply {
+        nombre = nombre.uppercase()
+    }.also {
+        println("Nombre en mayúsculas: ${it.nombre}")
+    }.run {
+        edad += 1
+        "Edad incrementada a: $edad"
+    }
+
+    println(persona)
+}
+----
+
+En este ejemplo:
+- `apply` permite modificar `nombre` directamente en el contexto del objeto `persona`.
+- `also` ejecuta una operación adicional (imprimir) sin afectar al objeto.
+- `run` incrementa la `edad` y devuelve un mensaje, encadenando las operaciones en un flujo continuo.
+
+==== Encadenamiento de funciones en colecciones
+
+La composición de funciones es especialmente útil en el manejo de colecciones, donde se pueden encadenar operaciones como `map`, `filter`, y `reduce` para transformar datos.
+
+[source, kotlin]
+----
+fun main() {
+    val numeros = listOf(1, 2, 3, 4, 5)
+
+    val resultado = numeros
+        .filter { it % 2 == 0 }
+        .map { it * it }
+        .reduce { acc, i -> acc + i }
+
+    println("Resultado de la composición en colecciones: $resultado") // Resultado: 20
+}
+----
+
+En este ejemplo:
+- `filter` selecciona los números pares.
+- `map` eleva cada número al cuadrado.
+- `reduce` suma los valores, componiendo una serie de operaciones funcionales.
+
+==== Ventajas de la composición de funciones
+
+La composición de funciones ofrece varias ventajas:
+- **Reutilización**: Las funciones pequeñas y reutilizables pueden combinarse en varias configuraciones.
+- **Legibilidad**: Las operaciones compuestas son más legibles que las secuencias de transformaciones dispersas.
+- **Modularidad**: Las soluciones pueden dividirse en funciones más pequeñas y enfocadas.
+
+==== Resumen
+
+La composición de funciones permite combinar funciones pequeñas para crear soluciones complejas y modulares. Con funciones de orden superior, operadores de alcance y el encadenamiento de funciones en colecciones, Kotlin facilita la implementación de la programación funcional y la construcción de código más limpio y fácil de mantener.
+
+== Módulo 7: Concurrencia y Programación Asincrónica
+
+=== 7.1 Hilos y tareas en Kotlin
+
+En Kotlin, puedes manejar hilos y tareas concurrentes utilizando varias técnicas. A continuación se presentan algunos ejemplos básicos.
+
+[source, kotlin]
+----
+fun main() {
+    val thread = Thread {
+        println("Hilo en ejecución: ${Thread.currentThread().name}")
+    }
+    thread.start()
+    thread.join()
+    println("Hilo principal: ${Thread.currentThread().name}")
+}
+----
+
+Este ejemplo crea y ejecuta un hilo simple. El método `join` asegura que el hilo principal espere a que el hilo secundario termine.
+
+Para tareas más complejas, puedes usar `ExecutorService`:
+
+[source, kotlin]
+----
+import java.util.concurrent.Executors
+
+fun main() {
+    val executor = Executors.newFixedThreadPool(2)
+    for (i in 1..5) {
+        executor.submit {
+            println("Tarea $i ejecutada en: ${Thread.currentThread().name}")
+        }
+    }
+    executor.shutdown()
+}
+----
+
+Este ejemplo utiliza un `ExecutorService` para ejecutar múltiples tareas en un pool de hilos.
+
+Kotlin también ofrece soporte para corrutinas, que son una forma más avanzada y eficiente de manejar la concurrencia:
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    launch {
+        delay(1000L)
+        println("Corrutina: ${Thread.currentThread().name}")
+    }
+    println("Hilo principal: ${Thread.currentThread().name}")
+}
+----
+
+En este ejemplo, una corrutina se lanza y se retrasa por un segundo antes de imprimir un mensaje. La función `runBlocking` bloquea el hilo principal hasta que la corrutina completa su ejecución.
+
+Las corrutinas son más ligeras que los hilos y permiten escribir código asíncrono de manera más sencilla y eficiente.
+
+Para más información sobre el manejo de hilos y tareas en Kotlin, puedes consultar la [documentación oficial de Kotlin](https://kotlinlang.org/docs/reference/coroutines-overview.html).
+
+=== 7.2 Coroutines: introducción y uso
+
+Las corrutinas en Kotlin son una herramienta poderosa para manejar tareas asincrónicas sin bloquear el hilo principal, especialmente en aplicaciones Android. A diferencia de los hilos tradicionales, las corrutinas permiten suspender y reanudar tareas de manera eficiente, proporcionando un enfoque más simple y legible para manejar concurrencia y operaciones en segundo plano.
+
+.El objetivo de esta sección es:
+- Comprender el concepto de corrutinas y cómo se diferencian de los hilos tradicionales.
+- Configurar y utilizar corrutinas en un proyecto Kotlin.
+- Utilizar las funciones principales de las corrutinas como `launch`, `async` y `await`.
+- Aplicar el uso de corrutinas en operaciones comunes, como llamadas a APIs y manipulación de datos.
+
+==== Conceptos básicos de las corrutinas
+
+Las corrutinas permiten escribir código asincrónico de forma secuencial mediante el uso de funciones suspendidas (`suspend`). Estas funciones pueden pausar su ejecución sin bloquear el hilo actual, permitiendo que otros procesos continúen ejecutándose.
+
+Para trabajar con corrutinas en Kotlin, es necesario agregar la dependencia `kotlinx-coroutines-core` en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+}
+----
+
+==== Crear y lanzar una corrutina
+
+Para iniciar una corrutina, se puede utilizar la función `launch`, que crea una nueva corrutina en el contexto proporcionado. A continuación, un ejemplo de cómo lanzar una corrutina con `GlobalScope`.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    println("Inicio de la corrutina")
+    GlobalScope.launch {
+        delay(1000L) // Simulación de tarea en segundo plano
+        println("Tarea completada en la corrutina")
+    }
+    println("Fin de la corrutina")
+}
+----
+
+En este ejemplo:
+- `GlobalScope.launch` crea una corrutina en el ámbito global.
+- La función `delay` suspende la corrutina por un segundo sin bloquear el hilo principal.
+- `runBlocking` es una función de alto nivel que espera a que todas las corrutinas hijas terminen su ejecución.
+
+==== Funciones suspendidas y `async`
+
+Las funciones suspendidas (`suspend`) son funciones que se pueden pausar y reanudar dentro de una corrutina. Estas funciones permiten realizar tareas en segundo plano sin bloquear la ejecución.
+
+Además de `launch`, también se puede utilizar `async` para iniciar una tarea que devuelve un valor. La combinación de `async` con `await` permite ejecutar tareas en paralelo y recoger los resultados.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val resultado1 = async {
+        delay(1000L)
+        10
+    }
+    val resultado2 = async {
+        delay(2000L)
+        20
+    }
+    println("Resultado total: ${resultado1.await() + resultado2.await()}")
+}
+----
+
+Aquí, `async` crea dos tareas en paralelo, cada una con un retraso diferente. `await()` espera el resultado de cada tarea sin bloquear el hilo principal.
+
+==== Contextos de corrutinas y `Dispatchers`
+
+Kotlin ofrece varios `Dispatchers` que definen el contexto en el que se ejecutará una corrutina:
+- `Dispatchers.Main`: Ejecuta en el hilo principal, ideal para actualizar la interfaz de usuario.
+- `Dispatchers.IO`: Optimizado para operaciones de entrada/salida (como leer archivos o hacer llamadas a APIs).
+- `Dispatchers.Default`: Ideal para tareas que requieren un alto uso de CPU.
+- `Dispatchers.Unconfined`: Ejecuta en el contexto en el que fue llamado, sin cambiar de hilo.
+
+[source, kotlin]
+----
+GlobalScope.launch(Dispatchers.IO) {
+    // Código de una tarea en segundo plano
+    println("Ejecutando en Dispatchers.IO")
+}
+----
+
+Este ejemplo ejecuta una tarea en `Dispatchers.IO`, adecuado para operaciones de red o base de datos.
+
+==== Ejemplo de uso de corrutinas en Android
+
+En una aplicación Android, las corrutinas son especialmente útiles para manejar operaciones largas, como llamadas a una API, sin bloquear la interfaz de usuario. El siguiente ejemplo muestra cómo realizar una llamada en segundo plano y luego actualizar la UI con el resultado.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val datos = withContext(Dispatchers.IO) {
+                // Simulación de una llamada a API
+                delay(2000L)
+                "Datos obtenidos de la API"
+            }
+            // Actualizar la UI con los datos obtenidos
+            println("Resultado: $datos")
+        }
+    }
+}
+----
+
+En este código:
+- `withContext(Dispatchers.IO)` cambia el contexto de la corrutina a `Dispatchers.IO` para la tarea en segundo plano.
+- Luego, vuelve al contexto `Dispatchers.Main` para actualizar la interfaz de usuario con el resultado.
+
+==== Resumen
+
+Las corrutinas simplifican la concurrencia en Kotlin al proporcionar una forma legible y segura de manejar tareas en segundo plano y asincrónicas. Con el uso de funciones como `launch`, `async`, y `withContext`, las corrutinas facilitan la ejecución de tareas largas sin bloquear el hilo principal, mejorando así el rendimiento de las aplicaciones.
+
+=== 7.3 Manejo de excepciones en coroutines
+
+El manejo de excepciones en corrutinas es un aspecto crucial para evitar que errores en tareas en segundo plano afecten la estabilidad de la aplicación. Kotlin proporciona mecanismos específicos para capturar y gestionar excepciones en corrutinas, como los `try-catch`, el uso de `supervisorScope` y `CoroutineExceptionHandler`, asegurando así un flujo de control adecuado en casos de error.
+
+.El objetivo de esta sección es:
+- Comprender el flujo de propagación de excepciones en corrutinas.
+- Utilizar bloques `try-catch` en corrutinas para capturar excepciones.
+- Implementar `CoroutineExceptionHandler` para gestionar errores globalmente.
+- Aplicar `supervisorScope` para controlar la propagación de errores en corrutinas estructuradas.
+
+==== Manejo de excepciones con `try-catch`
+
+En Kotlin, una forma común de manejar excepciones en corrutinas es mediante el uso de bloques `try-catch` alrededor de la lógica de la corrutina. Esto es útil cuando se desea capturar y gestionar errores dentro de una misma corrutina.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        try {
+            println("Iniciando tarea...")
+            delay(1000L)
+            throw Exception("Error en la corrutina")
+        } catch (e: Exception) {
+            println("Excepción capturada: ${e.message}")
+        }
+    }
+    job.join()
+    println("Tarea completada")
+}
+----
+
+En este ejemplo:
+- La excepción es capturada dentro del bloque `try-catch`, y la ejecución continúa sin interrumpir el flujo principal del programa.
+- El método `join()` espera que la corrutina `job` termine antes de continuar.
+
+==== Uso de `CoroutineExceptionHandler`
+
+Otra forma de manejar excepciones es mediante `CoroutineExceptionHandler`, que actúa como un controlador global de errores en corrutinas. Este se puede añadir al contexto de una corrutina para capturar excepciones no gestionadas.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val handler = CoroutineExceptionHandler { _, exception ->
+        println("Excepción capturada en CoroutineExceptionHandler: ${exception.message}")
+    }
+
+    val job = GlobalScope.launch(handler) {
+        println("Iniciando tarea con handler...")
+        throw Exception("Error en la corrutina con handler")
+    }
+    job.join()
+}
+----
+
+Aquí:
+- `CoroutineExceptionHandler` se usa para definir un bloque de código que se ejecuta si ocurre una excepción.
+- Este controlador es ideal para excepciones que ocurren en corrutinas lanzadas en `GlobalScope`, ya que las excepciones no pueden ser capturadas directamente en este contexto.
+
+==== Control de errores en corrutinas estructuradas con `supervisorScope`
+
+En situaciones donde varias corrutinas se ejecutan de forma concurrente, `supervisorScope` permite que una excepción en una corrutina no afecte a las otras. Esto es especialmente útil cuando se desea que algunas tareas continúen ejecutándose incluso si una falla.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    supervisorScope {
+        val job1 = launch {
+            println("Tarea 1 iniciada")
+            delay(1000L)
+            throw Exception("Error en la Tarea 1")
+        }
+
+        val job2 = launch {
+            try {
+                println("Tarea 2 iniciada")
+                delay(2000L)
+                println("Tarea 2 completada")
+            } catch (e: Exception) {
+                println("Excepción en Tarea 2: ${e.message}")
+            }
+        }
+    }
+    println("Fin del supervisorScope")
+}
+----
+
+En este código:
+- `supervisorScope` permite que, si `job1` falla, `job2` continúe ejecutándose.
+- Esta estrategia asegura que una excepción en una corrutina no cause la cancelación de las demás corrutinas en el mismo ámbito.
+
+==== Resumen
+
+El manejo de excepciones en corrutinas permite un control detallado sobre los errores que ocurren en tareas asíncronas. Mediante el uso de `try-catch`, `CoroutineExceptionHandler`, y `supervisorScope`, se puede asegurar que las aplicaciones Kotlin sean más robustas y que los errores en corrutinas no afecten a la interfaz de usuario ni al flujo de la aplicación.
+
+== Módulo 8: Desarrollo de Aplicaciones
+
+=== 8.1 Introducción al desarrollo Android con Kotlin
+
+Kotlin es un lenguaje de programación moderno y conciso, desarrollado por JetBrains, que desde 2017 es compatible oficialmente con Android como una alternativa a Java. Kotlin permite escribir aplicaciones de forma más segura y eficiente debido a su sintaxis simplificada, características de seguridad para el manejo de nulos, y compatibilidad total con el ecosistema de Android.
+
+Este módulo presenta una introducción a los fundamentos del desarrollo de aplicaciones para Android utilizando Kotlin, abarcando desde la configuración del entorno hasta la creación de interfaces básicas.
+
+.El objetivo de esta sección es:
+- Configurar un entorno de desarrollo Android en Android Studio utilizando Kotlin.
+- Comprender la estructura de un proyecto Android.
+- Crear interfaces de usuario simples utilizando XML y el diseño programático.
+- Escribir código Kotlin que se integre con el ciclo de vida de una actividad en Android.
+
+==== Configuración del entorno
+
+Para desarrollar en Android con Kotlin, es necesario configurar Android Studio, la herramienta oficial de desarrollo de aplicaciones Android. Sigue estos pasos para instalar y configurar Android Studio:
+
+1. Descarga Android Studio desde el sitio oficial: https://developer.android.com/studio
+2. Instala Android Studio siguiendo las instrucciones para tu sistema operativo.
+3. Abre Android Studio y crea un nuevo proyecto, seleccionando Kotlin como el lenguaje principal.
+
+==== Estructura de un proyecto Android
+
+Un proyecto Android típico contiene varias carpetas y archivos importantes:
+
+- **app/src/main/java**: Aquí se encuentran los archivos de código fuente de Kotlin.
+- **app/src/main/res**: Carpeta para recursos como imágenes, archivos XML de diseño, y strings.
+- **AndroidManifest.xml**: Archivo de configuración principal que declara actividades, permisos, y otros elementos importantes de la aplicación.
+
+==== Primeros pasos: Crear una actividad en Kotlin
+
+Una actividad es un componente principal en Android que representa una pantalla de la interfaz de usuario. A continuación, se muestra cómo crear una actividad básica en Kotlin.
+
+[source, kotlin]
+----
+package com.example.miapp
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}
+----
+
+Este código define una actividad llamada `MainActivity` que extiende `AppCompatActivity`, una clase base para actividades con compatibilidad hacia atrás. El método `onCreate` es donde se establece el diseño de la actividad con el archivo XML `activity_main`.
+
+==== Creación de interfaces de usuario en Android
+
+Las interfaces de usuario en Android se pueden diseñar utilizando archivos XML en la carpeta `res/layout`. Por ejemplo, un archivo `activity_main.xml` podría definirse de la siguiente manera para crear un diseño simple con un `TextView`:
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/miTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola, mundo!"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+----
+
+Este archivo define un `TextView` centrado en el `RelativeLayout` padre, que mostrará el texto "Hola, mundo!" en el centro de la pantalla.
+
+==== Ejecución de la aplicación en un emulador
+
+Para probar la aplicación:
+
+1. Configura un dispositivo virtual (emulador) en Android Studio o conecta un dispositivo físico.
+2. Haz clic en el botón "Run" o selecciona "Run > Run 'app'" en la barra de menú.
+
+Android Studio compilará la aplicación y la instalará en el dispositivo o emulador, mostrando la interfaz que definiste en el archivo `activity_main.xml`.
+
+=== 8.2 Creación de una aplicación sencilla
+
+En esta sección, crearemos una aplicación sencilla en Kotlin que realiza operaciones básicas. A continuación se muestra un ejemplo de una aplicación que suma dos números ingresados por el usuario:
+
+[source, kotlin]
+----
+fun main() {
+    println("introduzca el primer número:")
+    val num1 = readLine()?.toIntOrNull() ?: 0
+
+    println("introduzca el segundo número:")
+    val num2 = readLine()?.toIntOrNull() ?: 0
+
+    val sum = num1 + num2
+    println("La suma de $num1 y $num2 es: $sum")
+}
+----
+
+.Este programa realiza las siguientes operaciones:
+
+1. Solicita al usuario que introduzca dos números.
+2. Convierte las entradas a enteros, manejando posibles entradas nulas.
+3. Calcula la suma de los dos números.
+4. Imprime el resultado.
+
+.Para compilar y ejecutar este programa, sigue estos pasos:
+
+1. Guarda el código en un archivo llamado `Main.kt`.
+2. Abre una terminal y navega hasta el directorio donde guardaste el archivo.
+3. Compila el archivo usando el compilador de Kotlin:
+
+[source, sh]
+----
+kotlinc Main.kt -include-runtime -d Main.jar
+----
+
+.Ejecuta el archivo compilado:
+
+[source, sh]
+----
+java -jar Main.jar
+----
+
+Este es un ejemplo básico, pero puedes expandirlo para incluir más funcionalidades y manejar diferentes tipos de entradas.
+
+=== 8.3 Integración con bases de datos
+
+Para integrar una base de datos en una aplicación Kotlin, se pueden seguir los siguientes pasos:
+
+[source, kotlin]
+----
+import java.sql.Connection
+import java.sql.DriverManager
+import java.sql.ResultSet
+import java.sql.Statement
+
+fun main() {
+    val url = "jdbc:mysql://localhost:3306/mydatabase"
+    val user = "root"
+    val password = "password"
+
+    var connection: Connection? = null
+    var statement: Statement? = null
+    var resultSet: ResultSet? = null
+
+    try {
+        connection = DriverManager.getConnection(url, user, password)
+        statement = connection.createStatement()
+        resultSet = statement.executeQuery("SELECT * FROM mytable")
+
+        while (resultSet.next()) {
+            println("Column1: ${resultSet.getString("column1")}, Column2: ${resultSet.getInt("column2")}")
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    } finally {
+        resultSet?.close()
+        statement?.close()
+        connection?.close()
+    }
+}
+----
+
+En este ejemplo, se utiliza JDBC para conectarse a una base de datos MySQL. Asegúrate de tener el controlador JDBC de MySQL en tu classpath.
+
+[source, kotlin]
+----
+dependencies {
+    implementation("mysql:mysql-connector-java:8.0.23")
+}
+----
+
+Además, puedes utilizar bibliotecas como Exposed para simplificar la interacción con la base de datos.
+
+[source, kotlin]
+----
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.sql.SchemaUtils.drop
+
+object MyTable : Table() {
+    val id = integer("id").autoIncrement()
+    val name = varchar("name", 50)
+    override val primaryKey = PrimaryKey(id)
+}
+
+fun main() {
+    Database.connect("jdbc:mysql://localhost:3306/mydatabase", driver = "com.mysql.cj.jdbc.Driver", user = "root", password = "password")
+
+    transaction {
+        create(MyTable)
+
+        MyTable.insert {
+            it[name] = "John Doe"
+        }
+
+        for (row in MyTable.selectAll()) {
+            println("${row[MyTable.id]}: ${row[MyTable.name]}")
+        }
+
+        drop(MyTable)
+    }
+}
+----
+
+Este ejemplo muestra cómo usar Exposed para crear una tabla, insertar datos y realizar una consulta.
+
+=== 8.4 Buenas prácticas y consejos
+
+A continuación, se presentan algunas buenas prácticas y consejos para desarrollar en Kotlin:
+
+[source, kotlin]
+----
+fun main() {
+    // Usa val en lugar de var siempre que sea posible
+    val name = "John Doe"
+
+    // Evita el uso de null siempre que sea posible
+    val nonNullable: String = "This can't be null"
+    // val nullable: String? = null // Solo usa cuando sea necesario
+
+    // Usa expresiones lambda para funciones de orden superior
+    val numbers = listOf(1, 2, 3, 4, 5)
+    val doubled = numbers.map { it * 2 }
+    println(doubled)
+
+    // Usa la función let para evitar null checks
+    val email: String? = "john.doe@example.com"
+    email?.let {
+        println("Email is not null: $it")
+    }
+
+    // Usa data classes para clases que solo contienen datos
+    data class User(val name: String, val age: Int)
+    val user = User("Alice", 30)
+    println(user)
+}
+----
+
+1. **Usa `val` en lugar de `var` siempre que sea posible**: Esto ayuda a mantener la inmutabilidad y reduce la posibilidad de errores.
+
+2. **Evita el uso de `null` siempre que sea posible**: Kotlin tiene un sistema de tipos que ayuda a evitar errores de null. Usa tipos no anulables siempre que sea posible.
+
+3. **Usa expresiones lambda y funciones de orden superior**: Kotlin tiene un fuerte soporte para programación funcional. Usa funciones como `map`, `filter`, y `reduce` para trabajar con colecciones de manera más concisa.
+
+4. **Usa la función `let` para evitar null checks**: La función `let` puede ser usada para ejecutar un bloque de código solo si un valor no es null.
+
+5. **Usa `data classes` para clases que solo contienen datos**: Las data classes proporcionan automáticamente métodos como `toString`, `equals`, y `hashCode`.
+
+6. **Escribe pruebas unitarias**: Asegúrate de escribir pruebas unitarias para tu código. Esto ayuda a garantizar que tu código funcione como se espera y facilita el mantenimiento.
+
+7. **Sigue las convenciones de codificación de Kotlin**: Sigue las convenciones de codificación oficiales de Kotlin para mantener tu código limpio y legible. Puedes encontrarlas en [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html).
+

@@ -1,0 +1,5391 @@
+= Android con Kotlin
+:toc:
+:toclevels: 3
+:source-highlighter: highlight.js
+
+
+== Módulo 1: Introducción a Android y Kotlin
+=== 1.1 Visión general del desarrollo de aplicaciones Android
+
+En esta sección se ofrecerá una introducción al desarrollo de aplicaciones Android, proporcionando una comprensión de la plataforma Android, su arquitectura, y el proceso general de desarrollo. Esta sección cubre también los requisitos y herramientas necesarias para comenzar a desarrollar aplicaciones en Android.
+
+.Al finalizar esta sección, el estudiante será capaz de:
+- Describir la plataforma Android y su relevancia en el mercado de aplicaciones móviles.
+- Comprender los componentes clave de la arquitectura de Android.
+- Identificar las herramientas y configuraciones necesarias para el desarrollo en Android.
+
+==== Introducción a la plataforma Android
+
+Android es un sistema operativo de código abierto basado en Linux, diseñado principalmente para dispositivos móviles como teléfonos inteligentes y tabletas. Fue desarrollado por Google y actualmente es el sistema operativo más utilizado en el mundo, con una amplia cuota de mercado.
+
+Algunas características principales de Android incluyen:
+- **Código abierto**: Permite a desarrolladores y fabricantes personalizar y extender las funcionalidades del sistema.
+- **Ecosistema de Google Play**: Android ofrece una plataforma de distribución de aplicaciones a través de Google Play Store, con millones de aplicaciones y una gran base de usuarios.
+- **Compatibilidad con múltiples dispositivos**: Android es compatible con una variedad de dispositivos de diferentes fabricantes.
+
+==== Arquitectura de Android
+
+Android se estructura en varios niveles o capas, cada uno con una función específica. La arquitectura de Android se compone de las siguientes capas principales:
+
+1. **Linux Kernel**: La base del sistema Android, proporciona abstracción de hardware, gestión de memoria, y seguridad.
+2. **Bibliotecas nativas y Android Runtime (ART)**: Proporcionan las bibliotecas esenciales para aplicaciones Android y el entorno en el que se ejecutan las aplicaciones Java.
+3. **Framework de aplicaciones**: Ofrece servicios y componentes fundamentales que los desarrolladores utilizan para construir aplicaciones, como la gestión de activities, vistas, notificaciones, y más.
+4. **Aplicaciones**: Las aplicaciones se ejecutan en la capa superior, incluyendo tanto aplicaciones del sistema como las aplicaciones que los usuarios instalan.
+
+==== Proceso de desarrollo de una aplicación Android
+
+El proceso de desarrollo de una aplicación Android incluye varios pasos, desde la concepción de la idea hasta la publicación en la tienda de aplicaciones:
+
+1. **Planificación y diseño**: Definir el propósito de la aplicación, sus funcionalidades principales, y diseñar la interfaz de usuario.
+2. **Configuración del entorno de desarrollo**: Instalar Android Studio y configurar el entorno para empezar a desarrollar.
+3. **Desarrollo**: Escribir el código utilizando Kotlin y construir la interfaz con los componentes UI de Android.
+4. **Pruebas**: Probar la aplicación en diferentes dispositivos y configuraciones para asegurarse de que funciona correctamente.
+5. **Lanzamiento y mantenimiento**: Publicar la aplicación en Google Play Store y realizar actualizaciones según sea necesario.
+
+==== Herramientas esenciales para el desarrollo de Android
+
+1. **Android Studio**: El entorno de desarrollo integrado (IDE) oficial para Android, que incluye herramientas para la creación de interfaces de usuario, depuración, pruebas, y emulación.
+2. **SDK de Android**: Incluye las herramientas necesarias para desarrollar aplicaciones Android, así como bibliotecas y APIs.
+3. **Emuladores y dispositivos físicos**: Para probar y depurar las aplicaciones en un entorno controlado.
+
+==== Ventajas de desarrollar en Android con Kotlin
+
+Kotlin es el lenguaje de programación preferido para el desarrollo en Android, respaldado oficialmente por Google. Sus ventajas incluyen:
+- **Sintaxis concisa y expresiva**: Facilita escribir y entender el código.
+- **Compatibilidad con Java**: Permite integrar bibliotecas Java y migrar aplicaciones existentes.
+- **Seguridad**: Reduce los errores comunes como los null pointer exceptions, lo que lleva a aplicaciones más estables.
+
+==== Resumen
+
+La plataforma Android permite a los desarrolladores crear aplicaciones para millones de dispositivos en todo el mundo. Comprender la arquitectura de Android, el proceso de desarrollo, y las herramientas disponibles es esencial para comenzar a desarrollar aplicaciones Android efectivas y robustas. En las próximas lecciones, exploraremos estos conceptos en profundidad y aprenderemos a crear aplicaciones Android desde cero.
+
+=== 1.2 Configuración del entorno de desarrollo (Android Studio)
+
+Para comenzar a desarrollar aplicaciones Android, es esencial configurar correctamente el entorno de desarrollo. En esta sección, aprenderás a instalar y configurar Android Studio, el IDE oficial para el desarrollo de aplicaciones Android.
+
+==== 1.2.1 Instalación de Android Studio
+
+1. **Descargar Android Studio**:
+   - Visita la página oficial de Android Studio: https://developer.android.com/studio
+   - Descarga la versión correspondiente a tu sistema operativo (Windows, macOS, Linux).
+
+2. **Instalar Android Studio**:
+   - Sigue las instrucciones del instalador para completar la instalación.
+   - Asegúrate de instalar el SDK de Android y el emulador durante el proceso de instalación.
+
+==== 1.2.2 Configuración del emulador y dispositivos físicos
+
+1. **Configurar el emulador de Android**:
+   - Abre Android Studio.
+   - Ve a `Tools` > `AVD Manager`.
+   - Crea un nuevo dispositivo virtual (AVD) seleccionando un dispositivo y una imagen del sistema.
+   - Configura las opciones del emulador según tus necesidades y haz clic en `Finish`.
+
+2. **Conectar un dispositivo físico**:
+   - Habilita la depuración USB en tu dispositivo Android (Ajustes > Opciones de desarrollador > Depuración USB).
+   - Conecta tu dispositivo al ordenador mediante un cable USB.
+   - Asegúrate de que tu dispositivo sea reconocido por Android Studio.
+
+==== 1.2.3 Estructura de un proyecto Android
+
+Un proyecto Android en Android Studio tiene una estructura específica que incluye varios archivos y carpetas importantes. A continuación, se describe la estructura básica de un proyecto Android:
+
+[source, text]
+----
+MyApplication/
+├── .idea/                              # Configuración del proyecto
+├── app/                                # Módulo de la aplicación
+│   ├── build/                          # Archivos generados durante la compilación
+│   ├── src/                            # Código fuente y recursos
+│   │   ├── main/                       # Código fuente principal
+│   │   │   ├── java/                   # Archivos Java/Kotlin
+│   │   │   ├── res/                    # Recursos (layouts, strings, drawables, etc.)
+│   │   │   └── AndroidManifest.xml     # Archivo de manifiesto
+│   │   ├── test/                       # Pruebas unitarias
+│   │   └── androidTest/                # Pruebas instrumentadas
+├── build/                              # Archivos generados durante la compilación
+├── gradle/                             # Configuración de Gradle
+├── .gitignore                          # Archivos y carpetas a ignorar por Git
+├── build.gradle                        # Archivo de configuración de Gradle a nivel de proyecto
+├── settings.gradle                     # Archivo de configuración de Gradle a nivel de proyecto
+└── gradlew                             # Script para ejecutar Gradle en sistemas Unix
+----
+
+==== 1.2.4 Primer proyecto Android
+
+1. **Crear un nuevo proyecto**:
+   - Abre Android Studio.
+   - Selecciona `Start a new Android Studio project`.
+   - Elige una plantilla de activity (por ejemplo, `Empty Activity`) y haz clic en `Next`.
+   - Configura el nombre del proyecto, el nombre del paquete, la ubicación de guardado y el lenguaje de programación (Kotlin o Java).
+   - Haz clic en `Finish` para crear el proyecto.
+
+2. **Explorar el proyecto**:
+   - Familiarízate con la estructura del proyecto y los archivos generados.
+   - Abre el archivo `MainActivity` y el archivo de diseño `activity_main.xml`.
+
+3. **Ejecutar el proyecto**:
+   - Selecciona un dispositivo de destino (emulador o dispositivo físico).
+   - Haz clic en el botón `Run` (icono de play) para compilar y ejecutar la aplicación.
+
+Con estos pasos, habrás configurado tu entorno de desarrollo y creado tu primer proyecto Android. En las siguientes secciones, profundizaremos en los conceptos y técnicas necesarios para desarrollar aplicaciones Android efectivas y robustas.
+
+=== 1.3 Fundamentos de la arquitectura de aplicaciones Android
+
+Para desarrollar aplicaciones Android efectivas y robustas, es crucial comprender los fundamentos de la arquitectura de aplicaciones Android. En esta sección, exploraremos los componentes principales de una aplicación Android y su ciclo de vida.
+
+==== 1.3.1 Componentes principales de una aplicación Android
+
+Una aplicación Android está compuesta por varios componentes esenciales que interactúan entre sí para proporcionar una experiencia de usuario completa. Los componentes principales son:
+
+1. **Activities**:
+   - Representan una sola pantalla con una interfaz de usuario.
+   - Cada Activity es una clase que extiende `Activity` y se define en el archivo `AndroidManifest.xml`.
+
+2. **Fragments**:
+   - Son componentes modulares que representan una porción de la interfaz de usuario en una Activity.
+   - Permiten una mayor flexibilidad en el diseño de la interfaz de usuario.
+
+3. **Services**:
+   - Realizan operaciones en segundo plano sin una interfaz de usuario.
+   - Pueden ejecutarse indefinidamente o por un tiempo limitado.
+
+4. **Broadcast Receivers**:
+   - Permiten que una aplicación responda a mensajes o eventos del sistema o de otras aplicaciones.
+   - Se registran en el archivo `AndroidManifest.xml` o en tiempo de ejecución.
+
+5. **Content Providers**:
+   - Gestionan el acceso a un conjunto estructurado de datos.
+   - Permiten compartir datos entre aplicaciones.
+
+==== 1.3.2 Ciclo de vida de una Activity
+
+El ciclo de vida de una Activity es una serie de estados por los que pasa una Activity desde su creación hasta su destrucción. Comprender estos estados es fundamental para gestionar correctamente los recursos y el comportamiento de la aplicación. Los métodos clave del ciclo de vida son:
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        // Inicialización de la Activity
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // La Activity está a punto de hacerse visible
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // La Activity ha comenzado a interactuar con el usuario
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // La Activity está a punto de pasar a segundo plano
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // La Activity ya no es visible para el usuario
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // La Activity está a punto de ser destruida
+    }
+}
+----
+
+==== 1.3.3 Ciclo de vida de un Fragment
+
+El ciclo de vida de un Fragment es similar al de una Activity, pero con algunos métodos adicionales específicos para la gestión de la interfaz de usuario del Fragment. Los métodos clave del ciclo de vida de un Fragment son:
+
+[source, kotlin]
+----
+class ExampleFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Inicialización del Fragment
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflar el diseño del Fragment
+        return inflater.inflate(R.layout.fragment_example, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Inicialización de la vista del Fragment
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // El Fragment está a punto de hacerse visible
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // El Fragment ha comenzado a interactuar con el usuario
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // El Fragment está a punto de pasar a segundo plano
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // El Fragment ya no es visible para el usuario
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // La vista del Fragment está a punto de ser destruida
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // El Fragment está a punto de ser destruido
+    }
+}
+----
+
+Comprender estos componentes y sus ciclos de vida es esencial para desarrollar aplicaciones Android robustas y eficientes. En las siguientes secciones, profundizaremos en cada uno de estos componentes y aprenderemos a utilizarlos de manera efectiva.
+
+=== 1.4 Manifest de Android
+
+.Un ejemplo de archivo `AndroidManifest.xml`:
+[source, xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".MyService" />
+
+        <receiver android:name=".MyReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name=".MyContentProvider"
+            android:authorities="com.example.myapp.provider"
+            android:exported="false" />
+
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+</manifest>
+----
+
+El archivo `AndroidManifest.xml` es un archivo esencial en cualquier aplicación Android. Define la estructura y los componentes de la aplicación. A continuación se explican los apartados más importantes del documento XML:
+
+.**<manifest>**: Es el elemento raíz del archivo y contiene el atributo `package` que define el nombre del paquete de la aplicación.
+[source, xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp">
+----
+.**<application>**: Contiene la declaración de todos los componentes de la aplicación como actividades, servicios, receptores de difusión y proveedores de contenido.
+[source, xml]
+----
+<application
+    android:allowBackup="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+----
+.**<activity>**: Declara una actividad que es una pantalla de la aplicación. El atributo `android:name` especifica la clase de la actividad.
+[source, xml]
+----
+<activity android:name=".MainActivity">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+----
+.**<service>**: Declara un servicio que realiza operaciones en segundo plano.
+[source, xml]
+----
+<service android:name=".MyService" />
+----
+.**<receiver>**: Declara un receptor de difusión que responde a eventos del sistema o de la aplicación.
+[source, xml]
+----
+<receiver android:name=".MyReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+</receiver>
+----
+.**<provider>**: Declara un proveedor de contenido que gestiona el acceso a una base de datos estructurada.
+[source, xml]
+----
+<provider
+    android:name=".MyContentProvider"
+    android:authorities="com.example.myapp.provider"
+    android:exported="false" />
+----
+.**<uses-permission>**: Declara los permisos que la aplicación necesita para funcionar correctamente.
+[source, xml]
+----
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+----
+
+== Módulo 2: Componentes básicos de Android
+=== 2.1 Activity y ciclo de vida
+
+Una Activity es uno de los componentes más fundamentales de una aplicación Android. Representa una sola pantalla con una interfaz de usuario. En esta sección, exploraremos cómo crear y gestionar Activities, así como comprender su ciclo de vida.
+
+==== 2.1.1 Creación de una Activity
+
+Para crear una nueva Activity, sigue estos pasos:
+
+.**Crear una nueva clase de Activity**:
+   - En el directorio `src/main/java`, crea una nueva clase que extienda `AppCompatActivity`.
+   - Anota la clase con `@AndroidEntryPoint` si estás usando Hilt para la inyección de dependencias.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class SecondActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_second)
+    }
+}
+----
+
+.**Definir la Activity en el archivo AndroidManifest.xml**:
+   - Abre el archivo `AndroidManifest.xml` y añade una nueva entrada para la Activity.
+
+[source, xml]
+----
+<activity android:name=".SecondActivity"></activity>
+----
+
+==== 2.1.2 Ciclo de vida de una Activity
+
+El ciclo de vida de una Activity es una serie de estados por los que pasa una Activity desde su creación hasta su destrucción. Los métodos clave del ciclo de vida son:
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        // Inicialización de la Activity
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // La Activity está a punto de hacerse visible
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // La Activity ha comenzado a interactuar con el usuario
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // La Activity está a punto de pasar a segundo plano
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // La Activity ya no es visible para el usuario
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // La Activity está a punto de ser destruida
+    }
+}
+----
+
+==== 2.1.3 Navegación entre Activities
+
+Para navegar entre Activities, se utilizan Intents. Un Intent es un objeto que proporciona una vinculación en tiempo de ejecución entre componentes separados, como dos Activities. Para iniciar una nueva Activity, sigue estos pasos:
+
+.**Crear un Intent**:
+   - En la Activity actual, crea un Intent para la Activity de destino.
+
+[source, kotlin]
+----
+val intent = Intent(this, SecondActivity::class.java)
+startActivity(intent)
+----
+
+.**Pasar datos entre Activities**:
+   - Puedes añadir datos al Intent utilizando `putExtra`.
+
+[source, kotlin]
+----
+val intent = Intent(this, SecondActivity::class.java)
+intent.putExtra("EXTRA_MESSAGE", "Hello, SecondActivity!")
+startActivity(intent)
+----
+
+.**Recibir datos en la Activity de destino**:
+   - En la Activity de destino, recupera los datos del Intent.
+
+[source, kotlin]
+----
+val message = intent.getStringExtra("EXTRA_MESSAGE")
+----
+
+Comprender cómo crear y gestionar Activities, así como su ciclo de vida, es esencial para desarrollar aplicaciones Android efectivas. En las siguientes secciones, exploraremos otros componentes fundamentales de Android y cómo interactúan entre sí.
+
+=== 2.2 Intent y navegación entre activities
+
+Los Intents son una parte fundamental del sistema Android, ya que permiten la comunicación entre diferentes componentes de una aplicación, como Activities, Services y Broadcast Receivers. En esta sección, aprenderemos a utilizar Intents para navegar entre Activities y pasar datos entre ellas.
+
+==== 2.2.1 Intents explícitos e implícitos
+
+.**Intents explícitos**:
+- Se utilizan para iniciar un componente específico, como una Activity o un Service, dentro de la misma aplicación.
+- Se crean especificando la clase del componente de destino.
+
+[source, kotlin]
+----
+val intent = Intent(this, SecondActivity::class.java)
+startActivity(intent)
+----
+
+.**Intents implícitos**:
+   - Se utilizan para solicitar una acción de otro componente, sin especificar el componente exacto que debe manejar la acción.
+   - Se crean especificando una acción y, opcionalmente, datos adicionales.
+
+[source, kotlin]
+----
+val intent = Intent(Intent.ACTION_VIEW)
+intent.data = Uri.parse("https://www.example.com")
+startActivity(intent)
+----
+
+==== 2.2.2 Pasar datos entre Activities
+
+Para pasar datos entre Activities, se utilizan los métodos `putExtra` y `getStringExtra` del Intent.
+
+.**Añadir datos al Intent**:
+   - En la Activity de origen, añade datos al Intent utilizando `putExtra`.
+
+[source, kotlin]
+----
+val intent = Intent(this, SecondActivity::class.java)
+intent.putExtra("EXTRA_MESSAGE", "Hello, SecondActivity!")
+startActivity(intent)
+----
+
+.**Recuperar datos en la Activity de destino**:
+   - En la Activity de destino, recupera los datos del Intent utilizando `getStringExtra`.
+
+[source, kotlin]
+----
+class SecondActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_second)
+
+        // Recuperar los datos del Intent
+        val message = intent.getStringExtra("EXTRA_MESSAGE")
+
+        // Utilizar los datos recuperados
+        findViewById<TextView>(R.id.textView).apply {
+            text = message
+        }
+    }
+}
+----
+
+==== 2.2.3 Iniciar una Activity para un resultado
+
+A veces, es necesario iniciar una Activity y obtener un resultado de vuelta. Para ello, se utiliza el método `startActivityForResult`.
+
+.**Iniciar la Activity para un resultado**:
+   - En la Activity de origen, inicia la Activity de destino utilizando `startActivityForResult`.
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+    private val REQUEST_CODE = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, SecondActivity::class.java)
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val resultData = data?.getStringExtra("RESULT_DATA")
+            // Manejar el resultado
+        }
+    }
+}
+----
+
+.**Devolver un resultado a la Activity de origen**:
+   - En la Activity de destino, establece el resultado utilizando `setResult` y finaliza la Activity con `finish`.
+
+[source, kotlin]
+----
+class SecondActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_second)
+
+        val resultIntent = Intent()
+        resultIntent.putExtra("RESULT_DATA", "Some result data")
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
+    }
+}
+----
+
+==== 2.2.4 Navegación entre Activities utilizando el componente Navigation
+
+El componente Navigation de Android Jetpack facilita la navegación entre diferentes destinos dentro de una aplicación.
+
+.**Configurar el componente Navigation**:
+   - Añade las dependencias necesarias en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+}
+----
+
+.**Crear un gráfico de navegación**:
+   - En el directorio `res/navigation`, crea un nuevo archivo de recursos de navegación (por ejemplo, `nav_graph.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.example.FirstFragment"
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.SecondFragment"
+        tools:layout="@layout/fragment_second" />
+</navigation>
+----
+
+.**Configurar el NavController**:
+   - En la Activity principal, configura el NavController y el NavigationUI.
+
+[source, kotlin]
+----
+val navController = findNavController(R.id.nav_host_fragment)
+setupActionBarWithNavController(navController)
+----
+
+.**Navegar entre destinos**:
+   - Utiliza el NavController para navegar entre destinos.
+
+[source, kotlin]
+----
+findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+----
+
+Comprender cómo utilizar Intents y navegar entre Activities es esencial para desarrollar aplicaciones Android efectivas. En las siguientes secciones, exploraremos otros componentes fundamentales de Android y cómo interactúan entre sí.
+
+=== 2.3 Uso de Fragment y su ciclo de vida
+
+Los Fragments son componentes modulares que representan una porción de la interfaz de usuario en una Activity. Permiten una mayor flexibilidad en el diseño de la interfaz de usuario y la reutilización de componentes. En esta sección, aprenderemos a crear y gestionar Fragments, así como comprender su ciclo de vida.
+
+==== 2.3.1 Creación de un Fragment
+
+Para crear un nuevo Fragment, sigue estos pasos:
+
+.**Crear una nueva clase de Fragment**:
+   - En el directorio `src/main/java`, crea una nueva clase que extienda `Fragment`.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+
+class ExampleFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflar el diseño del Fragment
+        return inflater.inflate(R.layout.fragment_example, container, false)
+    }
+}
+----
+
+.**Definir el diseño del Fragment**:
+   - En el directorio `res/layout`, crea un nuevo archivo de diseño XML para el Fragment (por ejemplo, `fragment_example.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, Fragment!" />
+</LinearLayout>
+----
+
+==== 2.3.2 Añadir un Fragment a una Activity
+
+Para añadir un Fragment a una Activity, sigue estos pasos:
+
+.**Añadir un contenedor para el Fragment en el diseño de la Activity**:
+   - En el archivo de diseño de la Activity (por ejemplo, `activity_main.xml`), añade un contenedor para el Fragment.
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+----
+
+.**Añadir el Fragment a la Activity en tiempo de ejecución**:
+   - En la Activity, utiliza el FragmentManager para añadir el Fragment al contenedor.
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Añadir el Fragment al contenedor
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ExampleFragment())
+                .commit()
+        }
+    }
+}
+----
+
+==== 2.3.3 Ciclo de vida de un Fragment
+
+El ciclo de vida de un Fragment es similar al de una Activity, pero con algunos métodos adicionales específicos para la gestión de la interfaz de usuario del Fragment. Los métodos clave del ciclo de vida de un Fragment son:
+
+[source, kotlin]
+----
+class ExampleFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Inicialización del Fragment
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflar el diseño del Fragment
+        return inflater.inflate(R.layout.fragment_example, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Inicialización de la vista del Fragment
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // El Fragment está a punto de hacerse visible
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // El Fragment ha comenzado a interactuar con el usuario
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // El Fragment está a punto de pasar a segundo plano
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // El Fragment ya no es visible para el usuario
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // La vista del Fragment está a punto de ser destruida
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // El Fragment está a punto de ser destruido
+    }
+}
+----
+
+==== 2.3.4 Comunicación entre Fragments
+
+Para comunicarte entre Fragments, utiliza la Activity como intermediaria. Sigue estos pasos:
+
+.**Definir una interfaz en el Fragment de origen**:
+   - Define una interfaz en el Fragment de origen y asegúrate de que la Activity la implemente.
+
+[source, kotlin]
+----
+class SourceFragment : Fragment() {
+
+    interface OnMessageSendListener {
+        fun onMessageSend(message: String)
+    }
+
+    private var listener: OnMessageSendListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnMessageSendListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement OnMessageSendListener")
+        }
+    }
+
+    // Llamar a listener.onMessageSend cuando sea necesario
+}
+----
+
+.**Implementar la interfaz en la Activity**:
+   - Implementa la interfaz en la Activity y maneja la comunicación.
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity(), SourceFragment.OnMessageSendListener {
+
+    override fun onMessageSend(message: String) {
+        val fragment = DestinationFragment()
+        val bundle = Bundle()
+        bundle.putString("message", message)
+        fragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+}
+----
+
+.**Recibir los datos en el Fragment de destino**:
+   - En el Fragment de destino, recupera los datos del Bundle.
+
+[source, kotlin]
+----
+class DestinationFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_destination, container, false)
+        val message = arguments?.getString("message")
+        // Utilizar el mensaje recibido
+        return view
+    }
+}
+----
+
+Comprender cómo crear y gestionar Fragments, así como su ciclo de vida, es esencial para desarrollar aplicaciones Android modulares y flexibles. En las siguientes secciones, exploraremos otros componentes fundamentales de Android y cómo interactúan entre sí.
+
+=== 2.4 Componentes UI esenciales: TextView, Button, EditText, y otros
+
+Los componentes de la interfaz de usuario (UI) son elementos fundamentales para construir aplicaciones Android interactivas y atractivas. En esta sección, exploraremos algunos de los componentes UI más esenciales, como TextView, Button, EditText, y otros, y aprenderemos a utilizarlos en nuestras aplicaciones.
+
+==== 2.4.1 TextView
+
+TextView es un componente básico que se utiliza para mostrar texto en la pantalla.
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    android:textSize="18sp"
+    android:textColor="@android:color/black" />
+----
+
+==== 2.4.2 Button
+
+Button es un componente interactivo que permite a los usuarios realizar acciones cuando se hace clic en él.
+
+[source, xml]
+----
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Click Me"
+    android:onClick="onButtonClick" />
+----
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+
+    fun onButtonClick(view: View) {
+        // Manejar el clic del botón
+        Toast.makeText(this, "Button clicked!", Toast.LENGTH_SHORT).show()
+    }
+}
+----
+
+==== 2.4.3 EditText
+
+EditText es un componente que permite a los usuarios ingresar y editar texto.
+
+[source, xml]
+----
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter your name"
+    android:inputType="text" />
+----
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val editText = findViewById<EditText>(R.id.editText)
+        val button = findViewById<Button>(R.id.button)
+
+        button.setOnClickListener {
+            val enteredText = editText.text.toString()
+            Toast.makeText(this, "You entered: $enteredText", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+----
+
+==== 2.4.4 ImageView
+
+ImageView es un componente que se utiliza para mostrar imágenes en la pantalla.
+
+[source, xml]
+----
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_launcher_foreground"
+    android:contentDescription="App Icon" />
+----
+
+==== 2.4.5 CheckBox
+
+CheckBox es un componente que permite a los usuarios seleccionar o deseleccionar una opción.
+
+[source, xml]
+----
+<CheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="I agree"
+    android:id="@+id/checkbox" />
+----
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val checkBox = findViewById<CheckBox>(R.id.checkbox)
+        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                Toast.makeText(this, "Checked", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+----
+
+==== 2.4.6 RadioButton y RadioGroup
+
+RadioButton es un componente que permite a los usuarios seleccionar una opción de un conjunto de opciones. RadioGroup se utiliza para agrupar varios RadioButtons.
+
+[source, xml]
+----
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/radioGroup">
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Option 1"
+        android:id="@+id/radioButton1" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Option 2"
+        android:id="@+id/radioButton2" />
+</RadioGroup>
+----
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            val radioButton = findViewById<RadioButton>(checkedId)
+            Toast.makeText(this, "Selected: ${radioButton.text}", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+----
+
+Estos son algunos de los componentes UI esenciales que se utilizan comúnmente en el desarrollo de aplicaciones Android. Comprender cómo utilizarlos y personalizarlos es fundamental para crear interfaces de usuario atractivas y funcionales. En las siguientes secciones, exploraremos otros componentes y técnicas avanzadas para el desarrollo de aplicaciones Android.
+
+=== 2.5 Layouts en Android
+
+Los Layouts son contenedores que definen la estructura de la interfaz de usuario en una aplicación Android. Permiten organizar y posicionar los componentes UI en la pantalla. En esta sección, exploraremos los tipos de Layouts más comunes en Android y cómo utilizarlos.
+
+==== 2.5.1 LinearLayout
+
+==== 2.5.1 LinearLayout
+
+`LinearLayout` es un contenedor que organiza sus elementos secundarios en una sola columna o fila. A continuación se explican los parámetros disponibles y las modalidades de `LinearLayout`:
+
+.**Parámetros disponibles**:
+   - `android:orientation`: Define la orientación de los elementos secundarios. Puede ser `vertical` u `horizontal`.
+   - `android:layout_width` y `android:layout_height`: Especifican el ancho y alto del `LinearLayout`. Los valores comunes son `match_parent` y `wrap_content`.
+   - `android:gravity`: Define cómo se alinean los elementos secundarios dentro del `LinearLayout`.
+   - `android:layout_gravity`: Define cómo se alinea el `LinearLayout` dentro de su contenedor padre.
+   - `android:weightSum`: Especifica la suma total de los pesos de los elementos secundarios.
+   - `android:baselineAligned`: Si se establece en `false`, los elementos secundarios no se alinearán a la línea base del texto.
+
+.**Modalidades de LinearLayout**:
+
+* **Vertical**: Organiza los elementos secundarios en una columna vertical.
+
+[source, xml]
+----
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me" />
+</LinearLayout>
+----
+
+* **Horizontal**: Organiza los elementos secundarios en una fila horizontal.
+
+[source, xml]
+----
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me" />
+</LinearLayout>
+----
+
+==== 2.5.2 RelativeLayout
+
+`RelativeLayout` es un contenedor que permite posicionar sus elementos secundarios en relación con otros elementos secundarios o con el contenedor padre. A continuación se explican los parámetros disponibles y se muestra un ejemplo de uso:
+
+.**Parámetros disponibles**:
+   - `android:layout_alignParentTop`: Si se establece en `true`, el elemento se alinea con la parte superior del contenedor padre.
+   - `android:layout_alignParentBottom`: Si se establece en `true`, el elemento se alinea con la parte inferior del contenedor padre.
+   - `android:layout_alignParentLeft`: Si se establece en `true`, el elemento se alinea con el lado izquierdo del contenedor padre.
+   - `android:layout_alignParentRight`: Si se establece en `true`, el elemento se alinea con el lado derecho del contenedor padre.
+   - `android:layout_centerInParent`: Si se establece en `true`, el elemento se centra dentro del contenedor padre.
+   - `android:layout_centerHorizontal`: Si se establece en `true`, el elemento se centra horizontalmente dentro del contenedor padre.
+   - `android:layout_centerVertical`: Si se establece en `true`, el elemento se centra verticalmente dentro del contenedor padre.
+   - `android:layout_below`: Posiciona el elemento debajo del elemento especificado por su ID.
+   - `android:layout_above`: Posiciona el elemento encima del elemento especificado por su ID.
+   - `android:layout_toLeftOf`: Posiciona el elemento a la izquierda del elemento especificado por su ID.
+   - `android:layout_toRightOf`: Posiciona el elemento a la derecha del elemento especificado por su ID.
+
+.**Ejemplo de uso**:
+[source, xml]
+----
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
+----
+
+En este ejemplo, `RelativeLayout` organiza un `TextView` centrado en el contenedor y un `Button` posicionado debajo del `TextView` y centrado horizontalmente.
+
+==== 2.5.3 ConstraintLayout
+
+`ConstraintLayout` es un contenedor que permite crear interfaces de usuario complejas sin anidar múltiples vistas. Utiliza restricciones para definir cómo se posicionan y dimensionan los elementos secundarios. A continuación se explican los parámetros disponibles y se muestra un ejemplo de uso:
+
+.**Parámetros disponibles**:
+   - `app:layout_constraintLeft_toLeftOf`: Constriñe el borde izquierdo del elemento al borde izquierdo de otro elemento.
+   - `app:layout_constraintLeft_toRightOf`: Constriñe el borde izquierdo del elemento al borde derecho de otro elemento.
+   - `app:layout_constraintRight_toLeftOf`: Constriñe el borde derecho del elemento al borde izquierdo de otro elemento.
+   - `app:layout_constraintRight_toRightOf`: Constriñe el borde derecho del elemento al borde derecho de otro elemento.
+   - `app:layout_constraintTop_toTopOf`: Constriñe el borde superior del elemento al borde superior de otro elemento.
+   - `app:layout_constraintTop_toBottomOf`: Constriñe el borde superior del elemento al borde inferior de otro elemento.
+   - `app:layout_constraintBottom_toTopOf`: Constriñe el borde inferior del elemento al borde superior de otro elemento.
+   - `app:layout_constraintBottom_toBottomOf`: Constriñe el borde inferior del elemento al borde inferior de otro elemento.
+   - `app:layout_constraintBaseline_toBaselineOf`: Constriñe la línea base del elemento a la línea base de otro elemento.
+   - `app:layout_constraintStart_toStartOf`: Constriñe el borde de inicio del elemento al borde de inicio de otro elemento.
+   - `app:layout_constraintStart_toEndOf`: Constriñe el borde de inicio del elemento al borde de fin de otro elemento.
+   - `app:layout_constraintEnd_toStartOf`: Constriñe el borde de fin del elemento al borde de inicio de otro elemento.
+   - `app:layout_constraintEnd_toEndOf`: Constriñe el borde de fin del elemento al borde de fin de otro elemento.
+
+.**Ejemplo de uso**:
+[source, xml]
+----
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click Me"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+----
+
+En este ejemplo, `ConstraintLayout` organiza un `TextView` centrado horizontalmente en la parte superior del contenedor y un `Button` posicionado debajo del `TextView` y también centrado horizontalmente.
+
+==== 2.5.4 FrameLayout
+
+`FrameLayout` es un contenedor simple que bloquea cada elemento secundario en una posición específica. Está diseñado para contener una sola vista, pero puede contener múltiples vistas, apilándolas una encima de la otra. A continuación se explican los parámetros disponibles y se muestra un ejemplo de uso:
+
+.**Parámetros disponibles**:
+   - `android:layout_gravity`: Define cómo se alinean los elementos secundarios dentro del `FrameLayout`. Los valores comunes son `top`, `bottom`, `left`, `right`, `center`, `center_vertical`, `center_horizontal`, etc.
+   - `android:layout_width` y `android:layout_height`: Especifican el ancho y alto del `FrameLayout`. Los valores comunes son `match_parent` y `wrap_content`.
+
+.**Ejemplo de uso**:
+[source, xml]
+----
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_image"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!"
+        android:layout_gravity="center" />
+</FrameLayout>
+----
+
+En este ejemplo, `FrameLayout` contiene un `ImageView` que ocupa todo el espacio disponible y un `TextView` centrado sobre la imagen. El `ImageView` se utiliza como fondo y el `TextView` se muestra encima de él.
+
+==== 2.5.5 TableLayout
+
+`TableLayout` es un contenedor que organiza sus elementos secundarios en filas y columnas. Cada fila se define utilizando un `TableRow`. A continuación se explican los parámetros disponibles y se muestra un ejemplo de uso:
+
+.**Parámetros disponibles**:
+   - `android:stretchColumns`: Especifica las columnas que deben estirarse para llenar el espacio adicional.
+   - `android:shrinkColumns`: Especifica las columnas que deben encogerse si el espacio es limitado.
+   - `android:collapseColumns`: Especifica las columnas que deben colapsarse y no mostrarse.
+
+.**Ejemplo de uso**:
+[source, xml]
+----
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1">
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row 1, Column 1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row 1, Column 2" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row 2, Column 1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Row 2, Column 2" />
+    </TableRow>
+</TableLayout>
+----
+
+En este ejemplo, `TableLayout` organiza dos filas (`TableRow`), cada una con dos columnas (`TextView`). La segunda columna se estira para llenar el espacio adicional, especificado por el atributo `android:stretchColumns="1"`.
+
+=== 2.6 Recursos y estilos en Android: Strings, Dimension, Color, y otros
+
+Los recursos y estilos en Android permiten definir y gestionar elementos reutilizables como cadenas de texto, dimensiones, colores y estilos de manera centralizada. Esto facilita la consistencia y el mantenimiento de la interfaz de usuario. En esta sección, exploraremos cómo trabajar con recursos y estilos en Android.
+
+==== 2.6.1 Strings
+
+Las cadenas de texto (strings) se definen en el archivo `res/values/strings.xml`. Esto permite la internacionalización y reutilización de textos en la aplicación.
+
+[source, xml]
+----
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="hello_world">Hello, World!</string>
+</resources>
+----
+
+Para utilizar una cadena de texto en un archivo de diseño XML o en el código Kotlin:
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/hello_world" />
+----
+
+[source, kotlin]
+----
+val textView = findViewById<TextView>(R.id.textView)
+textView.text = getString(R.string.hello_world)
+----
+
+==== 2.6.2 Dimension
+
+Las dimensiones (dimension) se definen en el archivo `res/values/dimens.xml`. Esto permite la reutilización de tamaños y márgenes en la aplicación.
+
+[source, xml]
+----
+<resources>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">32dp</dimen>
+</resources>
+----
+
+Para utilizar una dimensión en un archivo de diseño XML o en el código Kotlin:
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_medium"
+    android:text="Hello, World!" />
+----
+
+[source, kotlin]
+----
+val padding = resources.getDimension(R.dimen.padding_medium)
+textView.setPadding(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
+----
+
+==== 2.6.3 Color
+
+Los colores se definen en el archivo `res/values/colors.xml`. Esto permite la reutilización y consistencia de colores en la aplicación.
+
+[source, xml]
+----
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+</resources>
+----
+
+Para utilizar un color en un archivo de diseño XML o en el código Kotlin:
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    android:textColor="@color/colorPrimary" />
+----
+
+[source, kotlin]
+----
+val color = ContextCompat.getColor(this, R.color.colorPrimary)
+textView.setTextColor(color)
+----
+
+==== 2.6.4 Styles
+
+Los estilos permiten definir un conjunto de propiedades de apariencia que se pueden aplicar a múltiples componentes UI. Los estilos se definen en el archivo `res/values/styles.xml`.
+
+[source, xml]
+----
+<resources>
+    <style name="CustomTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">@dimen/padding_medium</item>
+    </style>
+</resources>
+----
+
+Para aplicar un estilo a un componente UI en un archivo de diseño XML:
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    style="@style/CustomTextStyle" />
+----
+
+==== 2.6.5 Themes
+
+Los temas son una colección de estilos que se aplican a toda la aplicación o a una Activity específica. Los temas se definen en el archivo `res/values/styles.xml`.
+
+[source, xml]
+----
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
+----
+
+Para aplicar un tema a la aplicación o a una Activity, configúralo en el archivo `AndroidManifest.xml`:
+
+[source, xml]
+----
+<application
+    android:theme="@style/AppTheme">
+    <activity android:name=".MainActivity"
+        android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+</application>
+----
+
+Comprender cómo trabajar con recursos y estilos en Android es esencial para crear aplicaciones consistentes y fáciles de mantener. En las siguientes secciones, exploraremos otros componentes y técnicas avanzadas para el desarrollo de aplicaciones Android.
+
+=== 2.7 Listas y adaptadores: ListView, RecyclerView, y Adapters
+
+Las listas son una parte fundamental de muchas aplicaciones Android, ya que permiten mostrar grandes cantidades de datos de manera eficiente. En esta sección, exploraremos cómo trabajar con ListView, RecyclerView y Adapters para crear y gestionar listas en Android.
+
+==== 2.7.1 ListView
+
+ListView es un componente que muestra una lista de elementos desplazables. Cada elemento de la lista se define mediante un adaptador.
+
+.**Definir el diseño del ítem de la lista**:
+   - Crea un archivo de diseño XML para el ítem de la lista (por ejemplo, `item_layout.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item" />
+</LinearLayout>
+----
+
+.**Configurar ListView en la Activity**:
+   - En el archivo de diseño de la Activity (por ejemplo, `activity_main.xml`), añade un ListView.
+
+[source, xml]
+----
+<ListView
+    android:id="@+id/listView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+----
+
+.**Crear un adaptador para ListView**:
+   - En la Activity, crea un adaptador para gestionar los datos y enlazarlos con el diseño del ítem.
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val listView = findViewById<ListView>(R.id.listView)
+        val items = listOf("Item 1", "Item 2", "Item 3")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+        listView.adapter = adapter
+    }
+}
+----
+
+==== 2.7.2 RecyclerView
+
+RecyclerView es un componente más avanzado y flexible que ListView, y se utiliza para mostrar listas de datos de manera eficiente.
+
+.**Añadir dependencias**:
+   - Añade la dependencia de RecyclerView en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+}
+----
+
+.**Definir el diseño del ítem de la lista**:
+   - Crea un archivo de diseño XML para el ítem de la lista (por ejemplo, `item_layout.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item" />
+</LinearLayout>
+----
+
+.**Crear el Adapter para RecyclerView**:
+   - Crea una clase Adapter para gestionar los datos y enlazarlos con el diseño del ítem.
+
+[source, kotlin]
+----
+class MyAdapter(private val itemList: List<String>) :
+    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textView: TextView = itemView.findViewById(R.id.item_text)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_layout, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.textView.text = itemList[position]
+    }
+
+    override fun getItemCount() = itemList.size
+}
+----
+
+.**Configurar RecyclerView en la Activity**:
+   - En la Activity, configura RecyclerView y establece el Adapter.
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = MyAdapter(listOf("Item 1", "Item 2", "Item 3"))
+    }
+}
+----
+
+==== 2.7.3 Adapters
+
+Los Adapters son componentes que actúan como intermediarios entre una fuente de datos y un componente de vista, como ListView o RecyclerView. Los Adapters son responsables de crear las vistas para cada ítem de la lista y enlazarlas con los datos.
+
+.**ArrayAdapter**:
+   - ArrayAdapter es una implementación simple de Adapter que se utiliza comúnmente con ListView.
+
+[source, kotlin]
+----
+val items = listOf("Item 1", "Item 2", "Item 3")
+val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+listView.adapter = adapter
+----
+
+.**Custom Adapter**:
+   - Para crear un Adapter personalizado, extiende la clase BaseAdapter o RecyclerView.Adapter y sobrescribe los métodos necesarios.
+
+[source, kotlin]
+----
+class CustomAdapter(private val context: Context, private val items: List<String>) : BaseAdapter() {
+
+    override fun getCount(): Int {
+        return items.size
+    }
+
+    override fun getItem(position: Int): Any {
+        return items[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view: View = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_layout, parent, false)
+        val textView: TextView = view.findViewById(R.id.item_text)
+        textView.text = items[position]
+        return view
+    }
+}
+----
+
+Comprender cómo trabajar con ListView, RecyclerView y Adapters es esencial para mostrar listas de datos de manera eficiente en aplicaciones Android. En las siguientes secciones, exploraremos otros componentes y técnicas avanzadas para el desarrollo de aplicaciones Android.
+
+== Módulo 3: Gestión de datos y persistencia
+=== 3.1 Manejo de datos en Android: SharedPreferences, archivos
+
+El manejo de datos es una parte crucial del desarrollo de aplicaciones Android. En esta sección, exploraremos cómo utilizar SharedPreferences y archivos para almacenar y recuperar datos de manera eficiente.
+
+==== 3.1.1 SharedPreferences
+
+SharedPreferences es una API que permite almacenar datos clave-valor de manera persistente. Es ideal para almacenar configuraciones y preferencias de usuario.
+
+.**Guardar datos en SharedPreferences**:
+   - Utiliza el método `getSharedPreferences` para obtener una instancia de SharedPreferences y el método `edit` para realizar cambios.
+
+[source, kotlin]
+----
+val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+val editor = sharedPreferences.edit()
+editor.putString("username", "JohnDoe")
+editor.putInt("userAge", 30)
+editor.apply()
+----
+
+.**Recuperar datos de SharedPreferences**:
+   - Utiliza los métodos `getString`, `getInt`, etc., para recuperar los datos almacenados.
+
+[source, kotlin]
+----
+val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+val username = sharedPreferences.getString("username", "defaultName")
+val userAge = sharedPreferences.getInt("userAge", 0)
+----
+
+==== 3.1.2 Almacenamiento en archivos
+
+Android proporciona varias formas de almacenar datos en archivos, incluyendo almacenamiento interno y externo.
+
+.**Almacenamiento interno**:
+   - Los archivos almacenados en el almacenamiento interno son privados para la aplicación y se eliminan cuando la aplicación se desinstala.
+
+[source, kotlin]
+----
+val filename = "myfile.txt"
+val fileContents = "Hello, World!"
+openFileOutput(filename, Context.MODE_PRIVATE).use {
+    it.write(fileContents.toByteArray())
+}
+----
+
+.**Leer desde el almacenamiento interno**:
+   - Utiliza el método `openFileInput` para leer datos desde un archivo en el almacenamiento interno.
+
+[source, kotlin]
+----
+val filename = "myfile.txt"
+val fileContents = openFileInput(filename).bufferedReader().useLines { lines ->
+    lines.fold("") { some, text -> "$some\n$text" }
+}
+----
+
+.**Almacenamiento externo**:
+   - Se entiende como almacenamiento externo a la tarjeta SD o al almacenamiento compartido. Los archivos almacenados en el almacenamiento externo pueden ser accesibles por otras aplicaciones y requieren permisos adicionales.
+
+[source, xml]
+----
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+----
+
+[source, kotlin]
+----
+val filename = "myfile.txt"
+val fileContents = "Hello, World!"
+val file = File(getExternalFilesDir(null), filename)
+file.writeText(fileContents)
+----
+
+.**Leer desde el almacenamiento externo**:
+   - Utiliza la clase `File` para leer datos desde un archivo en el almacenamiento externo.
+
+[source, kotlin]
+----
+val filename = "myfile.txt"
+val file = File(getExternalFilesDir(null), filename)
+val fileContents = file.readText()
+----
+
+==== 3.1.3 Almacenamiento en caché
+
+El almacenamiento en caché permite almacenar datos temporalmente para mejorar el rendimiento de la aplicación.
+
+.**Guardar datos en caché**:
+   - Utiliza el método `cacheDir` para obtener el directorio de caché y almacenar datos.
+
+[source, kotlin]
+----
+val cacheFile = File(cacheDir, "mycache.txt")
+cacheFile.writeText("Cached data")
+----
+
+.**Leer datos desde la caché**:
+   - Utiliza la clase `File` para leer datos desde el archivo de caché.
+
+[source, kotlin]
+----
+val cacheFile = File(cacheDir, "mycache.txt")
+val cacheContents = cacheFile.readText()
+----
+
+Comprender cómo manejar datos en Android utilizando SharedPreferences y archivos es esencial para desarrollar aplicaciones eficientes y robustas. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos en aplicaciones Android.
+
+=== 3.2 Introducción a SQLite en Android
+
+SQLite es una base de datos relacional ligera que se integra directamente en el sistema operativo Android. Es ideal para almacenar datos estructurados y realizar consultas complejas. En esta sección, exploraremos cómo utilizar SQLite en Android para gestionar bases de datos locales.
+
+==== 3.2.1 Configuración de SQLite
+
+Para utilizar SQLite en Android, es necesario crear una clase que extienda `SQLiteOpenHelper`. Esta clase ayuda a gestionar la creación y actualización de la base de datos.
+
+[source, kotlin]
+----
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+
+class MyDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+
+    companion object {
+        private const val DATABASE_NAME = "mydatabase.db"
+        private const val DATABASE_VERSION = 1
+    }
+
+    override fun onCreate(db: SQLiteDatabase) {
+        // Crear tablas
+        val createTable = "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)"
+        db.execSQL(createTable)
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // Actualizar la base de datos si es necesario
+        db.execSQL("DROP TABLE IF EXISTS users")
+        onCreate(db)
+    }
+}
+----
+
+==== 3.2.2 Operaciones CRUD (Crear, Leer, Actualizar, Eliminar)
+
+.**Crear (Insertar datos)**:
+   - Utiliza el método `insert` para añadir datos a la base de datos.
+
+[source, kotlin]
+----
+val dbHelper = MyDatabaseHelper(this)
+val db = dbHelper.writableDatabase
+
+val values = ContentValues().apply {
+    put("name", "John Doe")
+    put("age", 30)
+}
+
+val newRowId = db.insert("users", null, values)
+----
+
+.**Leer (Consultar datos)**:
+   - Utiliza el método `query` para recuperar datos de la base de datos.
+
+[source, kotlin]
+----
+val dbHelper = MyDatabaseHelper(this)
+val db = dbHelper.readableDatabase
+
+val projection = arrayOf("id", "name", "age")
+val cursor = db.query(
+    "users",   // La tabla a consultar
+    projection,            // Las columnas a devolver
+    null,                  // La cláusula WHERE
+    null,                  // Los valores de la cláusula WHERE
+    null,                  // La cláusula GROUP BY
+    null,                  // La cláusula HAVING
+    null                   // La cláusula ORDER BY
+)
+
+with(cursor) {
+    while (moveToNext()) {
+        val userId = getLong(getColumnIndexOrThrow("id"))
+        val userName = getString(getColumnIndexOrThrow("name"))
+        val userAge = getInt(getColumnIndexOrThrow("age"))
+        // Utilizar los datos
+    }
+}
+cursor.close()
+----
+
+.**Actualizar datos**:
+   - Utiliza el método `update` para modificar datos existentes en la base de datos.
+
+[source, kotlin]
+----
+val dbHelper = MyDatabaseHelper(this)
+val db = dbHelper.writableDatabase
+
+val values = ContentValues().apply {
+    put("age", 31)
+}
+
+val selection = "name = ?"
+val selectionArgs = arrayOf("John Doe")
+
+val count = db.update(
+    "users",
+    values,
+    selection,
+    selectionArgs
+)
+----
+
+.**Eliminar datos**:
+   - Utiliza el método `delete` para eliminar datos de la base de datos.
+
+[source, kotlin]
+----
+val dbHelper = MyDatabaseHelper(this)
+val db = dbHelper.writableDatabase
+
+val selection = "name = ?"
+val selectionArgs = arrayOf("John Doe")
+
+val deletedRows = db.delete("users", selection, selectionArgs)
+----
+
+==== 3.2.3 Uso de consultas SQL en bruto
+
+Además de los métodos `insert`, `query`, `update` y `delete`, también puedes ejecutar consultas SQL en bruto utilizando el método `execSQL`.
+
+[source, kotlin]
+----
+val dbHelper = MyDatabaseHelper(this)
+val db = dbHelper.writableDatabase
+
+val sql = "INSERT INTO users (name, age) VALUES ('Jane Doe', 28)"
+db.execSQL(sql)
+----
+
+Comprender cómo utilizar SQLite en Android para gestionar bases de datos locales es esencial para desarrollar aplicaciones que requieran almacenamiento de datos estructurados. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos en aplicaciones Android.
+
+=== 3.3 Uso de Room para persistencia de datos
+
+Room es una biblioteca de persistencia de datos de Android que proporciona una capa de abstracción sobre SQLite para facilitar el acceso a la base de datos. Room maneja muchas de las tareas repetitivas y propensas a errores asociadas con SQLite, como la creación y actualización de esquemas. En esta sección, exploraremos cómo utilizar Room para gestionar la persistencia de datos en Android.
+
+==== 3.3.1 Configuración de Room
+
+Para utilizar Room, es necesario añadir las dependencias de Room en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "androidx.room:room-runtime:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-ktx:2.3.0"
+}
+----
+
+Además, habilita el procesamiento de anotaciones de Kotlin (kapt) en el archivo `build.gradle`.
+
+[source, groovy]
+----
+apply plugin: 'kotlin-kapt'
+----
+
+==== 3.3.2 Definición de entidades
+
+Una entidad representa una tabla en la base de datos. Cada campo en la entidad corresponde a una columna en la tabla.
+
+[source, kotlin]
+----
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "users")
+data class User(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val name: String,
+    val age: Int
+)
+----
+
+==== 3.3.3 Definición de DAOs (Data Access Objects)
+
+Los DAOs son interfaces que proporcionan métodos para interactuar con la base de datos. Utilizan anotaciones para definir consultas SQL.
+
+[source, kotlin]
+----
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+
+@Dao
+interface UserDao {
+    @Insert
+    suspend fun insert(user: User)
+
+    @Query("SELECT * FROM users")
+    suspend fun getAllUsers(): List<User>
+
+    @Query("SELECT * FROM users WHERE id = :userId")
+    suspend fun getUserById(userId: Int): User?
+
+    @Query("DELETE FROM users WHERE id = :userId")
+    suspend fun deleteUserById(userId: Int)
+}
+----
+
+==== 3.3.4 Creación de la base de datos
+
+La base de datos es una clase abstracta que extiende `RoomDatabase` y proporciona acceso a los DAOs.
+
+[source, kotlin]
+----
+import androidx.room.Database
+import androidx.room.RoomDatabase
+
+@Database(entities = [User::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
+}
+----
+
+==== 3.3.5 Inicialización de la base de datos
+
+Inicializa la base de datos utilizando el método `Room.databaseBuilder` en tu clase `Application` o `Activity`.
+
+[source, kotlin]
+----
+import android.app.Application
+import androidx.room.Room
+
+class MyApplication : Application() {
+    lateinit var database: AppDatabase
+
+    override fun onCreate() {
+        super.onCreate()
+        database = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "mydatabase"
+        ).build()
+    }
+}
+----
+
+==== 3.3.6 Uso de Room en una Activity
+
+Utiliza la base de datos y los DAOs en una Activity para realizar operaciones CRUD.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var database: AppDatabase
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        database = (application as MyApplication).database
+
+        // Insertar un nuevo usuario
+        lifecycleScope.launch {
+            val user = User(name = "John Doe", age = 30)
+            database.userDao().insert(user)
+        }
+
+        // Obtener todos los usuarios
+        lifecycleScope.launch {
+            val users = database.userDao().getAllUsers()
+            // Utilizar los datos
+        }
+    }
+}
+----
+
+Comprender cómo utilizar Room para la persistencia de datos en Android es esencial para desarrollar aplicaciones que requieran almacenamiento de datos estructurados de manera eficiente y segura. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos en aplicaciones Android.
+
+=== 3.4 Conexión a una API: RESTful APIs con Retrofit
+
+Retrofit es una biblioteca de cliente HTTP para Android y Java que facilita la conexión a servicios web RESTful. Proporciona una forma sencilla y eficiente de realizar solicitudes HTTP y manejar respuestas. En esta sección, exploraremos cómo utilizar Retrofit para conectarse a una API RESTful en Android.
+
+==== 3.4.1 Configuración de Retrofit
+
+Para utilizar Retrofit, es necesario añadir las dependencias de Retrofit en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+}
+----
+
+==== 3.4.2 Definición de la interfaz de la API
+
+Define una interfaz que describa los endpoints de la API y los métodos HTTP correspondientes.
+
+[source, kotlin]
+----
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+interface ApiService {
+    @GET("users/{id}")
+    fun getUser(@Path("id") userId: Int): Call<User>
+}
+----
+
+==== 3.4.3 Creación de la instancia de Retrofit
+
+Crea una instancia de Retrofit y configura el convertidor JSON (por ejemplo, Gson) para manejar las respuestas.
+
+[source, kotlin]
+----
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+val retrofit = Retrofit.Builder()
+    .baseUrl("https://api.example.com/")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build()
+
+val apiService = retrofit.create(ApiService::class.java)
+----
+
+==== 3.4.4 Definición del modelo de datos
+
+Define una clase de datos que represente la estructura de la respuesta JSON de la API.
+
+[source, kotlin]
+----
+data class User(
+    val id: Int,
+    val name: String,
+    val email: String
+)
+----
+
+==== 3.4.5 Realización de una solicitud
+
+Utiliza la instancia de Retrofit para realizar una solicitud a la API y manejar la respuesta.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var apiService: ApiService
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.example.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        apiService = retrofit.create(ApiService::class.java)
+
+        // Realizar una solicitud para obtener un usuario
+        val call = apiService.getUser(1)
+        call.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    Log.d("MainActivity", "User: $user")
+                } else {
+                    Log.e("MainActivity", "Error: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Log.e("MainActivity", "Failure: ${t.message}")
+            }
+        })
+    }
+}
+----
+
+==== 3.4.6 Manejo de respuestas y errores
+
+Retrofit proporciona métodos para manejar respuestas exitosas y errores de manera eficiente. Utiliza los métodos `onResponse` y `onFailure` para manejar los resultados de la solicitud.
+
+[source, kotlin]
+----
+call.enqueue(object : Callback<User> {
+    override fun onResponse(call: Call<User>, response: Response<User>) {
+        if (response.isSuccessful) {
+            val user = response.body()
+            // Manejar la respuesta exitosa
+        } else {
+            // Manejar el error de la respuesta
+        }
+    }
+
+    override fun onFailure(call: Call<User>, t: Throwable) {
+        // Manejar la falla de la solicitud
+    }
+})
+----
+
+Comprender cómo utilizar Retrofit para conectarse a una API RESTful es esencial para desarrollar aplicaciones que interactúen con servicios web. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+=== 3.5 Parseo de JSON usando Gson y Moshi
+
+El parseo de JSON es una tarea común en el desarrollo de aplicaciones Android que interactúan con APIs RESTful. Gson y Moshi son dos bibliotecas populares para convertir JSON a objetos de Kotlin/Java y viceversa. En esta sección, exploraremos cómo utilizar Gson y Moshi para parsear JSON en Android.
+
+==== 3.5.1 Configuración de Gson
+
+Para utilizar Gson, es necesario añadir la dependencia de Gson en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "com.google.code.gson:gson:2.8.8"
+}
+----
+
+==== 3.5.2 Parseo de JSON con Gson
+
+1. **Definición del modelo de datos**:
+   - Define una clase de datos que represente la estructura del JSON.
+
+[source, kotlin]
+----
+data class User(
+    val id: Int,
+    val name: String,
+    val email: String
+)
+----
+
+.**Parseo de JSON a objeto**:
+   - Utiliza la clase `Gson` para convertir una cadena JSON a un objeto de Kotlin/Java.
+
+[source, kotlin]
+----
+import com.google.gson.Gson
+
+val json = """{"id":1,"name":"John Doe","email":"john.doe@example.com"}"""
+val gson = Gson()
+val user = gson.fromJson(json, User::class.java)
+println(user)
+----
+
+.**Conversión de objeto a JSON**:
+   - Utiliza la clase `Gson` para convertir un objeto de Kotlin/Java a una cadena JSON.
+
+[source, kotlin]
+----
+val user = User(id = 1, name = "John Doe", email = "john.doe@example.com")
+val gson = Gson()
+val json = gson.toJson(user)
+println(json)
+----
+
+==== 3.5.3 Configuración de Moshi
+
+Para utilizar Moshi, es necesario añadir la dependencia de Moshi en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "com.squareup.moshi:moshi:1.12.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
+}
+----
+
+Además, habilita el procesamiento de anotaciones de Kotlin (kapt) en el archivo `build.gradle`.
+
+[source, groovy]
+----
+apply plugin: 'kotlin-kapt'
+----
+
+==== 3.5.4 Parseo de JSON con Moshi
+
+1. **Definición del modelo de datos**:
+   - Define una clase de datos que represente la estructura del JSON y anota con `@JsonClass`.
+
+[source, kotlin]
+----
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class User(
+    val id: Int,
+    val name: String,
+    val email: String
+)
+----
+
+2. **Parseo de JSON a objeto**:
+   - Utiliza la clase `Moshi` y el adaptador generado para convertir una cadena JSON a un objeto de Kotlin/Java.
+
+[source, kotlin]
+----
+import com.squareup.moshi.Moshi
+
+val json = """{"id":1,"name":"John Doe","email":"john.doe@example.com"}"""
+val moshi = Moshi.Builder().build()
+val jsonAdapter = moshi.adapter(User::class.java)
+val user = jsonAdapter.fromJson(json)
+println(user)
+----
+
+3. **Conversión de objeto a JSON**:
+   - Utiliza la clase `Moshi` y el adaptador generado para convertir un objeto de Kotlin/Java a una cadena JSON.
+
+[source, kotlin]
+----
+val user = User(id = 1, name = "John Doe", email = "john.doe@example.com")
+val moshi = Moshi.Builder().build()
+val jsonAdapter = moshi.adapter(User::class.java)
+val json = jsonAdapter.toJson(user)
+println(json)
+----
+
+Comprender cómo utilizar Gson y Moshi para parsear JSON es esencial para desarrollar aplicaciones que interactúen con servicios web y manejen datos en formato JSON. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+== Módulo 4: Interfaces de usuario avanzadas
+=== 4.1 RecyclerView y Adapters
+
+RecyclerView es un componente avanzado y flexible que se utiliza para mostrar listas de datos de manera eficiente en Android. A diferencia de ListView, RecyclerView proporciona un mejor rendimiento y más opciones de personalización. En esta sección, exploraremos cómo trabajar con RecyclerView y Adapters para crear y gestionar listas en Android.
+
+==== 4.1.1 Configuración de RecyclerView
+
+Para utilizar RecyclerView, es necesario añadir la dependencia de RecyclerView en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+}
+----
+
+==== 4.1.2 Definición del diseño del ítem de la lista
+
+Crea un archivo de diseño XML para el ítem de la lista (por ejemplo, `item_layout.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item" />
+</LinearLayout>
+----
+
+==== 4.1.3 Creación del Adapter para RecyclerView
+
+Crea una clase Adapter para gestionar los datos y enlazarlos con el diseño del ítem.
+
+[source, kotlin]
+----
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+class MyAdapter(private val itemList: List<String>) :
+    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textView: TextView = itemView.findViewById(R.id.item_text)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_layout, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.textView.text = itemList[position]
+    }
+
+    override fun getItemCount() = itemList.size
+}
+----
+
+==== 4.1.4 Configuración de RecyclerView en la Activity
+
+En la Activity, configura RecyclerView y establece el Adapter.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = MyAdapter(listOf("Item 1", "Item 2", "Item 3"))
+    }
+}
+----
+
+==== 4.1.5 Manejo de eventos de clic en ítems
+
+Para manejar eventos de clic en los ítems de la lista, añade un listener en el ViewHolder.
+
+[source, kotlin]
+----
+class MyAdapter(private val itemList: List<String>, private val clickListener: (String) -> Unit) :
+    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textView: TextView = itemView.findViewById(R.id.item_text)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_layout, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = itemList[position]
+        holder.textView.text = item
+        holder.itemView.setOnClickListener { clickListener(item) }
+    }
+
+    override fun getItemCount() = itemList.size
+}
+----
+
+En la Activity, pasa el listener al Adapter.
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = MyAdapter(listOf("Item 1", "Item 2", "Item 3")) { item ->
+            // Manejar el clic en el ítem
+            Toast.makeText(this, "Clicked: $item", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+----
+
+Comprender cómo trabajar con RecyclerView y Adapters es esencial para mostrar listas de datos de manera eficiente en aplicaciones Android. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+=== 4.2 ViewBinding y DataBinding en Android
+
+ViewBinding y DataBinding son dos características poderosas en Android que facilitan la interacción con las vistas en el código. ViewBinding proporciona una forma segura de acceder a las vistas, mientras que DataBinding permite enlazar datos directamente a las vistas en el diseño XML. En esta sección, exploraremos cómo utilizar ViewBinding y DataBinding en Android.
+
+==== 4.2.1 ViewBinding
+
+ViewBinding es una característica que genera automáticamente clases de enlace para cada archivo de diseño XML en tu proyecto. Estas clases contienen referencias directas a todas las vistas con un ID en el archivo de diseño.
+
+1. **Habilitar ViewBinding**:
+   - Añade la siguiente configuración en el archivo `build.gradle` del módulo.
+
+[source, groovy]
+----
+android {
+    ...
+    viewBinding {
+        enabled = true
+    }
+}
+----
+
+2. **Utilizar ViewBinding en una Activity**:
+   - En la Activity, utiliza la clase de enlace generada para acceder a las vistas.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myapp.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.textView.text = "Hello, ViewBinding!"
+        binding.button.setOnClickListener {
+            binding.textView.text = "Button Clicked!"
+        }
+    }
+}
+----
+
+==== 4.2.2 DataBinding
+
+DataBinding permite enlazar datos directamente a las vistas en el diseño XML, lo que facilita la actualización de la interfaz de usuario cuando cambian los datos.
+
+1. **Habilitar DataBinding**:
+   - Añade la siguiente configuración en el archivo `build.gradle` del módulo.
+
+[source, groovy]
+----
+android {
+    ...
+    dataBinding {
+        enabled = true
+    }
+}
+----
+
+2. **Utilizar DataBinding en un archivo de diseño XML**:
+   - Envuelve el contenido del archivo de diseño XML en una etiqueta `<layout>` y define las variables de datos.
+
+[source, xml]
+----
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="user"
+            type="com.example.myapp.User" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click Me"
+            android:onClick="@{() -> user.onButtonClick()}" />
+    </LinearLayout>
+</layout>
+----
+
+3. **Utilizar DataBinding en una Activity**:
+   - En la Activity, utiliza la clase de enlace generada para enlazar los datos a las vistas.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.myapp.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        val user = User("John Doe")
+        binding.user = user
+    }
+}
+----
+
+4. **Definir la clase de datos**:
+   - Define una clase de datos que contenga las propiedades y métodos utilizados en el diseño XML.
+
+[source, kotlin]
+----
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+
+class User(private var _name: String) : BaseObservable() {
+
+    @get:Bindable
+    var name: String
+        get() = _name
+        set(value) {
+            _name = value
+            notifyPropertyChanged(BR.name)
+        }
+
+    fun onButtonClick() {
+        name = "Button Clicked!"
+    }
+}
+----
+
+Comprender cómo utilizar ViewBinding y DataBinding en Android es esencial para simplificar la interacción con las vistas y mantener el código limpio y mantenible. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+=== 4.3 Animaciones y transiciones
+
+Las animaciones y transiciones son elementos clave para mejorar la experiencia del usuario en aplicaciones Android. Permiten crear efectos visuales atractivos y proporcionar una retroalimentación visual clara. En esta sección, exploraremos cómo implementar animaciones y transiciones en Android.
+
+==== 4.3.1 Animaciones básicas con ObjectAnimator
+
+ObjectAnimator es una clase que permite animar propiedades de objetos. Es una forma sencilla de crear animaciones básicas.
+
+1. **Animar la propiedad alpha de una vista**:
+   - Utiliza ObjectAnimator para animar la transparencia de una vista.
+
+[source, kotlin]
+----
+import android.animation.ObjectAnimator
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val view = findViewById<View>(R.id.my_view)
+        val animator = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
+        animator.duration = 1000
+        animator.start()
+    }
+}
+----
+
+2. **Animar la propiedad translationX de una vista**:
+   - Utiliza ObjectAnimator para mover una vista horizontalmente.
+
+[source, kotlin]
+----
+val view = findViewById<View>(R.id.my_view)
+val animator = ObjectAnimator.ofFloat(view, "translationX", 0f, 200f)
+animator.duration = 1000
+animator.start()
+----
+
+==== 4.3.2 Animaciones con AnimatorSet
+
+AnimatorSet permite combinar múltiples animaciones y ejecutarlas en secuencia o en paralelo.
+
+[source, kotlin]
+----
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val view = findViewById<View>(R.id.my_view)
+        val fadeIn = ObjectAnimator.ofFloat(view, "alpha", 0f, 1f)
+        val moveRight = ObjectAnimator.ofFloat(view, "translationX", 0f, 200f)
+
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(fadeIn, moveRight)
+        animatorSet.duration = 1000
+        animatorSet.start()
+    }
+}
+----
+
+==== 4.3.3 Transiciones entre Activities
+
+Las transiciones entre Activities permiten crear efectos visuales cuando se navega de una Activity a otra.
+
+1. **Definir una transición en el archivo de diseño XML**:
+   - Crea un archivo de transición en el directorio `res/transition` (por ejemplo, `fade.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<fade xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1000" />
+----
+
+2. **Aplicar la transición en la Activity**:
+   - Utiliza el método `getWindow().setEnterTransition` y `getWindow().setExitTransition` para aplicar la transición.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        window.enterTransition = android.transition.TransitionInflater.from(this).inflateTransition(R.transition.fade)
+        window.exitTransition = android.transition.TransitionInflater.from(this).inflateTransition(R.transition.fade)
+    }
+}
+----
+
+3. **Iniciar la nueva Activity con la transición**:
+   - Utiliza el método `startActivity` con una opción de transición.
+
+[source, kotlin]
+----
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, SecondActivity::class.java)
+        val options = ActivityOptions.makeSceneTransitionAnimation(this)
+        startActivity(intent, options.toBundle())
+    }
+}
+----
+
+==== 4.3.4 Transiciones entre Fragments
+
+Las transiciones entre Fragments permiten crear efectos visuales cuando se navega de un Fragment a otro.
+
+1. **Definir una transición en el archivo de diseño XML**:
+   - Crea un archivo de transición en el directorio `res/transition` (por ejemplo, `slide.xml`).
+
+[source, xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<slide xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1000"
+    android:slideEdge="start" />
+----
+
+2. **Aplicar la transición en el Fragment**:
+   - Utiliza el método `setEnterTransition` y `setExitTransition` para aplicar la transición.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import android.transition.TransitionInflater
+import androidx.fragment.app.Fragment
+
+class FirstFragment : Fragment(R.layout.fragment_first) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = TransitionInflater.from(context).inflateTransition(R.transition.slide)
+        exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.slide)
+    }
+}
+----
+
+3. **Navegar al nuevo Fragment con la transición**:
+   - Utiliza el método `replace` del `FragmentManager` para navegar al nuevo Fragment.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, FirstFragment())
+            .commit()
+    }
+}
+----
+
+Comprender cómo implementar animaciones y transiciones en Android es esencial para mejorar la experiencia del usuario y crear aplicaciones visualmente atractivas. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+=== 4.4 Material Design en Android: Principios y componentes
+
+Material Design es un lenguaje de diseño desarrollado por Google que proporciona directrices para crear interfaces de usuario consistentes y atractivas. En esta sección, exploraremos los principios de Material Design y cómo utilizar los componentes de Material Design en Android.
+
+==== 4.4.1 Principios de Material Design
+
+Material Design se basa en varios principios clave que guían el diseño de interfaces de usuario:
+
+1. **Material Metaphor**:
+   - El diseño debe imitar el comportamiento de los objetos físicos, utilizando superficies y bordes para proporcionar pistas visuales.
+
+2. **Bold, Graphic, Intentional**:
+   - Utiliza colores audaces, tipografía clara y un diseño intencional para crear jerarquía y significado.
+
+3. **Motion Provides Meaning**:
+   - Las animaciones y transiciones deben ser significativas y ayudar a guiar al usuario a través de la interfaz.
+
+==== 4.4.2 Configuración de Material Design
+
+Para utilizar los componentes de Material Design en tu proyecto, añade las dependencias de Material Components en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "com.google.android.material:material:1.4.0"
+}
+----
+
+==== 4.4.3 Componentes de Material Design
+
+1. **AppBarLayout y Toolbar**:
+   - AppBarLayout es un contenedor para la barra de herramientas y otros componentes de la barra de aplicaciones.
+
+[source, xml]
+----
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:title="My App" />
+</com.google.android.material.appbar.AppBarLayout>
+----
+
+2. **FloatingActionButton**:
+   - FloatingActionButton es un botón circular que flota sobre el contenido y se utiliza para acciones principales.
+
+[source, xml]
+----
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end|bottom"
+    android:layout_margin="16dp"
+    android:src="@drawable/ic_add"
+    android:contentDescription="Add"
+    app:backgroundTint="@color/colorAccent" />
+----
+
+3. **BottomNavigationView**:
+   - BottomNavigationView proporciona una barra de navegación en la parte inferior de la pantalla para cambiar entre vistas principales.
+
+[source, xml]
+----
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottom_navigation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    app:menu="@menu/bottom_nav_menu" />
+----
+
+4. **TextInputLayout y TextInputEditText**:
+   - TextInputLayout es un contenedor para TextInputEditText que proporciona un diseño mejorado para campos de entrada de texto.
+
+[source, xml]
+----
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter your name">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</com.google.android.material.textfield.TextInputLayout>
+----
+
+5. **CardView**:
+   - CardView es un contenedor con esquinas redondeadas y sombra que se utiliza para mostrar contenido relacionado.
+
+[source, xml]
+----
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card Title"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Card content goes here."
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+----
+
+Comprender los principios de Material Design y cómo utilizar los componentes de Material Design en Android es esencial para crear aplicaciones visualmente atractivas y consistentes. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+=== 4.5 Creación de temas y estilos personalizados
+
+La creación de temas y estilos personalizados en Android permite definir y aplicar un conjunto coherente de propiedades de apariencia a los componentes de la interfaz de usuario. Esto facilita la consistencia visual y la reutilización de estilos en toda la aplicación. En esta sección, exploraremos cómo crear y aplicar temas y estilos personalizados en Android.
+
+==== 4.5.1 Creación de estilos personalizados
+
+Un estilo es una colección de propiedades de apariencia que se pueden aplicar a un componente de la interfaz de usuario. Los estilos se definen en el archivo `res/values/styles.xml`.
+
+1. **Definir un estilo personalizado**:
+   - Crea un estilo personalizado en el archivo `styles.xml`.
+
+[source, xml]
+----
+<resources>
+    <style name="CustomTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:padding">8dp</item>
+    </style>
+</resources>
+----
+
+2. **Aplicar un estilo a un componente**:
+   - Utiliza el atributo `style` para aplicar el estilo a un componente en el archivo de diseño XML.
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    style="@style/CustomTextStyle" />
+----
+
+==== 4.5.2 Creación de temas personalizados
+
+Un tema es una colección de estilos que se aplican a toda la aplicación o a una Activity específica. Los temas se definen en el archivo `res/values/styles.xml`.
+
+1. **Definir un tema personalizado**:
+   - Crea un tema personalizado en el archivo `styles.xml`.
+
+[source, xml]
+----
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+    </style>
+</resources>
+----
+
+2. **Aplicar un tema a la aplicación**:
+   - Configura el tema en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<application
+    android:theme="@style/AppTheme">
+    ...
+</application>
+----
+
+3. **Aplicar un tema a una Activity específica**:
+   - Configura el tema en el archivo `AndroidManifest.xml` para una Activity específica.
+
+[source, xml]
+----
+<activity
+    android:name=".MainActivity"
+    android:theme="@style/AppTheme.NoActionBar">
+    ...
+</activity>
+----
+
+==== 4.5.3 Personalización de componentes con estilos y temas
+
+1. **Personalizar la Toolbar**:
+   - Define un estilo para la Toolbar y aplícalo en el archivo de diseño XML.
+
+[source, xml]
+----
+<resources>
+    <style name="CustomToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:titleTextColor">@android:color/white</item>
+    </style>
+</resources>
+----
+
+[source, xml]
+----
+<com.google.android.material.appbar.MaterialToolbar
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    style="@style/CustomToolbarStyle"
+    android:title="My App" />
+----
+
+2. **Personalizar botones**:
+   - Define un estilo para los botones y aplícalo en el archivo de diseño XML.
+
+[source, xml]
+----
+<resources>
+    <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>
+----
+
+[source, xml]
+----
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Click Me"
+    style="@style/CustomButtonStyle" />
+----
+
+Comprender cómo crear y aplicar temas y estilos personalizados en Android es esencial para mantener la consistencia visual y mejorar la apariencia de la aplicación. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+== Módulo 5: Programación asincrónica y concurrencia
+=== 5.1 Fundamentos de programación asincrónica en Android
+
+La programación asincrónica es esencial en el desarrollo de aplicaciones Android para realizar tareas en segundo plano sin bloquear la interfaz de usuario. En esta sección, exploraremos los fundamentos de la programación asincrónica en Android y las herramientas disponibles para manejar tareas en segundo plano.
+
+==== 5.1.1 Conceptos básicos de programación asincrónica
+
+La programación asincrónica permite ejecutar tareas en segundo plano y notificar a la interfaz de usuario cuando la tarea ha finalizado. Esto es crucial para mantener la aplicación receptiva y evitar bloqueos.
+
+.**Hilos (Threads)**:
+   - Un hilo es una unidad de ejecución que puede ejecutarse en paralelo con otros hilos. Android proporciona la clase `Thread` para crear y gestionar hilos.
+
+[source, kotlin]
+----
+Thread {
+    // Código a ejecutar en el hilo en segundo plano
+    val result = performLongRunningTask()
+    runOnUiThread {
+        // Actualizar la interfaz de usuario con el resultado
+        updateUI(result)
+    }
+}.start()
+----
+
+.**AsyncTask (obsoleto en API nivel 30)**:
+   - `AsyncTask` es una clase que facilita la ejecución de tareas en segundo plano y la actualización de la interfaz de usuario. Sin embargo, ha sido obsoleta en API nivel 30 y se recomienda utilizar alternativas como Coroutines o WorkManager.
+
+[source, kotlin]
+----
+@Deprecated("Use Coroutines or WorkManager instead")
+class MyAsyncTask : AsyncTask<Void, Void, String>() {
+
+    override fun doInBackground(vararg params: Void?): String {
+        // Código a ejecutar en segundo plano
+        return performLongRunningTask()
+    }
+
+    override fun onPostExecute(result: String) {
+        super.onPostExecute(result)
+        // Actualizar la interfaz de usuario con el resultado
+        updateUI(result)
+    }
+}
+----
+
+==== 5.1.2 Uso de Handlers y Runnables
+
+`Handler` y `Runnable` son herramientas que permiten ejecutar código en el hilo principal o en un hilo en segundo plano después de un retraso específico.
+
+[source, kotlin]
+----
+val handler = Handler(Looper.getMainLooper())
+handler.postDelayed({
+    // Código a ejecutar después de un retraso
+    updateUI("Task completed")
+}, 2000)
+----
+
+==== 5.1.3 Uso de Executors
+
+`Executor` es una interfaz que proporciona una forma de gestionar un grupo de hilos y ejecutar tareas en segundo plano.
+
+[source, kotlin]
+----
+val executor = Executors.newSingleThreadExecutor()
+executor.execute {
+    // Código a ejecutar en el hilo en segundo plano
+    val result = performLongRunningTask()
+    runOnUiThread {
+        // Actualizar la interfaz de usuario con el resultado
+        updateUI(result)
+    }
+}
+----
+
+==== 5.1.4 Uso de Coroutines en Kotlin
+
+Las Coroutines son una herramienta potente de Kotlin que facilita la programación asincrónica y la gestión de tareas en segundo plano. En la siguiente sección, exploraremos los conceptos básicos de las Coroutines y cómo utilizarlas en Android.
+
+=== 5.2 Coroutines en Kotlin: conceptos básicos
+
+Las Coroutines son una característica poderosa de Kotlin que facilita la programación asincrónica y la gestión de tareas en segundo plano. Proporcionan una forma más sencilla y eficiente de escribir código asincrónico en comparación con los hilos tradicionales. En esta sección, exploraremos los conceptos básicos de las Coroutines y cómo utilizarlas en Android.
+
+==== 5.2.1 Conceptos básicos de Coroutines
+
+.**CoroutineScope**:
+   - Un `CoroutineScope` define el contexto en el que se ejecutan las Coroutines. Proporciona un alcance para las Coroutines y permite cancelarlas cuando ya no son necesarias.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    launch {
+        // Código a ejecutar en una Coroutine
+        delay(1000L)
+        println("Coroutine ejecutada")
+    }
+    println("Hola,")
+}
+----
+
+.**launch y async**:
+   - `launch` y `async` son dos constructores de Coroutines. `launch` se utiliza para iniciar una Coroutine que no devuelve un resultado, mientras que `async` se utiliza para iniciar una Coroutine que devuelve un resultado.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val job = launch {
+        delay(1000L)
+        println("Coroutine ejecutada")
+
+    }
+
+    val deferred = async {
+        delay(1000L)
+        "Resultado de la tarea"
+    }
+
+    println("Esperando resultados...")
+    job.join()
+    println("Resultado: ${deferred.await()}")
+    
+}
+----
+
+==== 5.2.2 Uso de Coroutines en Android
+
+.**Configurar Coroutines en el proyecto**:
+   - Añade las dependencias de Coroutines en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+}
+----
+
+.**Utilizar Coroutines en una Activity**:
+   - Utiliza `lifecycleScope` para iniciar Coroutines en el contexto del ciclo de vida de una Activity.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        lifecycleScope.launch {
+            // Código a ejecutar en una Coroutine
+            val result = performLongRunningTask()
+            updateUI(result)
+        }
+    }
+
+    private suspend fun performLongRunningTask(): String {
+        delay(2000L)
+        return "Tarea completada"
+    }
+
+    private fun updateUI(result: String) {
+        // Actualizar la interfaz de usuario con el resultado
+    }
+}
+----
+
+.**Utilizar Coroutines en un ViewModel**:
+   - Utiliza `viewModelScope` para iniciar Coroutines en el contexto del ciclo de vida de un ViewModel.
+
+[source, kotlin]
+----
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+
+class MyViewModel : ViewModel() {
+
+    fun fetchData() {
+        viewModelScope.launch {
+            val result = performLongRunningTask()
+            // Actualizar LiveData o manejar el resultado
+        }
+    }
+
+    private suspend fun performLongRunningTask(): String {
+        delay(2000L)
+        return "Datos obtenidos"
+    }
+}
+----
+
+==== 5.2.3 Manejo de excepciones en Coroutines
+
+Las Coroutines proporcionan mecanismos para manejar excepciones de manera eficiente.
+
+[source, kotlin]
+----
+import kotlinx.coroutines.*
+
+fun main() = runBlocking {
+    val handler = CoroutineExceptionHandler { _, exception ->
+        println("Manejando excepción: ${exception.localizedMessage}")
+    }
+
+    val job = launch(handler) {
+        throw RuntimeException("Error en la Coroutine")
+    }
+
+    job.join()
+}
+----
+
+=== 5.3 Uso de ViewModel y LiveData en MVVM
+
+El patrón MVVM (Model-View-ViewModel) es una arquitectura popular en el desarrollo de aplicaciones Android que separa la lógica de la interfaz de usuario de la lógica de negocio. ViewModel y LiveData son componentes clave de Android Jetpack que facilitan la implementación del patrón MVVM. En esta sección, exploraremos cómo utilizar ViewModel y LiveData en MVVM para gestionar el estado y los datos de la interfaz de usuario de manera reactiva.
+
+==== 5.3.1 Configuración de ViewModel y LiveData
+
+Para utilizar ViewModel y LiveData, es necesario añadir las dependencias en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+}
+----
+
+==== 5.3.2 Definición de ViewModel
+
+ViewModel es una clase que se utiliza para almacenar y gestionar datos relacionados con la interfaz de usuario de manera reactiva. Permite que los datos sobrevivan a cambios de configuración, como rotaciones de pantalla.
+
+[source, kotlin]
+----
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class MyViewModel : ViewModel() {
+
+    private val _text = MutableLiveData<String>()
+    val text: LiveData<String> get() = _text
+
+    fun updateText(newText: String) {
+        _text.value = newText
+    }
+}
+----
+
+==== 5.3.3 Uso de LiveData
+
+LiveData es una clase que se utiliza para almacenar datos observables. Permite que los componentes de la interfaz de usuario observen cambios en los datos y se actualicen automáticamente.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.example.myapp.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel: MyViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Observa los cambios en LiveData
+        viewModel.text.observe(this, Observer { newText ->
+            binding.textView.text = newText
+        })
+
+        // Actualiza el texto cuando se hace clic en el botón
+        binding.button.setOnClickListener {
+            viewModel.updateText("Hello, MVVM!")
+        }
+    }
+}
+----
+
+==== 5.3.4 Uso de Coroutines en ViewModel
+
+ViewModel y LiveData se integran bien con Coroutines para realizar operaciones asincrónicas y actualizar la interfaz de usuario de manera reactiva.
+
+[source, kotlin]
+----
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+
+class MyViewModel : ViewModel() {
+
+    private val _text = MutableLiveData<String>()
+    val text: LiveData<String> get() = _text
+
+    fun fetchData() {
+        viewModelScope.launch {
+            val result = performLongRunningTask()
+            _text.value = result
+        }
+    }
+
+    private suspend fun performLongRunningTask(): String {
+        delay(2000L)
+        return "Datos obtenidos"
+    }
+}
+----
+
+==== 5.3.5 Manejo de estados de la interfaz de usuario
+
+ViewModel y LiveData se pueden utilizar para manejar diferentes estados de la interfaz de usuario, como carga, éxito y error.
+
+[source, kotlin]
+----
+enum class UiState {
+    LOADING, SUCCESS, ERROR
+}
+
+class MyViewModel : ViewModel() {
+
+    private val _uiState = MutableLiveData<UiState>()
+    val uiState: LiveData<UiState> get() = _uiState
+
+    fun fetchData() {
+        viewModelScope.launch {
+            _uiState.value = UiState.LOADING
+            try {
+                val result = performLongRunningTask()
+                _uiState.value = UiState.SUCCESS
+                _text.value = result
+            } catch (e: Exception) {
+                _uiState.value = UiState.ERROR
+            }
+        }
+    }
+
+    private suspend fun performLongRunningTask(): String {
+        delay(2000L)
+        return "Datos obtenidos"
+    }
+}
+----
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private val viewModel: MyViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Observa los cambios en el estado de la interfaz de usuario
+        viewModel.uiState.observe(this, Observer { state ->
+            when (state) {
+                UiState.LOADING -> showLoading()
+                UiState.SUCCESS -> showSuccess()
+                UiState.ERROR -> showError()
+            }
+        })
+
+        // Observa los cambios en el texto
+        viewModel.text.observe(this, Observer { newText ->
+            binding.textView.text = newText
+        })
+
+        // Inicia la carga de datos cuando se hace clic en el botón
+        binding.button.setOnClickListener {
+            viewModel.fetchData()
+        }
+    }
+
+    private fun showLoading() {
+        // Mostrar indicador de carga
+    }
+
+    private fun showSuccess() {
+        // Mostrar datos cargados
+    }
+
+    private fun showError() {
+        // Mostrar mensaje de error
+    }
+}
+----
+
+=== 5.4 Uso de RxJava y RxKotlin para programación reactiva
+
+RxJava y RxKotlin son bibliotecas que facilitan la programación reactiva en Android. Proporcionan una forma poderosa de manejar flujos de datos asíncronos y eventos utilizando observables y operadores. En esta sección, exploraremos cómo utilizar RxJava y RxKotlin para implementar programación reactiva en aplicaciones Android.
+
+==== 5.4.1 Configuración de RxJava y RxKotlin
+
+Para utilizar RxJava y RxKotlin, es necesario añadir las dependencias en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation "io.reactivex.rxjava3:rxjava:3.0.0"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "io.reactivex.rxjava3:rxkotlin:3.0.0"
+}
+----
+
+==== 5.4.2 Conceptos básicos de RxJava
+
+1. **Observable y Observer**:
+   - Un `Observable` emite una secuencia de eventos o datos, mientras que un `Observer` se suscribe al `Observable` para recibir esos eventos o datos.
+
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.observers.DisposableObserver
+
+fun main() {
+    val observable = Observable.just("Hello", "RxJava")
+    val observer = object : DisposableObserver<String>() {
+        override fun onNext(t: String) {
+            println(t)
+        }
+
+        override fun onError(e: Throwable) {
+            e.printStackTrace()
+        }
+
+        override fun onComplete() {
+            println("Completed")
+        }
+    }
+
+    observable.subscribe(observer)
+}
+----
+
+2. **Operadores**:
+   - Los operadores transforman, filtran y combinan flujos de datos. Algunos operadores comunes son `map`, `filter` y `flatMap`.
+
+[source, kotlin]
+----
+val observable = Observable.just(1, 2, 3, 4, 5)
+observable
+    .filter { it % 2 == 0 }
+    .map { it * 2 }
+    .subscribe { println(it) }
+----
+
+==== 5.4.3 Uso de RxJava en Android
+
+1. **Configurar un Observable en una Activity**:
+   - Utiliza `Observable` para manejar tareas asíncronas en una Activity.
+
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val observable = Observable.fromCallable {
+            performLongRunningTask()
+        }
+
+        observable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { result ->
+                updateUI(result)
+            }
+    }
+
+    private fun performLongRunningTask(): String {
+        Thread.sleep(2000)
+        return "Task completed"
+    }
+
+    private fun updateUI(result: String) {
+        // Actualizar la interfaz de usuario con el resultado
+    }
+}
+----
+
+==== 5.4.4 Uso de RxKotlin
+
+RxKotlin proporciona extensiones y funciones adicionales para facilitar el uso de RxJava en Kotlin.
+
+[source, kotlin]
+----
+import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.kotlin.toObservable
+
+fun main() {
+    val items = listOf("A", "B", "C", "D")
+    items.toObservable()
+        .subscribeBy(
+            onNext = { println(it) },
+            onError = { it.printStackTrace() },
+            onComplete = { println("Completed") }
+        )
+}
+----
+
+==== 5.4.5 Manejo de errores en RxJava
+
+RxJava proporciona mecanismos para manejar errores de manera eficiente utilizando operadores como `onErrorReturn`, `onErrorResumeNext` y `retry`.
+
+[source, kotlin]
+----
+val observable = Observable.just("1", "2", "a", "4")
+observable
+    .map { it.toInt() }
+    .onErrorReturn { -1 }
+    .subscribe { println(it) }
+----
+
+==== 5.4.6 Uso de CompositeDisposable
+
+`CompositeDisposable` se utiliza para gestionar múltiples suscripciones y asegurarse de que se cancelen correctamente para evitar fugas de memoria.
+
+[source, kotlin]
+----
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+
+class MainActivity : AppCompatActivity() {
+
+    private val compositeDisposable = CompositeDisposable()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val observable = Observable.just("Hello", "RxJava")
+        val disposable = observable
+            .subscribe { println(it) }
+
+        compositeDisposable.add(disposable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
+    }
+}
+----
+
+Comprender cómo utilizar RxJava y RxKotlin para implementar programación reactiva es esencial para manejar flujos de datos asíncronos y eventos de manera eficiente en aplicaciones Android. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+== Módulo 6: Servicios y Broadcast Receivers
+=== 6.1 Introducción a los servicios en Android
+
+Los servicios en Android son componentes que permiten realizar operaciones en segundo plano sin una interfaz de usuario. Son útiles para tareas que deben continuar ejecutándose incluso cuando la aplicación no está en primer plano, como la reproducción de música, la descarga de archivos o la sincronización de datos. En esta sección, exploraremos los conceptos básicos de los servicios en Android y cómo utilizarlos.
+
+==== 6.1.1 Tipos de servicios
+
+1. **Started Service**:
+   - Un `Started Service` se inicia cuando un componente de la aplicación (como una Activity) llama al método `startService()`. Una vez iniciado, el servicio puede ejecutarse indefinidamente, incluso si el componente que lo inició se destruye. Debe detenerse explícitamente llamando a `stopSelf()` o `stopService()`.
+
+2. **Bound Service**:
+   - Un `Bound Service` se inicia cuando un componente de la aplicación llama al método `bindService()`. Proporciona una interfaz cliente-servidor que permite a los componentes interactuar con el servicio, enviar solicitudes, recibir resultados y hacerlo todo de manera interprocesal (IPC). Se detiene automáticamente cuando todos los clientes se desvinculan.
+
+==== 6.1.2 Creación de un Started Service
+
+1. **Definir el servicio en el archivo AndroidManifest.xml**:
+   - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<service android:name=".MyStartedService" />
+----
+
+2. **Crear la clase del servicio**:
+   - Extiende la clase `Service` y sobrescribe los métodos `onStartCommand()` y `onBind()`.
+
+[source, kotlin]
+----
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+import android.util.Log
+
+class MyStartedService : Service() {
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // Código a ejecutar en el servicio
+        Log.d("MyStartedService", "Servicio iniciado")
+        // Si el servicio es interrumpido, se reinicia automáticamente
+        return START_STICKY
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        // No se utiliza en un Started Service
+        return null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MyStartedService", "Servicio destruido")
+    }
+}
+----
+
+3. **Iniciar y detener el servicio**:
+   - Utiliza los métodos `startService()` y `stopService()` para iniciar y detener el servicio desde una Activity.
+
+[source, kotlin]
+----
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, MyStartedService::class.java)
+        startService(intent) // Iniciar el servicio
+
+        // Detener el servicio después de 10 segundos
+        Handler(Looper.getMainLooper()).postDelayed({
+            stopService(intent)
+        }, 10000)
+    }
+}
+----
+
+==== 6.1.3 Creación de un Bound Service
+
+1. **Definir el servicio en el archivo AndroidManifest.xml**:
+   - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<service android:name=".MyBoundService" />
+----
+
+2. **Crear la clase del servicio**:
+   - Extiende la clase `Service` y sobrescribe los métodos `onBind()` y `onUnbind()`.
+
+[source, kotlin]
+----
+import android.app.Service
+import android.content.Intent
+import android.os.Binder
+import android.os.IBinder
+
+class MyBoundService : Service() {
+
+    private val binder = LocalBinder()
+
+    inner class LocalBinder : Binder() {
+        fun getService(): MyBoundService = this@MyBoundService
+    }
+
+    override fun onBind(intent: Intent?): IBinder {
+        return binder
+    }
+
+    override fun onUnbind(intent: Intent?): Boolean {
+        return super.onUnbind(intent)
+    }
+
+    fun performTask(): String {
+        return "Tarea realizada por el servicio vinculado"
+    }
+}
+----
+
+3. **Vincular y desvincular el servicio**:
+   - Utiliza los métodos `bindService()` y `unbindService()` para vincular y desvincular el servicio desde una Activity.
+
+[source, kotlin]
+----
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.Bundle
+import android.os.IBinder
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private var boundService: MyBoundService? = null
+    private var isBound = false
+
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val binder = service as MyBoundService.LocalBinder
+            boundService = binder.getService()
+            isBound = true
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            boundService = null
+            isBound = false
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, MyBoundService::class.java)
+        bindService(intent, connection, Context.BIND_AUTO_CREATE) // Vincular el servicio
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (isBound) {
+            unbindService(connection) // Desvincular el servicio
+            isBound = false
+        }
+    }
+}
+----
+
+=== 6.2 Servicios en segundo plano y Foreground Services
+
+Los servicios en segundo plano y los servicios en primer plano (Foreground Services) son componentes esenciales para realizar tareas que deben continuar ejecutándose incluso cuando la aplicación no está en primer plano. En esta sección, exploraremos cómo implementar y gestionar servicios en segundo plano y servicios en primer plano en Android.
+
+==== 6.2.1 Servicios en segundo plano
+
+Un servicio en segundo plano se ejecuta sin una interfaz de usuario y puede realizar tareas que no requieren la interacción del usuario.
+
+1. **Definir el servicio en el archivo AndroidManifest.xml**:
+   - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<service android:name=".MyBackgroundService" />
+----
+
+2. **Crear la clase del servicio**:
+   - Extiende la clase `Service` y sobrescribe los métodos `onStartCommand()` y `onBind()`.
+
+[source, kotlin]
+----
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+import android.util.Log
+
+class MyBackgroundService : Service() {
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // Código a ejecutar en el servicio
+        Log.d("MyBackgroundService", "Servicio en segundo plano iniciado")
+        // Si el servicio es interrumpido, no se reinicia automáticamente
+        return START_NOT_STICKY
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        // No se utiliza en un servicio en segundo plano
+        return null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("MyBackgroundService", "Servicio en segundo plano destruido")
+    }
+}
+----
+
+3. **Iniciar y detener el servicio**:
+   - Utiliza los métodos `startService()` y `stopService()` para iniciar y detener el servicio desde una Activity.
+
+[source, kotlin]
+----
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, MyBackgroundService::class.java)
+        startService(intent) // Iniciar el servicio
+
+        // Detener el servicio después de 10 segundos
+        Handler(Looper.getMainLooper()).postDelayed({
+            stopService(intent)
+        }, 10000)
+    }
+}
+----
+
+==== 6.2.2 Foreground Services
+
+Un servicio en primer plano (Foreground Service) es un servicio que se ejecuta en primer plano y muestra una notificación persistente para informar al usuario de que el servicio está activo. Los servicios en primer plano son ideales para tareas que el usuario debe conocer, como la reproducción de música o la navegación GPS.
+
+1. **Definir el servicio en el archivo AndroidManifest.xml**:
+   - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<service android:name=".MyForegroundService" />
+----
+
+2. **Crear la clase del servicio**:
+   - Extiende la clase `Service` y sobrescribe los métodos `onStartCommand()` y `onBind()`.
+
+[source, kotlin]
+----
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
+import android.content.Intent
+import android.os.Build
+import android.os.IBinder
+import androidx.core.app.NotificationCompat
+
+class MyForegroundService : Service() {
+
+    companion object {
+        const val CHANNEL_ID = "ForegroundServiceChannel"
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        createNotificationChannel()
+    }
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Foreground Service")
+            .setContentText("El servicio está ejecutándose en primer plano")
+            .setSmallIcon(R.drawable.ic_notification)
+            .build()
+
+        startForeground(1, notification)
+
+        // Código a ejecutar en el servicio
+        return START_NOT_STICKY
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        // No se utiliza en un servicio en primer plano
+        return null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopForeground(true)
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val serviceChannel = NotificationChannel(
+                CHANNEL_ID,
+                "Foreground Service Channel",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            val manager = getSystemService(NotificationManager::class.java)
+            manager.createNotificationChannel(serviceChannel)
+        }
+    }
+}
+----
+
+3. **Iniciar y detener el servicio**:
+   - Utiliza los métodos `startService()` y `stopService()` para iniciar y detener el servicio desde una Activity.
+
+[source, kotlin]
+----
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent(this, MyForegroundService::class.java)
+        startService(intent) // Iniciar el servicio
+
+        // Detener el servicio después de 10 segundos
+        Handler(Looper.getMainLooper()).postDelayed({
+            stopService(intent)
+        }, 10000)
+    }
+}
+----
+
+=== 6.3 Broadcast Receivers y su ciclo de vida
+
+Los Broadcast Receivers son componentes que permiten a las aplicaciones responder a mensajes o eventos del sistema o de otras aplicaciones. Pueden ser utilizados para manejar eventos como cambios en la conectividad de red, la recepción de mensajes SMS, o la finalización de la carga del dispositivo. En esta sección, exploraremos cómo crear y gestionar Broadcast Receivers y su ciclo de vida.
+
+==== 6.3.1 Tipos de Broadcast Receivers
+
+1. **Static Broadcast Receivers**:
+   - Se declaran en el archivo `AndroidManifest.xml` y se registran automáticamente cuando la aplicación se instala. Son útiles para recibir eventos del sistema incluso cuando la aplicación no está en ejecución.
+
+2. **Dynamic Broadcast Receivers**:
+   - Se registran en tiempo de ejecución utilizando el método `registerReceiver()`. Son útiles para recibir eventos solo cuando la aplicación está en primer plano.
+
+==== 6.3.2 Creación de un Static Broadcast Receiver
+
+1. **Definir el Broadcast Receiver en el archivo AndroidManifest.xml**:
+   - Añade una entrada para el Broadcast Receiver en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<receiver android:name=".MyBroadcastReceiver">
+    <intent-filter>
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    </intent-filter>
+</receiver>
+----
+
+2. **Crear la clase del Broadcast Receiver**:
+   - Extiende la clase `BroadcastReceiver` y sobrescribe el método `onReceive()`.
+
+[source, kotlin]
+----
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.util.Log
+
+class MyBroadcastReceiver : BroadcastReceiver() {
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (intent?.action == "android.net.conn.CONNECTIVITY_CHANGE") {
+            Log.d("MyBroadcastReceiver", "Conectividad de red cambiada")
+        }
+    }
+}
+----
+
+==== 6.3.3 Creación de un Dynamic Broadcast Receiver
+
+1. **Registrar el Broadcast Receiver en tiempo de ejecución**:
+   - Utiliza el método `registerReceiver()` para registrar el Broadcast Receiver en una Activity o Service.
+
+[source, kotlin]
+----
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action == "android.net.conn.CONNECTIVITY_CHANGE") {
+                Log.d("MainActivity", "Conectividad de red cambiada")
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val filter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
+        registerReceiver(receiver, filter)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
+    }
+}
+----
+
+==== 6.3.4 Ciclo de vida de un Broadcast Receiver
+
+El ciclo de vida de un Broadcast Receiver es corto y se limita a la ejecución del método `onReceive()`. Una vez que el método `onReceive()` ha terminado de ejecutarse, el Broadcast Receiver se destruye. Es importante tener en cuenta que no se deben realizar operaciones largas en el método `onReceive()`, ya que puede bloquear el hilo principal y afectar el rendimiento de la aplicación.
+
+[source, kotlin]
+----
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.os.AsyncTask
+import android.util.Log
+
+class MyBroadcastReceiver : BroadcastReceiver() {
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if (intent?.action == "android.net.conn.CONNECTIVITY_CHANGE") {
+            Log.d("MyBroadcastReceiver", "Conectividad de red cambiada")
+            // Ejecutar una tarea en segundo plano
+            AsyncTask.execute {
+                performBackgroundTask()
+            }
+        }
+    }
+
+    private fun performBackgroundTask() {
+        // Código para ejecutar en segundo plano
+    }
+}
+----
+
+=== 6.4 Servicios de localización y uso de GPS
+
+Los servicios de localización y el uso de GPS son componentes esenciales para muchas aplicaciones móviles que requieren información sobre la ubicación del usuario. En esta sección, exploraremos cómo utilizar los servicios de localización y el GPS en Android para obtener la ubicación del usuario y manejar actualizaciones de ubicación.
+
+==== 6.4.1 Configuración de permisos de localización
+
+Para utilizar los servicios de localización y el GPS, es necesario solicitar los permisos adecuados en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapp">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        ... >
+        ...
+    </application>
+</manifest>
+----
+
+==== 6.4.2 Obtener la ubicación del usuario
+
+1. **Configurar el cliente de ubicación**:
+   - Utiliza `FusedLocationProviderClient` para obtener la ubicación del usuario.
+
+[source, kotlin]
+----
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.Task
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+        } else {
+            getLastKnownLocation()
+        }
+    }
+
+    private fun getLastKnownLocation() {
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                if (location != null) {
+                    // Utilizar la ubicación
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+                }
+            }
+    }
+}
+----
+
+2. **Manejar la solicitud de permisos**:
+   - Sobrescribe el método `onRequestPermissionsResult` para manejar la respuesta de la solicitud de permisos.
+
+[source, kotlin]
+----
+override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (requestCode == 1 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        getLastKnownLocation()
+    }
+}
+----
+
+==== 6.4.3 Actualizaciones de ubicación en tiempo real
+
+Para recibir actualizaciones de ubicación en tiempo real, utiliza `LocationRequest` y `LocationCallback`.
+
+1. **Configurar las actualizaciones de ubicación**:
+   - Crea una instancia de `LocationRequest` y `LocationCallback`.
+
+[source, kotlin]
+----
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+                for (location in locationResult.locations) {
+                    // Utilizar la ubicación
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+                }
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+        } else {
+            startLocationUpdates()
+        }
+    }
+
+    private fun startLocationUpdates() {
+        val locationRequest = LocationRequest.create().apply {
+            interval = 10000
+            fastestInterval = 5000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            startLocationUpdates()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            startLocationUpdates()
+        }
+    }
+}
+----
+
+=== 6.5 Notificaciones push y LocalBroadcastManager
+
+Las notificaciones push y LocalBroadcastManager son herramientas esenciales para la comunicación y la interacción en aplicaciones Android. Las notificaciones push permiten enviar mensajes a los usuarios incluso cuando la aplicación no está en primer plano, mientras que LocalBroadcastManager facilita la comunicación dentro de la aplicación. En esta sección, exploraremos cómo implementar notificaciones push y utilizar LocalBroadcastManager en Android.
+
+==== 6.5.1 Notificaciones push con Firebase Cloud Messaging (FCM)
+
+Firebase Cloud Messaging (FCM) es una plataforma que permite enviar notificaciones push a dispositivos Android.
+
+1. **Configurar Firebase en el proyecto**:
+   - Añade el archivo `google-services.json` a tu proyecto y configura Firebase en el archivo `build.gradle`.
+
+[source, groovy]
+----
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:28.4.1')
+    implementation 'com.google.firebase:firebase-messaging'
+}
+apply plugin: 'com.google.gms.google-services'
+----
+
+2. **Crear un servicio de mensajería**:
+   - Extiende la clase `FirebaseMessagingService` y sobrescribe el método `onMessageReceived()`.
+
+[source, kotlin]
+----
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
+import android.util.Log
+
+class MyFirebaseMessagingService : FirebaseMessagingService() {
+
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
+        Log.d("FCM", "Mensaje recibido: ${remoteMessage.data}")
+
+        // Mostrar una notificación
+        showNotification(remoteMessage.notification?.title, remoteMessage.notification?.body)
+    }
+
+    private fun showNotification(title: String?, body: String?) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val notification = NotificationCompat.Builder(this, "default")
+            .setContentTitle(title)
+            .setContentText(body)
+            .setSmallIcon(R.drawable.ic_notification)
+            .build()
+        notificationManager.notify(1, notification)
+    }
+}
+----
+
+3. **Registrar el servicio en el archivo AndroidManifest.xml**:
+   - Añade una entrada para el servicio de mensajería en el archivo `AndroidManifest.xml`.
+
+[source, xml]
+----
+<service
+    android:name=".MyFirebaseMessagingService"
+    android:exported="true">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+    </intent-filter>
+</service>
+----
+
+==== 6.5.2 LocalBroadcastManager
+
+LocalBroadcastManager es una clase que facilita la comunicación dentro de la aplicación mediante el envío y la recepción de transmisiones locales.
+
+1. **Enviar una transmisión local**:
+   - Utiliza `LocalBroadcastManager` para enviar una transmisión local.
+
+[source, kotlin]
+----
+import android.content.Intent
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val intent = Intent("custom-event-name")
+        intent.putExtra("message", "Hello, LocalBroadcastManager!")
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+    }
+}
+----
+
+2. **Recibir una transmisión local**:
+   - Registra un `BroadcastReceiver` para recibir transmisiones locales.
+
+[source, kotlin]
+----
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+
+class MainActivity : AppCompatActivity() {
+
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val message = intent?.getStringExtra("message")
+            Log.d("LocalBroadcast", "Mensaje recibido: $message")
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val filter = IntentFilter("custom-event-name")
+        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver)
+    }
+}
+----
+
+== Módulo 7: Gestión de recursos y accesibilidad
+=== 7.1 Manejo de diferentes tamaños y definiciones de pantalla
+
+El manejo de diferentes tamaños y definiciones de pantalla es esencial para desarrollar aplicaciones Android que se vean bien en una amplia variedad de dispositivos. Android proporciona varias herramientas y técnicas para crear interfaces de usuario que se adapten a diferentes tamaños y resoluciones de pantalla. En esta sección, exploraremos cómo manejar diferentes tamaños y definiciones de pantalla en Android.
+
+==== 7.1.1 Uso de unidades de medida independientes de la densidad (dp y sp)
+
+.**dp (density-independent pixels)**:
+   - `dp` es una unidad de medida que se utiliza para definir el tamaño de los elementos de la interfaz de usuario de manera independiente de la densidad de la pantalla. Esto asegura que los elementos tengan un tamaño consistente en diferentes dispositivos.
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    android:textSize="16sp"
+    android:padding="8dp" />
+----
+
+.**sp (scale-independent pixels)**:
+   - `sp` es una unidad de medida similar a `dp`, pero se utiliza específicamente para el tamaño del texto. `sp` también tiene en cuenta la configuración de accesibilidad del usuario, como el tamaño de fuente preferido.
+
+[source, xml]
+----
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello, World!"
+    android:textSize="16sp" />
+----
+
+==== 7.1.2 Layouts adaptativos
+
+.**ConstraintLayout**:
+   - `ConstraintLayout` es un contenedor flexible que permite crear interfaces de usuario adaptativas utilizando restricciones. Es ideal para diseñar interfaces que se adapten a diferentes tamaños de pantalla.
+
+[source, xml]
+----
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+----
+
+.**LinearLayout y RelativeLayout**:
+   - `LinearLayout` y `RelativeLayout` son otros contenedores que se pueden utilizar para crear interfaces de usuario adaptativas. `LinearLayout` organiza los elementos en una sola dirección (horizontal o vertical), mientras que `RelativeLayout` permite posicionar los elementos en relación con otros elementos o con el contenedor principal.
+
+[source, xml]
+----
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, World!"
+        android:layout_gravity="center" />
+</LinearLayout>
+----
+
+==== 7.1.3 Recursos de diseño específicos para diferentes tamaños de pantalla
+
+.**Directorios de recursos específicos**:
+   - Android permite definir recursos de diseño específicos para diferentes tamaños de pantalla utilizando directorios de recursos específicos. Por ejemplo, se pueden crear diferentes archivos de diseño para pantallas pequeñas, normales, grandes y extragrandes.
+
+[source, text]
+----
+res/layout/main_activity.xml              # Diseño por defecto
+res/layout-small/main_activity.xml        # Diseño para pantallas pequeñas
+res/layout-large/main_activity.xml        # Diseño para pantallas grandes
+res/layout-xlarge/main_activity.xml       # Diseño para pantallas extragrandes
+res/layout-land/main_activity.xml         # Diseño para modo horizontal
+----
+
+.**Selector de recursos**:
+   - Utiliza el selector de recursos para definir diferentes valores de recursos (como dimensiones y tamaños de fuente) para diferentes densidades de pantalla.
+
+[source, xml]
+----
+<resources>
+    <!-- Valores por defecto -->
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="padding">8dp</dimen>
+</resources>
+----
+
+[source, xml]
+----
+<resources>
+    <!-- Valores para pantallas de alta densidad -->
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="padding">10dp</dimen>
+</resources>
+----
+
+==== 7.1.4 Pruebas en diferentes tamaños y resoluciones de pantalla
+
+1. **Emuladores de Android**:
+   - Utiliza el Administrador de Dispositivos Virtuales (AVD) en Android Studio para crear emuladores con diferentes tamaños y resoluciones de pantalla. Esto permite probar la aplicación en una variedad de dispositivos virtuales.
+
+2. **Dispositivos físicos**:
+   - Prueba la aplicación en dispositivos físicos con diferentes tamaños y resoluciones de pantalla para asegurarte de que la interfaz de usuario se vea bien en todos los dispositivos.
+
+=== 7.2 Creación de interfaces accesibles: principios de accesibilidad
+
+La creación de interfaces accesibles es esencial para garantizar que todas las personas, incluidas aquellas con discapacidades, puedan utilizar y acceder a la información y funcionalidades de una aplicación o sitio web. A continuación, se presentan los principios fundamentales de accesibilidad que deben tenerse en cuenta durante el diseño y desarrollo de interfaces:
+
+1. **Perceptible**: La información y componentes de la interfaz deben presentarse de manera que los usuarios puedan percibirlos. Esto incluye:
+   - Proporcionar texto alternativo para imágenes y contenido no textual.
+   - Asegurar que el contenido sea adaptable y se pueda presentar en diferentes formas sin perder significado.
+   - Utilizar colores con suficiente contraste para facilitar la lectura.
+
+2. **Operable**: Los componentes de la interfaz y la navegación deben ser utilizables para todos los usuarios.
+   - Permitir que todas las funcionalidades sean accesibles mediante el teclado.
+   - Evitar contenido que parpadee o destelle, para no causar problemas a usuarios con fotosensibilidad.
+   - Proporcionar suficiente tiempo para que los usuarios lean y utilicen el contenido.
+   - Ofrecer métodos claros de navegación y orientación dentro de la interfaz.
+
+3. **Comprensible**: La información y el funcionamiento de la interfaz deben ser claros y fáciles de entender.
+   - Utilizar un lenguaje sencillo y directo.
+   - Proporcionar instrucciones y retroalimentación claras en formularios y procesos.
+   - Asegurar que la interfaz funcione de manera predecible y consistente.
+
+4. **Robusto**: El contenido debe ser lo suficientemente robusto para ser interpretado de manera fiable por una amplia variedad de agentes de usuario, incluidas tecnologías de asistencia.
+   - Seguir estándares y especificaciones web vigentes.
+   - Utilizar código semántico y validado.
+   - Probar la compatibilidad en diferentes navegadores y dispositivos.
+
+### Ejemplo de código HTML accesible
+
+A continuación, se muestra un ejemplo de cómo implementar algunos de estos principios en código HTML:
+
+[source, html]
+----
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sitio Web Accesible</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-size: 1em;
+            color: #333;
+            background-color: #fff;
+        }
+        .high-contrast {
+            color: #000;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sitio Web Accesible</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="inicio">
+        <section>
+            <h2>Bienvenidos</h2>
+            <p>Este es un ejemplo de cómo crear una interfaz accesible siguiendo los principios de accesibilidad.</p>
+            <img src="imagen.jpg" alt="Descripción detallada de la imagen">
+        </section>
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <p>Ofrecemos una variedad de servicios para mejorar la accesibilidad de tu sitio web.</p>
+        </section>
+    </main>
+    <footer id="contacto">
+        <h2>Contacto</h2>
+        <form action="/enviar" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" aria-required="true">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" aria-required="true">
+            <button type="submit">Enviar</button>
+        </form>
+        <p>&copy; 2023 Sitio Accesible</p>
+    </footer>
+</body>
+</html>
+----
+
+.En este ejemplo:
+- Se utiliza el atributo `lang` en la etiqueta `<html>` para especificar el idioma del contenido.
+- Las etiquetas semánticas como `<header>`, `<nav>`, `<main>`, `<section>`, y `<footer>` mejoran la estructura y comprensión del documento.
+- Se proporciona texto alternativo mediante el atributo `alt` en imágenes.
+- Los enlaces de navegación son claros y descriptivos.
+- Los formularios incluyen etiquetas asociadas a sus campos de entrada.
+- Se considera el contraste de color para mejorar la legibilidad.
+
+### Recomendaciones adicionales
+
+- **Contenido multimedia**: Proporciona subtítulos y transcripciones para contenido de audio y video.
+- **Ajustes de tamaño y color**: Permite que los usuarios ajusten el tamaño del texto y los colores sin perder funcionalidad ni legibilidad.
+- **Navegación coherente**: Mantén una estructura de navegación consistente en todas las páginas.
+- **Feedback inmediato**: Ofrece retroalimentación en tiempo real al interactuar con elementos de la interfaz.
+- **Pruebas de accesibilidad**: Utiliza herramientas y realiza pruebas con usuarios reales para identificar y corregir problemas de accesibilidad.
+
+Implementar estos principios y prácticas asegura que tu interfaz sea accesible para una audiencia más amplia, mejorando la experiencia de usuario y cumpliendo con estándares internacionales de accesibilidad.
+
+=== 7.3 Localización y recursos multilingües
+
+La localización es esencial para desarrollar aplicaciones Android que lleguen a usuarios de diferentes idiomas y regiones. Android proporciona mecanismos para gestionar recursos multilingües y adaptar tu aplicación a diversas configuraciones regionales.
+
+== Configuración de recursos de idioma
+
+Para soportar múltiples idiomas, debes crear directorios de recursos específicos dentro de la carpeta `res`. Por ejemplo:
+
+- `res/values/strings.xml` (idioma predeterminado)
+- `res/values-es/strings.xml` (para español)
+- `res/values-fr/strings.xml` (para francés)
+
+En cada archivo `strings.xml`, define las cadenas de texto correspondientes al idioma:
+
+[source, xml]
+----
+<!-- res/values/strings.xml -->
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="greeting">Hello World</string>
+</resources>
+----
+
+[source, xml]
+----
+<!-- res/values-es/strings.xml -->
+<resources>
+    <string name="app_name">Mi Aplicación</string>
+    <string name="greeting">Hola Mundo</string>
+</resources>
+----
+
+== Uso de cadenas localizadas en el código
+
+En tu código Kotlin, utiliza las cadenas de recursos para asegurar que se muestren en el idioma adecuado:
+
+[source, kotlin]
+----
+val greetingText = getString(R.string.greeting)
+textView.text = greetingText
+----
+
+== Localización de otros recursos
+
+Además de cadenas, puedes localización otros recursos como imágenes y layouts:
+
+- **Imágenes**: Coloca versiones específicas en directorios como `drawable-es`.
+- **Layouts**: Utiliza `layout-es` para disposiciones específicas del idioma.
+
+== Configuraciones regionales y de idioma
+
+Android selecciona automáticamente los recursos basándose en la configuración del dispositivo. Para especificar variaciones regionales, utiliza el código de país:
+
+- `values-es-rES` para español de España.
+- `values-es-rMX` para español de México.
+
+== Pruebas y depuración
+
+Para probar la localización:
+
+1. Cambia el idioma del emulador o dispositivo físico en Configuración.
+2. Utiliza la opción "Override locale" en Android Studio.
+3. Verifica que todos los recursos se muestren correctamente.
+
+== Consejos para una localización efectiva
+
+- **Evita cadenas hardcodeadas**: Siempre utiliza recursos de cadena en lugar de texto fijo.
+- **Diseño adaptable**: Asegúrate de que tus layouts puedan acomodar textos de diferentes longitudes.
+- **Placeholders en cadenas**: Utiliza marcadores como `%1$s` para insertar valores dinámicos.
+
+Ejemplo de cadena con placeholder:
+
+[source, xml]
+----
+<string name="welcome_message">Bienvenido, %1$s</string>
+----
+
+Y en el código:
+
+[source, kotlin]
+----
+val userName = "Carlos"
+val welcomeMessage = getString(R.string.welcome_message, userName)
+textView.text = welcomeMessage
+----
+
+== Herramientas de Android Studio
+
+- **Editor de traducción**: Facilita la gestión y edición de cadenas en múltiples idiomas.
+- **Lint warnings**: Identifica problemas potenciales en la localización.
+
+=== 7.4 Gestión de permisos y privacidad en Android
+
+La gestión de permisos y privacidad es un aspecto fundamental en el desarrollo de aplicaciones Android. A partir de Android 6.0 (API nivel 23), Android introduce un modelo de permisos en tiempo de ejecución que mejora el control del usuario sobre los permisos otorgados.
+
+== Declaración de permisos en el archivo Manifest
+
+Antes de solicitar permisos en tiempo de ejecución, debes declarar los permisos necesarios en tu archivo `AndroidManifest.xml`:
+
+[source, xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher">
+        <!-- Otras configuraciones -->
+    </application>
+</manifest>
+----
+
+== Solicitud de permisos en tiempo de ejecución
+
+Para solicitar permisos en tiempo de ejecución, sigue estos pasos:
+
+1. **Verificar si el permiso está otorgado**:
+
+   [source, kotlin]
+   ----
+   if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+       != PackageManager.PERMISSION_GRANTED) {
+       // El permiso no está otorgado
+   }
+   ----
+
+2. **Solicitar el permiso al usuario**:
+
+   [source, kotlin]
+   ----
+   ActivityCompat.requestPermissions(this,
+       arrayOf(Manifest.permission.CAMERA),
+       REQUEST_CODE_PERMISSION)
+   ----
+
+3. **Manejar la respuesta del usuario**:
+
+   [source, kotlin]
+   ----
+   override fun onRequestPermissionsResult(requestCode: Int,
+                                           permissions: Array<String>,
+                                           grantResults: IntArray) {
+       super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+       if (requestCode == REQUEST_CODE_PERMISSION) {
+           if ((grantResults.isNotEmpty() &&
+                   grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+               // El permiso ha sido otorgado
+           } else {
+               // El permiso ha sido denegado
+           }
+       }
+   }
+   ----
+
+== Consideraciones de privacidad
+
+- **Solicita solo los permisos necesarios**: Minimiza la cantidad de permisos que tu aplicación requiere.
+- **Proporciona justificación**: Si el usuario deniega un permiso, ofrece una explicación clara de por qué es necesario.
+
+  [source, kotlin]
+  ----
+  if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+          Manifest.permission.CAMERA)) {
+      // Muestra una explicación al usuario
+  } else {
+      // Solicita el permiso directamente
+  }
+  ----
+
+- **Maneja datos sensibles con cuidado**: Si tu aplicación recopila información personal, asegúrate de cumplir con las leyes y regulaciones de privacidad aplicables.
+
+== Uso de bibliotecas de soporte
+
+Puedes simplificar la gestión de permisos utilizando componentes de Android Jetpack como `Activity Result API`:
+
+[source, kotlin]
+----
+private val requestPermissionLauncher =
+    registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) {
+            // El permiso ha sido otorgado
+        } else {
+            // El permiso ha sido denegado
+        }
+    }
+
+// Para solicitar el permiso
+requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+----
+
+== Mejores prácticas
+
+- **Actualiza tus políticas de privacidad**: Si recopilas datos, proporciona una política de privacidad clara y accesible.
+- **Protege los datos del usuario**: Implementa medidas de seguridad para proteger la información recopilada.
+
+== Recursos adicionales
+
+.Para más información, consulta la documentación oficial sobre permisos y privacidad en Android:
+- [Guía de permisos](https://developer.android.com/guide/topics/permissions/overview?hl=es)
+- [Mejores prácticas de privacidad](https://developer.android.com/training/best-privacy-security?hl=es)
+
+== Módulo 8: Integración de APIs y características avanzadas
+=== 8.1 Ejemplo de integración de API REST en Android
+
+La integración de APIs RESTful es esencial para aplicaciones que requieren comunicación con servicios web. En este ejemplo, utilizaremos la biblioteca Retrofit para realizar llamadas HTTP de manera sencilla y eficiente.
+
+==== Paso 0: Manejar permisos de Internet
+
+Asegúrate de agregar el permiso de Internet en tu archivo `AndroidManifest.xml`:
+
+[source, xml]
+----
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher">
+        <!-- Otras configuraciones -->
+    </application>
+</manifest>
+----
+
+==== Paso 1: Añadir dependencias
+
+Agrega las siguientes dependencias en tu archivo `build.gradle` del módulo `app`:
+
+[source, groovy]
+----
+implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+----
+
+Estas incluyen Retrofit, un convertidor de JSON a objetos Kotlin usando Gson, y un interceptor para el registro de solicitudes y respuestas HTTP.
+
+==== Paso 2: Definir el modelo de datos
+
+Crea una data class que represente la estructura de los datos recibidos del API. Por ejemplo, si estás obteniendo información de usuarios:
+
+[source, kotlin]
+----
+data class User(
+    val id: Int,
+    val name: String,
+    val email: String
+)
+----
+
+==== Paso 3: Crear la interfaz del API
+
+Define una interfaz que declare las funciones correspondientes a las solicitudes HTTP:
+
+[source, kotlin]
+----
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
+
+interface ApiService {
+    @GET("users")
+    fun getUsers(): Call<List<User>>
+
+    @GET("users/{id}")
+    fun getUser(@Path("id") userId: Int): Call<User>
+}
+----
+
+==== Paso 4: Configurar Retrofit
+
+Configura Retrofit para construir el cliente HTTP. Es recomendable crear un objeto singleton:
+
+[source, kotlin]
+----
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+
+object RetrofitClient {
+    private const val BASE_URL = "https://api.ejemplo.com/"
+
+    private val interceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(interceptor)
+        .build()
+
+    val apiService: ApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+}
+----
+
+==== Paso 5: Realizar solicitudes en la Activity o Fragment
+
+Utiliza `RetrofitClient` para hacer llamadas al API desde tu Activity o Fragment:
+
+[source, kotlin]
+----
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Asigna el layout correspondiente
+        setContentView(R.layout.activity_main)
+
+        // Obtener lista de usuarios
+        RetrofitClient.apiService.getUsers().enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful) {
+                    val users = response.body()
+                    users?.forEach { user ->
+                        // Procesa la lista de usuarios
+                    }
+                } else {
+                    Toast.makeText(this@MainActivity, "Error: ${'$'}{response.code()}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Fallo en la llamada: ${'$'}{t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+}
+----
+
+==== Paso 6: Probar la aplicación
+
+Ejecuta la aplicación y verifica que los datos se están obteniendo correctamente del API.
+
+== Notas adicionales
+
+- **Manejo de errores**: Implementa lógica para manejar diferentes códigos de respuesta HTTP y excepciones.
+- **Operaciones en segundo plano**: Considera utilizar corrutinas o LiveData para manejar los datos de forma asíncrona.
+- **Seguridad**: Si el API requiere autenticación, implementa los mecanismos necesarios, como tokens de acceso.
+
+== Recursos
+
+- [Documentación oficial de Retrofit](https://square.github.io/retrofit/)
+- [Uso de Retrofit con Kotlin](https://guides.codepath.com/android/consuming-apis-with-retrofit)
+- [Buenas prácticas de networking en Android](https://developer.android.com/training/basics/network-ops)
+
+=== 8.2 Firebase en Android: Autenticación, Firestore y Storage
+
+Firebase es una plataforma desarrollada por Google que ofrece múltiples servicios para el desarrollo de aplicaciones móviles y web. En este apartado, exploraremos cómo integrar **Firebase Authentication**, **Cloud Firestore** y **Firebase Storage** en una aplicación Android.
+
+==== Paso 1: Configurar el proyecto de Firebase
+
+1. **Crear un proyecto en Firebase Console**:
+   - Ve a [Firebase Console](https://console.firebase.google.com/) y crea un nuevo proyecto.
+
+2. **Agregar la aplicación Android al proyecto**:
+   - Selecciona "Añadir aplicación" y elige Android.
+   - Proporciona el nombre del paquete de tu aplicación (por ejemplo, `com.example.app`).
+   - Sigue las instrucciones para descargar el archivo `google-services.json`.
+
+3. **Agregar `google-services.json` al proyecto**:
+   - Coloca el archivo `google-services.json` en la carpeta `app/` de tu proyecto Android.
+
+==== Paso 2: Configurar el proyecto Android
+
+1. **Agregar los repositorios y plugins en `build.gradle` (nivel de proyecto)**:
+
+   [source, groovy]
+   ----
+   buildscript {
+       repositories {
+           google()
+           mavenCentral()
+       }
+       dependencies {
+           classpath 'com.android.tools.build:gradle:7.0.2'
+           classpath 'com.google.gms:google-services:4.3.10'
+       }
+   }
+
+   allprojects {
+       repositories {
+           google()
+           mavenCentral()
+       }
+   }
+   ----
+
+2. **Aplicar el plugin y agregar las dependencias en `build.gradle` (módulo app)**:
+
+   [source, groovy]
+   ----
+   plugins {
+       id 'com.android.application'
+       id 'kotlin-android'
+       id 'kotlin-android-extensions'
+   }
+
+   android {
+       compileSdkVersion 31
+       defaultConfig {
+           applicationId "com.example.app"
+           minSdkVersion 21
+           targetSdkVersion 31
+           versionCode 1
+           versionName "1.0"
+       }
+       buildTypes {
+           release {
+               minifyEnabled false
+           }
+       }
+   }
+
+   dependencies {
+       implementation 'com.google.firebase:firebase-auth:21.0.1'
+       implementation 'com.google.firebase:firebase-firestore:24.0.0'
+       implementation 'com.google.firebase:firebase-storage:20.0.0'
+       implementation 'com.google.android.material:material:1.4.0'
+       implementation 'androidx.appcompat:appcompat:1.3.1'
+       implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.5.31'
+   }
+
+   // Al final del archivo
+   apply plugin: 'com.google.gms.google-services'
+   ----
+
+==== Paso 3: Inicializar Firebase en la aplicación
+
+En tu clase `Application` o en la `MainActivity`, inicializa Firebase:
+
+[source, kotlin]
+----
+import android.app.Application
+import com.google.firebase.FirebaseApp
+
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        FirebaseApp.initializeApp(this)
+    }
+}
+----
+
+Recuerda declarar tu clase `Application` en el `AndroidManifest.xml`:
+
+[source, xml]
+----
+<application
+    android:name=".MyApplication"
+    android:allowBackup="true"
+    android:label="@string/app_name"
+    android:icon="@mipmap/ic_launcher">
+    <!-- ... -->
+</application>
+----
+
+==== Paso 4: Implementar Firebase Authentication
+
+### Registro de usuarios con correo electrónico y contraseña
+
+[source, kotlin]
+----
+import com.google.firebase.auth.FirebaseAuth
+
+val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+fun registerUser(email: String, password: String) {
+    auth.createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser
+                // Registro exitoso
+            } else {
+                // Fallo en el registro
+                val exception = task.exception
+            }
+        }
+}
+----
+
+### Inicio de sesión con correo electrónico y contraseña
+
+[source, kotlin]
+----
+fun loginUser(email: String, password: String) {
+    auth.signInWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser
+                // Inicio de sesión exitoso
+            } else {
+                // Fallo en el inicio de sesión
+                val exception = task.exception
+            }
+        }
+}
+----
+
+==== Paso 5: Utilizar Cloud Firestore
+
+### Escribir datos en Firestore
+
+[source, kotlin]
+----
+import com.google.firebase.firestore.FirebaseFirestore
+
+val db = FirebaseFirestore.getInstance()
+
+fun addUserData(userId: String, name: String, email: String) {
+    val user = hashMapOf(
+        "name" to name,
+        "email" to email
+    )
+
+    db.collection("users").document(userId)
+        .set(user)
+        .addOnSuccessListener {
+            // Datos agregados exitosamente
+        }
+        .addOnFailureListener { e ->
+            // Error al agregar datos
+        }
+}
+----
+
+### Leer datos desde Firestore
+
+[source, kotlin]
+----
+fun getUserData(userId: String) {
+    db.collection("users").document(userId)
+        .get()
+        .addOnSuccessListener { document ->
+            if (document != null) {
+                val name = document.getString("name")
+                val email = document.getString("email")
+                // Procesar los datos
+            } else {
+                // El documento no existe
+            }
+        }
+        .addOnFailureListener { e ->
+            // Error al obtener datos
+        }
+}
+----
+
+==== Paso 6: Utilizar Firebase Storage
+
+### Subir archivos a Storage
+
+[source, kotlin]
+----
+import com.google.firebase.storage.FirebaseStorage
+import android.net.Uri
+
+val storage = FirebaseStorage.getInstance()
+val storageRef = storage.reference
+
+fun uploadFile(fileUri: Uri, userId: String) {
+    val fileRef = storageRef.child("images/$userId/profile.jpg")
+
+    fileRef.putFile(fileUri)
+        .addOnSuccessListener {
+            // Archivo subido exitosamente
+        }
+        .addOnFailureListener { e ->
+            // Error al subir archivo
+        }
+}
+----
+
+### Descargar archivos desde Storage
+
+[source, kotlin]
+----
+fun downloadFile(userId: String) {
+    val fileRef = storageRef.child("images/$userId/profile.jpg")
+
+    fileRef.downloadUrl
+        .addOnSuccessListener { uri ->
+            // URI del archivo descargado
+        }
+        .addOnFailureListener { e ->
+            // Error al descargar archivo
+        }
+}
+----
+
+==== Paso 7: Manejar permisos de Internet y acceso a archivos
+
+Agrega los permisos necesarios en el `AndroidManifest.xml`:
+
+[source, xml]
+----
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+----
+
+Para Android 10 y versiones superiores, agrega la siguiente propiedad en el elemento `<application>`:
+
+[source, xml]
+----
+<application
+    android:requestLegacyExternalStorage="true"
+    <!-- ... -->
+>
+    <!-- ... -->
+</application>
+----
+
+Recuerda solicitar permisos en tiempo de ejecución si es necesario.
+
+==== Paso 8: Configurar reglas de seguridad en Firebase
+
+En la consola de Firebase, configura las reglas de seguridad para Firestore y Storage según tus necesidades. Por ejemplo, para permitir acceso solo a usuarios autenticados:
+
+[source, firestore]
+----
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth.uid != null && request.auth.uid == userId;
+    }
+  }
+}
+----
+
+[source, storage]
+----
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /images/{userId}/{allPaths=**} {
+      allow read, write: if request.auth.uid != null && request.auth.uid == userId;
+    }
+  }
+}
+----
+
+== Recursos adicionales
+
+- [Documentación oficial de Firebase](https://firebase.google.com/docs/android/setup)
+- [Firebase Authentication](https://firebase.google.com/docs/auth/android/start)
+- [Cloud Firestore](https://firebase.google.com/docs/firestore)
+- [Firebase Storage](https://firebase.google.com/docs/storage)
+
+=== 8.3 Google Maps API y servicios de localización
+
+La integración de Google Maps y los servicios de localización en aplicaciones Android permite ofrecer funcionalidades avanzadas de mapas y geolocalización a los usuarios. A continuación, se detalla cómo incorporar Google Maps API y utilizar los servicios de localización en una aplicación Android.
+
+==== Paso 1: Configurar el proyecto de Google Cloud Platform
+
+1. **Crear un proyecto en Google Cloud Console**:
+   - Ve a [Google Cloud Console](https://console.cloud.google.com/).
+   - Crea un nuevo proyecto o selecciona uno existente.
+
+2. **Habilitar las APIs necesarias**:
+   - Navega a **API y Servicios** > **Biblioteca**.
+   - Habilita las siguientes APIs:
+     - **Maps SDK for Android**
+     - **Places API** (opcional, si necesitas lugares)
+
+3. **Obtener la clave de API**:
+   - Ve a **Credenciales** y crea una nueva clave de API.
+   - **Restricción de la clave**: Por seguridad, restringe el uso de la clave a aplicaciones Android especificando el nombre del paquete y la huella digital SHA-1.
+
+==== Paso 2: Agregar dependencias en el proyecto
+
+En el archivo `build.gradle` del módulo `app`, agrega las siguientes dependencias:
+
+[source, groovy]
+----
+dependencies {
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    // Otras dependencias
+}
+----
+
+==== Paso 3: Configurar el archivo `AndroidManifest.xml`
+
+1. **Añadir permisos requeridos**:
+
+[source, xml]
+----
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+----
+
+2. **Declarar la clave de API** dentro del elemento `<application>`:
+
+[source, xml]
+----
+<meta-data
+    android:name="com.google.android.geo.API_KEY"
+    android:value="TU_CLAVE_DE_API"/>
+----
+
+Reemplaza `TU_CLAVE_DE_API` con la clave obtenida en Google Cloud Console.
+
+==== Paso 4: Crear el layout con MapView
+
+Crea un layout XML que contenga el `SupportMapFragment`:
+
+[source, xml]
+----
+<fragment
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+----
+
+==== Paso 5: Implementar el mapa en la Activity o Fragment
+
+En tu Activity o Fragment, configura el mapa:
+
+[source, kotlin]
+----
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    private lateinit var map: GoogleMap
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_maps)
+
+        // Obtener el SupportMapFragment y notificar cuando el mapa esté listo
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+
+        // Añadir un marcador en una ubicación y mover la cámara
+        val ubicacion = LatLng(-34.0, 151.0)
+        map.addMarker(MarkerOptions().position(ubicacion).title("Marcador en Sídney"))
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 10f))
+    }
+}
+----
+
+==== Paso 6: Utilizar servicios de localización
+
+Para obtener la ubicación actual del dispositivo, utiliza `FusedLocationProviderClient`.
+
+.**Solicitar permisos en tiempo de ejecución**:
+
+[source, kotlin]
+----
+private val LOCATION_PERMISSION_REQUEST_CODE = 1
+
+// Verificar y solicitar permiso
+if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+    != PackageManager.PERMISSION_GRANTED) {
+    ActivityCompat.requestPermissions(
+        this,
+        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+        LOCATION_PERMISSION_REQUEST_CODE
+    )
+} else {
+    // Ya se tiene el permiso
+    obtenerUbicacion()
+}
+----
+
+.**Sobrescribir `onRequestPermissionsResult`**:
+
+[source, kotlin]
+----
+override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+        if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+            // Permiso otorgado
+            obtenerUbicacion()
+        } else {
+            // Permiso denegado
+        }
+    }
+}
+----
+
+.**Obtener la ubicación actual**:
+
+[source, kotlin]
+----
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.OnSuccessListener
+
+private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+fun obtenerUbicacion() {
+    fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+    fusedLocationClient.lastLocation
+        .addOnSuccessListener(this) { location ->
+            if (location != null) {
+                val ubicacionActual = LatLng(location.latitude, location.longitude)
+                map.addMarker(MarkerOptions().position(ubicacionActual).title("Mi Ubicación"))
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(ubicacionActual, 15f))
+            }
+        }
+}
+----
+
+==== Paso 7: Actualizar la ubicación en tiempo real (opcional)
+
+Para recibir actualizaciones continuas de la ubicación:
+
+[source, kotlin]
+----
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
+
+private lateinit var locationRequest: LocationRequest
+private lateinit var locationCallback: LocationCallback
+
+fun iniciarActualizacionesDeUbicacion() {
+    locationRequest = LocationRequest.create().apply {
+        interval = 10000 // 10 segundos
+        fastestInterval = 5000 // 5 segundos
+        priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+    }
+
+    locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            for (location in locationResult.locations) {
+                val nuevaUbicacion = LatLng(location.latitude, location.longitude)
+                // Actualiza el mapa con la nueva ubicación
+            }
+        }
+    }
+
+    fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
+}
+
+override fun onPause() {
+    super.onPause()
+    fusedLocationClient.removeLocationUpdates(locationCallback)
+}
+----
+
+== Notas adicionales
+
+- **Optimización de batería**: Ajusta los intervalos de actualización y la precisión de ubicación para equilibrar la exactitud y el consumo de energía.
+- **Manejo de permisos**: Siempre verifica y solicita los permisos necesarios, y maneja los casos en que el usuario los deniega.
+- **Ergonomía del mapa**: Añade controles y personaliza el mapa según las necesidades de tu aplicación.
+
+== Recursos adicionales
+
+- [Documentación oficial de Maps SDK para Android](https://developers.google.com/maps/documentation/android-sdk/start)
+- [Guía de servicios de localización](https://developer.android.com/training/location)
+- [Ejemplos de código de Google Maps](https://github.com/googlemaps/android-samples)
+
+=== 8.4 In-App Purchases y Google Play Billing Library
+=== 8.5 Aplicaciones multimedia: Cámara, audio y video en Android
+
+== Módulo 9: Arquitectura y patrones de diseño en Android
+=== 9.1 Principios de Clean Architecture
+=== 9.2 Implementación del patrón MVVM en Android
+=== 9.3 Introducción a Dagger Hilt para inyección de dependencias
+=== 9.4 Testing en Android: Unit Testing y UI Testing
+=== 9.5 Buenas prácticas en Android y optimización de aplicaciones
+
+== Módulo 10: Publicación y mantenimiento de aplicaciones
+=== 10.1 Preparación de la aplicación para producción
+=== 10.2 Firma de aplicaciones y generación de APK/AAB
+=== 10.3 Publicación en Google Play Store
+=== 10.4 Análisis de rendimiento y optimización
+=== 10.5 Actualizaciones, gestión de versiones y análisis de usuarios
