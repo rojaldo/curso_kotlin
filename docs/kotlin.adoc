@@ -370,7 +370,7 @@ Los operadores de comparación se usan para comparar valores. Estos operadores d
 
 [source, kotlin]
 ----
-val esIgual = (5 ==== 5)       // Igualdad: true
+val esIgual = (5 === 5)       // Igualdad: true
 val esDiferente = (5 != 3)   // Desigualdad: true
 val esMayor = (5 > 3)        // Mayor que: true
 val esMenor = (3 < 5)        // Menor que: true

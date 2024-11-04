@@ -10,6 +10,16 @@ class App {
         }
 }
 
+
+
+fun sumar(a: Int, b: Int) = a + b
+
+
+
 fun main() {
-    println(App().greeting)
+
+
+    println(sumar(2, 3))
+
+
 }
