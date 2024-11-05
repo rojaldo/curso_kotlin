@@ -12,14 +12,53 @@ class App {
 
 
 
-fun sumar(a: Int, b: Int) = a + b
+fun charCount(s: String, c: Char): Int {
+    return s.count { it == c }
+}
 
+//charCount as lambda
 
+val charCount: (String, Char) -> Int = { s, c -> s.count { it == c } 
+
+}
+
+fun invertString(s: String): String {
+    return s.reversed()
+}
+
+// invertString as lambda
+
+val invertString: (String) -> String = { s -> s.reversed() }
+
+// minutes to hours:minutes
+fun convertMinutesToHMm(minutes: Int): String {
+    val hours = minutes / 60
+    val minutes = minutes % 60
+    // min < 10 -> 0min
+    var minStr = if (minutes < 10) "0$minutes" else minutes.toString()
+    var hStr = if (hours < 10) "0$hours" else hours.toString()
+    return "$hStr:$minStr"
+}
+
+fun nthNumberInArray(n: Int, arr: Array <Int>): Int {
+    if (n > arr.size || n < 0) throw IllegalArgumentException("n must be between 0 and array size")
+    arr.sortDescending()
+    return arr[n-1]
+}
 
 fun main() {
 
+    println(charCount("Hello World!", 'o'))
 
-    println(sumar(2, 3))
+    println(invertString("Hello World!"))
 
+    println(convertMinutesToHMm(123))
+
+    // try
+    try {
+        println(nthNumberInArray(-3, arrayOf(1, 2, 3, 4, 5)))
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
 
 }

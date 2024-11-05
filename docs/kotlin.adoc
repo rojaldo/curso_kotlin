@@ -524,6 +524,13 @@ Puedes ejecutar varias tareas de Gradle desde la línea de comandos para compila
   ./gradlew clean
   ----
 
+- **Ejecutar la aplicación**:
+  
+  [source, sh]
+  ----
+  ./gradlew run
+  ----
+
 ### Configuración adicional
 
 Gradle es altamente configurable y permite personalizar el proceso de compilación según tus necesidades. Puedes añadir tareas personalizadas, configurar plugins adicionales y mucho más.
@@ -700,6 +707,9 @@ Las lambdas son útiles en operaciones de colección, como `filter`, `map`, y `f
 val numeros = listOf(1, 2, 3, 4, 5)
 val pares = numeros.filter { it % 2 == 0 }
 println(pares) // Imprime [2, 4]
+val cuadrados = numeros.map { it * it }
+println(cuadrados) // Imprime [1, 4, 9, 16, 25]
+numeros.forEach { println(it) }
 ----
 
 === 3.4 Parámetros y retorno de funciones
@@ -764,6 +774,34 @@ persona.presentarse() // Imprime "Hola, soy Ana y tengo 25 años"
 ----
 
 Las propiedades `nombre` y `edad` representan el estado de `Persona`, mientras que el método `presentarse` define un comportamiento.
+
+.Una clase con un constructor primario puede tener un cuerpo de clase que contiene propiedades y métodos adicionales.
+[source, kotlin]
+----
+class Persona(val nombre: String, var edad: Int) {
+    val esMayorEdad: Boolean
+        get() = edad >= 18
+
+    fun presentarse() {
+        println("Hola, soy $nombre y tengo $edad años")
+    }
+}
+
+val persona = Persona("Ana", 25)
+println(persona.esMayorEdad) // Imprime true
+----
+
+.Propiedades privadas y públicas
+En Kotlin, las propiedades y métodos son públicos por defecto. Para hacerlos privados, se usa la palabra clave `private`.
+
+[source, kotlin]
+----
+class Persona(private val nombre: String, private var edad: Int) {
+    fun presentarse() {
+        println("Hola, soy $nombre y tengo $edad años")
+    }
+}
+----
 
 === 4.3 Herencia y polimorfismo
 
