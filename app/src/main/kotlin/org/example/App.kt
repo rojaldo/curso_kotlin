@@ -3,6 +3,11 @@
  */
 package org.example
 
+// import persona class
+
+import org.example.Persona
+import org.example.tetris.piezas.LPiece
+
 class App {
     val greeting: String
         get() {
@@ -61,4 +66,34 @@ fun main() {
         println(e.message)
     }
 
+    var myList = listOf(1, 2, 3, 4, 5)
+
+    var myArray = arrayOf(1, 2, 3, 4, 5)
+
+    // push to list
+
+    myList = myList + 6
+
+    // push to array a new element (6)
+
+    myArray = myArray.plus(6)
+
+    println(myList)
+    println(myArray.toList())
+
+    val persona = Persona("Juan", 30)
+    println("Nombre: ${persona.nombre }")
+
+    val circle = Circle(5.0)
+    println("Radio: ${circle.radius} Area: ${circle.area} Perimeter: ${circle.perimeter}")
+    circle.radius = 3.0
+    println("Radio: ${circle.radius} Area: ${circle.area} Perimeter: ${circle.perimeter}")
+
+    
+
+    
+    val lPiece = LPiece()
+    lPiece.print()
+    lPiece.rotate()
+    lPiece.print()
 }
