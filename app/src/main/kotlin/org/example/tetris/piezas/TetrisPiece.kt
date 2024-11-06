@@ -1,6 +1,6 @@
 package org.example.tetris.piezas
 
-abstract class TetrisPiece(var shape: Array<IntArray>, val type: Int) {
+class TetrisPiece(var shape: Array<IntArray>, val type: Int) {
 
     protected var rotation = 0
     // print shape 

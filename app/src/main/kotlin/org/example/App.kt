@@ -6,7 +6,9 @@ package org.example
 // import persona class
 
 import org.example.Persona
-import org.example.tetris.piezas.LPiece
+// import org.example.tetris.piezas.LPiece
+import org.example.tetris.TetrisPieceSingleton
+import org.example.tetris.TetrisPieceBuilder
 
 class App {
     val greeting: String
@@ -14,8 +16,6 @@ class App {
             return "Hello World!"
         }
 }
-
-
 
 fun charCount(s: String, c: Char): Int {
     return s.count { it == c }
@@ -92,8 +92,29 @@ fun main() {
     
 
     
-    val lPiece = LPiece()
-    lPiece.print()
-    lPiece.rotate()
-    lPiece.print()
+    // val lPiece = LPiece()
+    // lPiece.print()
+    // lPiece.rotate()
+    // lPiece.print()
+
+    var singleton = TetrisPieceSingleton.getInstance()
+    singleton.showAttribute() // Imprime: Valor inicial
+
+    // Modificando el atributo del singleton
+    singleton.attribute = "Nuevo valor"
+    singleton.showAttribute() 
+    singleton = TetrisPieceSingleton.getInstance()
+    singleton.showAttribute() // Imprime: Nuevo valor
+
+
+    val tetrisPiece = TetrisPieceBuilder()
+        .setShape(arrayOf(
+            intArrayOf( 0,0, 0, 0, 0),
+            intArrayOf( 0,0, 0, 1, 0),
+            intArrayOf( 0,1, 1, 1, 0),
+            intArrayOf( 0,0, 0, 1, 0),
+            intArrayOf( 0,0, 0, 0, 0),
+        )).setType(1).build()
+
+    tetrisPiece.print();
 }
