@@ -3,7 +3,11 @@
  */
 package org.example
 
-// import persona class
+// import coroutines 
+import kotlinx.coroutines.*
+
+import io.reactivex.rxjava3.core.Observable
+
 
 import org.example.Persona
 // import org.example.tetris.piezas.LPiece
@@ -52,70 +56,76 @@ fun nthNumberInArray(n: Int, arr: Array <Int>): Int {
     return arr[n-1]
 }
 
+ 
 fun main() {
-
-    println(charCount("Hello World!", 'o'))
-
-    println(invertString("Hello World!"))
-
-    println(convertMinutesToHMm(123))
-
-    // try
-    try {
-        println(nthNumberInArray(-3, arrayOf(1, 2, 3, 4, 5)))
-    } catch (e: IllegalArgumentException) {
-        println(e.message)
-    }
-
-    var myList = listOf(1, 2, 3, 4, 5)
-
-    var myArray = arrayOf(1, 2, 3, 4, 5)
-
-    // push to list
-
-    myList = myList + 6
-
-    // push to array a new element (6)
-
-    myArray = myArray.plus(6)
-
-    println(myList)
-    println(myArray.toList())
-
-    val persona = Persona("Juan", 30)
-    println("Nombre: ${persona.nombre }")
-
-    val circle = Circle(5.0)
-    println("Radio: ${circle.radius} Area: ${circle.area} Perimeter: ${circle.perimeter}")
-    circle.radius = 3.0
-    println("Radio: ${circle.radius} Area: ${circle.area} Perimeter: ${circle.perimeter}")
-
-    
-
-    
-    // val lPiece = LPiece()
-    // lPiece.print()
-    // lPiece.rotate()
-    // lPiece.print()
-
-    var singleton = TetrisPieceSingleton.getInstance()
-    singleton.showAttribute() // Imprime: Valor inicial
-
-    // Modificando el atributo del singleton
-    singleton.attribute = "Nuevo valor"
-    singleton.showAttribute() 
-    singleton = TetrisPieceSingleton.getInstance()
-    singleton.showAttribute() // Imprime: Nuevo valor
-
-
-    val tetrisPiece = TetrisPieceBuilder()
-        .setShape(arrayOf(
-            intArrayOf( 0,0, 0, 0, 0),
-            intArrayOf( 0,0, 0, 1, 0),
-            intArrayOf( 0,1, 1, 1, 0),
-            intArrayOf( 0,0, 0, 1, 0),
-            intArrayOf( 0,0, 0, 0, 0),
-        )).setType(1).build()
-
-    tetrisPiece.print();
+    val observable = Observable.just("Hola", "RxKotlin")
+    observable.subscribe { println(it) }
 }
+
+// fun main() {
+
+//     println(charCount("Hello World!", 'o'))
+
+//     println(invertString("Hello World!"))
+
+//     println(convertMinutesToHMm(123))
+
+//     // try
+//     try {
+//         println(nthNumberInArray(-3, arrayOf(1, 2, 3, 4, 5)))
+//     } catch (e: IllegalArgumentException) {
+//         println(e.message)
+//     }
+
+//     var myList = listOf(1, 2, 3, 4, 5)
+
+//     var myArray = arrayOf(1, 2, 3, 4, 5)
+
+//     // push to list
+
+//     myList = myList + 6
+
+//     // push to array a new element (6)
+
+//     myArray = myArray.plus(6)
+
+//     println(myList)
+//     println(myArray.toList())
+
+//     val persona = Persona("Juan", 30)
+//     println("Nombre: ${persona.nombre }")
+
+//     val circle = Circle(5.0)
+//     println("Radio: ${circle.radius} Area: ${circle.area} Perimeter: ${circle.perimeter}")
+//     circle.radius = 3.0
+//     println("Radio: ${circle.radius} Area: ${circle.area} Perimeter: ${circle.perimeter}")
+
+    
+
+    
+//     // val lPiece = LPiece()
+//     // lPiece.print()
+//     // lPiece.rotate()
+//     // lPiece.print()
+
+//     var singleton = TetrisPieceSingleton.getInstance()
+//     singleton.showAttribute() // Imprime: Valor inicial
+
+//     // Modificando el atributo del singleton
+//     singleton.attribute = "Nuevo valor"
+//     singleton.showAttribute() 
+//     singleton = TetrisPieceSingleton.getInstance()
+//     singleton.showAttribute() // Imprime: Nuevo valor
+
+
+//     val tetrisPiece = TetrisPieceBuilder()
+//         .setShape(arrayOf(
+//             intArrayOf( 0,0, 0, 0, 0),
+//             intArrayOf( 0,0, 0, 1, 0),
+//             intArrayOf( 0,1, 1, 1, 0),
+//             intArrayOf( 0,0, 0, 1, 0),
+//             intArrayOf( 0,0, 0, 0, 0),
+//         )).setType(1).build()
+
+//     tetrisPiece.print();
+// }

@@ -21,7 +21,12 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
-
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    // import rxkotlin
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.0")
+    // import rxjava
+    implementation("io.reactivex.rxjava3:rxjava:3.0.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is used by the application.
