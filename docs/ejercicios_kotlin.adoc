@@ -1,0 +1,31 @@
+= Ejercicios de RxKotlin 
+
+== Ejercicio 1: Creación de Observables
+Crea un `Observable` que emita una lista de objetos `Persona` con atributos `nombre` y `edad`. Suscríbete al `Observable` y muestra cada persona en la consola.
+
+== Ejercicio 2: Filtrado de Observables
+Crea un `Observable` que solo emita personas mayores de 18 años. Muestra los resultados en la consola.
+
+== Ejercicio 3: Transformación de Observables
+Transforma un `Observable` de personas en un `Observable` de nombres de personas. Muestra los nombres en la consola.
+
+== Ejercicio 4: Combinación de Observables
+Crea dos `Observables`, uno que emita nombres y otro que emita edades. Combínalos en un `Observable` de objetos `Persona`. Muestra los resultados en la consola.
+
+== Ejercicio 5: Manejo de Errores
+Crea un `Observable` que emita una lista de personas, pero que lance una excepción si encuentra una persona con edad negativa. Maneja el error y muestra los resultados en la consola.
+
+== Ejercicio 6: Uso de Subjects
+Crea un `PublishSubject` que emita objetos `Persona`. Suscríbete al `Subject` y emite varias personas. Muestra los resultados en la consola.
+
+== Ejercicio 7: Transformación de Listas
+Crea un `Observable` que emita listas de personas. Transforma cada lista en un `Observable` que emita cada persona individualmente. Muestra los resultados en la consola.
+
+== Ejercicio 8: Emisión con Retraso
+Crea un `Observable` que emita personas con un retraso aleatorio. Emite solo la última persona después de un periodo de inactividad. Muestra los resultados en la consola.
+
+== Ejercicio 9: Emisión de Nombres Únicos
+Crea un `Observable` que emita personas, algunas de las cuales tienen el mismo nombre. Emite solo personas con nombres únicos. Muestra los resultados en la consola.
+
+== Ejercicio 10: Agrupación de Emisiones
+Crea un `Observable` que emita personas. Agrupa las emisiones en listas de tamaño 3. Muestra cada lista en la consola.

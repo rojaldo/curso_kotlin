@@ -10,7 +10,6 @@ import org.example.Persona
 import org.example.tetris.TetrisPieceSingleton
 import org.example.tetris.TetrisPieceBuilder
 
-
 class App {
     val greeting: String
         get() {

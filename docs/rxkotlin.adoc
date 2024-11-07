@@ -1,0 +1,569 @@
+= Curso de RxKotlin
+:toc:
+:toclevels: 3
+:source-highlighter: highlight.js
+
+== Módulo 1: Introducción a RxKotlin
+=== 1.1 ¿Qué es RxKotlin?
+RxKotlin es una biblioteca que proporciona extensiones para trabajar con RxJava en el lenguaje de programación Kotlin. Facilita la creación y manipulación de flujos de datos asíncronos y basados en eventos.
+
+=== 1.2 Instalación y configuración del entorno
+Para instalar y configurar RxKotlin en tu proyecto, sigue estos pasos:
+[source, groovy]
+----
+dependencies {
+    implementation "io.reactivex.rxjava3:rxjava:3.0.0"
+    implementation "io.reactivex.rxjava3:rxkotlin:3.0.0"
+}
+----
+
+=== 1.3 Conceptos básicos de programación reactiva
+La programación reactiva es un paradigma de programación que se centra en la manipulación de flujos de datos asíncronos y la propagación de cambios. En RxKotlin, los flujos de datos se representan mediante observables, que emiten secuencias de eventos a los observadores suscritos.
+
+== Módulo 2: Fundamentos de RxKotlin
+=== 2.1 Observables y Observers
+En esta sección, aprenderás sobre los conceptos de Observables y Observers en RxKotlin, cómo crear y suscribirse a ellos.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+
+fun main() {
+    val observable = Observable.just("Hola", "RxKotlin")
+    observable.subscribe { println(it) }
+}
+----
+
+=== 2.2 Suscripciones y desuscripciones
+Aprenderás cómo manejar suscripciones y desuscripciones en RxKotlin para gestionar flujos de datos de manera eficiente.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.core.Observable
+
+fun main() {
+    val compositeDisposable = CompositeDisposable()
+    val observable = Observable.just("Hola", "RxKotlin")
+    val disposable = observable.subscribe { println(it) }
+    compositeDisposable.add(disposable)
+    compositeDisposable.clear() // Desuscribir todas las suscripciones
+}
+----
+
+=== 2.3 Creación de Observables: create, fromCallable, interval
+
+==== Usando `create`
+El método `create` permite crear un `Observable` desde cero, emitiendo elementos manualmente.
+
+[source, kotlin]
+----
+val observable = Observable.create<String> { emitter ->
+    emitter.onNext("Hola")
+    emitter.onNext("Mundo")
+    emitter.onComplete()
+}
+observable.subscribe { println(it) }
+----
+
+==== Usando `fromCallable`
+El método `fromCallable` crea un `Observable` que emite el valor devuelto por una función.
+
+[source, kotlin]
+----
+val observable = Observable.fromCallable {
+    "Resultado de la llamada"
+}
+observable.subscribe { println(it) }
+----
+
+==== Usando `interval`
+El método `interval` crea un `Observable` que emite una secuencia de números enteros en intervalos regulares de tiempo.
+
+[source, kotlin]
+----
+val observable = Observable.interval(1, TimeUnit.SECONDS)
+observable.subscribe { println(it) }
+----
+
+=== 2.4 Operadores básicos: map, filter, flatMap
+
+==== Usando `map`
+El operador `map` transforma los elementos emitidos por un `Observable` aplicando una función a cada uno de ellos.
+
+[source, kotlin]
+----
+val observable = Observable.just(1, 2, 3, 4, 5)
+val mappedObservable = observable.map { it * 2 }
+mappedObservable.subscribe { println(it) }
+----
+
+==== Usando `filter`
+El operador `filter` permite emitir solo aquellos elementos que cumplen con una condición específica.
+
+[source, kotlin]
+----
+val observable = Observable.just(1, 2, 3, 4, 5)
+val filteredObservable = observable.filter { it % 2 == 0 }
+filteredObservable.subscribe { println(it) }
+----
+
+==== Usando `flatMap`
+El operador `flatMap` transforma los elementos emitidos por un `Observable` en otros `Observables`, y luego aplana las emisiones en un solo `Observable`.
+
+[source, kotlin]
+----
+val observable = Observable.just(1, 2, 3)
+val flatMappedObservable = observable.flatMap { number ->
+    Observable.just("Número $number", "Cuadrado ${number * number}")
+}
+flatMappedObservable.subscribe { println(it) }
+----
+
+=== 2.5 Operadores de tiempo: debounce, throttleFirst, delay
+
+==== Usando `debounce`
+El operador `debounce` emite un elemento desde un `Observable` solo si ha pasado un período de tiempo específico sin que se haya emitido otro elemento.
+
+[source, kotlin]
+----
+val observable = Observable.create<String> { emitter ->
+    emitter.onNext("A")
+    Thread.sleep(100)
+    emitter.onNext("B")
+    Thread.sleep(300)
+    emitter.onNext("C")
+    Thread.sleep(100)
+    emitter.onNext("D")
+    Thread.sleep(400)
+    emitter.onComplete()
+}
+observable.debounce(200, TimeUnit.MILLISECONDS)
+    .subscribe { println(it) }
+----
+
+==== Usando `throttleFirst`
+El operador `throttleFirst` emite el primer elemento desde un `Observable` en un período de tiempo específico y luego ignora los siguientes elementos hasta que el período de tiempo haya pasado.
+
+[source, kotlin]
+----
+val observable = Observable.create<String> { emitter ->
+    emitter.onNext("A")
+    Thread.sleep(100)
+    emitter.onNext("B")
+    Thread.sleep(300)
+    emitter.onNext("C")
+    Thread.sleep(100)
+    emitter.onNext("D")
+    Thread.sleep(400)
+    emitter.onComplete()
+}
+observable.throttleFirst(200, TimeUnit.MILLISECONDS)
+    .subscribe { println(it) }
+----
+
+==== Usando `delay`
+El operador `delay` retrasa la emisión de todos los elementos de un `Observable` por un período de tiempo específico.
+
+[source, kotlin]
+----
+val observable = Observable.just("A", "B", "C", "D")
+observable.delay(1, TimeUnit.SECONDS)
+    .subscribe { println(it) }
+----
+
+=== 2.6 Manejo de eventos: onNext, onError, onComplete
+
+==== Usando `onNext`
+El evento `onNext` se llama cada vez que el `Observable` emite un nuevo elemento.
+
+[source, kotlin]
+----
+val observable = Observable.just("Elemento 1", "Elemento 2", "Elemento 3")
+observable.subscribe(
+    { item -> println("onNext: $item") },
+    { error -> println("onError: ${error.message}") },
+    { println("onComplete") }
+)
+----
+
+==== Usando `onError`
+El evento `onError` se llama cuando el `Observable` encuentra un error y deja de emitir elementos.
+
+[source, kotlin]
+----
+val observable = Observable.create<String> { emitter ->
+    emitter.onNext("Elemento 1")
+    emitter.onError(Exception("Error encontrado"))
+    emitter.onNext("Elemento 2")
+}
+observable.subscribe(
+    { item -> println("onNext: $item") },
+    { error -> println("onError: ${error.message}") },
+    { println("onComplete") }
+)
+----
+
+==== Usando `onComplete`
+El evento `onComplete` se llama cuando el `Observable` ha emitido todos sus elementos y ha completado su trabajo.
+
+[source, kotlin]
+----
+val observable = Observable.just("Elemento 1", "Elemento 2", "Elemento 3")
+observable.subscribe(
+    { item -> println("onNext: $item") },
+    { error -> println("onError: ${error.message}") },
+    { println("onComplete") }
+)
+----
+
+== Módulo 3: Operadores avanzados en RxKotlin
+=== 3.1 Operadores de combinación: zip, merge, combineLatest
+En esta sección, aprenderás a combinar múltiples flujos de datos utilizando operadores como `zip`, `merge` y `combineLatest`.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+
+fun main() {
+    val observable1 = Observable.just(1, 2, 3)
+    val observable2 = Observable.just(4, 5, 6)
+    Observable.zip(observable1, observable2) { a, b -> a + b }
+        .subscribe { println(it) }
+}
+----
+
+=== 3.2 Operadores de transformación: switchMap, concatMap
+Aprenderás a transformar flujos de datos utilizando operadores como `switchMap` y `concatMap`.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+
+fun main() {
+    val observable = Observable.just(1, 2, 3)
+    observable
+        .switchMap { num -> Observable.just(num * 2) }
+        .subscribe { println(it) }
+}
+----
+
+=== 3.3 Operadores de filtrado: debounce, distinct, take, skip
+Exploraremos cómo filtrar flujos de datos utilizando operadores como `debounce`, `distinct`, `take` y `skip`.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+import java.util.concurrent.TimeUnit
+
+fun main() {
+    val observable = Observable.just(1, 2, 2, 3, 4, 5)
+    observable
+        .debounce(1, TimeUnit.SECONDS)
+        .distinct()
+        .take(3)
+        .skip(1)
+        .subscribe { println(it) }
+}
+----
+
+== Módulo 4: Manejo de errores y recursos
+=== 4.1 Estrategias de manejo de errores
+En esta sección, aprenderás diferentes estrategias para manejar errores en RxKotlin.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+
+fun main() {
+    val observable = Observable.just("1", "2", "a", "4")
+    observable
+        .map { it.toInt() }
+        .onErrorReturn { -1 }
+        .subscribe { println(it) }
+}
+----
+
+=== 4.2 Uso de retry y retryWhen
+Aprenderás a utilizar los operadores `retry` y `retryWhen` para reintentar operaciones fallidas.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+import java.util.concurrent.TimeUnit
+
+fun main() {
+    val observable = Observable.create<String> { emitter ->
+        emitter.onNext("1")
+        emitter.onNext("2")
+        emitter.onError(Exception("Error"))
+    }
+
+    observable
+        .retry(3)
+        .subscribe(
+            { println(it) },
+            { println("Error: ${it.message}") }
+        )
+}
+----
+
+=== 4.3 Uso de operadores de recursos: using, doOnDispose
+Exploraremos cómo utilizar los operadores `using` y `doOnDispose` para gestionar recursos de manera eficiente.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
+
+fun main() {
+    val observable = Observable.using(
+        { Disposable.fromAction { println("Recurso creado") } },
+        { disposable -> Observable.just("Usando recurso") },
+        { disposable -> disposable.dispose() }
+    )
+
+    observable.subscribe { println(it) }
+}
+----
+
+== Módulo 5: Integración de RxKotlin con Android
+=== 5.1 Configuración de RxKotlin en un proyecto Android
+Para utilizar RxKotlin en un proyecto Android, es necesario añadir las dependencias en el archivo `build.gradle`.
+[source, groovy]
+----
+dependencies {
+    implementation "io.reactivex.rxjava3:rxjava:3.0.0"
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
+    implementation "io.reactivex.rxjava3:rxkotlin:3.0.0"
+}
+----
+
+=== 5.2 Uso de RxKotlin en Activities y Fragments
+Utiliza `Observable` para manejar tareas asíncronas en una Activity o Fragment.
+[source, kotlin]
+----
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val observable = Observable.fromCallable {
+            performLongRunningTask()
+        }
+
+        observable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { result ->
+                updateUI(result)
+            }
+    }
+
+    private fun performLongRunningTask(): String {
+        Thread.sleep(2000)
+        return "Task completed"
+    }
+
+    private fun updateUI(result: String) {
+        // Actualizar la interfaz de usuario con el resultado
+    }
+}
+----
+
+=== 5.3 Manejo de estados y eventos con RxKotlin
+Aprende a manejar estados de carga, éxito y error en aplicaciones Android utilizando RxKotlin.
+[source, kotlin]
+----
+sealed class UiState
+object Loading : UiState()
+data class Success(val data: List<String>) : UiState()
+data class Error(val message: String) : UiState()
+
+class MainActivity : AppCompatActivity() {
+    private val viewModel: MyViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        viewModel.uiState.observe(this, Observer { state ->
+            when (state) {
+                is Loading -> showLoading()
+                is Success -> showSuccess(state.data)
+                is Error -> showError(state.message)
+            }
+        })
+    }
+
+    private fun showLoading() {
+        // Mostrar indicador de carga
+    }
+
+    private fun showSuccess(data: List<String>) {
+        // Mostrar datos cargados
+    }
+
+    private fun showError(message: String) {
+        // Mostrar mensaje de error
+    }
+}
+----
+
+== Módulo 6: Casos de uso avanzados
+=== 6.1 Programación reactiva con Retrofit y RxKotlin
+Aprenderás a integrar Retrofit con RxKotlin para realizar llamadas a APIs de manera reactiva.
+[source, kotlin]
+----
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import io.reactivex.rxjava3.core.Single
+
+interface ApiService {
+    @GET("users")
+    fun getUsers(): Single<List<User>>
+}
+
+object RetrofitClientder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+}
+----
+
+=== 6.2 Manejo de bases de datos con Room y RxKotlin
+Exploraremos cómo utilizar Room con RxKotlin para manejar operaciones de bases de datos de manera reactiva.
+[source, kotlin]
+----
+import androidx.room.*
+import io.reactivex.rxjava3.core.Single
+
+@Entity
+data class User(
+    @PrimaryKey val id: Int,
+    val name: String
+)
+
+@Dao
+interface UserDao {
+    @Query("SELECT * FROM user")
+    fun getAllUsers(): Single<List<User>>
+
+    @Insert
+    fun insertUser(user: User): Single<Long>
+}
+
+@Database(entities = [User::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun userDao(): UserDao
+}
+----
+
+=== 6.3 Integración con LiveData y ViewModel
+Aprenderás a integrar RxKotlin con LiveData y ViewModel para manejar estados y eventos en aplicaciones Android.
+[source, kotlin]
+----
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
+
+class MyViewModel : ViewModel() {
+    private val compositeDisposable = CompositeDisposable()
+    private val _uiState = MutableLiveData<UiState>()
+    val uiState: LiveData<UiState> get() = _uiState
+
+    fun fetchData() {
+        _uiState.value = Loading
+        val disposable = RetrofitClient.apiService.getUsers()
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                { users -> _uiState.postValue(Success(users)) },
+                { error -> _uiState.postValue(Error(error.message ?: "Unknown error")) }
+            )
+        compositeDisposable.add(disposable)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
+}
+----
+
+== Módulo 7: Buenas prácticas y patrones de diseño
+=== 7.1 Buenas prácticas en Kotlin y RxKotlin
+En esta sección, aprenderás las mejores prácticas para escribir código limpio y eficiente en Kotlin y RxKotlin.
+[source, kotlin]
+----
+fun main() {
+    // Usa val en lugar de var siempre que sea posible
+    val name = "John Doe"
+    // Evita el uso de null siempre que sea posible
+    val nonNullable: String = "This can't be null"
+    // Usa expresiones lambda para funciones de orden superior
+    val numbers = listOf(1, 2, 3, 4, 5)
+    val doubled = numbers.map { it * 2 }
+    println(doubled)
+    // Usa la función let para evitar null checks
+    val email: String? = "john.doe@example.com"
+    email?.let {
+        println("Email is not null: $it")
+    }
+    // Usa data classes para clases que solo contienen datos
+    data class User(val name: String, val age: Int)
+    val user = User("Alice", 30)
+    println(user)
+}
+----
+
+=== 7.2 Patrones de diseño reactivo
+Exploraremos patrones de diseño comunes en programación reactiva, como el patrón de repositorio y el patrón de ViewModel.
+[source, kotlin]
+----
+class UserRepository(private val apiService: ApiService) {
+    fun getUsers(): Single<List<User>> {
+        return apiService.getUsers()
+    }
+}
+
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
+    private val compositeDisposable = CompositeDisposable()
+    private val _users = MutableLiveData<List<User>>()
+    val users: LiveData<List<User>> get() = _users
+
+    fun fetchUsers() {
+        val disposable = userRepository.getUsers()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { userList -> _users.postValue(userList) },
+                { error -> /* Manejar error */ }
+            )
+        compositeDisposable.add(disposable)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
+}
+----
+
+=== 7.3 Optimización y rendimiento en aplicaciones reactivas
+Aprenderás técnicas para optimizar el rendimiento de tus aplicaciones reactivas, incluyendo el uso eficiente de operadores y la gestión de recursos.
+[source, kotlin]
+----
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+
+fun main() {
+    val observable = Observable.range(1, 1000000)
+    observable
+        .observeOn(Schedulers.computation())
+        .subscribeOn(Schedulers.io())
+        .subscribe { println(it) }
+}
+----
