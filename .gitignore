@@ -3,3 +3,19 @@
 
 # Ignore Gradle build output directory
 build
+
+# Ingore Android Studio project-specific files
+*.iml
+.idea
+
+# Ignore any android build related files
+*.apk
+*.ap_
+*.dex
+*.class
+*.dex
+*.jar
+*.aar
+*.war
+*.ear
+*.so
