@@ -795,16 +795,41 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_notas_adicionales_2">Notas adicionales</a></li>
 <li><a href="#_recursos_adicionales_3">Recursos adicionales</a>
 <ul class="sectlevel2">
-<li><a href="#_8_4_in_app_purchases_y_google_play_billing_library">8.4 In-App Purchases y Google Play Billing Library</a></li>
-<li><a href="#_8_5_aplicaciones_multimedia_cámara_audio_y_video_en_android">8.5 Aplicaciones multimedia: Cámara, audio y video en Android</a></li>
+<li><a href="#_8_4_in_app_purchases_y_google_play_billing_library">8.4 In-App Purchases y Google Play Billing Library</a>
+<ul class="sectlevel3">
+<li><a href="#_configuración_inicial">Configuración inicial</a></li>
+<li><a href="#_implementación_de_la_clase_billingmanager">Implementación de la clase BillingManager</a></li>
+<li><a href="#_realización_de_una_compra">Realización de una compra</a></li>
+<li><a href="#_verificación_de_compras">Verificación de compras</a></li>
+</ul>
+</li>
+<li><a href="#_8_5_aplicaciones_multimedia_cámara_audio_y_video_en_android">8.5 Aplicaciones multimedia: Cámara, audio y video en Android</a>
+<ul class="sectlevel3">
+<li><a href="#_uso_de_la_cámara">Uso de la cámara</a></li>
+<li><a href="#_grabación_y_reproducción_de_audio">Grabación y reproducción de audio</a></li>
+<li><a href="#_reproducción_de_video">Reproducción de video</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_módulo_9_arquitectura_y_patrones_de_diseño_en_android">Módulo 9: Arquitectura y patrones de diseño en Android</a>
 <ul class="sectlevel2">
 <li><a href="#_9_1_principios_de_clean_architecture">9.1 Principios de Clean Architecture</a></li>
 <li><a href="#_9_2_implementación_del_patrón_mvvm_en_android">9.2 Implementación del patrón MVVM en Android</a></li>
-<li><a href="#_9_3_introducción_a_dagger_hilt_para_inyección_de_dependencias">9.3 Introducción a Dagger Hilt para inyección de dependencias</a></li>
-<li><a href="#_9_4_testing_en_android_unit_testing_y_ui_testing">9.4 Testing en Android: Unit Testing y UI Testing</a></li>
+<li><a href="#_9_3_dagger_hilt_para_inyección_de_dependencias">9.3 Dagger Hilt para inyección de dependencias</a>
+<ul class="sectlevel3">
+<li><a href="#_configuración_inicial_2">Configuración inicial</a></li>
+<li><a href="#_creación_de_módulos_de_hilt">Creación de módulos de Hilt</a></li>
+<li><a href="#_inyección_de_dependencias_en_actividades_y_fragmentos">Inyección de dependencias en actividades y fragmentos</a></li>
+<li><a href="#_inyección_de_dependencias_en_viewmodels">Inyección de dependencias en ViewModels</a></li>
+<li><a href="#_anotaciones_disponibles_en_dagger_hilt">Anotaciones disponibles en Dagger Hilt</a></li>
+</ul>
+</li>
+<li><a href="#_9_4_testing_en_android_unit_testing_y_ui_testing">9.4 Testing en Android: Unit Testing y UI Testing</a>
+<ul class="sectlevel3">
+<li><a href="#_anotaciones_en_unit_testing">Anotaciones en Unit Testing</a></li>
+</ul>
+</li>
 <li><a href="#_9_5_buenas_prácticas_en_android_y_optimización_de_aplicaciones">9.5 Buenas prácticas en Android y optimización de aplicaciones</a></li>
 </ul>
 </li>
@@ -860,21 +885,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Android se estructura en varios niveles o capas, cada uno con una función específica. La arquitectura de Android se compone de las siguientes capas principales:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Linux Kernel</strong>: La base del sistema Android, proporciona abstracción de hardware, gestión de memoria, y seguridad.</p>
-</li>
-<li>
-<p><strong>Bibliotecas nativas y Android Runtime (ART)</strong>: Proporcionan las bibliotecas esenciales para aplicaciones Android y el entorno en el que se ejecutan las aplicaciones Java.</p>
-</li>
-<li>
-<p><strong>Framework de aplicaciones</strong>: Ofrece servicios y componentes fundamentales que los desarrolladores utilizan para construir aplicaciones, como la gestión de activities, vistas, notificaciones, y más.</p>
-</li>
-<li>
-<p><strong>Aplicaciones</strong>: Las aplicaciones se ejecutan en la capa superior, incluyendo tanto aplicaciones del sistema como las aplicaciones que los usuarios instalan.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Linux Kernel</strong>: La base del sistema Android, proporciona abstracción de hardware, gestión de memoria, y seguridad.
+<strong>Bibliotecas nativas y Android Runtime (ART)</strong>: Proporcionan las bibliotecas esenciales para aplicaciones Android y el entorno en el que se ejecutan las aplicaciones Java.
+<strong>Framework de aplicaciones</strong>: Ofrece servicios y componentes fundamentales que los desarrolladores utilizan para construir aplicaciones, como la gestión de activities, vistas, notificaciones, y más.
+<strong>Aplicaciones</strong>: Las aplicaciones se ejecutan en la capa superior, incluyendo tanto aplicaciones del sistema como las aplicaciones que los usuarios instalan.</p>
 </div>
 </div>
 <div class="sect3">
@@ -882,40 +897,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>El proceso de desarrollo de una aplicación Android incluye varios pasos, desde la concepción de la idea hasta la publicación en la tienda de aplicaciones:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Planificación y diseño</strong>: Definir el propósito de la aplicación, sus funcionalidades principales, y diseñar la interfaz de usuario.</p>
-</li>
-<li>
-<p><strong>Configuración del entorno de desarrollo</strong>: Instalar Android Studio y configurar el entorno para empezar a desarrollar.</p>
-</li>
-<li>
-<p><strong>Desarrollo</strong>: Escribir el código utilizando Kotlin y construir la interfaz con los componentes UI de Android.</p>
-</li>
-<li>
-<p><strong>Pruebas</strong>: Probar la aplicación en diferentes dispositivos y configuraciones para asegurarse de que funciona correctamente.</p>
-</li>
-<li>
-<p><strong>Lanzamiento y mantenimiento</strong>: Publicar la aplicación en Google Play Store y realizar actualizaciones según sea necesario.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Planificación y diseño</strong>: Definir el propósito de la aplicación, sus funcionalidades principales, y diseñar la interfaz de usuario.
+<strong>Configuración del entorno de desarrollo</strong>: Instalar Android Studio y configurar el entorno para empezar a desarrollar.
+<strong>Desarrollo</strong>: Escribir el código utilizando Kotlin y construir la interfaz con los componentes UI de Android.
+<strong>Pruebas</strong>: Probar la aplicación en diferentes dispositivos y configuraciones para asegurarse de que funciona correctamente.
+<strong>Lanzamiento y mantenimiento</strong>: Publicar la aplicación en Google Play Store y realizar actualizaciones según sea necesario.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_herramientas_esenciales_para_el_desarrollo_de_android">Herramientas esenciales para el desarrollo de Android</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Android Studio</strong>: El entorno de desarrollo integrado (IDE) oficial para Android, que incluye herramientas para la creación de interfaces de usuario, depuración, pruebas, y emulación.</p>
-</li>
-<li>
-<p><strong>SDK de Android</strong>: Incluye las herramientas necesarias para desarrollar aplicaciones Android, así como bibliotecas y APIs.</p>
-</li>
-<li>
-<p><strong>Emuladores y dispositivos físicos</strong>: Para probar y depurar las aplicaciones en un entorno controlado.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Android Studio</strong>: El entorno de desarrollo integrado (IDE) oficial para Android, que incluye herramientas para la creación de interfaces de usuario, depuración, pruebas, y emulación.
+<strong>SDK de Android</strong>: Incluye las herramientas necesarias para desarrollar aplicaciones Android, así como bibliotecas y APIs.
+<strong>Emuladores y dispositivos físicos</strong>: Para probar y depurar las aplicaciones en un entorno controlado.</p>
 </div>
 </div>
 <div class="sect3">
@@ -941,77 +936,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="_1_2_1_instalación_de_android_studio">1.2.1 Instalación de Android Studio</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Descargar Android Studio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Visita la página oficial de Android Studio: <a href="https://developer.android.com/studio" class="bare">https://developer.android.com/studio</a></p>
-</li>
-<li>
-<p>Descarga la versión correspondiente a tu sistema operativo (Windows, macOS, Linux).</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Descargar Android Studio</strong>:
+   - Visita la página oficial de Android Studio: <a href="https://developer.android.com/studio" class="bare">https://developer.android.com/studio</a>
+   - Descarga la versión correspondiente a tu sistema operativo (Windows, macOS, Linux).</p>
 </div>
-</li>
-<li>
-<p><strong>Instalar Android Studio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Sigue las instrucciones del instalador para completar la instalación.</p>
-</li>
-<li>
-<p>Asegúrate de instalar el SDK de Android y el emulador durante el proceso de instalación.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Instalar Android Studio</strong>:
+   - Sigue las instrucciones del instalador para completar la instalación.
+   - Asegúrate de instalar el SDK de Android y el emulador durante el proceso de instalación.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_1_2_2_configuración_del_emulador_y_dispositivos_físicos">1.2.2 Configuración del emulador y dispositivos físicos</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Configurar el emulador de Android</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Abre Android Studio.</p>
-</li>
-<li>
-<p>Ve a <code>Tools</code> &gt; <code>AVD Manager</code>.</p>
-</li>
-<li>
-<p>Crea un nuevo dispositivo virtual (AVD) seleccionando un dispositivo y una imagen del sistema.</p>
-</li>
-<li>
-<p>Configura las opciones del emulador según tus necesidades y haz clic en <code>Finish</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Configurar el emulador de Android</strong>:
+   - Abre Android Studio.
+   - Ve a <code>Tools</code> &gt; <code>AVD Manager</code>.
+   - Crea un nuevo dispositivo virtual (AVD) seleccionando un dispositivo y una imagen del sistema.
+   - Configura las opciones del emulador según tus necesidades y haz clic en <code>Finish</code>.</p>
 </div>
-</li>
-<li>
-<p><strong>Conectar un dispositivo físico</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Habilita la depuración USB en tu dispositivo Android (Ajustes &gt; Opciones de desarrollador &gt; Depuración USB).</p>
-</li>
-<li>
-<p>Conecta tu dispositivo al ordenador mediante un cable USB.</p>
-</li>
-<li>
-<p>Asegúrate de que tu dispositivo sea reconocido por Android Studio.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Conectar un dispositivo físico</strong>:
+   - Habilita la depuración USB en tu dispositivo Android (Ajustes &gt; Opciones de desarrollador &gt; Depuración USB).
+   - Conecta tu dispositivo al ordenador mediante un cable USB.
+   - Asegúrate de que tu dispositivo sea reconocido por Android Studio.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1043,57 +992,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="_1_2_4_primer_proyecto_android">1.2.4 Primer proyecto Android</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear un nuevo proyecto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Abre Android Studio.</p>
-</li>
-<li>
-<p>Selecciona <code>Start a new Android Studio project</code>.</p>
-</li>
-<li>
-<p>Elige una plantilla de activity (por ejemplo, <code>Empty Activity</code>) y haz clic en <code>Next</code>.</p>
-</li>
-<li>
-<p>Configura el nombre del proyecto, el nombre del paquete, la ubicación de guardado y el lenguaje de programación (Kotlin o Java).</p>
-</li>
-<li>
-<p>Haz clic en <code>Finish</code> para crear el proyecto.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Crear un nuevo proyecto</strong>:
+   - Abre Android Studio.
+   - Selecciona <code>Start a new Android Studio project</code>.
+   - Elige una plantilla de activity (por ejemplo, <code>Empty Activity</code>) y haz clic en <code>Next</code>.
+   - Configura el nombre del proyecto, el nombre del paquete, la ubicación de guardado y el lenguaje de programación (Kotlin o Java).
+   - Haz clic en <code>Finish</code> para crear el proyecto.</p>
 </div>
-</li>
-<li>
-<p><strong>Explorar el proyecto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Familiarízate con la estructura del proyecto y los archivos generados.</p>
-</li>
-<li>
-<p>Abre el archivo <code>MainActivity</code> y el archivo de diseño <code>activity_main.xml</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Explorar el proyecto</strong>:
+   - Familiarízate con la estructura del proyecto y los archivos generados.
+   - Abre el archivo <code>MainActivity</code> y el archivo de diseño <code>activity_main.xml</code>.</p>
 </div>
-</li>
-<li>
-<p><strong>Ejecutar el proyecto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Selecciona un dispositivo de destino (emulador o dispositivo físico).</p>
-</li>
-<li>
-<p>Haz clic en el botón <code>Run</code> (icono de play) para compilar y ejecutar la aplicación.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Ejecutar el proyecto</strong>:
+   - Selecciona un dispositivo de destino (emulador o dispositivo físico).
+   - Haz clic en el botón <code>Run</code> (icono de play) para compilar y ejecutar la aplicación.</p>
 </div>
 <div class="paragraph">
 <p>Con estos pasos, habrás configurado tu entorno de desarrollo y creado tu primer proyecto Android. En las siguientes secciones, profundizaremos en los conceptos y técnicas necesarios para desarrollar aplicaciones Android efectivas y robustas.</p>
@@ -1110,74 +1025,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Una aplicación Android está compuesta por varios componentes esenciales que interactúan entre sí para proporcionar una experiencia de usuario completa. Los componentes principales son:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Activities</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Representan una sola pantalla con una interfaz de usuario.</p>
-</li>
-<li>
-<p>Cada Activity es una clase que extiende <code>Activity</code> y se define en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Activities</strong>:
+   - Representan una sola pantalla con una interfaz de usuario.
+   - Cada Activity es una clase que extiende <code>Activity</code> y se define en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
-</li>
-<li>
-<p><strong>Fragments</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Son componentes modulares que representan una porción de la interfaz de usuario en una Activity.</p>
-</li>
-<li>
-<p>Permiten una mayor flexibilidad en el diseño de la interfaz de usuario.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Fragments</strong>:
+   - Son componentes modulares que representan una porción de la interfaz de usuario en una Activity.
+   - Permiten una mayor flexibilidad en el diseño de la interfaz de usuario.</p>
 </div>
-</li>
-<li>
-<p><strong>Services</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Realizan operaciones en segundo plano sin una interfaz de usuario.</p>
-</li>
-<li>
-<p>Pueden ejecutarse indefinidamente o por un tiempo limitado.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Services</strong>:
+   - Realizan operaciones en segundo plano sin una interfaz de usuario.
+   - Pueden ejecutarse indefinidamente o por un tiempo limitado.</p>
 </div>
-</li>
-<li>
-<p><strong>Broadcast Receivers</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Permiten que una aplicación responda a mensajes o eventos del sistema o de otras aplicaciones.</p>
-</li>
-<li>
-<p>Se registran en el archivo <code>AndroidManifest.xml</code> o en tiempo de ejecución.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Broadcast Receivers</strong>:
+   - Permiten que una aplicación responda a mensajes o eventos del sistema o de otras aplicaciones.
+   - Se registran en el archivo <code>AndroidManifest.xml</code> o en tiempo de ejecución.</p>
 </div>
-</li>
-<li>
-<p><strong>Content Providers</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Gestionan el acceso a un conjunto estructurado de datos.</p>
-</li>
-<li>
-<p>Permiten compartir datos entre aplicaciones.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Content Providers</strong>:
+   - Gestionan el acceso a un conjunto estructurado de datos.
+   - Permiten compartir datos entre aplicaciones.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3616,19 +3487,9 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_3_5_2_parseo_de_json_con_gson">3.5.2 Parseo de JSON con Gson</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definición del modelo de datos</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Define una clase de datos que represente la estructura del JSON.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definición del modelo de datos</strong>:
+   - Define una clase de datos que represente la estructura del JSON.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3699,19 +3560,9 @@ println(json)</code></pre>
 </div>
 <div class="sect3">
 <h4 id="_3_5_4_parseo_de_json_con_moshi">3.5.4 Parseo de JSON con Moshi</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definición del modelo de datos</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Define una clase de datos que represente la estructura del JSON y anota con <code>@JsonClass</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definición del modelo de datos</strong>:
+   - Define una clase de datos que represente la estructura del JSON y anota con <code>@JsonClass</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3725,19 +3576,9 @@ data class User(
 )</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Parseo de JSON a objeto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza la clase <code>Moshi</code> y el adaptador generado para convertir una cadena JSON a un objeto de Kotlin/Java.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Parseo de JSON a objeto</strong>:
+   - Utiliza la clase <code>Moshi</code> y el adaptador generado para convertir una cadena JSON a un objeto de Kotlin/Java.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3750,19 +3591,9 @@ val user = jsonAdapter.fromJson(json)
 println(user)</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Conversión de objeto a JSON</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza la clase <code>Moshi</code> y el adaptador generado para convertir un objeto de Kotlin/Java a una cadena JSON.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Conversión de objeto a JSON</strong>:
+   - Utiliza la clase <code>Moshi</code> y el adaptador generado para convertir un objeto de Kotlin/Java a una cadena JSON.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3950,19 +3781,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>ViewBinding es una característica que genera automáticamente clases de enlace para cada archivo de diseño XML en tu proyecto. Estas clases contienen referencias directas a todas las vistas con un ID en el archivo de diseño.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Habilitar ViewBinding</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade la siguiente configuración en el archivo <code>build.gradle</code> del módulo.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Habilitar ViewBinding</strong>:
+   - Añade la siguiente configuración en el archivo <code>build.gradle</code> del módulo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3974,19 +3795,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Utilizar ViewBinding en una Activity</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>En la Activity, utiliza la clase de enlace generada para acceder a las vistas.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Utilizar ViewBinding en una Activity</strong>:
+   - En la Activity, utiliza la clase de enlace generada para acceder a las vistas.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4017,19 +3828,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>DataBinding permite enlazar datos directamente a las vistas en el diseño XML, lo que facilita la actualización de la interfaz de usuario cuando cambian los datos.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Habilitar DataBinding</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade la siguiente configuración en el archivo <code>build.gradle</code> del módulo.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Habilitar DataBinding</strong>:
+   - Añade la siguiente configuración en el archivo <code>build.gradle</code> del módulo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4041,19 +3842,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Utilizar DataBinding en un archivo de diseño XML</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Envuelve el contenido del archivo de diseño XML en una etiqueta <code>&lt;layout&gt;</code> y define las variables de datos.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Utilizar DataBinding en un archivo de diseño XML</strong>:
+   - Envuelve el contenido del archivo de diseño XML en una etiqueta <code>&lt;layout&gt;</code> y define las variables de datos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4082,19 +3873,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/layout&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Utilizar DataBinding en una Activity</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>En la Activity, utiliza la clase de enlace generada para enlazar los datos a las vistas.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Utilizar DataBinding en una Activity</strong>:
+   - En la Activity, utiliza la clase de enlace generada para enlazar los datos a las vistas.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4117,19 +3898,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir la clase de datos</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Define una clase de datos que contenga las propiedades y métodos utilizados en el diseño XML.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir la clase de datos</strong>:
+   - Define una clase de datos que contenga las propiedades y métodos utilizados en el diseño XML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4167,19 +3938,9 @@ class User(private var _name: String) : BaseObservable() {
 <div class="paragraph">
 <p>ObjectAnimator es una clase que permite animar propiedades de objetos. Es una forma sencilla de crear animaciones básicas.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Animar la propiedad alpha de una vista</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza ObjectAnimator para animar la transparencia de una vista.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Animar la propiedad alpha de una vista</strong>:
+   - Utiliza ObjectAnimator para animar la transparencia de una vista.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4202,19 +3963,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Animar la propiedad translationX de una vista</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza ObjectAnimator para mover una vista horizontalmente.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Animar la propiedad translationX de una vista</strong>:
+   - Utiliza ObjectAnimator para mover una vista horizontalmente.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4262,19 +4013,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Las transiciones entre Activities permiten crear efectos visuales cuando se navega de una Activity a otra.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir una transición en el archivo de diseño XML</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Crea un archivo de transición en el directorio <code>res/transition</code> (por ejemplo, <code>fade.xml</code>).</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir una transición en el archivo de diseño XML</strong>:
+   - Crea un archivo de transición en el directorio <code>res/transition</code> (por ejemplo, <code>fade.xml</code>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4283,19 +4024,9 @@ class MainActivity : AppCompatActivity() {
     android:duration="1000" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Aplicar la transición en la Activity</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el método <code>getWindow().setEnterTransition</code> y <code>getWindow().setExitTransition</code> para aplicar la transición.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Aplicar la transición en la Activity</strong>:
+   - Utiliza el método <code>getWindow().setEnterTransition</code> y <code>getWindow().setExitTransition</code> para aplicar la transición.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4314,19 +4045,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Iniciar la nueva Activity con la transición</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el método <code>startActivity</code> con una opción de transición.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Iniciar la nueva Activity con la transición</strong>:
+   - Utiliza el método <code>startActivity</code> con una opción de transición.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4354,19 +4075,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Las transiciones entre Fragments permiten crear efectos visuales cuando se navega de un Fragment a otro.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir una transición en el archivo de diseño XML</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Crea un archivo de transición en el directorio <code>res/transition</code> (por ejemplo, <code>slide.xml</code>).</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir una transición en el archivo de diseño XML</strong>:
+   - Crea un archivo de transición en el directorio <code>res/transition</code> (por ejemplo, <code>slide.xml</code>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4376,19 +4087,9 @@ class MainActivity : AppCompatActivity() {
     android:slideEdge="start" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Aplicar la transición en el Fragment</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el método <code>setEnterTransition</code> y <code>setExitTransition</code> para aplicar la transición.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Aplicar la transición en el Fragment</strong>:
+   - Utiliza el método <code>setEnterTransition</code> y <code>setExitTransition</code> para aplicar la transición.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4406,19 +4107,9 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Navegar al nuevo Fragment con la transición</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el método <code>replace</code> del <code>FragmentManager</code> para navegar al nuevo Fragment.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Navegar al nuevo Fragment con la transición</strong>:
+   - Utiliza el método <code>replace</code> del <code>FragmentManager</code> para navegar al nuevo Fragment.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4453,39 +4144,17 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Material Design se basa en varios principios clave que guían el diseño de interfaces de usuario:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Material Metaphor</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>El diseño debe imitar el comportamiento de los objetos físicos, utilizando superficies y bordes para proporcionar pistas visuales.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Material Metaphor</strong>:
+   - El diseño debe imitar el comportamiento de los objetos físicos, utilizando superficies y bordes para proporcionar pistas visuales.</p>
 </div>
-</li>
-<li>
-<p><strong>Bold, Graphic, Intentional</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza colores audaces, tipografía clara y un diseño intencional para crear jerarquía y significado.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Bold, Graphic, Intentional</strong>:
+   - Utiliza colores audaces, tipografía clara y un diseño intencional para crear jerarquía y significado.</p>
 </div>
-</li>
-<li>
-<p><strong>Motion Provides Meaning</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Las animaciones y transiciones deben ser significativas y ayudar a guiar al usuario a través de la interfaz.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Motion Provides Meaning</strong>:
+   - Las animaciones y transiciones deben ser significativas y ayudar a guiar al usuario a través de la interfaz.</p>
 </div>
 </div>
 <div class="sect3">
@@ -4503,19 +4172,9 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_4_4_3_componentes_de_material_design">4.4.3 Componentes de Material Design</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>AppBarLayout y Toolbar</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>AppBarLayout es un contenedor para la barra de herramientas y otros componentes de la barra de aplicaciones.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>AppBarLayout y Toolbar</strong>:
+   - AppBarLayout es un contenedor para la barra de herramientas y otros componentes de la barra de aplicaciones.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4532,19 +4191,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/com.google.android.material.appbar.AppBarLayout&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>FloatingActionButton</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>FloatingActionButton es un botón circular que flota sobre el contenido y se utiliza para acciones principales.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>FloatingActionButton</strong>:
+   - FloatingActionButton es un botón circular que flota sobre el contenido y se utiliza para acciones principales.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4559,19 +4208,9 @@ class MainActivity : AppCompatActivity() {
     app:backgroundTint="@color/colorAccent" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>BottomNavigationView</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>BottomNavigationView proporciona una barra de navegación en la parte inferior de la pantalla para cambiar entre vistas principales.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>BottomNavigationView</strong>:
+   - BottomNavigationView proporciona una barra de navegación en la parte inferior de la pantalla para cambiar entre vistas principales.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4583,19 +4222,9 @@ class MainActivity : AppCompatActivity() {
     app:menu="@menu/bottom_nav_menu" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>TextInputLayout y TextInputEditText</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>TextInputLayout es un contenedor para TextInputEditText que proporciona un diseño mejorado para campos de entrada de texto.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>TextInputLayout y TextInputEditText</strong>:
+   - TextInputLayout es un contenedor para TextInputEditText que proporciona un diseño mejorado para campos de entrada de texto.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4610,19 +4239,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/com.google.android.material.textfield.TextInputLayout&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>CardView</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>CardView es un contenedor con esquinas redondeadas y sombra que se utiliza para mostrar contenido relacionado.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>CardView</strong>:
+   - CardView es un contenedor con esquinas redondeadas y sombra que se utiliza para mostrar contenido relacionado.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4669,19 +4288,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Un estilo es una colección de propiedades de apariencia que se pueden aplicar a un componente de la interfaz de usuario. Los estilos se definen en el archivo <code>res/values/styles.xml</code>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir un estilo personalizado</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Crea un estilo personalizado en el archivo <code>styles.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir un estilo personalizado</strong>:
+   - Crea un estilo personalizado en el archivo <code>styles.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4694,19 +4303,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/resources&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Aplicar un estilo a un componente</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el atributo <code>style</code> para aplicar el estilo a un componente en el archivo de diseño XML.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Aplicar un estilo a un componente</strong>:
+   - Utiliza el atributo <code>style</code> para aplicar el estilo a un componente en el archivo de diseño XML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4723,19 +4322,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Un tema es una colección de estilos que se aplican a toda la aplicación o a una Activity específica. Los temas se definen en el archivo <code>res/values/styles.xml</code>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir un tema personalizado</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Crea un tema personalizado en el archivo <code>styles.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir un tema personalizado</strong>:
+   - Crea un tema personalizado en el archivo <code>styles.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4750,19 +4339,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/resources&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Aplicar un tema a la aplicación</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Configura el tema en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Aplicar un tema a la aplicación</strong>:
+   - Configura el tema en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4772,19 +4351,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/application&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Aplicar un tema a una Activity específica</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Configura el tema en el archivo <code>AndroidManifest.xml</code> para una Activity específica.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Aplicar un tema a una Activity específica</strong>:
+   - Configura el tema en el archivo <code>AndroidManifest.xml</code> para una Activity específica.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4798,19 +4367,9 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_4_5_3_personalización_de_componentes_con_estilos_y_temas">4.5.3 Personalización de componentes con estilos y temas</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Personalizar la Toolbar</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Define un estilo para la Toolbar y aplícalo en el archivo de diseño XML.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Personalizar la Toolbar</strong>:
+   - Define un estilo para la Toolbar y aplícalo en el archivo de diseño XML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4831,19 +4390,9 @@ class MainActivity : AppCompatActivity() {
     android:title="My App" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Personalizar botones</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Define un estilo para los botones y aplícalo en el archivo de diseño XML.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Personalizar botones</strong>:
+   - Define un estilo para los botones y aplícalo en el archivo de diseño XML.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5360,19 +4909,9 @@ class MyViewModel : ViewModel() {
 </div>
 <div class="sect3">
 <h4 id="_5_4_2_conceptos_básicos_de_rxjava">5.4.2 Conceptos básicos de RxJava</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Observable y Observer</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Un <code>Observable</code> emite una secuencia de eventos o datos, mientras que un <code>Observer</code> se suscribe al <code>Observable</code> para recibir esos eventos o datos.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Observable y Observer</strong>:
+   - Un <code>Observable</code> emite una secuencia de eventos o datos, mientras que un <code>Observer</code> se suscribe al <code>Observable</code> para recibir esos eventos o datos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5399,19 +4938,9 @@ fun main() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Operadores</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Los operadores transforman, filtran y combinan flujos de datos. Algunos operadores comunes son <code>map</code>, <code>filter</code> y <code>flatMap</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Operadores</strong>:
+   - Los operadores transforman, filtran y combinan flujos de datos. Algunos operadores comunes son <code>map</code>, <code>filter</code> y <code>flatMap</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5425,19 +4954,9 @@ observable
 </div>
 <div class="sect3">
 <h4 id="_5_4_3_uso_de_rxjava_en_android">5.4.3 Uso de RxJava en Android</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Configurar un Observable en una Activity</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza <code>Observable</code> para manejar tareas asíncronas en una Activity.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Configurar un Observable en una Activity</strong>:
+   - Utiliza <code>Observable</code> para manejar tareas asíncronas en una Activity.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5562,65 +5081,29 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_6_1_1_tipos_de_servicios">6.1.1 Tipos de servicios</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Started Service</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Un <code>Started Service</code> se inicia cuando un componente de la aplicación (como una Activity) llama al método <code>startService()</code>. Una vez iniciado, el servicio puede ejecutarse indefinidamente, incluso si el componente que lo inició se destruye. Debe detenerse explícitamente llamando a <code>stopSelf()</code> o <code>stopService()</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Started Service</strong>:
+   - Un <code>Started Service</code> se inicia cuando un componente de la aplicación (como una Activity) llama al método <code>startService()</code>. Una vez iniciado, el servicio puede ejecutarse indefinidamente, incluso si el componente que lo inició se destruye. Debe detenerse explícitamente llamando a <code>stopSelf()</code> o <code>stopService()</code>.</p>
 </div>
-</li>
-<li>
-<p><strong>Bound Service</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Un <code>Bound Service</code> se inicia cuando un componente de la aplicación llama al método <code>bindService()</code>. Proporciona una interfaz cliente-servidor que permite a los componentes interactuar con el servicio, enviar solicitudes, recibir resultados y hacerlo todo de manera interprocesal (IPC). Se detiene automáticamente cuando todos los clientes se desvinculan.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Bound Service</strong>:
+   - Un <code>Bound Service</code> se inicia cuando un componente de la aplicación llama al método <code>bindService()</code>. Proporciona una interfaz cliente-servidor que permite a los componentes interactuar con el servicio, enviar solicitudes, recibir resultados y hacerlo todo de manera interprocesal (IPC). Se detiene automáticamente cuando todos los clientes se desvinculan.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_6_1_2_creación_de_un_started_service">6.1.2 Creación de un Started Service</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:
+   - Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;service android:name=".MyStartedService" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear la clase del servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onStartCommand()</code> y <code>onBind()</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Crear la clase del servicio</strong>:
+   - Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onStartCommand()</code> y <code>onBind()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5650,19 +5133,9 @@ class MyStartedService : Service() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Iniciar y detener el servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza los métodos <code>startService()</code> y <code>stopService()</code> para iniciar y detener el servicio desde una Activity.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Iniciar y detener el servicio</strong>:
+   - Utiliza los métodos <code>startService()</code> y <code>stopService()</code> para iniciar y detener el servicio desde una Activity.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5690,38 +5163,18 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_6_1_3_creación_de_un_bound_service">6.1.3 Creación de un Bound Service</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:
+   - Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;service android:name=".MyBoundService" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear la clase del servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onBind()</code> y <code>onUnbind()</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Crear la clase del servicio</strong>:
+   - Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onBind()</code> y <code>onUnbind()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5752,19 +5205,9 @@ class MyBoundService : Service() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Vincular y desvincular el servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza los métodos <code>bindService()</code> y <code>unbindService()</code> para vincular y desvincular el servicio desde una Activity.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Vincular y desvincular el servicio</strong>:
+   - Utiliza los métodos <code>bindService()</code> y <code>unbindService()</code> para vincular y desvincular el servicio desde una Activity.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5824,38 +5267,18 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Un servicio en segundo plano se ejecuta sin una interfaz de usuario y puede realizar tareas que no requieren la interacción del usuario.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:
+   - Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;service android:name=".MyBackgroundService" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear la clase del servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onStartCommand()</code> y <code>onBind()</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Crear la clase del servicio</strong>:
+   - Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onStartCommand()</code> y <code>onBind()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5885,19 +5308,9 @@ class MyBackgroundService : Service() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Iniciar y detener el servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza los métodos <code>startService()</code> y <code>stopService()</code> para iniciar y detener el servicio desde una Activity.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Iniciar y detener el servicio</strong>:
+   - Utiliza los métodos <code>startService()</code> y <code>stopService()</code> para iniciar y detener el servicio desde una Activity.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5928,38 +5341,18 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Un servicio en primer plano (Foreground Service) es un servicio que se ejecuta en primer plano y muestra una notificación persistente para informar al usuario de que el servicio está activo. Los servicios en primer plano son ideales para tareas que el usuario debe conocer, como la reproducción de música o la navegación GPS.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir el servicio en el archivo AndroidManifest.xml</strong>:
+   - Añade una entrada para el servicio en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;service android:name=".MyForegroundService" /&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear la clase del servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onStartCommand()</code> y <code>onBind()</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Crear la clase del servicio</strong>:
+   - Extiende la clase <code>Service</code> y sobrescribe los métodos <code>onStartCommand()</code> y <code>onBind()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6020,19 +5413,9 @@ class MyForegroundService : Service() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Iniciar y detener el servicio</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza los métodos <code>startService()</code> y <code>stopService()</code> para iniciar y detener el servicio desde una Activity.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Iniciar y detener el servicio</strong>:
+   - Utiliza los métodos <code>startService()</code> y <code>stopService()</code> para iniciar y detener el servicio desde una Activity.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6066,46 +5449,20 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_6_3_1_tipos_de_broadcast_receivers">6.3.1 Tipos de Broadcast Receivers</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Static Broadcast Receivers</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Se declaran en el archivo <code>AndroidManifest.xml</code> y se registran automáticamente cuando la aplicación se instala. Son útiles para recibir eventos del sistema incluso cuando la aplicación no está en ejecución.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Static Broadcast Receivers</strong>:
+   - Se declaran en el archivo <code>AndroidManifest.xml</code> y se registran automáticamente cuando la aplicación se instala. Son útiles para recibir eventos del sistema incluso cuando la aplicación no está en ejecución.</p>
 </div>
-</li>
-<li>
-<p><strong>Dynamic Broadcast Receivers</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Se registran en tiempo de ejecución utilizando el método <code>registerReceiver()</code>. Son útiles para recibir eventos solo cuando la aplicación está en primer plano.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Dynamic Broadcast Receivers</strong>:
+   - Se registran en tiempo de ejecución utilizando el método <code>registerReceiver()</code>. Son útiles para recibir eventos solo cuando la aplicación está en primer plano.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_6_3_2_creación_de_un_static_broadcast_receiver">6.3.2 Creación de un Static Broadcast Receiver</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Definir el Broadcast Receiver en el archivo AndroidManifest.xml</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade una entrada para el Broadcast Receiver en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Definir el Broadcast Receiver en el archivo AndroidManifest.xml</strong>:
+   - Añade una entrada para el Broadcast Receiver en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6116,19 +5473,9 @@ class MainActivity : AppCompatActivity() {
 &lt;/receiver&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear la clase del Broadcast Receiver</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Extiende la clase <code>BroadcastReceiver</code> y sobrescribe el método <code>onReceive()</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Crear la clase del Broadcast Receiver</strong>:
+   - Extiende la clase <code>BroadcastReceiver</code> y sobrescribe el método <code>onReceive()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6150,19 +5497,9 @@ class MyBroadcastReceiver : BroadcastReceiver() {
 </div>
 <div class="sect3">
 <h4 id="_6_3_3_creación_de_un_dynamic_broadcast_receiver">6.3.3 Creación de un Dynamic Broadcast Receiver</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Registrar el Broadcast Receiver en tiempo de ejecución</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el método <code>registerReceiver()</code> para registrar el Broadcast Receiver en una Activity o Service.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Registrar el Broadcast Receiver en tiempo de ejecución</strong>:
+   - Utiliza el método <code>registerReceiver()</code> para registrar el Broadcast Receiver en una Activity o Service.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6260,19 +5597,9 @@ class MyBroadcastReceiver : BroadcastReceiver() {
 </div>
 <div class="sect3">
 <h4 id="_6_4_2_obtener_la_ubicación_del_usuario">6.4.2 Obtener la ubicación del usuario</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Configurar el cliente de ubicación</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza <code>FusedLocationProviderClient</code> para obtener la ubicación del usuario.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Configurar el cliente de ubicación</strong>:
+   - Utiliza <code>FusedLocationProviderClient</code> para obtener la ubicación del usuario.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6317,19 +5644,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Manejar la solicitud de permisos</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Sobrescribe el método <code>onRequestPermissionsResult</code> para manejar la respuesta de la solicitud de permisos.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Manejar la solicitud de permisos</strong>:
+   - Sobrescribe el método <code>onRequestPermissionsResult</code> para manejar la respuesta de la solicitud de permisos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6347,19 +5664,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Para recibir actualizaciones de ubicación en tiempo real, utiliza <code>LocationRequest</code> y <code>LocationCallback</code>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Configurar las actualizaciones de ubicación</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Crea una instancia de <code>LocationRequest</code> y <code>LocationCallback</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Configurar las actualizaciones de ubicación</strong>:
+   - Crea una instancia de <code>LocationRequest</code> y <code>LocationCallback</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6440,19 +5747,9 @@ class MainActivity : AppCompatActivity() {
 <div class="paragraph">
 <p>Firebase Cloud Messaging (FCM) es una plataforma que permite enviar notificaciones push a dispositivos Android.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Configurar Firebase en el proyecto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade el archivo <code>google-services.json</code> a tu proyecto y configura Firebase en el archivo <code>build.gradle</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Configurar Firebase en el proyecto</strong>:
+   - Añade el archivo <code>google-services.json</code> a tu proyecto y configura Firebase en el archivo <code>build.gradle</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6463,19 +5760,9 @@ class MainActivity : AppCompatActivity() {
 apply plugin: 'com.google.gms.google-services'</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear un servicio de mensajería</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Extiende la clase <code>FirebaseMessagingService</code> y sobrescribe el método <code>onMessageReceived()</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Crear un servicio de mensajería</strong>:
+   - Extiende la clase <code>FirebaseMessagingService</code> y sobrescribe el método <code>onMessageReceived()</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6505,19 +5792,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Registrar el servicio en el archivo AndroidManifest.xml</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Añade una entrada para el servicio de mensajería en el archivo <code>AndroidManifest.xml</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Registrar el servicio en el archivo AndroidManifest.xml</strong>:
+   - Añade una entrada para el servicio de mensajería en el archivo <code>AndroidManifest.xml</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6536,19 +5813,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 <div class="paragraph">
 <p>LocalBroadcastManager es una clase que facilita la comunicación dentro de la aplicación mediante el envío y la recepción de transmisiones locales.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Enviar una transmisión local</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza <code>LocalBroadcastManager</code> para enviar una transmisión local.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Enviar una transmisión local</strong>:
+   - Utiliza <code>LocalBroadcastManager</code> para enviar una transmisión local.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6568,19 +5835,9 @@ class MainActivity : AppCompatActivity() {
 }</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Recibir una transmisión local</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Registra un <code>BroadcastReceiver</code> para recibir transmisiones locales.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Recibir una transmisión local</strong>:
+   - Registra un <code>BroadcastReceiver</code> para recibir transmisiones locales.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6767,29 +6024,13 @@ res/layout-land/main_activity.xml         # Diseño para modo horizontal</code><
 </div>
 <div class="sect3">
 <h4 id="_7_1_4_pruebas_en_diferentes_tamaños_y_resoluciones_de_pantalla">7.1.4 Pruebas en diferentes tamaños y resoluciones de pantalla</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Emuladores de Android</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utiliza el Administrador de Dispositivos Virtuales (AVD) en Android Studio para crear emuladores con diferentes tamaños y resoluciones de pantalla. Esto permite probar la aplicación en una variedad de dispositivos virtuales.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Emuladores de Android</strong>:
+   - Utiliza el Administrador de Dispositivos Virtuales (AVD) en Android Studio para crear emuladores con diferentes tamaños y resoluciones de pantalla. Esto permite probar la aplicación en una variedad de dispositivos virtuales.</p>
 </div>
-</li>
-<li>
-<p><strong>Dispositivos físicos</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Prueba la aplicación en dispositivos físicos con diferentes tamaños y resoluciones de pantalla para asegurarte de que la interfaz de usuario se vea bien en todos los dispositivos.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Dispositivos físicos</strong>:
+   - Prueba la aplicación en dispositivos físicos con diferentes tamaños y resoluciones de pantalla para asegurarte de que la interfaz de usuario se vea bien en todos los dispositivos.</p>
 </div>
 </div>
 </div>
@@ -6798,76 +6039,30 @@ res/layout-land/main_activity.xml         # Diseño para modo horizontal</code><
 <div class="paragraph">
 <p>La creación de interfaces accesibles es esencial para garantizar que todas las personas, incluidas aquellas con discapacidades, puedan utilizar y acceder a la información y funcionalidades de una aplicación o sitio web. A continuación, se presentan los principios fundamentales de accesibilidad que deben tenerse en cuenta durante el diseño y desarrollo de interfaces:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Perceptible</strong>: La información y componentes de la interfaz deben presentarse de manera que los usuarios puedan percibirlos. Esto incluye:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Proporcionar texto alternativo para imágenes y contenido no textual.</p>
-</li>
-<li>
-<p>Asegurar que el contenido sea adaptable y se pueda presentar en diferentes formas sin perder significado.</p>
-</li>
-<li>
-<p>Utilizar colores con suficiente contraste para facilitar la lectura.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Perceptible</strong>: La información y componentes de la interfaz deben presentarse de manera que los usuarios puedan percibirlos. Esto incluye:
+   - Proporcionar texto alternativo para imágenes y contenido no textual.
+   - Asegurar que el contenido sea adaptable y se pueda presentar en diferentes formas sin perder significado.
+   - Utilizar colores con suficiente contraste para facilitar la lectura.</p>
 </div>
-</li>
-<li>
-<p><strong>Operable</strong>: Los componentes de la interfaz y la navegación deben ser utilizables para todos los usuarios.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Permitir que todas las funcionalidades sean accesibles mediante el teclado.</p>
-</li>
-<li>
-<p>Evitar contenido que parpadee o destelle, para no causar problemas a usuarios con fotosensibilidad.</p>
-</li>
-<li>
-<p>Proporcionar suficiente tiempo para que los usuarios lean y utilicen el contenido.</p>
-</li>
-<li>
-<p>Ofrecer métodos claros de navegación y orientación dentro de la interfaz.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Operable</strong>: Los componentes de la interfaz y la navegación deben ser utilizables para todos los usuarios.
+   - Permitir que todas las funcionalidades sean accesibles mediante el teclado.
+   - Evitar contenido que parpadee o destelle, para no causar problemas a usuarios con fotosensibilidad.
+   - Proporcionar suficiente tiempo para que los usuarios lean y utilicen el contenido.
+   - Ofrecer métodos claros de navegación y orientación dentro de la interfaz.</p>
 </div>
-</li>
-<li>
-<p><strong>Comprensible</strong>: La información y el funcionamiento de la interfaz deben ser claros y fáciles de entender.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Utilizar un lenguaje sencillo y directo.</p>
-</li>
-<li>
-<p>Proporcionar instrucciones y retroalimentación claras en formularios y procesos.</p>
-</li>
-<li>
-<p>Asegurar que la interfaz funcione de manera predecible y consistente.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Comprensible</strong>: La información y el funcionamiento de la interfaz deben ser claros y fáciles de entender.
+   - Utilizar un lenguaje sencillo y directo.
+   - Proporcionar instrucciones y retroalimentación claras en formularios y procesos.
+   - Asegurar que la interfaz funcione de manera predecible y consistente.</p>
 </div>
-</li>
-<li>
-<p><strong>Robusto</strong>: El contenido debe ser lo suficientemente robusto para ser interpretado de manera fiable por una amplia variedad de agentes de usuario, incluidas tecnologías de asistencia.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Seguir estándares y especificaciones web vigentes.</p>
-</li>
-<li>
-<p>Utilizar código semántico y validado.</p>
-</li>
-<li>
-<p>Probar la compatibilidad en diferentes navegadores y dispositivos.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Robusto</strong>: El contenido debe ser lo suficientemente robusto para ser interpretado de manera fiable por una amplia variedad de agentes de usuario, incluidas tecnologías de asistencia.
+   - Seguir estándares y especificaciones web vigentes.
+   - Utilizar código semántico y validado.
+   - Probar la compatibilidad en diferentes navegadores y dispositivos.</p>
 </div>
 </div>
 <div class="sect2">
@@ -7087,18 +6282,10 @@ textView.text = greetingText</code></pre>
 <div class="paragraph">
 <p>Para probar la localización:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Cambia el idioma del emulador o dispositivo físico en Configuración.</p>
-</li>
-<li>
-<p>Utiliza la opción "Override locale" en Android Studio.</p>
-</li>
-<li>
-<p>Verifica que todos los recursos se muestren correctamente.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Cambia el idioma del emulador o dispositivo físico en Configuración.
+Utiliza la opción "Override locale" en Android Studio.
+Verifica que todos los recursos se muestren correctamente.</p>
 </div>
 </div>
 </div>
@@ -7190,10 +6377,9 @@ textView.text = welcomeMessage</code></pre>
 <div class="paragraph">
 <p>Para solicitar permisos en tiempo de ejecución, sigue estos pasos:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p><strong>Verificar si el permiso está otorgado</strong>:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>[source, kotlin]
@@ -7205,9 +6391,9 @@ if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
 ----</pre>
 </div>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p><strong>Solicitar el permiso al usuario</strong>:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>[source, kotlin]
@@ -7218,9 +6404,9 @@ ActivityCompat.requestPermissions(this,
 ----</pre>
 </div>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p><strong>Manejar la respuesta del usuario</strong>:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>[source, kotlin]
@@ -7240,9 +6426,6 @@ override fun onRequestPermissionsResult(requestCode: Int,
 }
 ----</pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
@@ -7541,53 +6724,26 @@ class MainActivity : AppCompatActivity() {
 </div>
 <div class="sect3">
 <h4 id="_paso_1_configurar_el_proyecto_de_firebase">Paso 1: Configurar el proyecto de Firebase</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear un proyecto en Firebase Console</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ve a [Firebase Console](<a href="https://console.firebase.google.com/" class="bare">https://console.firebase.google.com/</a>) y crea un nuevo proyecto.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Crear un proyecto en Firebase Console</strong>:
+   - Ve a [Firebase Console](<a href="https://console.firebase.google.com/" class="bare">https://console.firebase.google.com/</a>) y crea un nuevo proyecto.</p>
 </div>
-</li>
-<li>
-<p><strong>Agregar la aplicación Android al proyecto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Selecciona "Añadir aplicación" y elige Android.</p>
-</li>
-<li>
-<p>Proporciona el nombre del paquete de tu aplicación (por ejemplo, <code>com.example.app</code>).</p>
-</li>
-<li>
-<p>Sigue las instrucciones para descargar el archivo <code>google-services.json</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Agregar la aplicación Android al proyecto</strong>:
+   - Selecciona "Añadir aplicación" y elige Android.
+   - Proporciona el nombre del paquete de tu aplicación (por ejemplo, <code>com.example.app</code>).
+   - Sigue las instrucciones para descargar el archivo <code>google-services.json</code>.</p>
 </div>
-</li>
-<li>
-<p><strong>Agregar <code>google-services.json</code> al proyecto</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Coloca el archivo <code>google-services.json</code> en la carpeta <code>app/</code> de tu proyecto Android.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Agregar <code>google-services.json</code> al proyecto</strong>:
+   - Coloca el archivo <code>google-services.json</code> en la carpeta <code>app/</code> de tu proyecto Android.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_paso_2_configurar_el_proyecto_android">Paso 2: Configurar el proyecto Android</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p><strong>Agregar los repositorios y plugins en <code>build.gradle</code> (nivel de proyecto)</strong>:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>[source, groovy]
@@ -7615,9 +6771,9 @@ buildscript {
 ----</pre>
 </div>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p><strong>Aplicar el plugin y agregar las dependencias en <code>build.gradle</code> (módulo app)</strong>:</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>[source, groovy]
@@ -7666,9 +6822,6 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 ----</pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 </div>
 <div class="sect3">
@@ -7937,54 +7090,22 @@ service firebase.storage {
 </div>
 <div class="sect3">
 <h4 id="_paso_1_configurar_el_proyecto_de_google_cloud_platform">Paso 1: Configurar el proyecto de Google Cloud Platform</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Crear un proyecto en Google Cloud Console</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ve a [Google Cloud Console](<a href="https://console.cloud.google.com/" class="bare">https://console.cloud.google.com/</a>).</p>
-</li>
-<li>
-<p>Crea un nuevo proyecto o selecciona uno existente.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Crear un proyecto en Google Cloud Console</strong>:
+   - Ve a [Google Cloud Console](<a href="https://console.cloud.google.com/" class="bare">https://console.cloud.google.com/</a>).
+   - Crea un nuevo proyecto o selecciona uno existente.</p>
 </div>
-</li>
-<li>
-<p><strong>Habilitar las APIs necesarias</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Navega a <strong>API y Servicios</strong> &gt; <strong>Biblioteca</strong>.</p>
-</li>
-<li>
-<p>Habilita las siguientes APIs:</p>
-</li>
-<li>
-<p><strong>Maps SDK for Android</strong></p>
-</li>
-<li>
-<p><strong>Places API</strong> (opcional, si necesitas lugares)</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><strong>Habilitar las APIs necesarias</strong>:
+   - Navega a <strong>API y Servicios</strong> &gt; <strong>Biblioteca</strong>.
+   - Habilita las siguientes APIs:
+     - <strong>Maps SDK for Android</strong>
+     - <strong>Places API</strong> (opcional, si necesitas lugares)</p>
 </div>
-</li>
-<li>
-<p><strong>Obtener la clave de API</strong>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ve a <strong>Credenciales</strong> y crea una nueva clave de API.</p>
-</li>
-<li>
-<p><strong>Restricción de la clave</strong>: Por seguridad, restringe el uso de la clave a aplicaciones Android especificando el nombre del paquete y la huella digital SHA-1.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p><strong>Obtener la clave de API</strong>:
+   - Ve a <strong>Credenciales</strong> y crea una nueva clave de API.
+   - <strong>Restricción de la clave</strong>: Por seguridad, restringe el uso de la clave a aplicaciones Android especificando el nombre del paquete y la huella digital SHA-1.</p>
 </div>
 </div>
 <div class="sect3">
@@ -8004,12 +7125,8 @@ service firebase.storage {
 </div>
 <div class="sect3">
 <h4 id="_paso_3_configurar_el_archivo_androidmanifest_xml">Paso 3: Configurar el archivo <code>AndroidManifest.xml</code></h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p><strong>Añadir permisos requeridos</strong>:</p>
-</li>
-</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8017,12 +7134,8 @@ service firebase.storage {
 &lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
+<div class="paragraph">
 <p><strong>Declarar la clave de API</strong> dentro del elemento <code>&lt;application&gt;</code>:</p>
-</li>
-</ol>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8239,11 +7352,240 @@ override fun onPause() {
 </div>
 <div class="sect2">
 <h3 id="_8_4_in_app_purchases_y_google_play_billing_library">8.4 In-App Purchases y Google Play Billing Library</h3>
+<div class="paragraph">
+<p>La integración de compras dentro de la aplicación (In-App Purchases) y la Google Play Billing Library permite a los desarrolladores monetizar sus aplicaciones ofreciendo productos y suscripciones a los usuarios. A continuación se muestra un ejemplo de cómo implementar la Google Play Billing Library en una aplicación Android.</p>
+</div>
+<div class="sect3">
+<h4 id="_configuración_inicial">Configuración inicial</h4>
+<div class="paragraph">
+<p>Agrega las dependencias necesarias en el archivo <code>build.gradle.kts</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+    implementation("com.android.billingclient:billing:4.0.0")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Configura los permisos necesarios en el archivo <code>AndroidManifest.xml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;uses-permission android:name="com.android.vending.BILLING" /&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_implementación_de_la_clase_billingmanager">Implementación de la clase BillingManager</h4>
+<div class="paragraph">
+<p>La clase <code>BillingManager</code> se encarga de gestionar la conexión con Google Play Billing y de manejar las compras dentro de la aplicación.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class BillingManager {
+    private final BillingClient billingClient;
 
+    public BillingManager(Context context) {
+        billingClient = BillingClient.newBuilder(context)
+            .setListener(purchasesUpdatedListener)
+            .enablePendingPurchases()
+            .build();
+    }
+
+    public void startConnection() {
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready.
+                }
+            }
+
+            @Override
+            public void onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to Google Play.
+            }
+        });
+    }
+
+    private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
+        @Override
+        public void onPurchasesUpdated(BillingResult billingResult, List&lt;Purchase&gt; purchases) {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &amp;&amp; purchases != null) {
+                for (Purchase purchase : purchases) {
+                    handlePurchase(purchase);
+                }
+            } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+                // Handle an error caused by a user cancelling the purchase flow.
+            } else {
+                // Handle any other error codes.
+            }
+        }
+    };
+
+    private void handlePurchase(Purchase purchase) {
+        // Handle the purchase
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_realización_de_una_compra">Realización de una compra</h4>
+<div class="paragraph">
+<p>Para realizar una compra, se debe iniciar el flujo de compra utilizando el método <code>launchBillingFlow</code> de <code>BillingClient</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public void initiatePurchase(Activity activity, String productId) {
+    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+        .setSkuDetails(SkuDetails.newBuilder()
+            .setSku(productId)
+            .setType(BillingClient.SkuType.INAPP)
+            .build())
+        .build();
+    billingClient.launchBillingFlow(activity, billingFlowParams);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_verificación_de_compras">Verificación de compras</h4>
+<div class="paragraph">
+<p>Es importante verificar las compras en el servidor para asegurar que las transacciones sean válidas y no hayan sido manipuladas.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private void verifyPurchase(Purchase purchase) {
+    // Enviar la información de la compra al servidor para su verificación
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Estos son los pasos básicos para integrar la Google Play Billing Library en una aplicación Android. Asegúrate de seguir las mejores prácticas de seguridad y de manejar adecuadamente los errores y las transacciones para ofrecer una experiencia de usuario fluida y segura.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_8_5_aplicaciones_multimedia_cámara_audio_y_video_en_android">8.5 Aplicaciones multimedia: Cámara, audio y video en Android</h3>
+<div class="paragraph">
+<p>El desarrollo de aplicaciones multimedia en Android incluye el uso de la cámara, la grabación y reproducción de audio, y la reproducción de video. A continuación se presentan ejemplos y buenas prácticas para trabajar con estos componentes.</p>
+</div>
+<div class="sect3">
+<h4 id="_uso_de_la_cámara">Uso de la cámara</h4>
+<div class="paragraph">
+<p>Para utilizar la cámara en una aplicación Android, se puede usar la API de CameraX, que simplifica el proceso de integración de la cámara. A continuación se muestra un ejemplo de cómo capturar una imagen utilizando CameraX:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class CameraActivity : AppCompatActivity() {
+    private lateinit var cameraProviderFuture: ListenableFuture&lt;ProcessCameraProvider&gt;
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_camera)
+
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        cameraProviderFuture.addListener(Runnable {
+            val cameraProvider = cameraProviderFuture.get()
+            bindPreview(cameraProvider)
+        }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun bindPreview(cameraProvider: ProcessCameraProvider) {
+        val preview = Preview.Builder().build()
+        val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+        preview.setSurfaceProvider(findViewById&lt;PreviewView&gt;(R.id.previewView).surfaceProvider)
+        cameraProvider.bindToLifecycle(this, cameraSelector, preview)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grabación_y_reproducción_de_audio">Grabación y reproducción de audio</h4>
+<div class="paragraph">
+<p>Para grabar y reproducir audio en Android, se pueden utilizar las clases <code>MediaRecorder</code> y <code>MediaPlayer</code>. A continuación se muestra un ejemplo de cómo grabar y reproducir audio:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class AudioActivity : AppCompatActivity() {
+    private var mediaRecorder: MediaRecorder? = null
+    private var mediaPlayer: MediaPlayer? = null
+    private var outputFile: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_audio)
+
+        outputFile = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp"
+
+        findViewById&lt;Button&gt;(R.id.recordButton).setOnClickListener {
+            startRecording()
+        }
+
+        findViewById&lt;Button&gt;(R.id.playButton).setOnClickListener {
+            startPlaying()
+        }
+    }
+
+    private fun startRecording() {
+        mediaRecorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+            setOutputFile(outputFile)
+            prepare()
+            start()
+        }
+    }
+
+    private fun startPlaying() {
+        mediaPlayer = MediaPlayer().apply {
+            setDataSource(outputFile)
+            prepare()
+            start()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mediaRecorder?.release()
+        mediaRecorder = null
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_reproducción_de_video">Reproducción de video</h4>
+<div class="paragraph">
+<p>Para reproducir video en Android, se puede utilizar la clase <code>VideoView</code>. A continuación se muestra un ejemplo de cómo reproducir un video desde una URL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class VideoActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_video)
+
+        val videoView = findViewById&lt;VideoView&gt;(R.id.videoView)
+        val videoUri = Uri.parse("https://www.example.com/video.mp4")
+        videoView.setVideoURI(videoUri)
+        videoView.setMediaController(MediaController(this))
+        videoView.requestFocus()
+        videoView.start()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Estas son algunas de las prácticas y ejemplos para trabajar con aplicaciones multimedia en Android. Asegúrate de manejar los permisos necesarios y de optimizar el uso de recursos para una mejor experiencia del usuario.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -8252,23 +7594,728 @@ override fun onPause() {
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_9_1_principios_de_clean_architecture">9.1 Principios de Clean Architecture</h3>
+<div class="paragraph">
+<p>Clean Architecture es un enfoque de diseño de software que promueve la separación de responsabilidades y la independencia de los componentes del sistema. Los principios clave incluyen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Independencia de Frameworks</strong>: La arquitectura no debe depender de frameworks específicos. Estos deben ser herramientas que se pueden reemplazar sin afectar la lógica de negocio.</p>
+</li>
+<li>
+<p><strong>Testabilidad</strong>: El diseño debe permitir pruebas unitarias y de integración fáciles.</p>
+</li>
+<li>
+<p><strong>Independencia de la UI</strong>: La lógica de negocio no debe depender de la interfaz de usuario. Esto permite cambiar la UI sin afectar la lógica subyacente.</p>
+</li>
+<li>
+<p><strong>Independencia de la Base de Datos</strong>: La lógica de negocio no debe depender de detalles de la base de datos. Esto permite cambiar la base de datos sin afectar la lógica de negocio.</p>
+</li>
+<li>
+<p><strong>Independencia de Agencias Externas</strong>: La lógica de negocio no debe depender de servicios externos. Esto permite cambiar servicios externos sin afectar la lógica de negocio.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La estructura típica de Clean Architecture incluye:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Entidades</strong>: Representan los objetos de negocio y contienen la lógica de negocio.</p>
+</li>
+<li>
+<p><strong>Casos de Uso</strong>: Contienen la lógica específica de la aplicación y coordinan la interacción entre las entidades y otros componentes.</p>
+</li>
+<li>
+<p><strong>Interfaces</strong>: Definen contratos para la comunicación entre capas y permiten la inyección de dependencias.</p>
+</li>
+<li>
+<p><strong>Adaptadores</strong>: Implementan las interfaces y permiten la comunicación con frameworks, bases de datos y otros servicios externos.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class User {
+    private String id;
+    private String name;
 
+    // Constructor, getters y setters
+}
+
+public interface UserRepository {
+    User getUserById(String id);
+    void saveUser(User user);
+}
+
+public class GetUserUseCase {
+    private final UserRepository userRepository;
+
+    public GetUserUseCase(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public User execute(String userId) {
+        return userRepository.getUserById(userId);
+    }
+}
+
+public class UserController {
+    private final GetUserUseCase getUserUseCase;
+
+    public UserController(GetUserUseCase getUserUseCase) {
+        this.getUserUseCase = getUserUseCase;
+    }
+
+    public User getUser(String userId) {
+        return getUserUseCase.execute(userId);
+    }
+}
+
+public class InMemoryUserRepository implements UserRepository {
+    private Map&lt;String, User&gt; users = new HashMap&lt;&gt;();
+
+    @Override
+    public User getUserById(String id) {
+        return users.get(id);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        users.put(user.getId(), user);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        UserRepository userRepository = new InMemoryUserRepository();
+        GetUserUseCase getUserUseCase = new GetUserUseCase(userRepository);
+        UserController userController = new UserController(getUserUseCase);
+
+        User user = new User("1", "John Doe");
+        userRepository.saveUser(user);
+
+        User retrievedUser = userController.getUser("1");
+        System.out.println("User retrieved: " + retrievedUser.getName());
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_9_2_implementación_del_patrón_mvvm_en_android">9.2 Implementación del patrón MVVM en Android</h3>
+<div class="paragraph">
+<p>El patrón MVVM (Model-View-ViewModel) es una arquitectura que separa la lógica de presentación de la lógica de negocio y de la interfaz de usuario. Los componentes principales son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Model</strong>: Representa la lógica de negocio y los datos de la aplicación.</p>
+</li>
+<li>
+<p><strong>View</strong>: Representa la interfaz de usuario y muestra los datos al usuario.</p>
+</li>
+<li>
+<p><strong>ViewModel</strong>: Actúa como un intermediario entre el Model y la View, manejando la lógica de presentación y la comunicación entre ambos.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra un ejemplo de implementación del patrón MVVM en Android:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">data class User(val id: String, val name: String)
 
+interface UserRepository {
+    fun getUserById(id: String): LiveData&lt;User&gt;
+}
+
+class UserRepositoryImpl : UserRepository {
+    private val users = mutableMapOf&lt;String, User&gt;()
+
+    init {
+        users["1"] = User("1", "John Doe")
+    }
+
+    override fun getUserById(id: String): LiveData&lt;User&gt; {
+        val user = MutableLiveData&lt;User&gt;()
+        user.value = users[id]
+        return user
+    }
+}
+
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
+    fun getUser(userId: String): LiveData&lt;User&gt; {
+        return userRepository.getUserById(userId)
+    }
+}
+
+class UserActivity : AppCompatActivity() {
+    private lateinit var viewModel: UserViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user)
+
+        val userRepository = UserRepositoryImpl()
+        viewModel = ViewModelProvider(this, ViewModelFactory(userRepository)).get(UserViewModel::class.java)
+
+        viewModel.getUser("1").observe(this, Observer { user -&gt;
+            findViewById&lt;TextView&gt;(R.id.userName).text = user?.name
+        })
+    }
+}
+
+class ViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {
+    override fun &lt;T : ViewModel?&gt; create(modelClass: Class&lt;T&gt;): T {
+        if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
+            return UserViewModel(userRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_9_3_introducción_a_dagger_hilt_para_inyección_de_dependencias">9.3 Introducción a Dagger Hilt para inyección de dependencias</h3>
+<h3 id="_9_3_dagger_hilt_para_inyección_de_dependencias">9.3 Dagger Hilt para inyección de dependencias</h3>
+<div class="paragraph">
+<p>Dagger Hilt es una biblioteca para la inyección de dependencias en Android que simplifica el uso de Dagger en aplicaciones Android. Hilt proporciona una forma estándar de incorporar la inyección de dependencias en las aplicaciones Android y gestiona automáticamente el ciclo de vida de los componentes inyectados.</p>
+</div>
+<div class="sect3">
+<h4 id="_configuración_inicial_2">Configuración inicial</h4>
+<div class="paragraph">
+<p>Agrega las dependencias necesarias en el archivo <code>build.gradle.kts</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+    implementation("com.google.dagger:hilt-android:2.40.5")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.5")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Aplica el plugin de Hilt en el archivo <code>build.gradle.kts</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">plugins {
+    id("com.android.application")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Inicializa Hilt en tu aplicación creando una clase que extienda <code>Application</code> y anotándola con <code>@HiltAndroidApp</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@HiltAndroidApp
+class MyApplication : Application()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_creación_de_módulos_de_hilt">Creación de módulos de Hilt</h4>
+<div class="paragraph">
+<p>Los módulos de Hilt proporcionan instancias de dependencias. Un módulo es una clase anotada con <code>@Module</code> y <code>@InstallIn</code>, y los métodos que proporcionan dependencias se anotan con <code>@Provides</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
 
+    @Provides
+    fun provideApiService(): ApiService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.example.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+
+    @Provides
+    fun provideRepository(apiService: ApiService): Repository {
+        return RepositoryImpl(apiService)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inyección_de_dependencias_en_actividades_y_fragmentos">Inyección de dependencias en actividades y fragmentos</h4>
+<div class="paragraph">
+<p>Para inyectar dependencias en actividades y fragmentos, anótalos con <code>@AndroidEntryPoint</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var repository: Repository
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Usa la dependencia inyectada
+        repository.getData()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@AndroidEntryPoint
+class MainFragment : Fragment() {
+
+    @Inject
+    lateinit var repository: Repository
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Usa la dependencia inyectada
+        repository.getData()
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inyección_de_dependencias_en_viewmodels">Inyección de dependencias en ViewModels</h4>
+<div class="paragraph">
+<p>Para inyectar dependencias en ViewModels, usa la anotación <code>@HiltViewModel</code> y el constructor con <code>@Inject</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
+
+    val data: LiveData&lt;List&lt;Data&gt;&gt; = liveData {
+        val retrievedData = repository.getData()
+        emit(retrievedData)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Estos son los pasos básicos para configurar e implementar Dagger Hilt para la inyección de dependencias en una aplicación Android. Hilt simplifica la configuración y el uso de Dagger, permitiendo una inyección de dependencias más fácil y eficiente.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_anotaciones_disponibles_en_dagger_hilt">Anotaciones disponibles en Dagger Hilt</h4>
+<div class="paragraph">
+<p>Dagger Hilt proporciona varias anotaciones que facilitan la configuración y el uso de la inyección de dependencias en aplicaciones Android. A continuación se describen las anotaciones más comunes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@HiltAndroidApp</strong>: Anota la clase <code>Application</code> para inicializar Hilt. Esta anotación es necesaria para que Hilt pueda generar los componentes necesarios para la inyección de dependencias.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@HiltAndroidApp
+class MyApplication : Application()</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@AndroidEntryPoint</strong>: Anota actividades, fragmentos, servicios y otros componentes de Android para habilitar la inyección de dependencias en ellos.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var repository: Repository
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Inject</strong>: Anota los constructores, métodos y campos donde se deben inyectar las dependencias.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class Repository @Inject constructor(private val apiService: ApiService) {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@HiltViewModel</strong>: Anota las clases <code>ViewModel</code> para habilitar la inyección de dependencias en ellas.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Module</strong>: Anota las clases que proporcionan dependencias. Los módulos contienen métodos anotados con <code>@Provides</code> que indican cómo crear las dependencias.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+    @Provides
+    fun provideApiService(): ApiService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.example.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Provides</strong>: Anota los métodos dentro de un módulo que proporcionan instancias de dependencias.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@Provides
+fun provideRepository(apiService: ApiService): Repository {
+    return RepositoryImpl(apiService)
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@InstallIn</strong>: Especifica en qué componente de Hilt se debe instalar el módulo. Los componentes comunes incluyen <code>SingletonComponent</code>, <code>ActivityComponent</code>, <code>FragmentComponent</code>, etc.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Singleton</strong>: Anota las clases o métodos que deben tener un único ciclo de vida en toda la aplicación.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@Singleton
+class ApiService @Inject constructor() {
+    // ...
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Binds</strong>: Anota los métodos dentro de un módulo que vinculan una implementación a una interfaz.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@Module
+@InstallIn(SingletonComponent::class)
+abstract class AppModule {
+    @Binds
+    abstract fun bindRepository(
+        repositoryImpl: RepositoryImpl
+    ): Repository
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Estas anotaciones son esenciales para configurar y utilizar Dagger Hilt en una aplicación Android, facilitando la inyección de dependencias y mejorando la modularidad y testabilidad del código.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_9_4_testing_en_android_unit_testing_y_ui_testing">9.4 Testing en Android: Unit Testing y UI Testing</h3>
+<div class="paragraph">
+<p>Las pruebas son una parte esencial del desarrollo de aplicaciones Android para asegurar la calidad y el correcto funcionamiento del código. Existen dos tipos principales de pruebas en Android: Unit Testing y UI Testing.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Unit Testing</strong>: Se enfoca en probar unidades individuales de código, como métodos o clases, de manera aislada. Utiliza frameworks como JUnit y Mockito para realizar estas pruebas.</p>
+</li>
+<li>
+<p><strong>UI Testing</strong>: Se enfoca en probar la interfaz de usuario y la interacción del usuario con la aplicación. Utiliza frameworks como Espresso y UI Automator para realizar estas pruebas.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A continuación se presentan ejemplos de ambos tipos de pruebas:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+public class UserRepositoryTest {
+
+    @Mock
+    private UserDataSource userDataSource;
+
+    private UserRepository userRepository;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        userRepository = new UserRepository(userDataSource);
+    }
+
+    @Test
+    public void getUser_validId_returnsUser() {
+        User user = new User("1", "John Doe");
+        when(userDataSource.getUserById("1")).thenReturn(user);
+
+        User result = userRepository.getUserById("1");
+
+        assertEquals("John Doe", result.getName());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">@RunWith(AndroidJUnit4::class)
+class MainActivityTest {
+
+    @get:Rule
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
+    @Test
+    fun testButtonClick_updatesTextView() {
+        // Realiza clic en el botón
+        onView(withId(R.id.button)).perform(click())
+
+        // Verifica que el TextView se actualiza con el texto esperado
+        onView(withId(R.id.textView)).check(matches(withText("Button clicked!")))
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Para configurar las pruebas unitarias y de UI en tu proyecto Android, asegúrate de incluir las siguientes dependencias en tu archivo <code>build.gradle.kts</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">dependencies {
+    // Dependencias para pruebas unitarias
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:3.11.2")
+
+    // Dependencias para pruebas de UI
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_anotaciones_en_unit_testing">Anotaciones en Unit Testing</h4>
+<div class="paragraph">
+<p>Las anotaciones en Unit Testing ayudan a definir el comportamiento y la configuración de las pruebas. Algunas de las anotaciones más comunes en JUnit son:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>@Test</strong>: Marca un método como un caso de prueba.</p>
+</li>
+<li>
+<p><strong>@Before</strong>: Indica que el método anotado debe ejecutarse antes de cada caso de prueba. Se utiliza para configurar el entorno de prueba.</p>
+</li>
+<li>
+<p><strong>@After</strong>: Indica que el método anotado debe ejecutarse después de cada caso de prueba. Se utiliza para limpiar el entorno de prueba.</p>
+</li>
+<li>
+<p><strong>@BeforeClass</strong>: Indica que el método anotado debe ejecutarse una vez antes de todos los casos de prueba en la clase. Debe ser un método estático.</p>
+</li>
+<li>
+<p><strong>@AfterClass</strong>: Indica que el método anotado debe ejecutarse una vez después de todos los casos de prueba en la clase. Debe ser un método estático.</p>
+</li>
+<li>
+<p><strong>@Ignore</strong>: Indica que el método anotado debe ser ignorado y no ejecutado como un caso de prueba.</p>
+</li>
+<li>
+<p><strong>@RunWith</strong>: Especifica un runner personalizado para ejecutar las pruebas. Por ejemplo, <code>@RunWith(MockitoJUnitRunner.class)</code> para usar Mockito.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra un ejemplo que utiliza varias de estas anotaciones:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
+import org.junit.Test;
+import org.junit.Ignore;
+
+public class ExampleUnitTest {
+
+    @BeforeClass
+    public static void setUpBeforeClass() {
+        // Se ejecuta una vez antes de todos los casos de prueba
+        System.out.println("BeforeClass: Configuración inicial");
+    }
+
+    @AfterClass
+    public static void tearDownAfterClass() {
+        // Se ejecuta una vez después de todos los casos de prueba
+        System.out.println("AfterClass: Limpieza final");
+    }
+
+    @Before
+    public void setUp() {
+        // Se ejecuta antes de cada caso de prueba
+        System.out.println("Before: Configuración antes de cada prueba");
+    }
+
+    @After
+    public void tearDown() {
+        // Se ejecuta después de cada caso de prueba
+        System.out.println("After: Limpieza después de cada prueba");
+    }
+
+    @Test
+    public void testAddition() {
+        // Caso de prueba
+        assertEquals(4, 2 + 2);
+    }
+
+    @Ignore("Prueba ignorada")
+    @Test
+    public void testIgnored() {
+        // Este caso de prueba será ignorado
+    }
+}</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_9_5_buenas_prácticas_en_android_y_optimización_de_aplicaciones">9.5 Buenas prácticas en Android y optimización de aplicaciones</h3>
+<div class="paragraph">
+<p>Para desarrollar aplicaciones Android de alta calidad y rendimiento, es importante seguir una serie de buenas prácticas y técnicas de optimización. A continuación se presentan algunas recomendaciones clave:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Optimización de recursos</strong>: Minimiza el uso de recursos como imágenes y archivos de audio. Utiliza formatos de compresión adecuados y evita cargar recursos innecesarios en memoria.</p>
+</li>
+<li>
+<p><strong>Uso eficiente de la memoria</strong>: Evita fugas de memoria utilizando herramientas como LeakCanary. Libera recursos no utilizados y evita referencias fuertes a objetos de larga duración.</p>
+</li>
+<li>
+<p><strong>Optimización de la UI</strong>: Mantén la interfaz de usuario simple y evita operaciones costosas en el hilo principal. Utiliza componentes de UI eficientes y optimiza las vistas personalizadas.</p>
+</li>
+<li>
+<p><strong>Manejo adecuado de hilos</strong>: Utiliza AsyncTask, ThreadPoolExecutor o coroutines para realizar operaciones en segundo plano. Evita bloquear el hilo principal.</p>
+</li>
+<li>
+<p><strong>Reducción del consumo de batería</strong>: Minimiza el uso de servicios en segundo plano y ajusta los intervalos de actualización de datos. Utiliza el JobScheduler o WorkManager para tareas programadas.</p>
+</li>
+<li>
+<p><strong>Optimización de la red</strong>: Reduce el número de solicitudes de red y utiliza técnicas de caché. Utiliza bibliotecas como Retrofit o OkHttp para manejar las solicitudes de red de manera eficiente.</p>
+</li>
+<li>
+<p><strong>Pruebas y monitoreo</strong>: Realiza pruebas unitarias y de integración para asegurar la calidad del código. Utiliza herramientas de monitoreo y análisis de rendimiento como Firebase Performance Monitoring.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra un ejemplo de código que optimiza el uso de memoria al cargar imágenes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">fun loadOptimizedBitmap(context: Context, resId: Int): Bitmap {
+    val options = BitmapFactory.Options().apply {
+        inPreferredConfig = Bitmap.Config.RGB_565
+        inSampleSize = 2 // Reduce la resolución a la mitad
+    }
+    return BitmapFactory.decodeResource(context.resources, resId, options)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otro ejemplo de buenas prácticas es el uso de coroutines para realizar operaciones en segundo plano:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-kotlin hljs" data-lang="kotlin">class MyRepository {
 
+    suspend fun fetchData(): List&lt;Data&gt; {
+        return withContext(Dispatchers.IO) {
+            // Realiza la operación de red o base de datos en un hilo de fondo
+            apiService.getData()
+        }
+    }
+}
+
+class MyViewModel(private val repository: MyRepository) : ViewModel() {
+
+    val data: LiveData&lt;List&lt;Data&gt;&gt; = liveData {
+        val retrievedData = repository.fetchData()
+        emit(retrievedData)
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -8277,7 +8324,88 @@ override fun onPause() {
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_10_1_preparación_de_la_aplicación_para_producción">10.1 Preparación de la aplicación para producción</h3>
+<div class="paragraph">
+<p>La preparación de una aplicación para producción implica una serie de pasos y consideraciones para asegurar que la aplicación esté lista para ser lanzada al público. A continuación se detallan algunas de las mejores prácticas para preparar una aplicación para producción:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Optimización del código</strong>: Asegúrate de que el código esté limpio, bien estructurado y optimizado. Elimina el código no utilizado y realiza revisiones de código.</p>
+</li>
+<li>
+<p><strong>Minificación y ofuscación</strong>: Utiliza herramientas como ProGuard o R8 para minificar y ofuscar el código, reduciendo el tamaño del APK y dificultando la ingeniería inversa.</p>
+</li>
+<li>
+<p><strong>Firma de la aplicación</strong>: Firma la aplicación con una clave privada para asegurar su autenticidad. Utiliza el esquema de firma de APK v2 o v3 para mayor seguridad.</p>
+</li>
+<li>
+<p><strong>Configuración de permisos</strong>: Revisa y ajusta los permisos solicitados por la aplicación. Solicita solo los permisos necesarios y justifica su uso a los usuarios.</p>
+</li>
+<li>
+<p><strong>Pruebas exhaustivas</strong>: Realiza pruebas exhaustivas en diferentes dispositivos y versiones de Android. Asegúrate de que la aplicación funcione correctamente y sin errores.</p>
+</li>
+<li>
+<p><strong>Gestión de configuraciones</strong>: Utiliza archivos de configuración para gestionar diferentes entornos (desarrollo, pruebas, producción). Asegúrate de que las configuraciones de producción estén correctamente establecidas.</p>
+</li>
+<li>
+<p><strong>Optimización de recursos</strong>: Optimiza los recursos de la aplicación, como imágenes y archivos de audio, para reducir el tamaño del APK y mejorar el rendimiento.</p>
+</li>
+<li>
+<p><strong>Revisión de políticas de privacidad</strong>: Asegúrate de que la aplicación cumpla con las políticas de privacidad y regulaciones aplicables, como GDPR o CCPA.</p>
+</li>
+<li>
+<p><strong>Preparación de la Play Store</strong>: Prepara los recursos necesarios para la publicación en Google Play Store, como descripciones, capturas de pantalla, iconos y videos promocionales.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A continuación se muestra un ejemplo de configuración de ProGuard para minificar y ofuscar el código:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-proguard hljs" data-lang="proguard"># Habilitar la minificación y ofuscación
+-dontoptimize
+-dontpreverify
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-keepattributes *Annotation*
 
+# Mantener las clases y métodos utilizados por la reflexión
+-keep class com.example.myapp.** { *; }
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface &lt;methods&gt;;
+}
+
+# Mantener las clases y métodos utilizados por las bibliotecas
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
+-keep class com.google.** { *; }
+-keep interface com.google.** { *; }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Otro ejemplo es la configuración de la firma de la aplicación en el archivo <code>build.gradle</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">android {
+    signingConfigs {
+        release {
+            keyAlias 'myKeyAlias'
+            keyPassword 'myKeyPassword'
+            storeFile file('myKeyStore.jks')
+            storePassword 'myStorePassword'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_10_2_firma_de_aplicaciones_y_generación_de_apkaab">10.2 Firma de aplicaciones y generación de APK/AAB</h3>
@@ -8300,7 +8428,7 @@ override fun onPause() {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-04 01:10:53 +0100
+Last updated 2024-11-17 21:36:55 +0100
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

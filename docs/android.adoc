@@ -27,26 +27,26 @@ Algunas características principales de Android incluyen:
 
 Android se estructura en varios niveles o capas, cada uno con una función específica. La arquitectura de Android se compone de las siguientes capas principales:
 
-1. **Linux Kernel**: La base del sistema Android, proporciona abstracción de hardware, gestión de memoria, y seguridad.
-2. **Bibliotecas nativas y Android Runtime (ART)**: Proporcionan las bibliotecas esenciales para aplicaciones Android y el entorno en el que se ejecutan las aplicaciones Java.
-3. **Framework de aplicaciones**: Ofrece servicios y componentes fundamentales que los desarrolladores utilizan para construir aplicaciones, como la gestión de activities, vistas, notificaciones, y más.
-4. **Aplicaciones**: Las aplicaciones se ejecutan en la capa superior, incluyendo tanto aplicaciones del sistema como las aplicaciones que los usuarios instalan.
+**Linux Kernel**: La base del sistema Android, proporciona abstracción de hardware, gestión de memoria, y seguridad.
+**Bibliotecas nativas y Android Runtime (ART)**: Proporcionan las bibliotecas esenciales para aplicaciones Android y el entorno en el que se ejecutan las aplicaciones Java.
+**Framework de aplicaciones**: Ofrece servicios y componentes fundamentales que los desarrolladores utilizan para construir aplicaciones, como la gestión de activities, vistas, notificaciones, y más.
+**Aplicaciones**: Las aplicaciones se ejecutan en la capa superior, incluyendo tanto aplicaciones del sistema como las aplicaciones que los usuarios instalan.
 
 ==== Proceso de desarrollo de una aplicación Android
 
 El proceso de desarrollo de una aplicación Android incluye varios pasos, desde la concepción de la idea hasta la publicación en la tienda de aplicaciones:
 
-1. **Planificación y diseño**: Definir el propósito de la aplicación, sus funcionalidades principales, y diseñar la interfaz de usuario.
-2. **Configuración del entorno de desarrollo**: Instalar Android Studio y configurar el entorno para empezar a desarrollar.
-3. **Desarrollo**: Escribir el código utilizando Kotlin y construir la interfaz con los componentes UI de Android.
-4. **Pruebas**: Probar la aplicación en diferentes dispositivos y configuraciones para asegurarse de que funciona correctamente.
-5. **Lanzamiento y mantenimiento**: Publicar la aplicación en Google Play Store y realizar actualizaciones según sea necesario.
+**Planificación y diseño**: Definir el propósito de la aplicación, sus funcionalidades principales, y diseñar la interfaz de usuario.
+**Configuración del entorno de desarrollo**: Instalar Android Studio y configurar el entorno para empezar a desarrollar.
+**Desarrollo**: Escribir el código utilizando Kotlin y construir la interfaz con los componentes UI de Android.
+**Pruebas**: Probar la aplicación en diferentes dispositivos y configuraciones para asegurarse de que funciona correctamente.
+**Lanzamiento y mantenimiento**: Publicar la aplicación en Google Play Store y realizar actualizaciones según sea necesario.
 
 ==== Herramientas esenciales para el desarrollo de Android
 
-1. **Android Studio**: El entorno de desarrollo integrado (IDE) oficial para Android, que incluye herramientas para la creación de interfaces de usuario, depuración, pruebas, y emulación.
-2. **SDK de Android**: Incluye las herramientas necesarias para desarrollar aplicaciones Android, así como bibliotecas y APIs.
-3. **Emuladores y dispositivos físicos**: Para probar y depurar las aplicaciones en un entorno controlado.
+**Android Studio**: El entorno de desarrollo integrado (IDE) oficial para Android, que incluye herramientas para la creación de interfaces de usuario, depuración, pruebas, y emulación.
+**SDK de Android**: Incluye las herramientas necesarias para desarrollar aplicaciones Android, así como bibliotecas y APIs.
+**Emuladores y dispositivos físicos**: Para probar y depurar las aplicaciones en un entorno controlado.
 
 ==== Ventajas de desarrollar en Android con Kotlin
 
@@ -65,23 +65,23 @@ Para comenzar a desarrollar aplicaciones Android, es esencial configurar correct
 
 ==== 1.2.1 Instalación de Android Studio
 
-1. **Descargar Android Studio**:
+**Descargar Android Studio**:
    - Visita la página oficial de Android Studio: https://developer.android.com/studio
    - Descarga la versión correspondiente a tu sistema operativo (Windows, macOS, Linux).
 
-2. **Instalar Android Studio**:
+**Instalar Android Studio**:
    - Sigue las instrucciones del instalador para completar la instalación.
    - Asegúrate de instalar el SDK de Android y el emulador durante el proceso de instalación.
 
 ==== 1.2.2 Configuración del emulador y dispositivos físicos
 
-1. **Configurar el emulador de Android**:
+**Configurar el emulador de Android**:
    - Abre Android Studio.
    - Ve a `Tools` > `AVD Manager`.
    - Crea un nuevo dispositivo virtual (AVD) seleccionando un dispositivo y una imagen del sistema.
    - Configura las opciones del emulador según tus necesidades y haz clic en `Finish`.
 
-2. **Conectar un dispositivo físico**:
+**Conectar un dispositivo físico**:
    - Habilita la depuración USB en tu dispositivo Android (Ajustes > Opciones de desarrollador > Depuración USB).
    - Conecta tu dispositivo al ordenador mediante un cable USB.
    - Asegúrate de que tu dispositivo sea reconocido por Android Studio.
@@ -113,18 +113,18 @@ MyApplication/
 
 ==== 1.2.4 Primer proyecto Android
 
-1. **Crear un nuevo proyecto**:
+**Crear un nuevo proyecto**:
    - Abre Android Studio.
    - Selecciona `Start a new Android Studio project`.
    - Elige una plantilla de activity (por ejemplo, `Empty Activity`) y haz clic en `Next`.
    - Configura el nombre del proyecto, el nombre del paquete, la ubicación de guardado y el lenguaje de programación (Kotlin o Java).
    - Haz clic en `Finish` para crear el proyecto.
 
-2. **Explorar el proyecto**:
+**Explorar el proyecto**:
    - Familiarízate con la estructura del proyecto y los archivos generados.
    - Abre el archivo `MainActivity` y el archivo de diseño `activity_main.xml`.
 
-3. **Ejecutar el proyecto**:
+**Ejecutar el proyecto**:
    - Selecciona un dispositivo de destino (emulador o dispositivo físico).
    - Haz clic en el botón `Run` (icono de play) para compilar y ejecutar la aplicación.
 
@@ -138,23 +138,23 @@ Para desarrollar aplicaciones Android efectivas y robustas, es crucial comprende
 
 Una aplicación Android está compuesta por varios componentes esenciales que interactúan entre sí para proporcionar una experiencia de usuario completa. Los componentes principales son:
 
-1. **Activities**:
+**Activities**:
    - Representan una sola pantalla con una interfaz de usuario.
    - Cada Activity es una clase que extiende `Activity` y se define en el archivo `AndroidManifest.xml`.
 
-2. **Fragments**:
+**Fragments**:
    - Son componentes modulares que representan una porción de la interfaz de usuario en una Activity.
    - Permiten una mayor flexibilidad en el diseño de la interfaz de usuario.
 
-3. **Services**:
+**Services**:
    - Realizan operaciones en segundo plano sin una interfaz de usuario.
    - Pueden ejecutarse indefinidamente o por un tiempo limitado.
 
-4. **Broadcast Receivers**:
+**Broadcast Receivers**:
    - Permiten que una aplicación responda a mensajes o eventos del sistema o de otras aplicaciones.
    - Se registran en el archivo `AndroidManifest.xml` o en tiempo de ejecución.
 
-5. **Content Providers**:
+**Content Providers**:
    - Gestionan el acceso a un conjunto estructurado de datos.
    - Permiten compartir datos entre aplicaciones.
 
@@ -2116,7 +2116,7 @@ dependencies {
 
 ==== 3.5.2 Parseo de JSON con Gson
 
-1. **Definición del modelo de datos**:
+**Definición del modelo de datos**:
    - Define una clase de datos que represente la estructura del JSON.
 
 [source, kotlin]
@@ -2174,7 +2174,7 @@ apply plugin: 'kotlin-kapt'
 
 ==== 3.5.4 Parseo de JSON con Moshi
 
-1. **Definición del modelo de datos**:
+**Definición del modelo de datos**:
    - Define una clase de datos que represente la estructura del JSON y anota con `@JsonClass`.
 
 [source, kotlin]
@@ -2189,7 +2189,7 @@ data class User(
 )
 ----
 
-2. **Parseo de JSON a objeto**:
+**Parseo de JSON a objeto**:
    - Utiliza la clase `Moshi` y el adaptador generado para convertir una cadena JSON a un objeto de Kotlin/Java.
 
 [source, kotlin]
@@ -2203,7 +2203,7 @@ val user = jsonAdapter.fromJson(json)
 println(user)
 ----
 
-3. **Conversión de objeto a JSON**:
+**Conversión de objeto a JSON**:
    - Utiliza la clase `Moshi` y el adaptador generado para convertir un objeto de Kotlin/Java a una cadena JSON.
 
 [source, kotlin]
@@ -2369,7 +2369,7 @@ ViewBinding y DataBinding son dos características poderosas en Android que faci
 
 ViewBinding es una característica que genera automáticamente clases de enlace para cada archivo de diseño XML en tu proyecto. Estas clases contienen referencias directas a todas las vistas con un ID en el archivo de diseño.
 
-1. **Habilitar ViewBinding**:
+**Habilitar ViewBinding**:
    - Añade la siguiente configuración en el archivo `build.gradle` del módulo.
 
 [source, groovy]
@@ -2382,7 +2382,7 @@ android {
 }
 ----
 
-2. **Utilizar ViewBinding en una Activity**:
+**Utilizar ViewBinding en una Activity**:
    - En la Activity, utiliza la clase de enlace generada para acceder a las vistas.
 
 [source, kotlin]
@@ -2412,7 +2412,7 @@ class MainActivity : AppCompatActivity() {
 
 DataBinding permite enlazar datos directamente a las vistas en el diseño XML, lo que facilita la actualización de la interfaz de usuario cuando cambian los datos.
 
-1. **Habilitar DataBinding**:
+**Habilitar DataBinding**:
    - Añade la siguiente configuración en el archivo `build.gradle` del módulo.
 
 [source, groovy]
@@ -2425,7 +2425,7 @@ android {
 }
 ----
 
-2. **Utilizar DataBinding en un archivo de diseño XML**:
+**Utilizar DataBinding en un archivo de diseño XML**:
    - Envuelve el contenido del archivo de diseño XML en una etiqueta `<layout>` y define las variables de datos.
 
 [source, xml]
@@ -2455,7 +2455,7 @@ android {
 </layout>
 ----
 
-3. **Utilizar DataBinding en una Activity**:
+**Utilizar DataBinding en una Activity**:
    - En la Activity, utiliza la clase de enlace generada para enlazar los datos a las vistas.
 
 [source, kotlin]
@@ -2479,7 +2479,7 @@ class MainActivity : AppCompatActivity() {
 }
 ----
 
-4. **Definir la clase de datos**:
+**Definir la clase de datos**:
    - Define una clase de datos que contenga las propiedades y métodos utilizados en el diseño XML.
 
 [source, kotlin]
@@ -2513,7 +2513,7 @@ Las animaciones y transiciones son elementos clave para mejorar la experiencia d
 
 ObjectAnimator es una clase que permite animar propiedades de objetos. Es una forma sencilla de crear animaciones básicas.
 
-1. **Animar la propiedad alpha de una vista**:
+**Animar la propiedad alpha de una vista**:
    - Utiliza ObjectAnimator para animar la transparencia de una vista.
 
 [source, kotlin]
@@ -2537,7 +2537,7 @@ class MainActivity : AppCompatActivity() {
 }
 ----
 
-2. **Animar la propiedad translationX de una vista**:
+**Animar la propiedad translationX de una vista**:
    - Utiliza ObjectAnimator para mover una vista horizontalmente.
 
 [source, kotlin]
@@ -2582,7 +2582,7 @@ class MainActivity : AppCompatActivity() {
 
 Las transiciones entre Activities permiten crear efectos visuales cuando se navega de una Activity a otra.
 
-1. **Definir una transición en el archivo de diseño XML**:
+**Definir una transición en el archivo de diseño XML**:
    - Crea un archivo de transición en el directorio `res/transition` (por ejemplo, `fade.xml`).
 
 [source, xml]
@@ -2592,7 +2592,7 @@ Las transiciones entre Activities permiten crear efectos visuales cuando se nave
     android:duration="1000" />
 ----
 
-2. **Aplicar la transición en la Activity**:
+**Aplicar la transición en la Activity**:
    - Utiliza el método `getWindow().setEnterTransition` y `getWindow().setExitTransition` para aplicar la transición.
 
 [source, kotlin]
@@ -2612,7 +2612,7 @@ class MainActivity : AppCompatActivity() {
 }
 ----
 
-3. **Iniciar la nueva Activity con la transición**:
+**Iniciar la nueva Activity con la transición**:
    - Utiliza el método `startActivity` con una opción de transición.
 
 [source, kotlin]
@@ -2639,7 +2639,7 @@ class MainActivity : AppCompatActivity() {
 
 Las transiciones entre Fragments permiten crear efectos visuales cuando se navega de un Fragment a otro.
 
-1. **Definir una transición en el archivo de diseño XML**:
+**Definir una transición en el archivo de diseño XML**:
    - Crea un archivo de transición en el directorio `res/transition` (por ejemplo, `slide.xml`).
 
 [source, xml]
@@ -2650,7 +2650,7 @@ Las transiciones entre Fragments permiten crear efectos visuales cuando se naveg
     android:slideEdge="start" />
 ----
 
-2. **Aplicar la transición en el Fragment**:
+**Aplicar la transición en el Fragment**:
    - Utiliza el método `setEnterTransition` y `setExitTransition` para aplicar la transición.
 
 [source, kotlin]
@@ -2669,7 +2669,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 }
 ----
 
-3. **Navegar al nuevo Fragment con la transición**:
+**Navegar al nuevo Fragment con la transición**:
    - Utiliza el método `replace` del `FragmentManager` para navegar al nuevo Fragment.
 
 [source, kotlin]
@@ -2700,13 +2700,13 @@ Material Design es un lenguaje de diseño desarrollado por Google que proporcion
 
 Material Design se basa en varios principios clave que guían el diseño de interfaces de usuario:
 
-1. **Material Metaphor**:
+**Material Metaphor**:
    - El diseño debe imitar el comportamiento de los objetos físicos, utilizando superficies y bordes para proporcionar pistas visuales.
 
-2. **Bold, Graphic, Intentional**:
+**Bold, Graphic, Intentional**:
    - Utiliza colores audaces, tipografía clara y un diseño intencional para crear jerarquía y significado.
 
-3. **Motion Provides Meaning**:
+**Motion Provides Meaning**:
    - Las animaciones y transiciones deben ser significativas y ayudar a guiar al usuario a través de la interfaz.
 
 ==== 4.4.2 Configuración de Material Design
@@ -2722,7 +2722,7 @@ dependencies {
 
 ==== 4.4.3 Componentes de Material Design
 
-1. **AppBarLayout y Toolbar**:
+**AppBarLayout y Toolbar**:
    - AppBarLayout es un contenedor para la barra de herramientas y otros componentes de la barra de aplicaciones.
 
 [source, xml]
@@ -2740,7 +2740,7 @@ dependencies {
 </com.google.android.material.appbar.AppBarLayout>
 ----
 
-2. **FloatingActionButton**:
+**FloatingActionButton**:
    - FloatingActionButton es un botón circular que flota sobre el contenido y se utiliza para acciones principales.
 
 [source, xml]
@@ -2756,7 +2756,7 @@ dependencies {
     app:backgroundTint="@color/colorAccent" />
 ----
 
-3. **BottomNavigationView**:
+**BottomNavigationView**:
    - BottomNavigationView proporciona una barra de navegación en la parte inferior de la pantalla para cambiar entre vistas principales.
 
 [source, xml]
@@ -2769,7 +2769,7 @@ dependencies {
     app:menu="@menu/bottom_nav_menu" />
 ----
 
-4. **TextInputLayout y TextInputEditText**:
+**TextInputLayout y TextInputEditText**:
    - TextInputLayout es un contenedor para TextInputEditText que proporciona un diseño mejorado para campos de entrada de texto.
 
 [source, xml]
@@ -2785,7 +2785,7 @@ dependencies {
 </com.google.android.material.textfield.TextInputLayout>
 ----
 
-5. **CardView**:
+**CardView**:
    - CardView es un contenedor con esquinas redondeadas y sombra que se utiliza para mostrar contenido relacionado.
 
 [source, xml]
@@ -2828,7 +2828,7 @@ La creación de temas y estilos personalizados en Android permite definir y apli
 
 Un estilo es una colección de propiedades de apariencia que se pueden aplicar a un componente de la interfaz de usuario. Los estilos se definen en el archivo `res/values/styles.xml`.
 
-1. **Definir un estilo personalizado**:
+**Definir un estilo personalizado**:
    - Crea un estilo personalizado en el archivo `styles.xml`.
 
 [source, xml]
@@ -2842,7 +2842,7 @@ Un estilo es una colección de propiedades de apariencia que se pueden aplicar a
 </resources>
 ----
 
-2. **Aplicar un estilo a un componente**:
+**Aplicar un estilo a un componente**:
    - Utiliza el atributo `style` para aplicar el estilo a un componente en el archivo de diseño XML.
 
 [source, xml]
@@ -2858,7 +2858,7 @@ Un estilo es una colección de propiedades de apariencia que se pueden aplicar a
 
 Un tema es una colección de estilos que se aplican a toda la aplicación o a una Activity específica. Los temas se definen en el archivo `res/values/styles.xml`.
 
-1. **Definir un tema personalizado**:
+**Definir un tema personalizado**:
    - Crea un tema personalizado en el archivo `styles.xml`.
 
 [source, xml]
@@ -2874,7 +2874,7 @@ Un tema es una colección de estilos que se aplican a toda la aplicación o a un
 </resources>
 ----
 
-2. **Aplicar un tema a la aplicación**:
+**Aplicar un tema a la aplicación**:
    - Configura el tema en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -2885,7 +2885,7 @@ Un tema es una colección de estilos que se aplican a toda la aplicación o a un
 </application>
 ----
 
-3. **Aplicar un tema a una Activity específica**:
+**Aplicar un tema a una Activity específica**:
    - Configura el tema en el archivo `AndroidManifest.xml` para una Activity específica.
 
 [source, xml]
@@ -2899,7 +2899,7 @@ Un tema es una colección de estilos que se aplican a toda la aplicación o a un
 
 ==== 4.5.3 Personalización de componentes con estilos y temas
 
-1. **Personalizar la Toolbar**:
+**Personalizar la Toolbar**:
    - Define un estilo para la Toolbar y aplícalo en el archivo de diseño XML.
 
 [source, xml]
@@ -2921,7 +2921,7 @@ Un tema es una colección de estilos que se aplican a toda la aplicación o a un
     android:title="My App" />
 ----
 
-2. **Personalizar botones**:
+**Personalizar botones**:
    - Define un estilo para los botones y aplícalo en el archivo de diseño XML.
 
 [source, xml]
@@ -3366,7 +3366,7 @@ dependencies {
 
 ==== 5.4.2 Conceptos básicos de RxJava
 
-1. **Observable y Observer**:
+**Observable y Observer**:
    - Un `Observable` emite una secuencia de eventos o datos, mientras que un `Observer` se suscribe al `Observable` para recibir esos eventos o datos.
 
 [source, kotlin]
@@ -3394,7 +3394,7 @@ fun main() {
 }
 ----
 
-2. **Operadores**:
+**Operadores**:
    - Los operadores transforman, filtran y combinan flujos de datos. Algunos operadores comunes son `map`, `filter` y `flatMap`.
 
 [source, kotlin]
@@ -3408,7 +3408,7 @@ observable
 
 ==== 5.4.3 Uso de RxJava en Android
 
-1. **Configurar un Observable en una Activity**:
+**Configurar un Observable en una Activity**:
    - Utiliza `Observable` para manejar tareas asíncronas en una Activity.
 
 [source, kotlin]
@@ -3520,15 +3520,15 @@ Los servicios en Android son componentes que permiten realizar operaciones en se
 
 ==== 6.1.1 Tipos de servicios
 
-1. **Started Service**:
+**Started Service**:
    - Un `Started Service` se inicia cuando un componente de la aplicación (como una Activity) llama al método `startService()`. Una vez iniciado, el servicio puede ejecutarse indefinidamente, incluso si el componente que lo inició se destruye. Debe detenerse explícitamente llamando a `stopSelf()` o `stopService()`.
 
-2. **Bound Service**:
+**Bound Service**:
    - Un `Bound Service` se inicia cuando un componente de la aplicación llama al método `bindService()`. Proporciona una interfaz cliente-servidor que permite a los componentes interactuar con el servicio, enviar solicitudes, recibir resultados y hacerlo todo de manera interprocesal (IPC). Se detiene automáticamente cuando todos los clientes se desvinculan.
 
 ==== 6.1.2 Creación de un Started Service
 
-1. **Definir el servicio en el archivo AndroidManifest.xml**:
+**Definir el servicio en el archivo AndroidManifest.xml**:
    - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -3536,7 +3536,7 @@ Los servicios en Android son componentes que permiten realizar operaciones en se
 <service android:name=".MyStartedService" />
 ----
 
-2. **Crear la clase del servicio**:
+**Crear la clase del servicio**:
    - Extiende la clase `Service` y sobrescribe los métodos `onStartCommand()` y `onBind()`.
 
 [source, kotlin]
@@ -3567,7 +3567,7 @@ class MyStartedService : Service() {
 }
 ----
 
-3. **Iniciar y detener el servicio**:
+**Iniciar y detener el servicio**:
    - Utiliza los métodos `startService()` y `stopService()` para iniciar y detener el servicio desde una Activity.
 
 [source, kotlin]
@@ -3595,7 +3595,7 @@ class MainActivity : AppCompatActivity() {
 
 ==== 6.1.3 Creación de un Bound Service
 
-1. **Definir el servicio en el archivo AndroidManifest.xml**:
+**Definir el servicio en el archivo AndroidManifest.xml**:
    - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -3603,7 +3603,7 @@ class MainActivity : AppCompatActivity() {
 <service android:name=".MyBoundService" />
 ----
 
-2. **Crear la clase del servicio**:
+**Crear la clase del servicio**:
    - Extiende la clase `Service` y sobrescribe los métodos `onBind()` y `onUnbind()`.
 
 [source, kotlin]
@@ -3635,7 +3635,7 @@ class MyBoundService : Service() {
 }
 ----
 
-3. **Vincular y desvincular el servicio**:
+**Vincular y desvincular el servicio**:
    - Utiliza los métodos `bindService()` y `unbindService()` para vincular y desvincular el servicio desde una Activity.
 
 [source, kotlin]
@@ -3692,7 +3692,7 @@ Los servicios en segundo plano y los servicios en primer plano (Foreground Servi
 
 Un servicio en segundo plano se ejecuta sin una interfaz de usuario y puede realizar tareas que no requieren la interacción del usuario.
 
-1. **Definir el servicio en el archivo AndroidManifest.xml**:
+**Definir el servicio en el archivo AndroidManifest.xml**:
    - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -3700,7 +3700,7 @@ Un servicio en segundo plano se ejecuta sin una interfaz de usuario y puede real
 <service android:name=".MyBackgroundService" />
 ----
 
-2. **Crear la clase del servicio**:
+**Crear la clase del servicio**:
    - Extiende la clase `Service` y sobrescribe los métodos `onStartCommand()` y `onBind()`.
 
 [source, kotlin]
@@ -3731,7 +3731,7 @@ class MyBackgroundService : Service() {
 }
 ----
 
-3. **Iniciar y detener el servicio**:
+**Iniciar y detener el servicio**:
    - Utiliza los métodos `startService()` y `stopService()` para iniciar y detener el servicio desde una Activity.
 
 [source, kotlin]
@@ -3761,7 +3761,7 @@ class MainActivity : AppCompatActivity() {
 
 Un servicio en primer plano (Foreground Service) es un servicio que se ejecuta en primer plano y muestra una notificación persistente para informar al usuario de que el servicio está activo. Los servicios en primer plano son ideales para tareas que el usuario debe conocer, como la reproducción de música o la navegación GPS.
 
-1. **Definir el servicio en el archivo AndroidManifest.xml**:
+**Definir el servicio en el archivo AndroidManifest.xml**:
    - Añade una entrada para el servicio en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -3769,7 +3769,7 @@ Un servicio en primer plano (Foreground Service) es un servicio que se ejecuta e
 <service android:name=".MyForegroundService" />
 ----
 
-2. **Crear la clase del servicio**:
+**Crear la clase del servicio**:
    - Extiende la clase `Service` y sobrescribe los métodos `onStartCommand()` y `onBind()`.
 
 [source, kotlin]
@@ -3831,7 +3831,7 @@ class MyForegroundService : Service() {
 }
 ----
 
-3. **Iniciar y detener el servicio**:
+**Iniciar y detener el servicio**:
    - Utiliza los métodos `startService()` y `stopService()` para iniciar y detener el servicio desde una Activity.
 
 [source, kotlin]
@@ -3863,15 +3863,15 @@ Los Broadcast Receivers son componentes que permiten a las aplicaciones responde
 
 ==== 6.3.1 Tipos de Broadcast Receivers
 
-1. **Static Broadcast Receivers**:
+**Static Broadcast Receivers**:
    - Se declaran en el archivo `AndroidManifest.xml` y se registran automáticamente cuando la aplicación se instala. Son útiles para recibir eventos del sistema incluso cuando la aplicación no está en ejecución.
 
-2. **Dynamic Broadcast Receivers**:
+**Dynamic Broadcast Receivers**:
    - Se registran en tiempo de ejecución utilizando el método `registerReceiver()`. Son útiles para recibir eventos solo cuando la aplicación está en primer plano.
 
 ==== 6.3.2 Creación de un Static Broadcast Receiver
 
-1. **Definir el Broadcast Receiver en el archivo AndroidManifest.xml**:
+**Definir el Broadcast Receiver en el archivo AndroidManifest.xml**:
    - Añade una entrada para el Broadcast Receiver en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -3883,7 +3883,7 @@ Los Broadcast Receivers son componentes que permiten a las aplicaciones responde
 </receiver>
 ----
 
-2. **Crear la clase del Broadcast Receiver**:
+**Crear la clase del Broadcast Receiver**:
    - Extiende la clase `BroadcastReceiver` y sobrescribe el método `onReceive()`.
 
 [source, kotlin]
@@ -3905,7 +3905,7 @@ class MyBroadcastReceiver : BroadcastReceiver() {
 
 ==== 6.3.3 Creación de un Dynamic Broadcast Receiver
 
-1. **Registrar el Broadcast Receiver en tiempo de ejecución**:
+**Registrar el Broadcast Receiver en tiempo de ejecución**:
    - Utiliza el método `registerReceiver()` para registrar el Broadcast Receiver en una Activity o Service.
 
 [source, kotlin]
@@ -3997,7 +3997,7 @@ Para utilizar los servicios de localización y el GPS, es necesario solicitar lo
 
 ==== 6.4.2 Obtener la ubicación del usuario
 
-1. **Configurar el cliente de ubicación**:
+**Configurar el cliente de ubicación**:
    - Utiliza `FusedLocationProviderClient` para obtener la ubicación del usuario.
 
 [source, kotlin]
@@ -4043,7 +4043,7 @@ class MainActivity : AppCompatActivity() {
 }
 ----
 
-2. **Manejar la solicitud de permisos**:
+**Manejar la solicitud de permisos**:
    - Sobrescribe el método `onRequestPermissionsResult` para manejar la respuesta de la solicitud de permisos.
 
 [source, kotlin]
@@ -4060,7 +4060,7 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
 
 Para recibir actualizaciones de ubicación en tiempo real, utiliza `LocationRequest` y `LocationCallback`.
 
-1. **Configurar las actualizaciones de ubicación**:
+**Configurar las actualizaciones de ubicación**:
    - Crea una instancia de `LocationRequest` y `LocationCallback`.
 
 [source, kotlin]
@@ -4138,7 +4138,7 @@ Las notificaciones push y LocalBroadcastManager son herramientas esenciales para
 
 Firebase Cloud Messaging (FCM) es una plataforma que permite enviar notificaciones push a dispositivos Android.
 
-1. **Configurar Firebase en el proyecto**:
+**Configurar Firebase en el proyecto**:
    - Añade el archivo `google-services.json` a tu proyecto y configura Firebase en el archivo `build.gradle`.
 
 [source, groovy]
@@ -4150,7 +4150,7 @@ dependencies {
 apply plugin: 'com.google.gms.google-services'
 ----
 
-2. **Crear un servicio de mensajería**:
+**Crear un servicio de mensajería**:
    - Extiende la clase `FirebaseMessagingService` y sobrescribe el método `onMessageReceived()`.
 
 [source, kotlin]
@@ -4181,7 +4181,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 }
 ----
 
-3. **Registrar el servicio en el archivo AndroidManifest.xml**:
+**Registrar el servicio en el archivo AndroidManifest.xml**:
    - Añade una entrada para el servicio de mensajería en el archivo `AndroidManifest.xml`.
 
 [source, xml]
@@ -4199,7 +4199,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
 LocalBroadcastManager es una clase que facilita la comunicación dentro de la aplicación mediante el envío y la recepción de transmisiones locales.
 
-1. **Enviar una transmisión local**:
+**Enviar una transmisión local**:
    - Utiliza `LocalBroadcastManager` para enviar una transmisión local.
 
 [source, kotlin]
@@ -4220,7 +4220,7 @@ class MainActivity : AppCompatActivity() {
 }
 ----
 
-2. **Recibir una transmisión local**:
+**Recibir una transmisión local**:
    - Registra un `BroadcastReceiver` para recibir transmisiones locales.
 
 [source, kotlin]
@@ -4368,33 +4368,33 @@ res/layout-land/main_activity.xml         # Diseño para modo horizontal
 
 ==== 7.1.4 Pruebas en diferentes tamaños y resoluciones de pantalla
 
-1. **Emuladores de Android**:
+**Emuladores de Android**:
    - Utiliza el Administrador de Dispositivos Virtuales (AVD) en Android Studio para crear emuladores con diferentes tamaños y resoluciones de pantalla. Esto permite probar la aplicación en una variedad de dispositivos virtuales.
 
-2. **Dispositivos físicos**:
+**Dispositivos físicos**:
    - Prueba la aplicación en dispositivos físicos con diferentes tamaños y resoluciones de pantalla para asegurarte de que la interfaz de usuario se vea bien en todos los dispositivos.
 
 === 7.2 Creación de interfaces accesibles: principios de accesibilidad
 
 La creación de interfaces accesibles es esencial para garantizar que todas las personas, incluidas aquellas con discapacidades, puedan utilizar y acceder a la información y funcionalidades de una aplicación o sitio web. A continuación, se presentan los principios fundamentales de accesibilidad que deben tenerse en cuenta durante el diseño y desarrollo de interfaces:
 
-1. **Perceptible**: La información y componentes de la interfaz deben presentarse de manera que los usuarios puedan percibirlos. Esto incluye:
+**Perceptible**: La información y componentes de la interfaz deben presentarse de manera que los usuarios puedan percibirlos. Esto incluye:
    - Proporcionar texto alternativo para imágenes y contenido no textual.
    - Asegurar que el contenido sea adaptable y se pueda presentar en diferentes formas sin perder significado.
    - Utilizar colores con suficiente contraste para facilitar la lectura.
 
-2. **Operable**: Los componentes de la interfaz y la navegación deben ser utilizables para todos los usuarios.
+**Operable**: Los componentes de la interfaz y la navegación deben ser utilizables para todos los usuarios.
    - Permitir que todas las funcionalidades sean accesibles mediante el teclado.
    - Evitar contenido que parpadee o destelle, para no causar problemas a usuarios con fotosensibilidad.
    - Proporcionar suficiente tiempo para que los usuarios lean y utilicen el contenido.
    - Ofrecer métodos claros de navegación y orientación dentro de la interfaz.
 
-3. **Comprensible**: La información y el funcionamiento de la interfaz deben ser claros y fáciles de entender.
+**Comprensible**: La información y el funcionamiento de la interfaz deben ser claros y fáciles de entender.
    - Utilizar un lenguaje sencillo y directo.
    - Proporcionar instrucciones y retroalimentación claras en formularios y procesos.
    - Asegurar que la interfaz funcione de manera predecible y consistente.
 
-4. **Robusto**: El contenido debe ser lo suficientemente robusto para ser interpretado de manera fiable por una amplia variedad de agentes de usuario, incluidas tecnologías de asistencia.
+**Robusto**: El contenido debe ser lo suficientemente robusto para ser interpretado de manera fiable por una amplia variedad de agentes de usuario, incluidas tecnologías de asistencia.
    - Seguir estándares y especificaciones web vigentes.
    - Utilizar código semántico y validado.
    - Probar la compatibilidad en diferentes navegadores y dispositivos.
@@ -4538,9 +4538,9 @@ Android selecciona automáticamente los recursos basándose en la configuración
 
 Para probar la localización:
 
-1. Cambia el idioma del emulador o dispositivo físico en Configuración.
-2. Utiliza la opción "Override locale" en Android Studio.
-3. Verifica que todos los recursos se muestren correctamente.
+Cambia el idioma del emulador o dispositivo físico en Configuración.
+Utiliza la opción "Override locale" en Android Studio.
+Verifica que todos los recursos se muestren correctamente.
 
 == Consejos para una localización efectiva
 
@@ -4598,7 +4598,7 @@ Antes de solicitar permisos en tiempo de ejecución, debes declarar los permisos
 
 Para solicitar permisos en tiempo de ejecución, sigue estos pasos:
 
-1. **Verificar si el permiso está otorgado**:
+**Verificar si el permiso está otorgado**:
 
    [source, kotlin]
    ----
@@ -4608,7 +4608,7 @@ Para solicitar permisos en tiempo de ejecución, sigue estos pasos:
    }
    ----
 
-2. **Solicitar el permiso al usuario**:
+**Solicitar el permiso al usuario**:
 
    [source, kotlin]
    ----
@@ -4617,7 +4617,7 @@ Para solicitar permisos en tiempo de ejecución, sigue estos pasos:
        REQUEST_CODE_PERMISSION)
    ----
 
-3. **Manejar la respuesta del usuario**:
+**Manejar la respuesta del usuario**:
 
    [source, kotlin]
    ----
@@ -4849,20 +4849,20 @@ Firebase es una plataforma desarrollada por Google que ofrece múltiples servici
 
 ==== Paso 1: Configurar el proyecto de Firebase
 
-1. **Crear un proyecto en Firebase Console**:
+**Crear un proyecto en Firebase Console**:
    - Ve a [Firebase Console](https://console.firebase.google.com/) y crea un nuevo proyecto.
 
-2. **Agregar la aplicación Android al proyecto**:
+**Agregar la aplicación Android al proyecto**:
    - Selecciona "Añadir aplicación" y elige Android.
    - Proporciona el nombre del paquete de tu aplicación (por ejemplo, `com.example.app`).
    - Sigue las instrucciones para descargar el archivo `google-services.json`.
 
-3. **Agregar `google-services.json` al proyecto**:
+**Agregar `google-services.json` al proyecto**:
    - Coloca el archivo `google-services.json` en la carpeta `app/` de tu proyecto Android.
 
 ==== Paso 2: Configurar el proyecto Android
 
-1. **Agregar los repositorios y plugins en `build.gradle` (nivel de proyecto)**:
+**Agregar los repositorios y plugins en `build.gradle` (nivel de proyecto)**:
 
    [source, groovy]
    ----
@@ -4885,7 +4885,7 @@ Firebase es una plataforma desarrollada por Google que ofrece múltiples servici
    }
    ----
 
-2. **Aplicar el plugin y agregar las dependencias en `build.gradle` (módulo app)**:
+**Aplicar el plugin y agregar las dependencias en `build.gradle` (módulo app)**:
 
    [source, groovy]
    ----
@@ -5153,17 +5153,17 @@ La integración de Google Maps y los servicios de localización en aplicaciones 
 
 ==== Paso 1: Configurar el proyecto de Google Cloud Platform
 
-1. **Crear un proyecto en Google Cloud Console**:
+**Crear un proyecto en Google Cloud Console**:
    - Ve a [Google Cloud Console](https://console.cloud.google.com/).
    - Crea un nuevo proyecto o selecciona uno existente.
 
-2. **Habilitar las APIs necesarias**:
+**Habilitar las APIs necesarias**:
    - Navega a **API y Servicios** > **Biblioteca**.
    - Habilita las siguientes APIs:
      - **Maps SDK for Android**
      - **Places API** (opcional, si necesitas lugares)
 
-3. **Obtener la clave de API**:
+**Obtener la clave de API**:
    - Ve a **Credenciales** y crea una nueva clave de API.
    - **Restricción de la clave**: Por seguridad, restringe el uso de la clave a aplicaciones Android especificando el nombre del paquete y la huella digital SHA-1.
 
@@ -5182,7 +5182,7 @@ dependencies {
 
 ==== Paso 3: Configurar el archivo `AndroidManifest.xml`
 
-1. **Añadir permisos requeridos**:
+**Añadir permisos requeridos**:
 
 [source, xml]
 ----
@@ -5190,7 +5190,7 @@ dependencies {
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 ----
 
-2. **Declarar la clave de API** dentro del elemento `<application>`:
+**Declarar la clave de API** dentro del elemento `<application>`:
 
 [source, xml]
 ----
@@ -5374,17 +5374,855 @@ override fun onPause() {
 - [Ejemplos de código de Google Maps](https://github.com/googlemaps/android-samples)
 
 === 8.4 In-App Purchases y Google Play Billing Library
+
+La integración de compras dentro de la aplicación (In-App Purchases) y la Google Play Billing Library permite a los desarrolladores monetizar sus aplicaciones ofreciendo productos y suscripciones a los usuarios. A continuación se muestra un ejemplo de cómo implementar la Google Play Billing Library en una aplicación Android.
+
+==== Configuración inicial
+
+Agrega las dependencias necesarias en el archivo `build.gradle.kts`:
+
+[source, kotlin]
+----
+dependencies {
+    implementation("com.android.billingclient:billing:4.0.0")
+}
+----
+
+Configura los permisos necesarios en el archivo `AndroidManifest.xml`:
+
+[source, xml]
+----
+<uses-permission android:name="com.android.vending.BILLING" />
+----
+
+==== Implementación de la clase BillingManager
+
+La clase `BillingManager` se encarga de gestionar la conexión con Google Play Billing y de manejar las compras dentro de la aplicación.
+
+[source, java]
+----
+public class BillingManager {
+    private final BillingClient billingClient;
+
+    public BillingManager(Context context) {
+        billingClient = BillingClient.newBuilder(context)
+            .setListener(purchasesUpdatedListener)
+            .enablePendingPurchases()
+            .build();
+    }
+
+    public void startConnection() {
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready.
+                }
+            }
+
+            @Override
+            public void onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to Google Play.
+            }
+        });
+    }
+
+    private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
+        @Override
+        public void onPurchasesUpdated(BillingResult billingResult, List<Purchase> purchases) {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
+                for (Purchase purchase : purchases) {
+                    handlePurchase(purchase);
+                }
+            } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+                // Handle an error caused by a user cancelling the purchase flow.
+            } else {
+                // Handle any other error codes.
+            }
+        }
+    };
+
+    private void handlePurchase(Purchase purchase) {
+        // Handle the purchase
+    }
+}
+----
+
+==== Realización de una compra
+
+Para realizar una compra, se debe iniciar el flujo de compra utilizando el método `launchBillingFlow` de `BillingClient`.
+
+[source, java]
+----
+public void initiatePurchase(Activity activity, String productId) {
+    BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+        .setSkuDetails(SkuDetails.newBuilder()
+            .setSku(productId)
+            .setType(BillingClient.SkuType.INAPP)
+            .build())
+        .build();
+    billingClient.launchBillingFlow(activity, billingFlowParams);
+}
+----
+
+==== Verificación de compras
+
+Es importante verificar las compras en el servidor para asegurar que las transacciones sean válidas y no hayan sido manipuladas.
+
+[source, java]
+----
+private void verifyPurchase(Purchase purchase) {
+    // Enviar la información de la compra al servidor para su verificación
+}
+----
+
+Estos son los pasos básicos para integrar la Google Play Billing Library en una aplicación Android. Asegúrate de seguir las mejores prácticas de seguridad y de manejar adecuadamente los errores y las transacciones para ofrecer una experiencia de usuario fluida y segura.
+
 === 8.5 Aplicaciones multimedia: Cámara, audio y video en Android
+
+El desarrollo de aplicaciones multimedia en Android incluye el uso de la cámara, la grabación y reproducción de audio, y la reproducción de video. A continuación se presentan ejemplos y buenas prácticas para trabajar con estos componentes.
+
+==== Uso de la cámara
+
+Para utilizar la cámara en una aplicación Android, se puede usar la API de CameraX, que simplifica el proceso de integración de la cámara. A continuación se muestra un ejemplo de cómo capturar una imagen utilizando CameraX:
+
+[source, kotlin]
+----
+class CameraActivity : AppCompatActivity() {
+    private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_camera)
+
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+        cameraProviderFuture.addListener(Runnable {
+            val cameraProvider = cameraProviderFuture.get()
+            bindPreview(cameraProvider)
+        }, ContextCompat.getMainExecutor(this))
+    }
+
+    private fun bindPreview(cameraProvider: ProcessCameraProvider) {
+        val preview = Preview.Builder().build()
+        val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+        preview.setSurfaceProvider(findViewById<PreviewView>(R.id.previewView).surfaceProvider)
+        cameraProvider.bindToLifecycle(this, cameraSelector, preview)
+    }
+}
+----
+
+==== Grabación y reproducción de audio
+
+Para grabar y reproducir audio en Android, se pueden utilizar las clases `MediaRecorder` y `MediaPlayer`. A continuación se muestra un ejemplo de cómo grabar y reproducir audio:
+
+[source, kotlin]
+----
+class AudioActivity : AppCompatActivity() {
+    private var mediaRecorder: MediaRecorder? = null
+    private var mediaPlayer: MediaPlayer? = null
+    private var outputFile: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_audio)
+
+        outputFile = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp"
+
+        findViewById<Button>(R.id.recordButton).setOnClickListener {
+            startRecording()
+        }
+
+        findViewById<Button>(R.id.playButton).setOnClickListener {
+            startPlaying()
+        }
+    }
+
+    private fun startRecording() {
+        mediaRecorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+            setOutputFile(outputFile)
+            prepare()
+            start()
+        }
+    }
+
+    private fun startPlaying() {
+        mediaPlayer = MediaPlayer().apply {
+            setDataSource(outputFile)
+            prepare()
+            start()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mediaRecorder?.release()
+        mediaRecorder = null
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+}
+----
+
+==== Reproducción de video
+
+Para reproducir video en Android, se puede utilizar la clase `VideoView`. A continuación se muestra un ejemplo de cómo reproducir un video desde una URL:
+
+[source, kotlin]
+----
+class VideoActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_video)
+
+        val videoView = findViewById<VideoView>(R.id.videoView)
+        val videoUri = Uri.parse("https://www.example.com/video.mp4")
+        videoView.setVideoURI(videoUri)
+        videoView.setMediaController(MediaController(this))
+        videoView.requestFocus()
+        videoView.start()
+    }
+}
+----
+
+Estas son algunas de las prácticas y ejemplos para trabajar con aplicaciones multimedia en Android. Asegúrate de manejar los permisos necesarios y de optimizar el uso de recursos para una mejor experiencia del usuario.
 
 == Módulo 9: Arquitectura y patrones de diseño en Android
 === 9.1 Principios de Clean Architecture
+
+Clean Architecture es un enfoque de diseño de software que promueve la separación de responsabilidades y la independencia de los componentes del sistema. Los principios clave incluyen:
+
+- **Independencia de Frameworks**: La arquitectura no debe depender de frameworks específicos. Estos deben ser herramientas que se pueden reemplazar sin afectar la lógica de negocio.
+- **Testabilidad**: El diseño debe permitir pruebas unitarias y de integración fáciles.
+- **Independencia de la UI**: La lógica de negocio no debe depender de la interfaz de usuario. Esto permite cambiar la UI sin afectar la lógica subyacente.
+- **Independencia de la Base de Datos**: La lógica de negocio no debe depender de detalles de la base de datos. Esto permite cambiar la base de datos sin afectar la lógica de negocio.
+- **Independencia de Agencias Externas**: La lógica de negocio no debe depender de servicios externos. Esto permite cambiar servicios externos sin afectar la lógica de negocio.
+
+La estructura típica de Clean Architecture incluye:
+
+- **Entidades**: Representan los objetos de negocio y contienen la lógica de negocio.
+- **Casos de Uso**: Contienen la lógica específica de la aplicación y coordinan la interacción entre las entidades y otros componentes.
+- **Interfaces**: Definen contratos para la comunicación entre capas y permiten la inyección de dependencias.
+- **Adaptadores**: Implementan las interfaces y permiten la comunicación con frameworks, bases de datos y otros servicios externos.
+
+[source, java]
+----
+public class User {
+    private String id;
+    private String name;
+
+    // Constructor, getters y setters
+}
+
+public interface UserRepository {
+    User getUserById(String id);
+    void saveUser(User user);
+}
+
+public class GetUserUseCase {
+    private final UserRepository userRepository;
+
+    public GetUserUseCase(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public User execute(String userId) {
+        return userRepository.getUserById(userId);
+    }
+}
+
+public class UserController {
+    private final GetUserUseCase getUserUseCase;
+
+    public UserController(GetUserUseCase getUserUseCase) {
+        this.getUserUseCase = getUserUseCase;
+    }
+
+    public User getUser(String userId) {
+        return getUserUseCase.execute(userId);
+    }
+}
+
+public class InMemoryUserRepository implements UserRepository {
+    private Map<String, User> users = new HashMap<>();
+
+    @Override
+    public User getUserById(String id) {
+        return users.get(id);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        users.put(user.getId(), user);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        UserRepository userRepository = new InMemoryUserRepository();
+        GetUserUseCase getUserUseCase = new GetUserUseCase(userRepository);
+        UserController userController = new UserController(getUserUseCase);
+
+        User user = new User("1", "John Doe");
+        userRepository.saveUser(user);
+
+        User retrievedUser = userController.getUser("1");
+        System.out.println("User retrieved: " + retrievedUser.getName());
+    }
+}
+----
+
 === 9.2 Implementación del patrón MVVM en Android
-=== 9.3 Introducción a Dagger Hilt para inyección de dependencias
+
+El patrón MVVM (Model-View-ViewModel) es una arquitectura que separa la lógica de presentación de la lógica de negocio y de la interfaz de usuario. Los componentes principales son:
+
+- **Model**: Representa la lógica de negocio y los datos de la aplicación.
+- **View**: Representa la interfaz de usuario y muestra los datos al usuario.
+- **ViewModel**: Actúa como un intermediario entre el Model y la View, manejando la lógica de presentación y la comunicación entre ambos.
+
+A continuación se muestra un ejemplo de implementación del patrón MVVM en Android:
+
+[source, kotlin]
+----
+data class User(val id: String, val name: String)
+
+interface UserRepository {
+    fun getUserById(id: String): LiveData<User>
+}
+
+class UserRepositoryImpl : UserRepository {
+    private val users = mutableMapOf<String, User>()
+
+    init {
+        users["1"] = User("1", "John Doe")
+    }
+
+    override fun getUserById(id: String): LiveData<User> {
+        val user = MutableLiveData<User>()
+        user.value = users[id]
+        return user
+    }
+}
+
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
+    fun getUser(userId: String): LiveData<User> {
+        return userRepository.getUserById(userId)
+    }
+}
+
+class UserActivity : AppCompatActivity() {
+    private lateinit var viewModel: UserViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user)
+
+        val userRepository = UserRepositoryImpl()
+        viewModel = ViewModelProvider(this, ViewModelFactory(userRepository)).get(UserViewModel::class.java)
+
+        viewModel.getUser("1").observe(this, Observer { user ->
+            findViewById<TextView>(R.id.userName).text = user?.name
+        })
+    }
+}
+
+class ViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
+            return UserViewModel(userRepository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
+----
+
+=== 9.3 Dagger Hilt para inyección de dependencias
+
+Dagger Hilt es una biblioteca para la inyección de dependencias en Android que simplifica el uso de Dagger en aplicaciones Android. Hilt proporciona una forma estándar de incorporar la inyección de dependencias en las aplicaciones Android y gestiona automáticamente el ciclo de vida de los componentes inyectados.
+
+==== Configuración inicial
+
+Agrega las dependencias necesarias en el archivo `build.gradle.kts`:
+
+[source, kotlin]
+----
+dependencies {
+    implementation("com.google.dagger:hilt-android:2.40.5")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.5")
+}
+----
+
+Aplica el plugin de Hilt en el archivo `build.gradle.kts`:
+
+[source, kotlin]
+----
+plugins {
+    id("com.android.application")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
+}
+----
+
+Inicializa Hilt en tu aplicación creando una clase que extienda `Application` y anotándola con `@HiltAndroidApp`:
+
+[source, kotlin]
+----
+@HiltAndroidApp
+class MyApplication : Application()
+----
+
+==== Creación de módulos de Hilt
+
+Los módulos de Hilt proporcionan instancias de dependencias. Un módulo es una clase anotada con `@Module` y `@InstallIn`, y los métodos que proporcionan dependencias se anotan con `@Provides`.
+
+[source, kotlin]
+----
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Provides
+    fun provideApiService(): ApiService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.example.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+
+    @Provides
+    fun provideRepository(apiService: ApiService): Repository {
+        return RepositoryImpl(apiService)
+    }
+}
+----
+
+==== Inyección de dependencias en actividades y fragmentos
+
+Para inyectar dependencias en actividades y fragmentos, anótalos con `@AndroidEntryPoint`.
+
+[source, kotlin]
+----
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var repository: Repository
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Usa la dependencia inyectada
+        repository.getData()
+    }
+}
+----
+
+[source, kotlin]
+----
+@AndroidEntryPoint
+class MainFragment : Fragment() {
+
+    @Inject
+    lateinit var repository: Repository
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Usa la dependencia inyectada
+        repository.getData()
+    }
+}
+----
+
+==== Inyección de dependencias en ViewModels
+
+Para inyectar dependencias en ViewModels, usa la anotación `@HiltViewModel` y el constructor con `@Inject`.
+
+[source, kotlin]
+----
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
+
+    val data: LiveData<List<Data>> = liveData {
+        val retrievedData = repository.getData()
+        emit(retrievedData)
+    }
+}
+----
+
+Estos son los pasos básicos para configurar e implementar Dagger Hilt para la inyección de dependencias en una aplicación Android. Hilt simplifica la configuración y el uso de Dagger, permitiendo una inyección de dependencias más fácil y eficiente.
+
+==== Anotaciones disponibles en Dagger Hilt
+
+Dagger Hilt proporciona varias anotaciones que facilitan la configuración y el uso de la inyección de dependencias en aplicaciones Android. A continuación se describen las anotaciones más comunes:
+
+- **@HiltAndroidApp**: Anota la clase `Application` para inicializar Hilt. Esta anotación es necesaria para que Hilt pueda generar los componentes necesarios para la inyección de dependencias.
+
+[source, kotlin]
+----
+@HiltAndroidApp
+class MyApplication : Application()
+----
+
+- **@AndroidEntryPoint**: Anota actividades, fragmentos, servicios y otros componentes de Android para habilitar la inyección de dependencias en ellos.
+
+[source, kotlin]
+----
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var repository: Repository
+}
+----
+
+- **@Inject**: Anota los constructores, métodos y campos donde se deben inyectar las dependencias.
+
+[source, kotlin]
+----
+class Repository @Inject constructor(private val apiService: ApiService) {
+    // ...
+}
+----
+
+- **@HiltViewModel**: Anota las clases `ViewModel` para habilitar la inyección de dependencias en ellas.
+
+[source, kotlin]
+----
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: Repository
+) : ViewModel() {
+    // ...
+}
+----
+
+- **@Module**: Anota las clases que proporcionan dependencias. Los módulos contienen métodos anotados con `@Provides` que indican cómo crear las dependencias.
+
+[source, kotlin]
+----
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+    @Provides
+    fun provideApiService(): ApiService {
+        return Retrofit.Builder()
+            .baseUrl("https://api.example.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+}
+----
+
+- **@Provides**: Anota los métodos dentro de un módulo que proporcionan instancias de dependencias.
+
+[source, kotlin]
+----
+@Provides
+fun provideRepository(apiService: ApiService): Repository {
+    return RepositoryImpl(apiService)
+}
+----
+
+- **@InstallIn**: Especifica en qué componente de Hilt se debe instalar el módulo. Los componentes comunes incluyen `SingletonComponent`, `ActivityComponent`, `FragmentComponent`, etc.
+
+[source, kotlin]
+----
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+    // ...
+}
+----
+
+- **@Singleton**: Anota las clases o métodos que deben tener un único ciclo de vida en toda la aplicación.
+
+[source, kotlin]
+----
+@Singleton
+class ApiService @Inject constructor() {
+    // ...
+}
+----
+
+- **@Binds**: Anota los métodos dentro de un módulo que vinculan una implementación a una interfaz.
+
+[source, kotlin]
+----
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class AppModule {
+    @Binds
+    abstract fun bindRepository(
+        repositoryImpl: RepositoryImpl
+    ): Repository
+}
+----
+
+Estas anotaciones son esenciales para configurar y utilizar Dagger Hilt en una aplicación Android, facilitando la inyección de dependencias y mejorando la modularidad y testabilidad del código.
+
 === 9.4 Testing en Android: Unit Testing y UI Testing
+
+Las pruebas son una parte esencial del desarrollo de aplicaciones Android para asegurar la calidad y el correcto funcionamiento del código. Existen dos tipos principales de pruebas en Android: Unit Testing y UI Testing.
+
+- **Unit Testing**: Se enfoca en probar unidades individuales de código, como métodos o clases, de manera aislada. Utiliza frameworks como JUnit y Mockito para realizar estas pruebas.
+- **UI Testing**: Se enfoca en probar la interfaz de usuario y la interacción del usuario con la aplicación. Utiliza frameworks como Espresso y UI Automator para realizar estas pruebas.
+
+A continuación se presentan ejemplos de ambos tipos de pruebas:
+
+[source, java]
+----
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+public class UserRepositoryTest {
+
+    @Mock
+    private UserDataSource userDataSource;
+
+    private UserRepository userRepository;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        userRepository = new UserRepository(userDataSource);
+    }
+
+    @Test
+    public void getUser_validId_returnsUser() {
+        User user = new User("1", "John Doe");
+        when(userDataSource.getUserById("1")).thenReturn(user);
+
+        User result = userRepository.getUserById("1");
+
+        assertEquals("John Doe", result.getName());
+    }
+}
+----
+
+[source, kotlin]
+----
+@RunWith(AndroidJUnit4::class)
+class MainActivityTest {
+
+    @get:Rule
+    val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
+    @Test
+    fun testButtonClick_updatesTextView() {
+        // Realiza clic en el botón
+        onView(withId(R.id.button)).perform(click())
+
+        // Verifica que el TextView se actualiza con el texto esperado
+        onView(withId(R.id.textView)).check(matches(withText("Button clicked!")))
+    }
+}
+----
+
+Para configurar las pruebas unitarias y de UI en tu proyecto Android, asegúrate de incluir las siguientes dependencias en tu archivo `build.gradle.kts`:
+
+[source, kotlin]
+----
+dependencies {
+    // Dependencias para pruebas unitarias
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:3.11.2")
+
+    // Dependencias para pruebas de UI
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+}
+----
+
+==== Anotaciones en Unit Testing
+
+Las anotaciones en Unit Testing ayudan a definir el comportamiento y la configuración de las pruebas. Algunas de las anotaciones más comunes en JUnit son:
+
+- **@Test**: Marca un método como un caso de prueba.
+- **@Before**: Indica que el método anotado debe ejecutarse antes de cada caso de prueba. Se utiliza para configurar el entorno de prueba.
+- **@After**: Indica que el método anotado debe ejecutarse después de cada caso de prueba. Se utiliza para limpiar el entorno de prueba.
+- **@BeforeClass**: Indica que el método anotado debe ejecutarse una vez antes de todos los casos de prueba en la clase. Debe ser un método estático.
+- **@AfterClass**: Indica que el método anotado debe ejecutarse una vez después de todos los casos de prueba en la clase. Debe ser un método estático.
+- **@Ignore**: Indica que el método anotado debe ser ignorado y no ejecutado como un caso de prueba.
+- **@RunWith**: Especifica un runner personalizado para ejecutar las pruebas. Por ejemplo, `@RunWith(MockitoJUnitRunner.class)` para usar Mockito.
+
+A continuación se muestra un ejemplo que utiliza varias de estas anotaciones:
+
+[source, java]
+----
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.After;
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
+import org.junit.Test;
+import org.junit.Ignore;
+
+public class ExampleUnitTest {
+
+    @BeforeClass
+    public static void setUpBeforeClass() {
+        // Se ejecuta una vez antes de todos los casos de prueba
+        System.out.println("BeforeClass: Configuración inicial");
+    }
+
+    @AfterClass
+    public static void tearDownAfterClass() {
+        // Se ejecuta una vez después de todos los casos de prueba
+        System.out.println("AfterClass: Limpieza final");
+    }
+
+    @Before
+    public void setUp() {
+        // Se ejecuta antes de cada caso de prueba
+        System.out.println("Before: Configuración antes de cada prueba");
+    }
+
+    @After
+    public void tearDown() {
+        // Se ejecuta después de cada caso de prueba
+        System.out.println("After: Limpieza después de cada prueba");
+    }
+
+    @Test
+    public void testAddition() {
+        // Caso de prueba
+        assertEquals(4, 2 + 2);
+    }
+
+    @Ignore("Prueba ignorada")
+    @Test
+    public void testIgnored() {
+        // Este caso de prueba será ignorado
+    }
+}
+----
+
 === 9.5 Buenas prácticas en Android y optimización de aplicaciones
+
+Para desarrollar aplicaciones Android de alta calidad y rendimiento, es importante seguir una serie de buenas prácticas y técnicas de optimización. A continuación se presentan algunas recomendaciones clave:
+
+- **Optimización de recursos**: Minimiza el uso de recursos como imágenes y archivos de audio. Utiliza formatos de compresión adecuados y evita cargar recursos innecesarios en memoria.
+- **Uso eficiente de la memoria**: Evita fugas de memoria utilizando herramientas como LeakCanary. Libera recursos no utilizados y evita referencias fuertes a objetos de larga duración.
+- **Optimización de la UI**: Mantén la interfaz de usuario simple y evita operaciones costosas en el hilo principal. Utiliza componentes de UI eficientes y optimiza las vistas personalizadas.
+- **Manejo adecuado de hilos**: Utiliza AsyncTask, ThreadPoolExecutor o coroutines para realizar operaciones en segundo plano. Evita bloquear el hilo principal.
+- **Reducción del consumo de batería**: Minimiza el uso de servicios en segundo plano y ajusta los intervalos de actualización de datos. Utiliza el JobScheduler o WorkManager para tareas programadas.
+- **Optimización de la red**: Reduce el número de solicitudes de red y utiliza técnicas de caché. Utiliza bibliotecas como Retrofit o OkHttp para manejar las solicitudes de red de manera eficiente.
+- **Pruebas y monitoreo**: Realiza pruebas unitarias y de integración para asegurar la calidad del código. Utiliza herramientas de monitoreo y análisis de rendimiento como Firebase Performance Monitoring.
+
+A continuación se muestra un ejemplo de código que optimiza el uso de memoria al cargar imágenes:
+
+[source, kotlin]
+----
+fun loadOptimizedBitmap(context: Context, resId: Int): Bitmap {
+    val options = BitmapFactory.Options().apply {
+        inPreferredConfig = Bitmap.Config.RGB_565
+        inSampleSize = 2 // Reduce la resolución a la mitad
+    }
+    return BitmapFactory.decodeResource(context.resources, resId, options)
+}
+----
+
+Otro ejemplo de buenas prácticas es el uso de coroutines para realizar operaciones en segundo plano:
+
+[source, kotlin]
+----
+class MyRepository {
+
+    suspend fun fetchData(): List<Data> {
+        return withContext(Dispatchers.IO) {
+            // Realiza la operación de red o base de datos en un hilo de fondo
+            apiService.getData()
+        }
+    }
+}
+
+class MyViewModel(private val repository: MyRepository) : ViewModel() {
+
+    val data: LiveData<List<Data>> = liveData {
+        val retrievedData = repository.fetchData()
+        emit(retrievedData)
+    }
+}
+----
 
 == Módulo 10: Publicación y mantenimiento de aplicaciones
 === 10.1 Preparación de la aplicación para producción
+
+La preparación de una aplicación para producción implica una serie de pasos y consideraciones para asegurar que la aplicación esté lista para ser lanzada al público. A continuación se detallan algunas de las mejores prácticas para preparar una aplicación para producción:
+
+- **Optimización del código**: Asegúrate de que el código esté limpio, bien estructurado y optimizado. Elimina el código no utilizado y realiza revisiones de código.
+- **Minificación y ofuscación**: Utiliza herramientas como ProGuard o R8 para minificar y ofuscar el código, reduciendo el tamaño del APK y dificultando la ingeniería inversa.
+- **Firma de la aplicación**: Firma la aplicación con una clave privada para asegurar su autenticidad. Utiliza el esquema de firma de APK v2 o v3 para mayor seguridad.
+- **Configuración de permisos**: Revisa y ajusta los permisos solicitados por la aplicación. Solicita solo los permisos necesarios y justifica su uso a los usuarios.
+- **Pruebas exhaustivas**: Realiza pruebas exhaustivas en diferentes dispositivos y versiones de Android. Asegúrate de que la aplicación funcione correctamente y sin errores.
+- **Gestión de configuraciones**: Utiliza archivos de configuración para gestionar diferentes entornos (desarrollo, pruebas, producción). Asegúrate de que las configuraciones de producción estén correctamente establecidas.
+- **Optimización de recursos**: Optimiza los recursos de la aplicación, como imágenes y archivos de audio, para reducir el tamaño del APK y mejorar el rendimiento.
+- **Revisión de políticas de privacidad**: Asegúrate de que la aplicación cumpla con las políticas de privacidad y regulaciones aplicables, como GDPR o CCPA.
+- **Preparación de la Play Store**: Prepara los recursos necesarios para la publicación en Google Play Store, como descripciones, capturas de pantalla, iconos y videos promocionales.
+
+A continuación se muestra un ejemplo de configuración de ProGuard para minificar y ofuscar el código:
+
+[source, proguard]
+----
+# Habilitar la minificación y ofuscación
+-dontoptimize
+-dontpreverify
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+-keepattributes *Annotation*
+
+# Mantener las clases y métodos utilizados por la reflexión
+-keep class com.example.myapp.** { *; }
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# Mantener las clases y métodos utilizados por las bibliotecas
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
+-keep class com.google.** { *; }
+-keep interface com.google.** { *; }
+----
+
+Otro ejemplo es la configuración de la firma de la aplicación en el archivo `build.gradle`:
+
+[source, groovy]
+----
+android {
+    signingConfigs {
+        release {
+            keyAlias 'myKeyAlias'
+            keyPassword 'myKeyPassword'
+            storeFile file('myKeyStore.jks')
+            storePassword 'myStorePassword'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+----
 === 10.2 Firma de aplicaciones y generación de APK/AAB
 === 10.3 Publicación en Google Play Store
 === 10.4 Análisis de rendimiento y optimización
