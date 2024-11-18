@@ -13,6 +13,7 @@ import org.example.Persona
 // import org.example.tetris.piezas.LPiece
 import org.example.tetris.TetrisPieceSingleton
 import org.example.tetris.TetrisPieceBuilder
+import java.util.concurrent.TimeUnit
 
 
 class App {
@@ -58,9 +59,16 @@ fun nthNumberInArray(n: Int, arr: Array <Int>): Int {
 
  
 fun main() {
-    val observable = Observable.just("Hola", "RxKotlin")
-    observable.subscribe { println(it) }
-}
+    // val observable = Observable.just("Hola", "RxKotlin")
+    // observable.subscribe { println(it) }
+
+    val observable = Observable.just("1", "2", "a", "4")
+    observable
+        .map { it.toInt() }
+        .onErrorReturn { -1 }
+        .subscribe { println(it) 
+        }
+    }
 
 // fun main() {
 
