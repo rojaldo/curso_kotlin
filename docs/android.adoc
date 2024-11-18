@@ -853,6 +853,163 @@ class DestinationFragment : Fragment() {
 
 Comprender cómo crear y gestionar Fragments, así como su ciclo de vida, es esencial para desarrollar aplicaciones Android modulares y flexibles. En las siguientes secciones, exploraremos otros componentes fundamentales de Android y cómo interactúan entre sí.
 
+==== 2.3.5 Uso de ViewModel para compartir datos entre Fragments
+
+En Android, puedes usar ViewModel para compartir datos entre diferentes Fragments. Aquí tienes un ejemplo de cómo hacerlo, asegurándote de que el ViewModel esté instanciado como singleton a nivel de Activity usando `activityViewModels`:
+
+[source, kotlin]
+----
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class SharedViewModel : ViewModel() {
+    private val _selected = MutableLiveData<String>()
+    val selected: LiveData<String> get() = _selected
+
+    fun select(item: String) {
+        _selected.value = item
+    }
+}
+----
+
+En el primer Fragment, puedes actualizar el ViewModel de la siguiente manera:
+
+[source, kotlin]
+----
+class FirstFragment : Fragment() {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_first, container, false)
+
+        view.findViewById<Button>(R.id.button).setOnClickListener {
+            sharedViewModel.select("Item seleccionado")
+        }
+
+        return view
+    }
+}
+----
+
+En el segundo Fragment, puedes observar los cambios en el ViewModel:
+
+[source, kotlin]
+----
+class SecondFragment : Fragment() {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_second, container, false)
+
+        sharedViewModel.selected.observe(viewLifecycleOwner, Observer { item ->
+            // Actualiza la UI con el nuevo dato
+            view.findViewById<TextView>(R.id.textView).text = item
+        })
+
+        return view
+    }
+}
+----
+
+==== 2.3.6 Uso de ViewModel para compartir datos con la Activity
+
+En Android, puedes usar ViewModel para compartir datos entre Fragments y la Activity. Aquí tienes un ejemplo de cómo hacerlo:
+
+[source, kotlin]
+----
+import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class SharedViewModel : ViewModel() {
+    private val _selected = MutableLiveData<String>()
+    val selected: LiveData<String> get() = _selected
+
+    fun select(item: String) {
+        _selected.value = item
+    }
+}
+----
+
+En la Activity, puedes obtener el ViewModel de la siguiente manera:
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    private val sharedViewModel: SharedViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        sharedViewModel.selected.observe(this, Observer { item ->
+            // Actualiza la UI con el nuevo dato
+            findViewById<TextView>(R.id.textView).text = item
+        })
+    }
+}
+----
+
+En el primer Fragment, puedes actualizar el ViewModel de la siguiente manera:
+
+[source, kotlin]
+----
+class FirstFragment : Fragment() {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_first, container, false)
+
+        view.findViewById<Button>(R.id.button).setOnClickListener {
+            sharedViewModel.select("Item seleccionado")
+        }
+
+        return view
+    }
+}
+----
+
+En el segundo Fragment, puedes observar los cambios en el ViewModel:
+
+[source, kotlin]
+----
+class SecondFragment : Fragment() {
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_second, container, false)
+
+        sharedViewModel.selected.observe(viewLifecycleOwner, Observer { item ->
+            // Actualiza la UI con el nuevo dato
+            view.findViewById<TextView>(R.id.textView).text = item
+        })
+
+        return view
+    }
+}
+----
+
 === 2.4 Componentes UI esenciales: TextView, Button, EditText, y otros
 
 Los componentes de la interfaz de usuario (UI) son elementos fundamentales para construir aplicaciones Android interactivas y atractivas. En esta sección, exploraremos algunos de los componentes UI más esenciales, como TextView, Button, EditText, y otros, y aprenderemos a utilizarlos en nuestras aplicaciones.
@@ -2098,6 +2255,109 @@ call.enqueue(object : Callback<User> {
 ----
 
 Comprender cómo utilizar Retrofit para conectarse a una API RESTful es esencial para desarrollar aplicaciones que interactúen con servicios web. En las siguientes secciones, exploraremos otras técnicas avanzadas para el manejo de datos y la comunicación en aplicaciones Android.
+
+==== 3.4.7 Uso de Retrofit con ViewModel y LiveData
+
+Podemos combinar Retrofit con ViewModel y LiveData para manejar la lógica de la API y observar los cambios en la interfaz de usuario. ViewModel se utiliza para manejar la lógica de la API y LiveData se utiliza para observar los cambios en los datos.
+
+[source, kotlin]
+----
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+// Define la interfaz de la API
+interface ApiService {
+    @GET("endpoint")
+    fun getData(): Call<List<DataItem>>
+}
+
+// Data class para los elementos de la respuesta
+data class DataItem(val id: Int, val name: String)
+
+// ViewModel para manejar la lógica de la API
+class ApiViewModel : ViewModel() {
+    private val _data = MutableLiveData<List<DataItem>>()
+    val data: LiveData<List<DataItem>> get() = _data
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.example.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val apiService = retrofit.create(ApiService::class.java)
+
+    fun fetchData() {
+        apiService.getData().enqueue(object : Callback<List<DataItem>> {
+            override fun onResponse(call: Call<List<DataItem>>, response: Response<List<DataItem>>) {
+                if (response.isSuccessful) {
+                    _data.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<List<DataItem>>, t: Throwable) {
+                // Manejar error
+            }
+        })
+    }
+}
+----
+
+En la Activity, puedes observar los cambios en el ViewModel:
+
+[source, kotlin]
+----
+class MainActivity : AppCompatActivity() {
+
+    private val apiViewModel: ApiViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        apiViewModel.data.observe(this, Observer { dataItems ->
+            // Actualiza la UI con los datos obtenidos
+            // Por ejemplo, actualiza un RecyclerView
+        })
+
+        // Llama a fetchData para obtener los datos
+        apiViewModel.fetchData()
+    }
+}
+----
+
+En un Fragment, puedes observar los cambios en el ViewModel de la siguiente manera:
+
+[source, kotlin]
+----
+class DataFragment : Fragment() {
+
+    private val apiViewModel: ApiViewModel by activityViewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_data, container, false)
+
+        apiViewModel.data.observe(viewLifecycleOwner, Observer { dataItems ->
+            // Actualiza la UI con los datos obtenidos
+            // Por ejemplo, actualiza un RecyclerView
+        })
+
+        // Llama a fetchData para obtener los datos
+        apiViewModel.fetchData()
+
+        return view
+    }
+}
+----
 
 === 3.5 Parseo de JSON usando Gson y Moshi
 
