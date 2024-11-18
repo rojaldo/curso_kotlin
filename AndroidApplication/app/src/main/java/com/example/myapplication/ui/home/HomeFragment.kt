@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.databinding.FragmentHomeBinding
@@ -12,6 +13,8 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+
+    private val textView: TextView get() = binding.textHome
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,10 +31,14 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        textView.text = "Hola mundo!"
+        val button: Button = binding.buttonChulo
+        button.setOnClickListener {
+            textView.text = "Has pulsado el botón!"
         }
+        // homeViewModel.text.observe(viewLifecycleOwner) {
+        //     textView.text = it
+        // }
         return root
     }
 
