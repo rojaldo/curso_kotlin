@@ -20,14 +20,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
 <!-- margin 10dp for both sides -->
+
+
         <Button
             android:id="@+id/button_chulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button chulo" 
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"/>
-
+            android:layout_marginEnd="10dp"
+            android:text="Button chulo" />
 
         <Button
             android:id="@+id/button2"

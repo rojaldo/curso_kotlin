@@ -1064,6 +1064,7 @@ EditText es un componente que permite a los usuarios ingresar y editar texto.
 [source, xml]
 ----
 <EditText
+    android:id="@+id/editText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="Enter your name"

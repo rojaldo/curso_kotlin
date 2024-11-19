@@ -11,6 +11,12 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+        <fragment
+        android:id="@+id/nav_hello"
+        android:name="com.example.myapplication.ui.hello.HelloFragment"
+        android:label="@string/menu_hello"
+        tools:layout="@layout/fragment_hello" />
+
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.myapplication.ui.gallery.GalleryFragment"
