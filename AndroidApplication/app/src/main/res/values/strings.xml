@@ -12,4 +12,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_hello">Hello</string>
     <string name="menu_chuck">Chuck Norris</string>
+    <string name="menu_pokemon">Pokemon</string>
+    <string name="pokemon_image_desc">imagen pokemon</string>
 </resources>

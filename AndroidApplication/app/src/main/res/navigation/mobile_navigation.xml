@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_chuck">
+    app:startDestination="@+id/nav_pokemon">
+
+    <fragment
+        android:id="@+id/nav_pokemon"
+        android:name="com.example.myapplication.ui.pokemon.PokemonFragment"
+        android:label="@string/menu_pokemon"
+        tools:layout="@layout/fragment_pokemon" />
 
     <fragment
         android:id="@+id/nav_home"

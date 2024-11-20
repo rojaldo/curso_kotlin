@@ -33,8 +33,6 @@ class ChuckFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val chuckViewModel =
-            ViewModelProvider(this).get(ChuckViewModel::class.java)
 
         _binding = FragmentChuckBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -42,8 +40,6 @@ class ChuckFragment : Fragment() {
 
         Log.d("ChuckFragment", "onCreateView: ")
         viewModel.joke.observe(viewLifecycleOwner, Observer {
-//            cast it to cucknorrisjoke
-//            val joke = it as ChuckNorrisJoke
             binding.jokeTextView.text = it.value
         })
         
@@ -56,7 +52,6 @@ class ChuckFragment : Fragment() {
         val imageUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
 
         Picasso.get().load(imageUrl).into(imageView);
-
 
         return root
     }
