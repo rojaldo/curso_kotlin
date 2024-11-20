@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.databinding.FragmentChuckBinding
 import com.example.myapplication.databinding.FragmentHelloBinding
+import com.squareup.picasso.Picasso
 
 class ChuckFragment : Fragment() {
 
@@ -50,6 +51,12 @@ class ChuckFragment : Fragment() {
             //load another joke
             viewModel.getNewJoke()
         }
+
+        val imageView =binding.imageView
+        val imageUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+
+        Picasso.get().load(imageUrl).into(imageView);
+
 
         return root
     }
