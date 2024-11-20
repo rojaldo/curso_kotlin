@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.chuck
 
+import ChuckNorrisJoke
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,15 +40,20 @@ class ChuckFragment : Fragment() {
 
 
         Log.d("ChuckFragment", "onCreateView: ")
-        viewModel.jokeData.observe(viewLifecycleOwner, Observer { joke ->
-            joke?.let {
-                Log.d("ChuckFragment", "onCreateView: ${it.value}")
-                binding.textViewJoke.text = it.value
-            }
+        viewModel.joke.observe(viewLifecycleOwner, Observer {
+//            cast it to cucknorrisjoke
+//            val joke = it as ChuckNorrisJoke
+            binding.jokeTextView.text = it.value
         })
+        
+        binding.anotherJokeButton.setOnClickListener {
+            //load another joke
+            viewModel.getNewJoke()
+        }
 
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
