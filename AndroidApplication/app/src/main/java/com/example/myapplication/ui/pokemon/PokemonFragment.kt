@@ -37,10 +37,13 @@ class PokemonFragment : Fragment() {
         Log.d("PokemonFragment", "onCreateView: ")
         viewModel.pokemon.observe(viewLifecycleOwner, Observer {
             binding.pokemonName.text = it.name
+            // set binding.pokemonName invisible
+            binding.pokemonName.visibility = View.INVISIBLE
+            Picasso.get().load(it.sprites.other.home.front_default).into(binding.pokemonImage);
         })
 
         // Llama a fetchPokemon con el ID del Pokémon que deseas obtener
-        viewModel.getPokemon(1)
+        //viewModel.getPokemon(1)
         
         return root
     }

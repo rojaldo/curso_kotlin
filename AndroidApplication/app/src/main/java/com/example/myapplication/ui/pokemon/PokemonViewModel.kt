@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.models.PokemonInfoResponse
+import com.example.myapplication.models.PokemonListResponse
 import kotlinx.coroutines.launch
 
 class PokemonViewModel : ViewModel() {
@@ -15,9 +17,9 @@ class PokemonViewModel : ViewModel() {
     private val _pokemon = MutableLiveData<Pokemon>()
     val pokemon: LiveData<Pokemon> get() = _pokemon
 
-//    init {
-//        getPokemon(1)
-//    }
+    init {
+        getPokemon(1)
+    }
 
     // this method updates the value of the joke live data does not have suspend modifier
     fun getPokemon(id: Int) {
@@ -28,6 +30,12 @@ class PokemonViewModel : ViewModel() {
                 id = pokemon.id,
                 sprites = pokemon.sprites
             )
+        }
+    }
+
+    fun getAllPokemon() {
+        viewModelScope.launch {
+            val pokemons: PokemonListResponse = apiService.getAllPokemon()
         }
     }
     
