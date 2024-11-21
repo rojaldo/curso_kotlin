@@ -9,7 +9,12 @@
         android:id="@+id/nav_pokemon"
         android:name="com.example.myapplication.ui.pokemon.PokemonFragment"
         android:label="@string/menu_pokemon"
-        tools:layout="@layout/fragment_pokemon" />
+        tools:layout="@layout/fragment_pokemon" >
+        <action
+            android:id="@+id/action_pokemonFragment_to_pokemonResultFragment"
+            app:destination="@id/nav_pokemon_result" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"
@@ -40,4 +45,13 @@
         android:name="com.example.myapplication.ui.chuck.ChuckFragment"
         android:label="@string/menu_chuck"
         tools:layout="@layout/fragment_chuck" />
+    <fragment
+        android:id="@+id/nav_pokemon_result"
+        android:name="com.example.myapplication.ui.pokemon.PokemonResultFragment"
+        android:label="Pokemon Result"
+        tools:layout="@layout/fragment_pokemon_result" >
+        <action
+            android:id="@+id/action_pokemonResultFragment_to_pokemonFragment"
+            app:destination="@id/nav_pokemon" />
+    </fragment>
 </navigation>

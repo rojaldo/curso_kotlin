@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.chuck
+package com.example.myapplication.ui.pokemon
 
 import ChuckNorrisJoke
 import Pokemon
@@ -14,11 +14,19 @@ import kotlinx.coroutines.launch
 class PokemonViewModel : ViewModel() {
 
     private val apiService = RetrofitPokemonInstance.api
+
     private val _pokemon = MutableLiveData<Pokemon>()
     val pokemon: LiveData<Pokemon> get() = _pokemon
 
+    private val _pokemonList = MutableLiveData<List<PokemonInfoResponse>>()
+    val pokemonList: LiveData<List<PokemonInfoResponse>> get() = _pokemonList
+
+    private val _selectedPokemonName = MutableLiveData<String>()
+    val selectedPokemonName: LiveData<String> get() = _selectedPokemonName
+
     init {
-        getPokemon(1)
+        //getPokemon(1)
+        getAllPokemon()
     }
 
     // this method updates the value of the joke live data does not have suspend modifier
@@ -35,8 +43,13 @@ class PokemonViewModel : ViewModel() {
 
     fun getAllPokemon() {
         viewModelScope.launch {
-            val pokemons: PokemonListResponse = apiService.getAllPokemon()
+            val pokemonList: PokemonListResponse = apiService.getAllPokemon()
+            _pokemonList.value = pokemonList.results
         }
+    }
+
+    fun setSelectedPokemonName(name: String) {
+        _selectedPokemonName.value = name
     }
     
 

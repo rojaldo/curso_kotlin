@@ -5,6 +5,12 @@ data class PokemonInfoResponse(
     val url: String
 )
 
+data class PokemonInfo(
+    val name: String,
+    val url: String,
+    val id: Int,
+)
+
 data class PokemonListResponse(
     val count: Int,
     val next: String,
