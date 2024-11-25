@@ -1,0 +1,250 @@
+:source-highlighter: highlight.js
+:highlightjs-languages: java, python
+
+= LLMs
+
+== Conceptos de IA
+
+=== Modelos
+
+Los modelos de IA son algoritmos diseñados para procesar y generar información, a menudo imitando funciones cognitivas humanas. Al aprender patrones y conocimientos de grandes conjuntos de datos, estos modelos pueden hacer predicciones, texto, imágenes u otros resultados, mejorando diversas aplicaciones en diferentes industrias.
+
+Hay diferentes tipos de modelos de IA, cada uno adaptado a un caso de uso específico. Mientras que ChatGPT y sus capacidades de IA generativa han cautivado a los usuarios a través de la entrada y salida de texto, muchos modelos y empresas ofrecen entradas y salidas diversas. Antes de ChatGPT, muchas personas estaban fascinadas por los modelos de generación de texto a imagen como Midjourney y Stable Diffusion.
+
+.La siguiente tabla muestra algunos ejemplos de modelos de IA y sus aplicaciones:
+
+|===
+| Modelo              | Aplicación
+
+| ChatGPT             | Conversaciones de texto a texto
+| SAM          | Segmentación de elementos en imágenes
+| Stable Diffusion    | Generación de texto a imagen
+| Llava               | Detección de objetos en imágenes
+|===
+
+=== Prompts
+
+Los prompts sirven como la base para las entradas basadas en lenguaje que guían a un modelo de IA para producir salidas específicas. Para aquellos familiarizados con ChatGPT, un prompt podría parecer simplemente el texto introducido en un cuadro de diálogo que se envía a la API. Sin embargo, abarca mucho más que eso. En muchos modelos de IA, el texto del prompt no es solo una cadena simple.
+
+La creación de prompts efectivos es tanto un arte como una ciencia. ChatGPT fue diseñado para conversaciones humanas. Esto es bastante diferente de usar algo como SQL para "hacer una pregunta". Uno debe comunicarse con el modelo de IA de manera similar a como se conversa con otra persona.
+
+Tal es la importancia de este estilo de interacción que ha surgido el término "Prompt engineering" como su propia disciplina. Existe una creciente colección de técnicas que mejoran la efectividad de los prompts. Invertir tiempo en la creación de un prompt puede mejorar drásticamente el resultado obtenido.
+
+=== Prompt Templates
+
+Los prompt templates son plantillas predefinidas que se utilizan para guiar la entrada de texto en un modelo de IA. Estas plantillas proporcionan una estructura y un formato específicos para la entrada de texto, lo que ayuda a los usuarios a crear prompts efectivos y obtener resultados precisos y relevantes.
+
+.Un ejemplo de prompt template:
+```
+Tell me a story about {character} who {action} in {setting}.
+```
+
+=== Embedings
+
+Los embeddings son representaciones numéricas de palabras, frases o documentos en un espacio vectorial. Estas representaciones se utilizan en modelos de IA para capturar el significado semántico y la relación entre las palabras, lo que permite a los modelos comprender y procesar el lenguaje natural de manera más efectiva.
+
+Los embeddings son especialmente relevantes en aplicaciones prácticas como el patrón de Generación con Recuperación Aumentada (RAG). Permiten la representación de datos como puntos en un espacio semántico, que es similar al espacio 2-D de la geometría euclidiana, pero en dimensiones superiores. Esto significa que al igual que los puntos en un plano en la geometría euclidiana pueden estar cerca o lejos según sus coordenadas, en un espacio semántico, la proximidad de los puntos refleja la similitud en el significado. Las oraciones sobre temas similares se posicionan más cerca en este espacio multidimensional, al igual que los puntos que se encuentran cerca entre sí en un gráfico. Esta proximidad ayuda en tareas como la clasificación de texto, la búsqueda semántica e incluso las recomendaciones de productos, ya que permite que la IA distinga y agrupe conceptos relacionados en función de su "ubicación" en este paisaje semántico expandido.
+
+=== Tokens
+
+Los tokens son unidades de texto que se utilizan como entradas para modelos de IA. Estas unidades pueden ser palabras, frases, oraciones o párrafos, dependiendo del contexto y la tarea específica que se esté realizando. Los tokens se utilizan para representar información de texto de manera estructurada y procesable por los modelos de IA.
+
+En el contexto de los modelos de IA, la facturación se determina por el número de tokens utilizados. Tanto la entrada como la salida contribuyen al recuento total de tokens.
+
+También, los modelos están sujetos a límites de tokens, que restringen la cantidad de texto procesado en una sola llamada a la API. Este umbral se conoce a menudo como la 'ventana de contexto'. El modelo no procesa ningún texto que exceda este límite.
+
+Por ejemplo, ChatGPT3 tiene un límite de 4K tokens, mientras que GPT4 ofrece opciones variables, como 8K, 16K y 32K. El modelo Claude AI de Anthropic tiene un límite de 100K tokens, y Meta ha obtenido un modelo con un límite de 1M tokens.
+
+=== Output parsing
+
+El output parsing es el proceso de analizar y procesar las salidas generadas por un modelo de IA para extraer información relevante y presentarla de manera clara y comprensible. Este proceso es fundamental para interpretar y utilizar eficazmente los resultados generados por los modelos de IA en diversas aplicaciones.
+
+Output parsing emplea prompts meticulosamente elaborados, a menudo requiriendo múltiples interacciones con el modelo para lograr el formato deseado.
+
+Este tipo de escenarios han llevado a OpenAI a introducir 'OpenAI Functions' como un medio para especificar el formato de salida deseado del modelo de manera precisa.
+
+=== Uso de datos propios en modelos de IA
+
+.Hay 3 manera de usar datos propios en modelos de IA:
+1. **Fine-tuning**: Ajustar un modelo pre-entrenado con datos propios para mejorar su rendimiento en tareas específicas.
+2. **Prompt stuffing**: Incorporar datos propios en los prompts para guiar la generación de texto de un modelo de IA.
+3. **Function calls**: Llamar a funciones personalizadas que procesen los datos propios y generen salidas específicas en un modelo de IA.
+
+=== Retrieval Augmented Generation (RAG)
+
+La generación con recuperación aumentada (RAG) es un enfoque híbrido que combina la generación de lenguaje natural con la recuperación de información para mejorar la calidad y relevancia de las respuestas generadas por los modelos de IA. En lugar de depender únicamente de la generación de texto, RAG utiliza un modelo de recuperación para buscar información relevante en una base de conocimientos y luego genera respuestas basadas en esa información recuperada.
+
+
+Como parte de la carga de los datos no estructurados en la base de datos vectorial, una de las transformaciones más importantes es dividir el documento original en piezas más pequeñas. 
+
+.El procedimiento de dividir el documento original en piezas más pequeñas tiene dos pasos importantes:
+
+* Separar el documento en partes mientras se preservan los límites semánticos del contenido. Por ejemplo, para un documento con párrafos y tablas, se debe evitar dividir el documento en medio de un párrafo o tabla. Para el código, evitar dividir el código en medio de la implementación de un método.
+
+* Separar las partes del documento en partes cuyo tamaño sea un pequeño porcentaje del límite de tokens del modelo de IA.
+
+La siguiente fase en RAG es procesar la entrada del usuario. Cuando una pregunta del usuario debe ser respondida por un modelo de IA, la pregunta y todas las piezas de documento "similares" se colocan en el prompt que se envía al modelo de IA. Esta es la razón para usar una base de datos vectorial. Es muy bueno para encontrar contenido similar.
+
+.Hay varios conceptos que se utilizan en la implementación de RAG. Los conceptos se asignan a clases en Spring AI:
+
+* **DocumentReader:** Un interfaz funcional de Java que se encarga de cargar una List<Document> desde una fuente de datos. Las fuentes de datos comunes son PDF, Markdown y JSON.
+* **Document:** Una representación basada en texto de su fuente de datos que también contiene metadatos para describir el contenido.
+* **DocumentTransformer:** Responsable de procesar los datos de diversas maneras (por ejemplo, dividir los documentos en piezas más pequeñas o agregar metadatos adicionales al Document).
+* **DocumentWriter:** permite persistir los Documentos en una base de datos (más comúnmente en la pila de IA, una base de datos vectorial).
+* **Embedding:** Una representación de sus datos como una List<Double> que es utilizada por la base de datos vectorial para calcular la "similitud" de la consulta de un usuario con documentos relevantes.
+
+=== Function calling
+
+Los LLMs son inmutables después del entrenamiento, lo que lleva a un conocimiento obsoleto y no pueden acceder o modificar datos externos.
+
+El mecanismo de llamada a funciones aborda estas deficiencias. Permite registrar funciones personalizadas que conectan los grandes modelos de lenguaje con las API de sistemas externos. Estos sistemas pueden proporcionar a los LLMs datos en tiempo real y realizar acciones de procesamiento de datos en su nombre.
+
+Spring AI simplifica en gran medida el código que necesita escribir para admitir la invocación de funciones. Actúa como intermediario en la conversación de invocación de funciones por usted. Puede proporcionar su función como un @Bean y luego proporcionar el nombre del bean de la función en las opciones de prompt para activar esa función. También puede definir y hacer referencia a múltiples funciones en un solo prompt.
+
+=== Evaluación de respuestas de LLMs
+
+solicitudes de los usuarios es muy importante para garantizar la precisión y utilidad de la aplicación final. Varias técnicas emergentes permiten el uso del modelo preentrenado en sí para este propósito.
+
+Esta evaluación implica analizar si la respuesta generada se alinea con la intención del usuario y el contexto de la consulta. Se utilizan métricas como relevancia, coherencia y corrección factual para medir la calidad de la respuesta generada por la IA.
+
+Una aproximación implica presentar tanto la solicitud del usuario como la respuesta del modelo de IA al modelo, consultando si la respuesta se alinea con los datos proporcionados.
+
+Además, aprovechar la información almacenada en la base de datos vectorial como datos complementarios puede mejorar el proceso de evaluación, ayudando a determinar la relevancia de la respuesta.
+
+El proyecto Spring AI actualmente proporciona algunos ejemplos muy básicos de cómo puede evaluar las respuestas en forma de prompts para incluir en una prueba JUnit.
+
+== Capacidades de los LLMs
+
+.Los LLMs se clasifican de acuerdo a estos criterios:
+* Generales
+** MMLU Representación de cuestiones de 57 materias (humanidades, ciencias sociales, ciencias naturales, matemáticas, tecnología, etc.)
+* Razonamiento
+** Un gran test de datos de tareas desafiantes que requieren razonamiento de múltiples pasos
+** DROP Compprensión de lectura (F1 Score)
+** HellaSwag razonamiento de sentido común para tareas cotidianas
+* Matemáticas
+** GSM8K Aritmética básica (incluye problemas de matemáticas de primaria)
+** MATH Challenging Retos matemáticos (incluye álgebra, geometría, pre-cálculo y otros)
+* Código
+** Generación de código HumanEval Python
+** Generación de código de Python de HumanEval. Nuevo conjunto de datos retenido similar a HumanEval, no filtrado en la web
+* Imágenes (multimodal)
+** MMMU razonamiento de problemas de nivel universitario de múltiples disciplinas
+** VQAv2 Comprensión de imágenes naturales
+** TextVQA OCR reconocimiento de objetos en imágenes naturales
+** DocVQA Comprensión de documentos
+** Infographic VQA comprensión de infografías
+** MathVista razonamiento matemático en contextos visuales
+** MathVQA2 razonamiento matemático en contextos visuales (incluye problemas de matemáticas de primaria)
+* Texto (imodal)
+** MMTU Comprensión de texto naturales
+** VQAText OCR reconocimiento de palabras en imágenes naturales
+** DocText Comprensión de documentos
+** Infographic TextVQA comprensión de infografías
+* Audio (multimodal)
+** MMAU Comprensión de audio naturales
+** VQAAudio OCR reconocimiento de palabras en imágenes naturales
+
+.Los LLMs se clasifican de acuerdo a estas capacidades:
+
+1. **Comprensión (Comprehension):**
+   - POS Tagging (Part-of-Speech): Evalúa la precisión al identificar las categorías gramaticales de cada palabra.
+   - Named Entity Recognition (NER): Mide la habilidad para reconocer y clasificar entidades nombradas dentro del texto.
+   - Question Answering: Comprueba la capacidad para responder preguntas con precisión, basándose en contextos proporcionados.
+   - Commonsense Reasoning: Evalúa la habilidad para resolver problemas y hacer inferencias razonables.
+
+2. **Generación de Texto (Text Generation):**
+   - Coherence and Cohesion: Mide la capacidad para generar texto coherente y cohesivo, con transiciones adecuadas entre oraciones.
+   - Grammar and Fluency: Evalúa la gramática y fluidez del texto generado.
+   - Creativity: Comprueba la habilidad para generar contenido creativo o variado.
+
+3. **Comunicación (Communication):**
+   - Dialogue Generation: Mide la capacidad para generar diálogos naturales y adecuados.
+   - Summarization: Evalúa la habilidad para resumir textos de manera precisa y relevante.
+
+4. **Conocimiento y Factualidad (Knowledge and Factuality):**
+   - Knowledge Base Question Answering: Comprueba si el modelo puede acceder a su base de conocimientos para responder preguntas correctamente.
+   - Fact Verification: Evalúa la capacidad del modelo para confirmar o refutar hechos y datos.
+
+5. **Traducción (Translation):**
+   - Multilingual Ability: Mide la habilidad para traducir entre diferentes idiomas con precisión y fidelidad al texto original.
+   - Zero-Shot Translation: Evalúa la capacidad del modelo para realizar traducciones sin entrenamiento previo en parejas de idiomas específicas.
+
+6. **Inferencia (Inference):**
+   - Entailment and Paradox Detection: Comprueba la habilidad para detectar lógica y resolver paradójos.
+   - Causal Reasoning: Evalúa la capacidad para entender causas y efectos en el texto.
+7. **Multimodality (Multimodality):**
+   - Image Captioning: Mide si el modelo puede describir imágenes de manera coherente y precisa.
+   - Grounded Language (Visual/Audio Commands, etc.): Evalúa la habilidad para interpretar y responder a comandos basados en imágenes o sonidos.
+
+8. **Generalization and Adaptation (Generalization and Adaptation):**
+   - Domain Adaptation: Comprueba cómo el modelo adapta su conocimiento a diferentes dominios de conocimiento.
+   - Out-of-Distribution Generalization: Evalúa la capacidad del modelo para generalizar a datos que no están en el conjunto de entrenamiento original.
+
+9. **Bias and Fairness (Bias and Fairness):**
+   - Bias Detection and Mitigation: Identifica y evalúa cómo se manejan los sesgos presentes en los datos de entrenamiento.
+
+10. **Robustness and Reliability (Robustness and Reliability):**
+    - Robustness to Adversarial Attacks: Evalúa la capacidad del modelo para resistir ataques adversarios diseñados para confundir o engañar al modelo.
+    - Model Interpretability: Comprueba si se pueden entender las respuestas y decisiones tomadas por el modelo.
+
+11. **Human Evaluation (Human Evaluation):**
+    - Human-in-the-Loop Evaluations: Utiliza a los usuarios humanos para evaluar la calidad de las respuestas generadas o comprender mejor cómo se perciben las interacciones con el modelo.
+
+
+== LLMs de propósito general
+
+Un LLM de propósito general es un modelo de lenguaje que puede ser utilizado para una amplia variedad de tareas de procesamiento de lenguaje natural. Estos modelos son entrenados en grandes cantidades de datos y son capaces de realizar tareas como generación de texto, traducción automática, resumen de texto, entre otras.
+
+.Aplicaciones de los LLMs de propósito general:
+* Chatbots.
+* Asistentes virtuales.
+* Traducción automática.
+* Autocompletado de texto.
+* RAG (Retrieve, Answer, Generate).
+
+.Podemos establecer dos categorías de LLMs de propósito general:
+* **LLMs privativos**: son aquellos que no están disponibles para el público en general.
+** GPT-3
+** BERT
+
+* **LLMs de código abierto**: son aquellos que están disponibles para el público en general.
+** Llama
+** Mistral
+
+.Una referencia para ver el rendimiento de los LLMs de propósito general:
+https://huggingface.co/spaces/andrewrreed/closed-vs-open-arena-elo
+
+== Chat GPT
+
+ChatGPT es una inteligencia artificial diseñada para mantener conversaciones con usuarios humanos. Utiliza el aprendizaje automático para comprender el lenguaje humano y generar respuestas coherentes y relevantes en función de las entradas de texto que recibe. En resumen, es como tener una charla con una máquina inteligente.
+
+ChatGPT se basa en la arquitectura GPT (Generative Pre-trained Transformer), desarrollada por OpenAI. Hasta mi última actualización en enero de 2022, existían varias versiones de ChatGPT que se basaban en diferentes versiones de la arquitectura GPT, incluyendo GPT-3.5, que es la versión en la que estoy basado.
+
+.Las prestaciones de ChatGPT incluyen:
+1. **Generación de texto coherente y relevante:** Puede comprender el contexto de una conversación y generar respuestas que se ajusten a ese contexto.
+
+2. **Flexibilidad en el lenguaje:** Puede manejar una amplia variedad de temas y estilos de conversación, desde preguntas técnicas hasta conversaciones informales.
+
+3. **Adaptabilidad:** A medida que se le proporciona más información y datos, ChatGPT puede mejorar su capacidad para responder de manera más precisa y relevante.
+
+4. **Aplicaciones en múltiples campos:** Se puede utilizar para una variedad de aplicaciones, como asistencia al cliente, generación de contenido, enseñanza y más.
+
+En general, las prestaciones de ChatGPT están orientadas a proporcionar una experiencia de conversación fluida y natural con los usuarios, ayudando a facilitar la comunicación entre humanos y máquinas.
+
+=== GPT
+
+.Aquí tienes un resumen de las principales versiones de modelos GPT que se han utilizado en ChatGPT, junto con sus fechas de publicación:
+
+[cols="1,1,3", options="header"]
+|=== 
+| Modelo              | Fecha de Publicación | Descripción
+
+| GPT-1               | 2018                 | La primera versión del modelo GPT, introducida por OpenAI.
+| GPT-2               | 2019                 | Una versión más grande y potente que GPT-1, con 1.5 mil millones de parámetros.
+| GPT-3               | 2020                 | Un salto significativo en tamaño y rendimiento, con 175 mil millones de parámetros y capacidades de generación avanzadas.
+| GPT-3.5             | 2021                 | Una mejora incremental de GPT-3 con correcciones de errores y ajustes de rendimiento.
+| GPT-4   | 2023         | Una versión más avanzada y potente que GPT-3, con mejoras en la generación de lenguaje natural y la capacidad de razonamiento.
+|===
+
+
