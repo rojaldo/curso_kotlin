@@ -1,0 +1,199 @@
+= Archivo de Modelo de Ollama
+
+[NOTA]
+====
+La sintaxis de `Modelfile` está en desarrollo
+====
+
+Un archivo de modelo es el plano para crear y compartir modelos con Ollama.
+
+== Tabla de Contenidos
+
+- <<formato,Formato>>
+- <<ejemplos,Ejemplos>>
+- <<instrucciones,Instrucciones>>
+  - <<from-requerido,FROM (Requerido)>>
+    - <<construir-desde-un-modelo-existente,Construir desde un modelo existente>>
+    - <<construir-desde-un-modelo-safetensors,Construir desde un modelo Safetensors>>
+    - <<construir-desde-un-archivo-gguf,Construir desde un archivo GGUF>>
+  - <<parameter,PARAMETER>>
+    - <<parámetros-y-valores-válidos,Parámetros y Valores Válidos>>
+  - <<template,TEMPLATE>>
+    - <<variables-de-plantilla,Variables de Plantilla>>
+  - <<system,SYSTEM>>
+  - <<adapter,ADAPTER>>
+  - <<license,LICENSE>>
+  - <<message,MESSAGE>>
+- <<notas,Notas>>
+
+== Formato
+
+El formato del `Modelfile`:
+
+[source, modelfile]
+----
+# comentario
+INSTRUCCIÓN argumentos
+----
+
+| Instrucción                         | Descripción                                                    |
+| ----------------------------------- | -------------------------------------------------------------- |
+| <<from-requerido,`FROM`>> (requerido) | Define el modelo base a usar.                                  |
+| <<parameter,`PARAMETER`>>           | Establece los parámetros para cómo Ollama ejecutará el modelo. |
+| <<template,`TEMPLATE`>>             | La plantilla completa de la solicitud que se enviará al modelo.|
+| <<system,`SYSTEM`>>                 | Especifica el mensaje del sistema que se establecerá en la plantilla. |
+| <<adapter,`ADAPTER`>>               | Especifica el adaptador a usar.                                |
+| <<license,`LICENSE`>>               | Especifica la licencia para el modelo.                         |
+| <<message,`MESSAGE`>>               | Define los mensajes para el modelo.                            |
+
+== Ejemplos
+
+Ejemplos de uso del `Modelfile`:
+
+[source, modelfile]
+----
+FROM base-model
+PARAMETER key=value
+TEMPLATE "Tu plantilla aquí"
+SYSTEM "Mensaje del sistema aquí"
+ADAPTER "Detalles del adaptador aquí"
+LICENSE "Detalles de la licencia aquí"
+MESSAGE role="user" content="Hola, mundo!"
+----
+
+== Instrucciones
+
+=== FROM (Requerido)
+
+Define el modelo base a usar.
+
+==== Construir desde un modelo existente
+
+[source, modelfile]
+----
+FROM existing-model
+----
+
+==== Construir desde un modelo Safetensors
+
+[source, modelfile]
+----
+FROM safetensors:model.safetensors
+----
+
+==== Construir desde un archivo GGUF
+
+[source, modelfile]
+----
+FROM gguf:model.gguf
+----
+
+=== PARAMETER
+
+Establece los parámetros para cómo Ollama ejecutará el modelo.
+
+.Los parámetros válidos son:
+|===============================
+| Parámetro      | Descripción |
+| mirostat       | Habilita el muestreo de Mirostat para controlar la perplejidad. (predeterminado: 0, 0 = desactivado, 1 = Mirostat, 2 = Mirostat 2.0)                                                                                                                     |
+| mirostat_eta   | Influye en la rapidez con la que el algoritmo responde a los comentarios del texto generado. Una tasa de aprendizaje más baja resultará en ajustes más lentos, mientras que una tasa de aprendizaje más alta hará que el algoritmo sea más receptivo. (Predeterminado: 0.1) |
+| mirostat_tau   | Controla el equilibrio entre la coherencia y la diversidad del resultado. Un valor más bajo resultará en un texto más enfocado y coherente. (Predeterminado: 5.0)                                                                                         |
+| num_ctx        | Establece el tamaño de la ventana de contexto utilizada para generar el siguiente token. (Predeterminado: 2048)                                                                                                                                          |
+| repeat_last_n  | Establece hasta qué punto el modelo debe retroceder para evitar la repetición. (Predeterminado: 64, 0 = desactivado, -1 = num_ctx)                                                                                                                       |
+| repeat_penalty | Establece la fuerza con la que se penalizan las repeticiones. Un valor más alto (por ejemplo, 1.5) penalizará las repeticiones con más fuerza, mientras que un valor más bajo (por ejemplo, 0.9) será más indulgente. (Predeterminado: 1.1)                 |
+| temperature    | La temperatura del modelo. Aumentar la temperatura hará que el modelo responda de manera más creativa. (Predeterminado: 0.8)                                                                                                                             |
+| seed           | Establece la semilla del número aleatorio a utilizar para la generación. Establecer esto a un número específico hará que el modelo genere el mismo texto para la misma solicitud. (Predeterminado: 0)                                                     |
+| stop           | Establece las secuencias de parada a utilizar. Cuando se encuentra este patrón, el LLM dejará de generar texto y devolverá el resultado. Se pueden establecer múltiples patrones de parada especificando múltiples parámetros `stop` en un archivo de modelo. |
+| tfs_z          | El muestreo sin cola se utiliza para reducir el impacto de los tokens menos probables en la salida. Un valor más alto (por ejemplo, 2.0) reducirá más el impacto, mientras que un valor de 1.0 desactiva esta configuración. (predeterminado: 1)            |
+| num_predict    | Número máximo de tokens a predecir al generar texto. (Predeterminado: 128, -1 = generación infinita, -2 = llenar contexto)                                                                                                                               |
+| top_k          | Reduce la probabilidad de generar tonterías. Un valor más alto (por ejemplo, 100) dará respuestas más diversas, mientras que un valor más bajo (por ejemplo, 10) será más conservador. (Predeterminado: 40)                                               |
+| top_p          | Funciona junto con top-k. Un valor más alto (por ejemplo, 0.95) llevará a un texto más diverso, mientras que un valor más bajo (por ejemplo, 0.5) generará un texto más enfocado y conservador. (Predeterminado: 0.9)                                     |
+| min_p          | Alternativa a top_p, y tiene como objetivo asegurar un equilibrio entre calidad y variedad. El parámetro *p* representa la probabilidad mínima para que se considere un token, en relación con la probabilidad del token más probable. Por ejemplo, con *p*=0.05 y el token más probable teniendo una probabilidad de 0.9, los logits con un valor inferior a 0.045 se filtran. (Predeterminado: 0.0) |
+|===============================
+
+==== Parámetros y Valores Válidos
+
+[source, modelfile]
+----
+PARAMETER key=value
+----
+
+=== TEMPLATE
+
+`TEMPLATE` de la plantilla completa de la solicitud que se pasará al modelo. Puede incluir (opcionalmente) un mensaje del sistema, un mensaje del usuario y la respuesta del modelo. Nota: la sintaxis puede ser específica del modelo. Las plantillas utilizan la sintaxis de Go [template](https://pkg.go.dev/text/template).
+
+#### Template Variables
+
+|===============================
+| Variable          | Descripción                                                                                   |
+| `{{ .System }}`   | El mensaje del sistema utilizado para especificar el comportamiento personalizado.            |
+| `{{ .Prompt }}`   | El mensaje de solicitud del usuario.                                                          |
+| `{{ .Response }}` | La respuesta del modelo. Al generar una respuesta, el texto después de esta variable se omite. |
+|===============================
+
+```
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+"""
+```
+
+=== SYSTEM
+
+Especifica el mensaje del sistema que se establecerá en la plantilla.
+
+[source, modelfile]
+----
+SYSTEM "Mensaje del sistema aquí"
+----
+
+=== ADAPTER
+
+El `ADAPTER` especifica un adaptador LoRA ajustado que se debe aplicar al modelo base. El valor del adaptador debe ser una ruta absoluta o una ruta relativa al Modelfile. El modelo base debe especificarse con una instrucción `FROM`. Si el modelo base no es el mismo que el modelo base que se ajustó, el comportamiento será errático.
+
+[source, modelfile]
+----
+ADAPTER "path/to/adapter"
+----
+
+=== LICENSE
+
+Especifica la licencia para el modelo.
+
+[source, modelfile]
+----
+LICENSE "Detalles de la licencia aquí"
+----
+
+=== MESSAGE
+
+Define los mensajes para el modelo.
+
+.Los roles válidos son:
+* `system` - El mensaje del sistema.
+* `user` - El mensaje del usuario.
+* `assistant` - El mensaje del asistente ante la petición del usuario.
+
+[source, modelfile]
+----
+MESSAGE system Hola, soy un mensaje del sistema!
+MESSAGE user Hola, mundo!
+MESSAGE assistant Hola, usuario!
+----
+
+== Ejemplo de Modelfile
+
+[source, modelfile]
+----
+FROM llama3.2
+PARAMETER mirostat=1
+PARAMETER mirostat_eta=0.1
+TEMPLATE "Un ejemplo de plantilla"
+SYSTEM "Un mensaje del sistema"
+ADAPTER "Detalles del adaptador"
+LICENSE "Detalles de la licencia"
+MESSAGE user hola
+MESSAGE assistant hola, usuario!
+----
